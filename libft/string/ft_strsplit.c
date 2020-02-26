@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 10:35:22 by fkante            #+#    #+#             */
-/*   Updated: 2020/01/31 14:14:07 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/26 19:40:19 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char		**ft_fill(char const *s, char c, char **tab, int count)
 			s++;
 		while ((s[j] != c) && s[j])
 			j++;
-		if (!(tab[i] = (char*)malloc(sizeof(char) * (j + 1))))
+		if (!(tab[i] = (char*)ft_memalloc(sizeof(char) * (j + 1))))
 		{
 			ft_clean(tab, i);
 			return (NULL);
@@ -73,7 +73,7 @@ char			**ft_strsplit(char const *s, char c)
 	if (!s)
 		return (NULL);
 	count = ft_word_count(s, c);
-	if (!(tab = (char**)malloc(sizeof(char *) * (count + 1))))
+	if (!(tab = (char**)ft_memalloc(sizeof(char *) * (count + 1))))
 		return (NULL);
 	return (ft_fill(s, c, tab, count) ? tab : NULL);
 }

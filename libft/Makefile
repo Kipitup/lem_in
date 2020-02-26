@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/02/25 20:48:01 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/26 20:48:50 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,6 +110,7 @@ SRCS += get_next_line.c
 SRCS += ft_printf.c
 SRCS += ft_atol.c
 SRCS += ft_log2_n.c
+SRCS += ft_check_int_len.c
 
 #------------------------------------ STAT ------------------------------------#
 SRCS += ft_get_high.c
@@ -135,6 +136,7 @@ SRCS += vct_addnstr.c
 SRCS += vct_pop.c
 SRCS += vct_dup.c
 SRCS += vct_ndup.c
+SRCS += vct_dup_from.c
 SRCS += vct_addchar.c
 SRCS += vct_increase_scale.c
 SRCS += vct_bzero.c
@@ -164,6 +166,8 @@ SRCS += vct_chr_str_count.c
 SRCS += vct_sub.c
 SRCS += vct_read_line.c
 SRCS +=	vct_read_line_for_push_swap.c
+SRCS += vct_strequ.c
+SRCS += vct_strnequ.c
 
 #----------------------------------- BTREE ------------------------------------#
 SRCS += heap_build.c

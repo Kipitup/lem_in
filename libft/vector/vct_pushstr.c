@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:32:56 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/20 10:22:10 by fkante           ###   ########.fr       */
+/*   Updated: 2020/02/26 16:23:19 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int8_t			vct_pushstr(t_vector *vector, char *str)
 	int8_t	ret;
 
 	ret = FAILURE;
-	if (vector != NULL && vector->str != NULL)
+	if (vector != NULL && vector->str != NULL && str != NULL)
 	{
 		ret = SUCCESS;
 		len = ft_strlen(str);

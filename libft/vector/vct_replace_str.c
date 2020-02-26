@@ -6,12 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:58:09 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/03 20:40:34 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/26 20:48:05 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
-#include <stdio.h>
+
 /*
 **	Search the vector to find if a given 'str' string exist in the vector.
 **	If it does, replace it with the given 'replace' string.
@@ -33,7 +33,7 @@ ssize_t			replace_func(t_vector *vector, char *str, char *replace,
 
 	len_str = ft_strlen(str);
 	len_replace = ft_strlen(replace);
-	dup = vct_ndup(vector, to_ignore);
+	dup = vct_dup_from(vector, to_ignore);
 	state = dup == NULL ? FAILURE : FALSE;
 	if (state != FAILURE)
 		index = vct_chr_str(dup, str);

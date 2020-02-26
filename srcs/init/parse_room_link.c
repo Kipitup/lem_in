@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   parse_room_link.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 10:20:53 by amartino         ###   ########.fr       */
+/*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
+/*   Updated: 2020/02/26 18:51:11 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	clean_lemin(t_lemin **lemin)
+uint8_t		room_link(t_st_machine *sm, t_vector *line)
 {
-	if (lemin != NULL && *lemin != NULL)
-	{
-		vct_del(&((*lemin)->output));
-		ft_memdel((void**)lemin);
-	}
-}
+	uint8_t			ret;
 
-void	clean_state_machine(t_st_machine **sm)
-{
-	if (sm != NULL && *sm != NULL)
-		ft_memdel((void**)sm);
+	ret = TRUE;
+	add_line_to_output(sm, line, ROOM_LINK);
+	return (ret);
 }

@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   ft_check_int_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 10:20:53 by amartino         ###   ########.fr       */
+/*   Created: 2020/02/26 18:16:42 by amartino          #+#    #+#             */
+/*   Updated: 2020/02/26 18:24:14 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-void	clean_lemin(t_lemin **lemin)
+int8_t		ft_check_int_len(char *str)
 {
-	if (lemin != NULL && *lemin != NULL)
+	size_t	i;
+	size_t	len;
+	int8_t	ret;
+
+	i = 0;
+	ret = SUCCESS;
+	len = ft_strlen(str);
+	if (len > INTMIN_LEN)
 	{
-		vct_del(&((*lemin)->output));
-		ft_memdel((void**)lemin);
+		if (str[i] == '-')
+			i++;
+		while (str[i] != '\0' && str[i] == '0')
+			i++;
+		len = ft_strlen(str + i);
+		if (len > INTMAX_LEN)
+			ret = FAILURE;
 	}
-}
-
-void	clean_state_machine(t_st_machine **sm)
-{
-	if (sm != NULL && *sm != NULL)
-		ft_memdel((void**)sm);
+	return (ret);
 }

@@ -6,11 +6,16 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 13:23:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/03 14:53:32 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/26 10:09:16 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+
+/*
+**	Search the vector for a given string. If found, return the index of the
+**	start of the string. If not, return FAILURE.
+*/
 
 ssize_t		vct_chr_str(t_vector *vector, char *find)
 {

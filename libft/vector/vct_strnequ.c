@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   vct_strnequ.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 10:20:53 by amartino         ###   ########.fr       */
+/*   Created: 2020/02/26 13:50:29 by amartino          #+#    #+#             */
+/*   Updated: 2020/02/26 16:48:56 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "vector.h"
 
-void	clean_lemin(t_lemin **lemin)
+uint8_t		vct_strnequ(t_vector const *vector, char const *str, size_t n)
 {
-	if (lemin != NULL && *lemin != NULL)
+	size_t	i;
+
+	i = 0;
+	if (vector == NULL || vector->str == NULL || str == NULL)
+		return (FALSE);
+	while ((vector->str[i] || str[i]) && (i < n))
 	{
-		vct_del(&((*lemin)->output));
-		ft_memdel((void**)lemin);
+		if (vector->str[i] != str[i])
+			return (FALSE);
+		i++;
 	}
-}
-
-void	clean_state_machine(t_st_machine **sm)
-{
-	if (sm != NULL && *sm != NULL)
-		ft_memdel((void**)sm);
+	return (TRUE);
 }

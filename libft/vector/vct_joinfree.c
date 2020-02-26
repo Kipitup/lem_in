@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vct_join_free.c                                    :+:      :+:    :+:   */
+/*   vct_joinfree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 15:14:53 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/18 19:50:56 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/26 10:53:00 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 **	than the string SIZE, an equivalent reallocation occurs.
 */
 
-t_vector	*vct_join_free(t_vector **dest, t_vector **src,
+t_vector	*vct_joinfree(t_vector **dest, t_vector **src,
 							int first_or_second_or_both)
 {
 	t_vector	*new;

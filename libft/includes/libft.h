@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/02/25 16:56:11 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/26 18:24:43 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@
 # define BUFF_SIZE				1024
 # define FD_LIMIT				4864
 # define CLEANUP				-42
-# define STD_IN				STDIN_FILENO
-# define STD_OUT			STDOUT_FILENO
-# define STD_ERR			STDERR_FILENO
+# define STD_IN					STDIN_FILENO
+# define STD_OUT				STDOUT_FILENO
+# define STD_ERR				STDERR_FILENO
+# define INTMIN_LEN				11
+# define INTMAX_LEN				10
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -139,6 +141,7 @@ char				*ft_strlowcase(char *str);
 char				*ft_strchr_str(const char *str, char *find);
 char				*ft_strndup(const char *src, size_t size);
 int					get_next_line(const int fd, char **line);
+int8_t				ft_check_int_len(char *str);
 
 /*
 ** ############################################################################

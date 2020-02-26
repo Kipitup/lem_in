@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/25 20:54:13 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/26 20:29:35 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static t_lemin			*init_struct_lemin(void)
 	lemin = ft_memalloc(sizeof(t_lemin));
 	if (lemin != NULL)
 	{
-		lemin->output_text = vct_new(DEFAULT_VCT_SIZE);
-		if (lemin->output_text == NULL)
+		lemin->output = vct_new(DEFAULT_VCT_SIZE);
+		lemin->room = vct_new(DEFAULT_VCT_SIZE);
+		lemin->link = vct_new(DEFAULT_VCT_SIZE);
+		if (lemin->output == NULL || lemin->room == NULL || lemin->link == NULL)
 			clean_lemin(&(lemin));
 	}
 	return (lemin);
