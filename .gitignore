@@ -1,6 +1,5 @@
 #binary
-push_swap
-checker
+lem-in
 
 # Object files
 libftprintf/build/*.o

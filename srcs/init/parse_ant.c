@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:46:37 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 21:08:41 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:38:06 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-size_t	get_nb_of_ants(t_vector *line)
+static size_t	get_nb_of_ants(t_vector *line)
 {
 	char		*str;
 	size_t		size;

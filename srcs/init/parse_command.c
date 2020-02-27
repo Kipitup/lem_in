@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 18:49:48 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/27 16:50:15 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	next_room_is_special(t_st_machine *sm, t_vector *line, uint8_t type)
 {
-	int8_t					ret;
+	t_vector	*tmp;
+	int8_t		ret;
 
 	(void)type;
+	tmp = NULL;
 	add_line_to_output(sm, line, COMMAND);
-	vct_del(&line);
-	ret = vct_read_line(STD_IN, &line);
+	ret = vct_read_line(STD_IN, &tmp);
 	if (ret <= 0)
 		sm->state = E_ERROR;
 	else
-		add_line_to_output(sm, line, SPECIAL_ROOM);
+		add_line_to_output(sm, tmp, SPECIAL_ROOM);
+	vct_del(&tmp);
 }
 
 uint8_t		command(t_st_machine *sm, t_vector *line)

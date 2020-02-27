@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 21:43:59 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:36:39 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		main(void)
 	if (lemin != NULL)
 	{
 		vct_print(lemin->output);
-		ft_printf("\n\nNB OF ANTS: %zu\nRoom: %s\n", lemin->nb_ants, lemin->room->str);
+		ft_printf("\n\nNB OF ANTS: %zu\nRoom: \n%s\n", lemin->nb_ants, lemin->room->str);
 	}
 	else
 		ft_printf("error\n");

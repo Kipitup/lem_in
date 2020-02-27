@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 15:25:09 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 20:57:10 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:44:47 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ t_vector 		*vct_sub(t_vector *vector, size_t start, size_t len);
 t_vector		*vct_dup(t_vector *vector);
 t_vector		*vct_ndup(t_vector *vector, size_t len);
 t_vector		*vct_dup_from(t_vector *vector, size_t index);
+t_vector		*vct_ndup_from(t_vector *vector, size_t len, size_t index);
 int8_t			vct_cat(t_vector *dest, t_vector *src);
 t_vector		*vct_join(t_vector *dest, t_vector *src);
 t_vector		*vct_joinfree(t_vector **dest, t_vector **src, int first_or_second_or_both);
