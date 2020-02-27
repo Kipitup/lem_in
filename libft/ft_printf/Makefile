@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/02/27 13:35:42 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/27 19:03:14 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -19,7 +19,7 @@ LIB_DIR = ../
 LIB = libft.a
 CC = gcc
 AR = ar -rcs
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 DFLAGS =  -Wall -Wextra -Werror -fsanitize=address,undefined -g3
 INCLUDES += -I./includes
 INCLUDES += -I../includes

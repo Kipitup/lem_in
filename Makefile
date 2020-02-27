@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/02/26 18:51:37 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/27 19:39:01 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -18,7 +18,7 @@ NAME = lem-in
 LIB_DIR = ./libft/ft_printf
 LIB = libftprintf.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-Wpadded -Weverything
+CFLAGS = -Wall -Wextra -Werror -g3#-Wpadded -Weverything
 DFLAGS =  -Wall -Wextra -Werror -fsanitize=address,undefined -g3
 INCLUDES += -I./include
 INCLUDES += -I./libft/includes
@@ -107,8 +107,9 @@ $(LIB_PATH): FORCE
 
 unit_test:
 	@echo "\n | Unitest |"
+	./unit_test.sh
 
-run: all
+run:
 	$(MAKE) unit_test
 
 clean:
@@ -126,7 +127,9 @@ re: fclean
 	$(MAKE)
 
 .PHONY: clean fclean all re t FORCE git
-.SILENT:
+.SILENT: $(NAME) $(OBJS) $(BUILD_DIR) $(MAIN_OBJ_PS) $(MAIN_OBJ_C) all re t \
+			$(LIB_PATH) $(NAME_PUSH_SWP) $(NAME_CHECKER) clean fclean run
+
 FORCE:
 
 

@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/02/27 13:45:15 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/27 19:03:04 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ AR = ar -rcs
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror
+CFLAGS += -g3
 DFLAGS =  -Wall -Wextra -Werror -fsanitize=address,undefined -g3
 BUILD_DIR = objs/
 

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 20:29:35 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:45:27 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_lemin			*init(void)
 		parse(sm);
 		if (sm->state != E_ERROR)
 			lemin = sm->lemin;
+		else
+			clean_lemin(&(sm->lemin));
 		clean_state_machine(&sm);
 	}
 	return (lemin);
