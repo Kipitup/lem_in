@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/02/28 16:35:46 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 16:48:31 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HEAD += libft.h
 HEAD += vector.h
 HEAD += btree.h
 HEAD += ft_printf.h
-HEAD += define.h
+HEAD += define_pf.h
 
 vpath %.h $(INCLUDES)
 

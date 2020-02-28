@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/02/28 16:00:35 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 17:36:44 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -15,8 +15,8 @@
                      #                   				#
                      ####################################
 NAME = lem-in
-LIB_DIR = ./libft/ft_printf
-LIB = libftprintf.a
+LIB_DIR = ./libft
+LIB = libft.a
 CC = gcc
 CFLAGS += -Wall -Wextra -Werror
 INCLUDES += -I./include
@@ -31,14 +31,6 @@ HEAD += ./include/lem_in.h
                      #       	  	IFEQ	   			#
                      #                   				#
                      ####################################
-
-# FLAGS
-#ifeq ($(f), no)
-#CFLAGS = -g3
-#else ifeq ($(f), f)
-#CFLAGS = $(DFLAGS)
-#endif
-
 # FLAGS
 ifeq ($(f), 0)
 	CFLAGS += -g3
@@ -64,18 +56,6 @@ else ifeq ($(f), 4)
 	CFLAGS += -Wpadded
 	CFLAGS += -Weverything
 endif
-
-# VALGRIND
-$(VAL):
-ifeq ($(VAL), no)
-VALGRIND =
-else
-CFLAGS += -g
-SHOW_LEAK = --show-leak-kinds=definite
-VALGRIND = valgrind --track-origins=yes --leak-check=full $(SHOW_LEAK)
-endif
-
-
 
                      ####################################
                      #                   				#

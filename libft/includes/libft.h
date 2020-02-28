@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/02/28 16:40:41 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 16:58:24 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <limits.h>
 # include <string.h>
 # include "vector.h"
-
+# include "ft_printf.h"
 // #define ft_memalloc(X) ft_malloc_debug(X, __FILE__, __LINE__, __func__)
 
 /*

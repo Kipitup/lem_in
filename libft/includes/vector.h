@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 15:25:09 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 13:44:47 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 17:09:18 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft.h"
 
 # define ON						1
 # define OFF					0
@@ -62,7 +61,7 @@ enum	e_apply
 	IS_LOWCASE,
 	IS_BLANK,
 	IS_ZERO,
-	EMPTY,
+	EMPTY
 };
 
 /*
@@ -163,5 +162,7 @@ t_vector		*ft_fldtoa(long double val, uint64_t preci, uint32_t opt);
 ** vct_splitchr
 ** vct_read_line
 */
+
+# include "libft.h"
 
 #endif
