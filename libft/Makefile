@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/02/28 17:58:36 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 20:11:31 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,23 +35,23 @@ vpath %.h $(INCLUDES)
                      ####################################
 
 # FLAGS
-ifeq ($(f), 0)
+ifeq ($(debug), 0)
 	CFLAGS += -g3
-else ifeq ($(f), 1)
+else ifeq ($(debug), 1)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
-else ifeq ($(f), 2)
+else ifeq ($(debug), 2)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
 	CFLAGS += -ansi
 	CFLAGS += -pedantic
-else ifeq ($(f), 3)
+else ifeq ($(debug), 3)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
 	CFLAGS += -ansi
 	CFLAGS += -pedantic
 	CFLAGS += -Wpadded
-else ifeq ($(f), 4)
+else ifeq ($(debug), 4)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
 	CFLAGS += -ansi

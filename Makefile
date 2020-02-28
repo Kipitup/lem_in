@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/02/28 17:36:44 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 20:19:53 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -32,23 +32,23 @@ HEAD += ./include/lem_in.h
                      #                   				#
                      ####################################
 # FLAGS
-ifeq ($(f), 0)
+ifeq ($(debug), 0)
 	CFLAGS += -g3
-else ifeq ($(f), 1)
+else ifeq ($(debug), 1)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
-else ifeq ($(f), 2)
+else ifeq ($(debug), 2)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
 	CFLAGS += -ansi
 	CFLAGS += -pedantic
-else ifeq ($(f), 3)
+else ifeq ($(debug), 3)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
 	CFLAGS += -ansi
 	CFLAGS += -pedantic
 	CFLAGS += -Wpadded
-else ifeq ($(f), 4)
+else ifeq ($(debug), 4)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
 	CFLAGS += -ansi
@@ -126,13 +126,11 @@ all: $(NAME)
 fast:
 	$(MAKE) re -j8
 
-$(NAME): $(BUILD_DIR) $(OBJS) $(LIB_PATH)
+$(NAME): $(OBJS) $(LIB_PATH)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIB_PATH) $(INCLUDES)
 
-$(BUILD_DIR):
-	mkdir $@
-
 $(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
+	mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	echo "$(CFLAGS) \t\t $(GREEN)$<$(END)"
 

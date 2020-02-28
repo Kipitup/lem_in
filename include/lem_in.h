@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/28 10:46:30 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 19:21:30 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ typedef struct	s_lemin
 	t_vector		*output;
 	t_vector		*room;
 	t_vector		*link;
+	t_vector		*start;
+	t_vector		*end;
 	size_t			nb_ants;
+
 }				t_lemin;
 
 typedef struct	s_st_machine
@@ -54,6 +57,7 @@ uint8_t			ant(t_st_machine *sm, t_vector *line);
 uint8_t			room(t_st_machine *sm, t_vector *line);
 uint8_t			room_link(t_st_machine *sm, t_vector *line);
 uint8_t			command(t_st_machine *sm, t_vector *line);
+t_vector 		*get_room(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);

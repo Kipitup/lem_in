@@ -6,13 +6,14 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 17:38:05 by amartino          #+#    #+#              #
-#    Updated: 2020/02/28 18:08:53 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 20:10:47 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
 
 #====ARGV=====#
-# '-z' : true if the string is null / empty
+# '-z' : true if the lenght of the string is 0
+# '-n' : true if the lenght of the string is nonzero
 continue=false
 verbose=false
 leak=false
@@ -73,12 +74,17 @@ printf "\n----> ${CYAN}U ${MAGENTA}N ${YELLOW}I ${WHITE}T  ${RED}T ${GREEN}E ${Y
 
 
 #======MAKE======#
+echo "----> ${GREEN}Makefile running${END_C}\n"
+
 # redirige la sortie d'erreur (2) et la sortie standard (1) dans un fichier
 # '#?': return value of the last executed command
 # '-ne': not equal to
-echo "----> ${GREEN}Makefile running${END_C}\n"
-
-make > $LOG_MAKE 2>&1
+if [ "$leak" = true ]
+then
+	make re debug=0 -j8 > $LOG_MAKE 2>&1
+else
+	make -j8 > $LOG_MAKE 2>&1
+fi
 if [ "$?" -ne 0 ]
 then
    printf "${RED}Makefile failed${END_C} \n"

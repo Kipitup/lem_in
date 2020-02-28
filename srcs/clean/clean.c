@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 16:44:39 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 19:04:56 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	clean_lemin(t_lemin **lemin)
 		vct_del(&((*lemin)->output));
 		vct_del(&((*lemin)->room));
 		vct_del(&((*lemin)->link));
+		vct_del(&((*lemin)->start));
+		vct_del(&((*lemin)->end));
 		ft_memdel((void**)lemin);
 	}
 }
