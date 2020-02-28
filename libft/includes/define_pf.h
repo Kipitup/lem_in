@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 14:13:45 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/25 16:56:19 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 16:40:34 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define OPEN_BRACKET		'{'
 # define CLOSE_BRACKET		'}'
 # define NB_OF_BRACKET		2
+# define NAN_STR			"nan"
+# define INF_STR			"inf"
+# define MINUS_INF_STR		"-inf"
 
 # define HH 				"hh"
 # define LL 				"ll"
@@ -81,6 +84,8 @@
 # define FLAG_Z				0x00001000
 
 # define ALL_MOD			0x0000001f
+# define FLAG_NAN			0x000007a0
+# define FLAG_INF			0x00000580
 
 # define CONV_C				0x00010000
 # define CONV_S				0x00020000

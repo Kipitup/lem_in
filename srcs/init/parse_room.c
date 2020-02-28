@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 17:02:11 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 14:17:30 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ static t_vector 	*get_room(t_st_machine *sm, t_vector *line)
 		index = vct_chr(dup, ' ');
 		dup2 = vct_ndup(dup, index);
 		coord = get_coord(sm, dup2);
-		// ft_printf("coord2 %d\tfrom |%s|\t", coord, dup2->str);
+		// ft_printf("coord %d\t", coord);
 		vct_pop_from(dup, (index + 1), START);
 		coord = get_coord(sm, dup);
-		// ft_printf("coord2 %d\tfrom |%s|\n", coord, dup->str);
+		// ft_printf("coord2 %d\n", coor);
 		vct_del(&dup2);
 	}
 	vct_del(&dup);

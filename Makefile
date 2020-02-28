@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/02/27 19:39:01 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 16:00:35 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -18,13 +18,64 @@ NAME = lem-in
 LIB_DIR = ./libft/ft_printf
 LIB = libftprintf.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3#-Wpadded -Weverything
-DFLAGS =  -Wall -Wextra -Werror -fsanitize=address,undefined -g3
+CFLAGS += -Wall -Wextra -Werror
 INCLUDES += -I./include
 INCLUDES += -I./libft/includes
 INCLUDES += -I./libft/ft_printf/includes
 HEAD += ./include/define_lem_in.h
 HEAD += ./include/lem_in.h
+
+
+                     ####################################
+                     #                   				#
+                     #       	  	IFEQ	   			#
+                     #                   				#
+                     ####################################
+
+# FLAGS
+#ifeq ($(f), no)
+#CFLAGS = -g3
+#else ifeq ($(f), f)
+#CFLAGS = $(DFLAGS)
+#endif
+
+# FLAGS
+ifeq ($(f), 0)
+	CFLAGS += -g3
+else ifeq ($(f), 1)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+else ifeq ($(f), 2)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+else ifeq ($(f), 3)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+	CFLAGS += -Wpadded
+else ifeq ($(f), 4)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+	CFLAGS += -Wpadded
+	CFLAGS += -Weverything
+endif
+
+# VALGRIND
+$(VAL):
+ifeq ($(VAL), no)
+VALGRIND =
+else
+CFLAGS += -g
+SHOW_LEAK = --show-leak-kinds=definite
+VALGRIND = valgrind --track-origins=yes --leak-check=full $(SHOW_LEAK)
+endif
+
+
 
                      ####################################
                      #                   				#
@@ -92,6 +143,9 @@ OBJS = $(patsubst %, $(BUILD_DIR)%.o, $(SRCS))
 all: $(NAME)
 	echo "\n$(CYAN)MAKE COMPLETE$(END)"
 
+fast:
+	$(MAKE) re -j8
+
 $(NAME): $(BUILD_DIR) $(OBJS) $(LIB_PATH)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIB_PATH) $(INCLUDES)
 
@@ -126,35 +180,11 @@ fclean: clean
 re: fclean
 	$(MAKE)
 
+FORCE:
+
 .PHONY: clean fclean all re t FORCE git
 .SILENT: $(NAME) $(OBJS) $(BUILD_DIR) $(MAIN_OBJ_PS) $(MAIN_OBJ_C) all re t \
 			$(LIB_PATH) $(NAME_PUSH_SWP) $(NAME_CHECKER) clean fclean run
-
-FORCE:
-
-
-                     ####################################
-                     #                   				#
-                     #       	  	IFEQ	   			#
-                     #                   				#
-                     ####################################
-
-# FLAGS
-ifeq ($(f), no)
-CFLAGS = -g3
-else ifeq ($(f), f)
-CFLAGS = $(DFLAGS)
-endif
-
-# VALGRIND
-$(VAL):
-ifeq ($(VAL), no)
-VALGRIND =
-else
-CFLAGS += -g
-SHOW_LEAK = --show-leak-kinds=definite
-VALGRIND = valgrind --track-origins=yes --leak-check=full $(SHOW_LEAK)
-endif
 
                      ####################################
                      #                   				#
