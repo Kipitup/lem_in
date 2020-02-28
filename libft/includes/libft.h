@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/02/26 18:24:43 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 11:42:44 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <string.h>
+# include "vector.h"
 
 // #define ft_memalloc(X) ft_malloc_debug(X, __FILE__, __LINE__, __func__)
 
@@ -37,6 +38,7 @@
 # define STD_ERR				STDERR_FILENO
 # define INTMIN_LEN				11
 # define INTMAX_LEN				10
+# define DJB_HASH_CONSTANT		5381
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -189,6 +191,13 @@ int					ft_fibonacci(int index);
 double				ft_pow(double x, double exponent);
 unsigned long		ft_pow_positive(unsigned long x, unsigned long exponent);
 uint32_t			ft_log2_n(uint32_t nb);
+
+/*
+** ############################################################################
+** ################################## HASH ####################################
+** ############################################################################
+*/
+uint32_t			ft_hash_void_data(void *data, uint32_t *previous_hash);
 
 /*
 ** ############################################################################
