@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/02/28 16:48:31 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 17:58:36 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -276,14 +276,14 @@ OBJS += $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(BUILD_DIR) $(OBJS)
 	echo  "\n$(CYAN)Makefile libft$(END)\n"
 	$(AR) $@ $(OBJS)
 
 $(BUILD_DIR):
 	mkdir $@
 
-$(OBJS): $(BUILD_DIR)%.o: %.c $(BUILD_DIR) $(HEAD) Makefile
+$(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
 	$(CC) $(CFLAGS) $(I_INCLUDES) -c $< -o $@
 	echo "$(CFLAGS) \t\t $(GREEN)$<$(END)"
 

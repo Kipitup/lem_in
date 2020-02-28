@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 17:38:05 by amartino          #+#    #+#              #
-#    Updated: 2020/02/28 15:45:53 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 18:08:53 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -15,6 +15,7 @@
 # '-z' : true if the string is null / empty
 continue=false
 verbose=false
+leak=false
 if [ -n "$1" ]
 then
 	if [[ $1 == *"c"* ]]
@@ -25,9 +26,16 @@ then
 	then
 		verbose=true
 	fi
+	if [[ $1 == *"l"* ]]
+	then
+		leak=true
+	fi
 	if [[ $1 == "--help" ]]
 	then
-		printf "usage: ./unit_test [-c v] \n"
+		printf "usage: ./unit_test [-c | -v | -l]\n"
+		echo "-c: if error, continue"
+		echo "-v: verbose"
+		echo "-l: check leaks"
 		exit
 	fi
 fi
@@ -37,7 +45,7 @@ EXEC=./lem-in
 MAP_DIR=maps/map_unit_test
 INCORRECT_MAP_DIR=incorrect_map
 CORRECT_MAP_DIR=correct_map
-LOG_MAKE=/tmp/log_exec.txt
+LOG_MAKE=/tmp/log_makefile.txt
 LOG_EXEC=/tmp/log_exec.txt
 LOG_LEAK="/tmp/leaks.txt"
 VALGRIND="valgrind --log-file=${LOG_LEAK} --quiet "
@@ -155,8 +163,13 @@ for MAP in ${MAP_DIR}/${INCORRECT_MAP_DIR}/*.map
 do
 	if test -f $MAP
 	then
-		$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC
-		check_leak $MAP
+		if [ "$leak" = true ]
+		then
+			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC
+			check_leak $MAP
+		else
+			$EXEC < $MAP > $LOG_EXEC
+		fi
 		check_output_incorrect_map $MAP
 	fi
 done
@@ -167,8 +180,13 @@ for MAP in ${MAP_DIR}/${CORRECT_MAP_DIR}/*.map
 do
 	if test -f $MAP
 	then
-		$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC
-		check_leak $MAP
+		if [ "$leak" = true ]
+		then
+			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC
+			check_leak $MAP
+		else
+			$EXEC < $MAP > $LOG_EXEC
+		fi
 		check_output_correct_map $MAP
 	fi
 done
