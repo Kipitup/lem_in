@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 21:38:02 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/27 16:46:47 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void		parse(t_st_machine *sm)
 	while (sm->state != E_END && sm->state != E_ERROR)
 	{
 		if (read_next_line == TRUE)
+		{
+			vct_del(&line);
 			ret = vct_read_line(STD_IN, &line);
+		}
 		if (ret == SUCCESS)
 			sm->state = E_END;
 		else if (ret == FAILURE)

@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 21:47:43 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:02:11 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int32_t 	get_coord(t_st_machine *sm, t_vector *line)
+static int32_t 	get_coord(t_st_machine *sm, t_vector *line)
 {
 	char		*str;
 	int32_t		coord;
@@ -23,7 +23,9 @@ int32_t 	get_coord(t_st_machine *sm, t_vector *line)
 	{
 		str = vct_getstr(line);
 		tmp = ft_atol(str);
-		if (tmp <= INT_MAX && tmp >= 0 && ft_check_int_len(str) == SUCCESS)
+		if (tmp > INT_MAX || tmp < INT_MIN || ft_check_int_len(str) == FAILURE)
+			sm->state = E_ERROR;
+		else
 			coord = (int32_t)tmp;
 	}
 	else
@@ -31,38 +33,60 @@ int32_t 	get_coord(t_st_machine *sm, t_vector *line)
 	return (coord);
 }
 
-t_vector 	*get_room(t_st_machine *sm, t_vector *line)
+static t_vector 	*get_room_name(t_st_machine *sm, t_vector *line)
 {
 	t_vector	*room;
-	t_vector	*tmp;
+	t_vector	*dup;
 	size_t		index;
-	int32_t		coord;
 
-	index = vct_chr(line, ' ');
-	tmp = vct_ndup(line, index);
 	room = NULL;
-	if (vct_chr(tmp, '-') != FAILURE)
+	index = vct_chr(line, ' ');
+	dup = vct_ndup(line, index);
+	if (vct_chr(dup, '-') != FAILURE)
 		sm->state = E_ERROR;
 	else
 	{
-		vct_pushstr(tmp, "room name: ");
-		room = vct_joinfree(&room, &tmp, BOTH);
+		vct_pushstr(dup, "\troom name: ");
+		room = vct_joinfree(&room, &dup, FIRST);
 		vct_addchar(room, '\n');
 		vct_pop_from(line, (index + 1), START);
 	}
-	index = vct_chr(line, ' ');
-	vct_del(&tmp);
-	tmp = vct_ndup(line, index);
-	coord = get_coord(sm, tmp);
-	vct_pop_from(line, (index + 1), START);
-	coord = get_coord(sm, line);
+	vct_del(&dup);
+	return (room);
+}
 
+
+//code très moche mais temporaire le temps de trouver la façon d'organiser la data
+static t_vector 	*get_room(t_st_machine *sm, t_vector *line)
+{
+	t_vector	*room;
+	t_vector	*dup;
+	t_vector	*dup2;
+	size_t		index;
+	int32_t		coord;
+
+	room = NULL;
+	dup = vct_dup(line);
+	if (dup != NULL)
+	{
+		room = get_room_name(sm, dup);
+
+		index = vct_chr(dup, ' ');
+		dup2 = vct_ndup(dup, index);
+		coord = get_coord(sm, dup2);
+		// ft_printf("coord2 %d\tfrom |%s|\t", coord, dup2->str);
+		vct_pop_from(dup, (index + 1), START);
+		coord = get_coord(sm, dup);
+		// ft_printf("coord2 %d\tfrom |%s|\n", coord, dup->str);
+		vct_del(&dup2);
+	}
+	vct_del(&dup);
 	return (room);
 }
 
 uint8_t		room(t_st_machine *sm, t_vector *line)
 {
-	t_vector	*tmp;
+	t_vector	*room;
 	uint8_t		ret;
 
 	ret = TRUE;
@@ -72,10 +96,10 @@ uint8_t		room(t_st_machine *sm, t_vector *line)
 	{
 		if (vct_chr_count(line, ' ') == 2)
 		{
-			tmp = get_room(sm, line);
-			if (tmp == NULL)
+			room = get_room(sm, line);
+			if (room == NULL)
 				sm->state = E_ERROR;
-			sm->lemin->room = vct_joinfree(&(sm->lemin->room), &tmp, BOTH);
+			sm->lemin->room = vct_joinfree(&(sm->lemin->room), &room, BOTH);
 			add_line_to_output(sm, line, ROOM);
 		}
 		else
