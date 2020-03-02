@@ -1,5 +1,4 @@
 #let's go
-10
 1 0 -0000000000000023
 ###this is a unknown command
 2 1 1
@@ -14,6 +13,7 @@ an0ther_ro0m 3 0
 ##end
 THE_END 1 1
 #done for the room NOW the links
+10
 start-1
 1-2
 #comment right in the middle of - the links

@@ -6,15 +6,14 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 14:14:27 by amartino          #+#    #+#             */
-/*   Updated: 2019/11/17 13:29:53 by fkante           ###   ########.fr       */
+/*   Updated: 2020/02/28 16:57:25 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "define.h"
-# include "vector.h"
+# include "define_pf.h"
 
 enum	e_main_states
 {

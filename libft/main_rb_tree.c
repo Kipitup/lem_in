@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 08:55:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/23 17:30:20 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/01 19:34:39 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main()
 	t_rb_tree	*root;
 
 	root = red_black_tree(array, 22);
+	root = delete(root, 19);
 	print_rb_tree(root, 0);
 	clean_rb_tree(&root);
 	return (SUCCESS);

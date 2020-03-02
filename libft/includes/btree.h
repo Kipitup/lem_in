@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 10:49:04 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/25 17:20:07 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/01 17:53:55 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,8 @@ t_rb_tree	*init_node(int32_t key);
 void		repair_tree(t_rb_tree *node);
 void		left_rotate(t_rb_tree *old_root);
 void		right_rotate(t_rb_tree *old_root);
+t_rb_tree	*delete(t_rb_tree *node, int32_t key);
 void		delete_case_1(t_rb_tree *node);
-void		delete_case_2(t_rb_tree *node, t_rb_tree *sibling);
-void		delete_case_3(t_rb_tree *node, t_rb_tree *sibling);
-void		delete_case_4(t_rb_tree *node, t_rb_tree *sibling);
 t_rb_tree	*get_root(t_rb_tree *node);
 t_rb_tree	*get_parent(t_rb_tree *self);
 t_rb_tree	*get_grand_parent(t_rb_tree *self);

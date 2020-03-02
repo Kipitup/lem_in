@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 16:46:47 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:46:42 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void		parse(t_st_machine *sm)
 		else
 			read_next_line = parser[sm->state](sm, line);
 	}
+	vct_del(&line);
 }
