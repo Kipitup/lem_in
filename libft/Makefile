@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/02/28 20:11:31 by amartino         ###   ########.fr        #
+#    Updated: 2020/03/02 10:18:34 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -225,6 +225,9 @@ SRCS += ft_print_err_failure.c
 SRCS += ft_print_err_false.c
 SRCS += ft_print_err_void.c
 
+#----------------------------------- HASH -------------------------------------#
+SRCS += ft_hash_void_data.c
+
 #--------------------------------- FT_PRINTF ----------------------------------#
 SRCS += ft_printf.c
 SRCS += ft_asprintf.c
@@ -268,6 +271,7 @@ PATH_SRCS += ./string
 PATH_SRCS += ./memory
 PATH_SRCS += ./print
 PATH_SRCS += ./math
+PATH_SRCS += ./hashmap
 PATH_SRCS += .
 
 vpath %.c $(PATH_SRCS)
