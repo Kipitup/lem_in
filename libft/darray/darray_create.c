@@ -11,16 +11,17 @@
 /* ************************************************************************** */
 
 #include "darray.h"
+#include "libft.h"
 
 t_darray	*darray_create(size_t element_size, size_t init_max)
 {
-	t_array	*array;
+	t_darray	*array;
 
 	array = NULL;
 	if (init_max != 0)
 	{
 		ft_print_err_void(INITIAL_MAX_ZERO, STD_ERR);
-		array = ft_memalloc(sizeof(t_array));
+		array = ft_memalloc(sizeof(t_darray));
 		if (array != NULL)
 		{
 			array->max = init_max;

@@ -1,9 +1,10 @@
 
 #include "darray.h"
+#include "libft.h"
 
-void	darray_clear(t_array *array)
+void	darray_clear(t_darray *array)
 {
-	size_t i;
+	int32_t i;
 
 	i = 0;
 	if (array->element_size > 0) 

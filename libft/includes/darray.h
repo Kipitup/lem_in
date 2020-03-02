@@ -25,20 +25,22 @@ typedef struct	s_darray {
 	void	**contents;
 }				t_darray;
 
+void		darray_set(t_darray *array, int32_t i, void *element);
+void		*darray_get(t_darray *array, int32_t i);
+void		*darray_remove(t_darray *array, int32_t i);
+void		*darray_new(t_darray *array);
 t_darray	*darray_create(size_t element_size, size_t initial_max);
 int8_t		darray_expand(t_darray *array);
 int8_t		darray_contract(t_darray *array);
-int8_t		darray_push(t_array *array, void *element);
-void		*darray_pop(t_array *array);
+int8_t		darray_push(t_darray *array, void *element);
+void		*darray_pop(t_darray *array);
 void		darray_destroy(t_darray *array);
 void		darray_clear(t_darray *array);
-void		darray_clear_destroy(t_array *array);
+void		darray_clear_destroy(t_darray *array);
 
-static inline void	darray_set(t_array *array, int32_t i, void *element);
-static inline void	*darray_get(t_array *array, int32_t i);
-static inline void	*darray_remove(t_array *array, int32_t i);
-static inline void	*darray_new(t_array *array);
-
+/*
+** ********************************  ERRORS ************************************
+*/
 # define SET_ABOVE_MAX			"darray attempt to set past max"
 # define GET_ABOVE_MAX			"darray attempt to get past max"
 # define ARRAY_SIZE_ZERO		"Can't use darray_new on 0 size darrays"

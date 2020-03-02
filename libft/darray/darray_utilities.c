@@ -11,20 +11,21 @@
 /* ************************************************************************** */
 
 #include "darray.h"
+#include "libft.h"
 
-static inline void	darray_set(t_darray *array, int32_t i, void *el)
+void	darray_set(t_darray *array, int32_t i, void *element)
 {
 	if (i < array->max)
 	{
 		if (i > array->end)
 			array->end = i;
-		array->contents[i] = el;
+		array->contents[i] = element;
 	}
 	else
 		ft_print_err_void(SET_ABOVE_MAX, STD_ERR);
 }
 
-static inline void	*darray_get(t_darray *array, int i)
+void	*darray_get(t_darray *array, int i)
 {
 	if (i < array->max)
 		return (array->contents[i]);
@@ -35,19 +36,22 @@ static inline void	*darray_get(t_darray *array, int i)
 	}
 }
 
-static inline void	*darray_remove(t_darray *array, int i)
+void	*darray_remove(t_darray *array, int i)
 {
-	void	*el;
+	void	*element;
 
-	el = array->contents[i];
+	element = array->contents[i];
 	array->contents[i] = NULL;
-	return (el);
+	return (element);
 }
 
-static inline void	*darray_new(t_darray *array)
+void	*darray_new(t_darray *array)
 {
-	if (array->selement_size > 0)
+	if (array->element_size > 0)
 		return (ft_memalloc(array->element_size));
 	else
+	{
 		ft_print_err_void(ARRAY_SIZE_ZERO, STD_ERR);
+		return (NULL);
+	}
 }
