@@ -6,11 +6,13 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:25:03 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/02 10:07:03 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/02 10:23:33 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "hashmap.h"
 #include "libft.h"
+#include "vector.h"
 
 /*
 ** input:

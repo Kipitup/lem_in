@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/02 10:13:03 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/02 10:27:42 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <inttypes.h>
 # include <string.h>
 # include "vector.h"
 # include "ft_printf.h"
@@ -39,7 +40,6 @@
 # define STD_ERR				STDERR_FILENO
 # define INTMIN_LEN				11
 # define INTMAX_LEN				10
-# define DJB_HASH_CONSTANT		5381
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -192,13 +192,6 @@ int					ft_fibonacci(int index);
 double				ft_pow(double x, double exponent);
 unsigned long		ft_pow_positive(unsigned long x, unsigned long exponent);
 uint32_t			ft_log2_n(uint32_t nb);
-
-/*
-** ############################################################################
-** ################################## HASH ####################################
-** ############################################################################
-*/
-uint32_t			ft_hash_void_data(void *data);
 
 /*
 ** ############################################################################

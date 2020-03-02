@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/02 10:13:45 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/02 10:18:34 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -271,7 +271,7 @@ PATH_SRCS += ./string
 PATH_SRCS += ./memory
 PATH_SRCS += ./print
 PATH_SRCS += ./math
-PATH_SRCS += ./hash
+PATH_SRCS += ./hashmap
 PATH_SRCS += .
 
 vpath %.c $(PATH_SRCS)
