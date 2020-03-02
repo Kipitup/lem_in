@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:46:37 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 13:38:06 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 13:25:24 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static size_t	get_nb_of_ants(t_vector *line)
+static size_t	get_nb_of_ants(t_st_machine *sm, t_vector *line)
 {
 	char		*str;
 	size_t		size;
@@ -25,6 +25,9 @@ static size_t	get_nb_of_ants(t_vector *line)
 		tmp = ft_atol(str);
 		if (tmp <= INT_MAX && tmp >= 0 && ft_check_int_len(str) == SUCCESS)
 			size = (size_t)tmp;
+		else
+			sm->state = E_ERROR;
+			// sm->state = sm->state;
 	}
 	return (size);
 }
@@ -38,8 +41,8 @@ uint8_t		ant(t_st_machine *sm, t_vector *line)
 		ret = check_for_comment_or_command(sm, line);
 	else
 	{
-		sm->lemin->nb_ants = get_nb_of_ants(line);
 		sm->state = E_ROOM;
+		sm->lemin->nb_ants = get_nb_of_ants(sm, line);
 		add_line_to_output(sm, line, ANT);
 	}
 	return (ret);

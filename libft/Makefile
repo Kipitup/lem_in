@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/02/27 13:45:15 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 20:11:31 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,49 @@ AR = ar -rcs
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror
-DFLAGS =  -Wall -Wextra -Werror -fsanitize=address,undefined -g3
 BUILD_DIR = objs/
 
-INCLUDES = -I./includes
-HEAD += ./includes/libft.h
-HEAD += ./includes/vector.h
+INCLUDES = ./includes
+I_INCLUDES = $(addprefix -I, $(INCLUDES))
+HEAD += libft.h
+HEAD += vector.h
+HEAD += btree.h
+HEAD += ft_printf.h
+HEAD += define_pf.h
+
+vpath %.h $(INCLUDES)
+
+                     ####################################
+                     #                   				#
+                     #       	  	IFEQ	   			#
+                     #                   				#
+                     ####################################
+
+# FLAGS
+ifeq ($(debug), 0)
+	CFLAGS += -g3
+else ifeq ($(debug), 1)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+else ifeq ($(debug), 2)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+else ifeq ($(debug), 3)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+	CFLAGS += -Wpadded
+else ifeq ($(debug), 4)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+	CFLAGS += -Wpadded
+	CFLAGS += -Weverything
+endif
 
 SRCS += ft_memalloc.c
 # SRCS += ft_malloc_debug.c
@@ -107,7 +144,6 @@ SRCS += ft_len_printf.c
 SRCS += ft_ftoa.c
 SRCS += ft_fldtoa.c
 SRCS += get_next_line.c
-SRCS += ft_printf.c
 SRCS += ft_atol.c
 SRCS += ft_log2_n.c
 SRCS += ft_check_int_len.c
@@ -190,10 +226,39 @@ SRCS += ft_print_err_false.c
 SRCS += ft_print_err_void.c
 
 #--------------------------------- FT_PRINTF ----------------------------------#
-
+SRCS += ft_printf.c
+SRCS += ft_asprintf.c
+SRCS += ft_dprintf.c
+SRCS += search_color.c
+SRCS += apply_hash_flag.c
+SRCS += apply_modifier.c
+SRCS += apply_modifier_f.c
+SRCS += apply_modifier_zj.c
+SRCS += apply_padding_flag.c
+SRCS += check_flag.c
+SRCS += conv_to_b.c
+SRCS += conv_to_c.c
+SRCS += conv_to_di.c
+SRCS += conv_to_f.c
+SRCS += conv_to_hexa_maj.c
+SRCS += conv_to_none.c
+SRCS += conv_to_ox.c
+SRCS += conv_to_ptr.c
+SRCS += conv_to_str.c
+SRCS += conv_to_u.c
+SRCS += convert.c
+SRCS += init_printf.c
+SRCS += statemachine.c
+SRCS += statemachine_asprintf.c
+SRCS += states.c
+SRCS += width_and_precision.c
 
 PATH_SRCS += ./vector
-PATH_SRCS += ./ft_printf
+PATH_SRCS += ./ft_printf/bonus
+PATH_SRCS += ./ft_printf/init
+PATH_SRCS += ./ft_printf/conversion
+PATH_SRCS += ./ft_printf/statemachine
+PATH_SRCS += ./ft_printf/
 PATH_SRCS += ./btree
 PATH_SRCS += ./stats
 PATH_SRCS += ./error
@@ -207,7 +272,6 @@ PATH_SRCS += .
 
 vpath %.c $(PATH_SRCS)
 
-
 OBJS += $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 
 all: $(NAME)
@@ -220,7 +284,7 @@ $(BUILD_DIR):
 	mkdir $@
 
 $(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(I_INCLUDES) -c $< -o $@
 	echo "$(CFLAGS) \t\t $(GREEN)$<$(END)"
 
 
@@ -235,13 +299,6 @@ re: fclean
 
 .PHONY: clean fclean re
 .SILENT: $(NAME) $(OBJS) $(BUILD_DIR) clean fclean re
-
-# FLAGS
-ifeq ($(f), no)
-CFLAGS = -g
-else ifeq ($(f), f)
-CFLAGS = $(DFLAGS)
-endif
 
 RED = \x1b[31m
 GREEN = \x1b[32m

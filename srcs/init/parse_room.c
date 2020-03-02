@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 17:02:11 by amartino         ###   ########.fr       */
+/*   Updated: 2020/02/28 20:03:51 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static t_vector 	*get_room_name(t_st_machine *sm, t_vector *line)
 		sm->state = E_ERROR;
 	else
 	{
-		vct_pushstr(dup, "\troom name: ");
 		room = vct_joinfree(&room, &dup, FIRST);
 		vct_addchar(room, '\n');
 		vct_pop_from(line, (index + 1), START);
@@ -57,7 +56,7 @@ static t_vector 	*get_room_name(t_st_machine *sm, t_vector *line)
 
 
 //code très moche mais temporaire le temps de trouver la façon d'organiser la data
-static t_vector 	*get_room(t_st_machine *sm, t_vector *line)
+t_vector 	*get_room(t_st_machine *sm, t_vector *line)
 {
 	t_vector	*room;
 	t_vector	*dup;
@@ -70,14 +69,13 @@ static t_vector 	*get_room(t_st_machine *sm, t_vector *line)
 	if (dup != NULL)
 	{
 		room = get_room_name(sm, dup);
-
 		index = vct_chr(dup, ' ');
 		dup2 = vct_ndup(dup, index);
 		coord = get_coord(sm, dup2);
-		// ft_printf("coord2 %d\tfrom |%s|\t", coord, dup2->str);
+		// ft_printf("coord %d\t", coord);
 		vct_pop_from(dup, (index + 1), START);
 		coord = get_coord(sm, dup);
-		// ft_printf("coord2 %d\tfrom |%s|\n", coord, dup->str);
+		// ft_printf("coord2 %d\n", coor);
 		vct_del(&dup2);
 	}
 	vct_del(&dup);
@@ -92,21 +90,18 @@ uint8_t		room(t_st_machine *sm, t_vector *line)
 	ret = TRUE;
 	if (vct_getchar_at(line, START) == '#')
 		ret = check_for_comment_or_command(sm, line);
+	else if (vct_chr_count(line, ' ') == 2)
+	{
+		room = get_room(sm, line);
+		if (room == NULL)
+			sm->state = E_ERROR;
+		sm->lemin->room = vct_joinfree(&(sm->lemin->room), &room, BOTH);
+		add_line_to_output(sm, line, ROOM);
+	}
 	else
 	{
-		if (vct_chr_count(line, ' ') == 2)
-		{
-			room = get_room(sm, line);
-			if (room == NULL)
-				sm->state = E_ERROR;
-			sm->lemin->room = vct_joinfree(&(sm->lemin->room), &room, BOTH);
-			add_line_to_output(sm, line, ROOM);
-		}
-		else
-		{
-			sm->state = E_LINK;
-			ret = FALSE;
-		}
+		sm->state = E_LINK;
+		ret = FALSE;
 	}
 	return (ret);
 }

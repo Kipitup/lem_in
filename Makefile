@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/02/26 18:51:37 by amartino         ###   ########.fr        #
+#    Updated: 2020/02/28 20:19:53 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -15,16 +15,47 @@
                      #                   				#
                      ####################################
 NAME = lem-in
-LIB_DIR = ./libft/ft_printf
-LIB = libftprintf.a
+LIB_DIR = ./libft
+LIB = libft.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-Wpadded -Weverything
-DFLAGS =  -Wall -Wextra -Werror -fsanitize=address,undefined -g3
+CFLAGS += -Wall -Wextra -Werror
 INCLUDES += -I./include
 INCLUDES += -I./libft/includes
 INCLUDES += -I./libft/ft_printf/includes
 HEAD += ./include/define_lem_in.h
 HEAD += ./include/lem_in.h
+
+
+                     ####################################
+                     #                   				#
+                     #       	  	IFEQ	   			#
+                     #                   				#
+                     ####################################
+# FLAGS
+ifeq ($(debug), 0)
+	CFLAGS += -g3
+else ifeq ($(debug), 1)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+else ifeq ($(debug), 2)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+else ifeq ($(debug), 3)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+	CFLAGS += -Wpadded
+else ifeq ($(debug), 4)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -ansi
+	CFLAGS += -pedantic
+	CFLAGS += -Wpadded
+	CFLAGS += -Weverything
+endif
 
                      ####################################
                      #                   				#
@@ -92,13 +123,14 @@ OBJS = $(patsubst %, $(BUILD_DIR)%.o, $(SRCS))
 all: $(NAME)
 	echo "\n$(CYAN)MAKE COMPLETE$(END)"
 
-$(NAME): $(BUILD_DIR) $(OBJS) $(LIB_PATH)
+fast:
+	$(MAKE) re -j8
+
+$(NAME): $(OBJS) $(LIB_PATH)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIB_PATH) $(INCLUDES)
 
-$(BUILD_DIR):
-	mkdir $@
-
 $(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
+	mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	echo "$(CFLAGS) \t\t $(GREEN)$<$(END)"
 
@@ -107,8 +139,9 @@ $(LIB_PATH): FORCE
 
 unit_test:
 	@echo "\n | Unitest |"
+	./unit_test.sh
 
-run: all
+run:
 	$(MAKE) unit_test
 
 clean:
@@ -125,33 +158,11 @@ fclean: clean
 re: fclean
 	$(MAKE)
 
-.PHONY: clean fclean all re t FORCE git
-.SILENT:
 FORCE:
 
-
-                     ####################################
-                     #                   				#
-                     #       	  	IFEQ	   			#
-                     #                   				#
-                     ####################################
-
-# FLAGS
-ifeq ($(f), no)
-CFLAGS = -g3
-else ifeq ($(f), f)
-CFLAGS = $(DFLAGS)
-endif
-
-# VALGRIND
-$(VAL):
-ifeq ($(VAL), no)
-VALGRIND =
-else
-CFLAGS += -g
-SHOW_LEAK = --show-leak-kinds=definite
-VALGRIND = valgrind --track-origins=yes --leak-check=full $(SHOW_LEAK)
-endif
+.PHONY: clean fclean all re t FORCE git
+.SILENT: $(NAME) $(OBJS) $(BUILD_DIR) $(MAIN_OBJ_PS) $(MAIN_OBJ_C) all re t \
+			$(LIB_PATH) $(NAME_PUSH_SWP) $(NAME_CHECKER) clean fclean run
 
                      ####################################
                      #                   				#

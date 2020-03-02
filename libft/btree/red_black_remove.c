@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 15:40:53 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/23 18:53:20 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/01 19:37:01 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "btree.h"
 
-void		replace_node(t_rb_tree *node, t_rb_tree *child)
+static void			replace_node(t_rb_tree *node, t_rb_tree *child)
 {
 	child->parent = node->parent;
 	if (node == node->parent->left)
@@ -21,7 +21,11 @@ void		replace_node(t_rb_tree *node, t_rb_tree *child)
 		node->parent->right = child;
 }
 
-void		delete_child(t_rb_tree *node)
+/*
+** I first replace node with child. So in the second if, node's key is
+** child's key. Note that the color did not changed.
+*/
+static void			delete_child(t_rb_tree *node)
 {
 	t_rb_tree	*child;
 
@@ -37,10 +41,17 @@ void		delete_child(t_rb_tree *node)
 		else
 			delete_case_1(child);
 	}
-	ft_memdel((void**)&node);
+	print_rb_tree(get_root(node), 0);
+	ft_printf("node->key %d\tnode color %d\nchild %d\t child color %d\n", node->key, node->color, child->key, child->color);
+	free(node);
+	node = NULL;
+	// if (node == get_parent(node)->left)
+	// 	ft_memdel((void**)&(get_parent(node)->left));
+	// else
+	// 	ft_memdel((void**)&(get_parent(node)->right));
 }
 
-t_rb_tree	*swap_key_with_successor(t_rb_tree *node, int32_t key)
+static t_rb_tree	*swap_key_with_successor(t_rb_tree *node, int32_t key)
 {
 	t_rb_tree	*to_delete;
 	t_rb_tree	*successor;
@@ -60,7 +71,7 @@ t_rb_tree	*swap_key_with_successor(t_rb_tree *node, int32_t key)
 	return (to_delete);
 }
 
-t_rb_tree	*delete(t_rb_tree *node, int32_t key)
+t_rb_tree			*delete(t_rb_tree *node, int32_t key)
 {
 	t_rb_tree	*to_delete;
 

@@ -1,11 +1,11 @@
 #let's go
+##start
 10
 1 0 -0000000000000023
 ###this is a unknown command
 2 1 1
 this_is_aR00m 2 0
 #next room will be the start
-##start
 start 0 1
 #I will have to test that after a command there is a room, otherwise it's wrong
 an0ther_ro0m 3 0
