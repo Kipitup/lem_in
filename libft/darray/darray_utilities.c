@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   darray_utilities.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:36:23 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 10:28:50 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/03 13:24:17 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "darray.h"
 #include "libft.h"
 
-void	darray_set(t_darray *array, int32_t i, void *element)
+void	darray_set(t_darray *array, size_t i, void *element)
 {
 	if (i < array->max)
 	{
@@ -25,18 +25,15 @@ void	darray_set(t_darray *array, int32_t i, void *element)
 		ft_print_err_void(SET_ABOVE_MAX, STD_ERR);
 }
 
-void	*darray_get(t_darray *array, int i)
+void	*darray_get(t_darray *array, size_t i)
 {
 	if (i < array->max)
 		return (array->contents[i]);
 	else
-	{
-		ft_print_err_void(GET_ABOVE_MAX, STD_ERR);
-		return (NULL);
-	}
+		return (ft_print_err_null(GET_ABOVE_MAX, STD_ERR));
 }
 
-void	*darray_remove(t_darray *array, int i)
+void	*darray_remove(t_darray *array, size_t i)
 {
 	void	*element;
 

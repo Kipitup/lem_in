@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   darray.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 10:35:29 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/03 14:06:48 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,24 @@
 
 # define DEFAULT_EXPAND_RATE	500
 
+/*
+** 'max' is the number of block initially malloc
+** 'end' is index that define the last assigned element
+** 'element_size' is the byte' size of each element in content
+** 'expand_rate' when end >= max, then we expand the array by the expand_rate
+*/
+
 typedef struct	s_darray {
-	int32_t	end;
-	int32_t	max;
+	size_t	end;
+	size_t	max;
 	size_t	element_size;
 	size_t	expand_rate;
 	void	**contents;
 }				t_darray;
 
-void		darray_set(t_darray *array, int32_t i, void *element);
-void		*darray_get(t_darray *array, int32_t i);
-void		*darray_remove(t_darray *array, int32_t i);
+void		darray_set(t_darray *array, size_t i, void *element);
+void		*darray_get(t_darray *array, size_t i);
+void		*darray_remove(t_darray *array, size_t i);
 void		*darray_new(t_darray *array);
 t_darray	*darray_create(size_t element_size, size_t initial_max);
 int8_t		darray_expand(t_darray *array);
