@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   main_realloc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 18:21:48 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 11:40:19 by fkante           ###   ########.fr       */
+/*   Created: 2020/03/03 11:38:56 by fkante            #+#    #+#             */
+/*   Updated: 2020/03/03 13:26:00 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int		main(void)
 {
-	size_t i;
+	char	test[] = "salut ca va ?";
+	void	*content;
+	char	*new_content;
 
-	i = 0;
-	while (i < n)
-	{
-		((char*)dst)[i] = ((const char*)src)[i];
-		i++;
-	}
-	return (dst);
+	content = ft_memalloc(ft_strlen(test) + 1);
+	ft_strcpy((char *)content, test);
+	new_content = (char*)ft_realloc(content, 5);
+	for (int i = 0; i < 4; i++)
+		ft_printf("new_content = %c\n", new_content[i]++);
+	return (0);
 }

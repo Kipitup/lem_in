@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 18:21:48 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 11:40:19 by fkante           ###   ########.fr       */
+/*   Created: 2020/03/03 11:25:17 by fkante            #+#    #+#             */
+/*   Updated: 2020/03/03 13:02:22 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_realloc(void *content, size_t size)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n)
+	void	*tmp;
+	
+	if (size > 0)
 	{
-		((char*)dst)[i] = ((const char*)src)[i];
-		i++;
+		tmp = ft_memalloc(size);
+		if (tmp != NULL)
+		{
+			ft_memcpy(tmp, content, size);
+			ft_memdel(&content);
+			return (tmp);
+		}
 	}
-	return (dst);
+	return (NULL);
 }
