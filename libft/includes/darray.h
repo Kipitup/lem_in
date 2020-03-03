@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/02 14:13:50 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/03 10:35:29 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ int8_t		darray_expand(t_darray *array);
 int8_t		darray_contract(t_darray *array);
 int8_t		darray_push(t_darray *array, void *element);
 void		*darray_pop(t_darray *array);
-void		darray_destroy(t_darray *array);
-void		darray_clear(t_darray *array);
-void		darray_clear_destroy(t_darray *array);
+void		darray_destroy(t_darray **array);
+void		darray_clear(t_darray **array);
+void		darray_clear_destroy(t_darray **array);
 
 /*
 ** ********************************  ERRORS ************************************
 */
+# define ARRAY_IS_NULL			"Array is null"
 # define SET_ABOVE_MAX			"darray attempt to set past max"
 # define GET_ABOVE_MAX			"darray attempt to get past max"
 # define ARRAY_SIZE_ZERO		"Can't use darray_new on 0 size darrays"
@@ -48,5 +49,6 @@ void		darray_clear_destroy(t_darray *array);
 # define NEWSIZE_ZERO			"To resize Darray, the newsize must be > 0"
 # define FAILED_TO_EXPAND		"Failed to expand array to new size"
 # define FAILED_TO_POP			"Attempt to pop from empty array"
+# define CONTENT_FAIL			"Failed to allocated memory for content"
 
 #endif

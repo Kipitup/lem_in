@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:36:23 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/02 14:03:06 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/03 10:28:50 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ void	*darray_remove(t_darray *array, int i)
 
 void	*darray_new(t_darray *array)
 {
-	if (array->element_size > 0)
-		return (ft_memalloc(array->element_size));
-	else
+	if (array != NULL)
 	{
-		ft_print_err_void(ARRAY_SIZE_ZERO, STD_ERR);
-		return (NULL);
+		if (array->element_size > 0)
+			return (ft_memalloc(array->element_size));
+		else
+			return (ft_print_err_null(ARRAY_SIZE_ZERO, STD_ERR));
 	}
+	return (ft_print_err_null(ARRAY_IS_NULL, STD_ERR));
 }
