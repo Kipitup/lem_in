@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/28 20:16:45 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/03 15:59:47 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,22 @@ t_vector 	*get_special_room(t_st_machine *sm, t_vector *room, t_vector *tmp)
 	return (room);
 }
 
-void	next_room_is_special(t_st_machine *sm, t_vector *line, uint8_t type)
+void	next_room_is_special(t_st_machine *sm, uint8_t type)
 {
 	t_vector	*tmp;
 	int8_t		ret;
 
 	tmp = NULL;
-	add_line_to_output(sm, line, COMMAND);
 	ret = vct_read_line(STD_IN, &tmp);
 	if (ret <= 0)
 		sm->state = E_ERROR;
 	else
 	{
+		add_line_to_output(sm, tmp, SPECIAL_ROOM);
 		if (type == START)
 			sm->lemin->start = get_special_room(sm, sm->lemin->start, tmp);
 		else
 			sm->lemin->end = get_special_room(sm, sm->lemin->end, tmp);
-		add_line_to_output(sm, tmp, SPECIAL_ROOM);
 	}
 	vct_del(&tmp);
 }
@@ -52,11 +51,10 @@ void	next_room_is_special(t_st_machine *sm, t_vector *line, uint8_t type)
 uint8_t		command(t_st_machine *sm, t_vector *line)
 {
 	sm->state = E_ROOM;
+	add_line_to_output(sm, line, COMMAND);
 	if (vct_strequ(line, "##start") == TRUE)
-		next_room_is_special(sm, line, START);
+		next_room_is_special(sm, START);
 	else if (vct_strequ(line, "##end") == TRUE)
-		next_room_is_special(sm, line, END);
-	else
-		add_line_to_output(sm, line, COMMAND);
+		next_room_is_special(sm, END);
 	return (TRUE);
 }

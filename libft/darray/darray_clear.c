@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   darray_clear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 10:35:38 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 11:07:54 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:50:39 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 void	darray_clear(t_darray **array)
 {
-	int32_t i;
+	size_t i;
 
 	i = 0;
-	if ((*array)->element_size > 0) 
+	if ((*array)->element_size > 0)
 	{
 		while (i < (*array)->max)
 		{
-			if ((*array)->contents[i] != NULL) 
+			if ((*array)->contents[i] != NULL)
 				ft_memdel((*array)->contents + i);
 			i++;
 		}

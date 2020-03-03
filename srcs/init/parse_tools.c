@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:28:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 16:47:16 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/03 15:50:16 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ uint8_t	is_it_all_digit(t_vector *line)
 void	add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type)
 {
 	if (type == COMMENT)
-		vct_pushstr(line, "\033[0m");
+		vct_addstr(sm->lemin->output, "\033[0m");
 	else if (type == COMMAND)
-		vct_pushstr(line, "\033[4m");
+		vct_addstr(sm->lemin->output, "\033[4m");
 	else if (type == SPECIAL_ROOM)
-		vct_pushstr(line, "\033[0;32m");
+		vct_addstr(sm->lemin->output, "\033[0;32m");
 	else
-		vct_pushstr(line, "\033[0;37m");
-	vct_addstr(line, "\033[0m\n");
+		vct_addstr(sm->lemin->output, "\033[0;37m");
 	vct_cat(sm->lemin->output, line);
+	vct_addstr(sm->lemin->output, "\033[0m\n");
 	if (sm->lemin->output == NULL)
 		sm->state = E_ERROR;
 }

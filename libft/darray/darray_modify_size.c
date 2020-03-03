@@ -22,7 +22,7 @@ static int8_t	darray_resize(t_darray *array, size_t newsize)
 }
 
 /*
-** Since array->max is an index,
+** Since array->max is an index,+
 */
 int8_t			darray_expand(t_darray *array)
 {
