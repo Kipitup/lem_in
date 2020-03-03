@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 10:35:38 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 15:50:39 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/03 22:06:57 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,18 @@ void	darray_clear(t_darray **array)
 	size_t i;
 
 	i = 0;
-	if ((*array)->element_size > 0)
+	if (array != NULL)
 	{
-		while (i < (*array)->max)
+		if ((*array)->element_size > 0)
 		{
-			if ((*array)->contents[i] != NULL)
-				ft_memdel((*array)->contents + i);
-			i++;
+			while (i < (*array)->max)
+			{
+				if ((*array)->contents[i] != NULL)
+					ft_memdel((*array)->contents + i);
+				i++;
+			}
 		}
 	}
+	else
+		ft_print_err_void(CLEAR_NULL, STD_ERR);
 }

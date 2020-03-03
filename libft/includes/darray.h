@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 14:06:48 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/03 19:35:34 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-# define DEFAULT_EXPAND_RATE	500
+# define DEFAULT_EXPAND_RATE 50	
 
 /*
 ** 'max' is the number of block initially malloc
@@ -35,6 +35,7 @@ typedef struct	s_darray {
 void		darray_set(t_darray *array, size_t i, void *element);
 void		*darray_get(t_darray *array, size_t i);
 void		*darray_remove(t_darray *array, size_t i);
+void		*darray_new_and_set(t_darray *array, size_t index, void *element);
 void		*darray_new(t_darray *array);
 t_darray	*darray_create(size_t element_size, size_t initial_max);
 int8_t		darray_expand(t_darray *array);
@@ -45,10 +46,13 @@ void		darray_destroy(t_darray **array);
 void		darray_clear(t_darray **array);
 void		darray_clear_destroy(t_darray **array);
 
+void		*darray_new_bis(t_darray *array, size_t index, void *element);
+
 /*
 ** ********************************  ERRORS ************************************
 */
 # define ARRAY_IS_NULL			"Array is null"
+# define CLEAR_NULL				"Trying to clear null array"
 # define SET_ABOVE_MAX			"darray attempt to set past max"
 # define GET_ABOVE_MAX			"darray attempt to get past max"
 # define ARRAY_SIZE_ZERO		"Can't use darray_new on 0 size darrays"
