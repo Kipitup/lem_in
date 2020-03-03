@@ -228,6 +228,15 @@ SRCS += ft_print_err_void.c
 #----------------------------------- HASH -------------------------------------#
 SRCS += ft_hash_void_data.c
 
+#---------------------------------- DARRAY -------------------------------------#
+SRCS += darray_clear.c
+SRCS += darray_create.c
+SRCS += darray_destroy.c
+SRCS += darray_modify_size.c
+SRCS += darray_pop.c
+SRCS += darray_push.c
+SRCS += darray_utilities.c
+
 #--------------------------------- FT_PRINTF ----------------------------------#
 SRCS += ft_printf.c
 SRCS += ft_asprintf.c
@@ -257,6 +266,7 @@ SRCS += states.c
 SRCS += width_and_precision.c
 
 PATH_SRCS += ./vector
+PATH_SRCS += ./darray
 PATH_SRCS += ./ft_printf/bonus
 PATH_SRCS += ./ft_printf/init
 PATH_SRCS += ./ft_printf/conversion
@@ -304,10 +314,10 @@ re: fclean
 .PHONY: clean fclean re
 .SILENT: $(NAME) $(OBJS) $(BUILD_DIR) clean fclean re
 
-RED = \x1b[31m
-GREEN = \x1b[32m
-YELLOW = \x1b[33m
-BLUE = \x1b[34m
-MAGENTA = \x1b[35m
-CYAN = \x1b[36m
-END = \x1b[0m
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+BLUE = \033[0;34m
+MAGENTA = \033[0;35m
+CYAN = \033[0;36m
+END = \033[0m
