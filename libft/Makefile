@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/04 13:53:45 by amartino         ###   ########.fr        #
+#    Updated: 2020/03/03 11:40:05 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ endif
 
 SRCS += ft_memalloc.c
 # SRCS += ft_malloc_debug.c
+SRCS += ft_realloc.c
 SRCS += ft_atoi.c
 SRCS += ft_bzero.c
 SRCS += ft_isalnum.c
