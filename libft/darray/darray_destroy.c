@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 10:49:20 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 15:03:57 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:12:46 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	darray_destroy(t_darray **array)
 	}
 }
 
-void	darray_clear_destroy(t_darray **array, t_del_func func)
+void	darray_clear_destroy(t_darray **array)
 {
-	darray_clear(array, func);
+	darray_clear(array);
 	darray_destroy(array);
 }

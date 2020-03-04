@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:36:23 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 13:43:00 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:02:31 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int8_t	darray_set(t_darray *array, size_t i, void *element)
 			ft_print_err_failure(SET_ABOVE_MAX, STD_ERR);
 	}
 	else
-		ft_print_err_failure(NULL_OR_WRONG_ELEM, STD_ERR);
+		ft_print_err_failure(ARRAY_IS_NULL, STD_ERR);
 	return (ret);
 }
 
@@ -62,29 +62,6 @@ void	*darray_remove(t_darray *array, size_t index)
 	else
 		ft_print_err_void(ARRAY_IS_NULL, STD_ERR);
 	return (element);
-}
-
-int8_t	darray_new_and_set(t_darray *array, size_t index, void *element)
-{
-	int8_t	ret;
-
-	ret = FAILURE;
-	if (array != NULL)
-	{
-		if (array->element_size > 0)
-		{
-			array->contents[index] = ft_memalloc(array->element_size);
-			if (array->contents[index] != NULL)
-				ret = darray_set(array, index, element);
-			else
-				ft_print_err_failure(CONTENT_FAIL, STD_ERR);
-		}
-		else
-			ft_print_err_failure(ARRAY_SIZE_ZERO, STD_ERR);
-	}
-	else
-		ft_print_err_failure(ARRAY_IS_NULL, STD_ERR);
-	return (ret);
 }
 
 void	*darray_new(t_darray *array)

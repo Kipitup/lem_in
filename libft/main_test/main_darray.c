@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 09:58:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 15:03:12 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:16:30 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int8_t	test_expand_contract(t_darray *array, int *val1, int *val2)
     darray_expand(array);
     darray_expand(array);
 	ft_printf("newsize after both expand = %d\n", array->max);
-	darray_push(array, val1);
    	darray_contract(array);
 	ft_printf("newsize after contract = %d\n", array->max);
 	return (TRUE);
@@ -93,10 +92,12 @@ int8_t	test_new_and_set(t_darray *array, int *val1, int *val2)
 {
 	int8_t	ret;
 
-	ft_printf("\nval1\t= %d\tval2\t= %d\n\n", *val1, *val2);
-	ret = darray_new_and_set(array, 0, val1);
-	ret = darray_new_and_set(array, 1, val2);
-	ft_printf("content[0]\t= %d\n", *((int*)array->contents[0]));
+	val1 = darray_new(array);
+	val2 = darray_new(array);
+	*val1 = 50;
+	*val2 = 76;
+	ret = darray_set(array, 0, val1);
+	ret = darray_set(array, 1, val2);
 	test_get(array, val1, val2);
 	test_expand_contract(array, val1, val2);
 	test_push_pop(array);
@@ -104,17 +105,12 @@ int8_t	test_new_and_set(t_darray *array, int *val1, int *val2)
 	return (TRUE);
 }
 
-void	del_fake(void **smthing)
-{
-	ft_printf("salut I'm deleting\n");
-}
-
 int8_t	test_create(void)
 {
 	t_darray	*array = NULL;
-	int	val1[] = {68};
-	int	val2[] = {42};
-	array = darray_create(sizeof(int), DEFAULT_ARRAY_SIZE);
+	int	*val1 = NULL;
+	int	*val2 = NULL;
+	array = darray_create(sizeof(int), DEFAULT_ARRAY_SIZE, NULL);
 
 	if (array == NULL)
 		return (ft_print_err_failure("darray_create failed.", STD_ERR));
@@ -123,7 +119,7 @@ int8_t	test_create(void)
 
 	ft_printf("\n--- make and set new elements ---\n");
 	test_new_and_set(array, val1, val2);
-	darray_clear_destroy(&array, &del_fake);
+	darray_clear_destroy(&array);
 	return (TRUE);
 }
 

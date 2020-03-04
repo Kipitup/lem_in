@@ -6,26 +6,28 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 10:35:38 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 15:03:28 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:19:21 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "darray.h"
 #include "libft.h"
 
-void	darray_clear(t_darray **array, t_del_func func)
+void	darray_clear(t_darray **array)
 {
-	size_t i;
+	size_t 		i;
+	t_darray	*to_del;
 
 	i = 0;
 	if (array != NULL && *array != NULL)
 	{
-		if ((*array)->element_size > 0)
+		to_del = *array;
+		if (to_del->element_size > 0)
 		{
-			while (i < (*array)->max)
+			while (i <= to_del->end)
 			{
-				if ((*array)->contents[i] != NULL)
-					func(((*array)->contents) + i);
+				if (to_del->contents[i] != NULL)
+					to_del->del_func((to_del->contents) + i);
 				i++;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 15:03:43 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:15:36 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,36 @@
 ** 'expand_rate' when end >= max, then we expand the array by the expand_rate
 */
 
+typedef	void (*t_del_func)(void **);
+
 typedef struct	s_darray {
-	size_t	end;
-	size_t	max;
-	size_t	element_size;
-	size_t	expand_rate;
-	void	**contents;
+	size_t		end;
+	size_t		max;
+	size_t		element_size;
+	size_t		expand_rate;
+	void		**contents;
+	t_del_func	del_func;
 }				t_darray;
 
-typedef	void (*t_del_func)(void **);
 
 int8_t		darray_set(t_darray *array, size_t i, void *element);
 void		*darray_get(t_darray *array, size_t i);
 void		*darray_remove(t_darray *array, size_t i);
-int8_t		darray_new_and_set(t_darray *array, size_t index, void *element);
 void		*darray_new(t_darray *array);
-t_darray	*darray_create(size_t element_size, size_t initial_max);
+t_darray	*darray_create(size_t element_size, size_t initial_max,
+							t_del_func del_func);
 int8_t		darray_expand(t_darray *array);
 int8_t		darray_contract(t_darray *array);
 int8_t		darray_push(t_darray *array, void *element);
 void		*darray_pop(t_darray *array);
 void		darray_destroy(t_darray **array);
-void		darray_clear(t_darray **array, t_del_func func);
-void		darray_clear_destroy(t_darray **array, t_del_func func);
+void		darray_clear(t_darray **array);
+void		darray_clear_destroy(t_darray **array);
 
 /*
 ** ********************************  ERRORS ************************************
 */
 # define ARRAY_IS_NULL			"Array is null"
-# define NULL_OR_WRONG_ELEM		"Array is null or you've given the wrong type of element"
 # define CLEAR_NULL				"Trying to clear null array"
 # define SET_ABOVE_MAX			"darray attempt to set past max"
 # define GET_ABOVE_MAX			"darray attempt to get past max"
