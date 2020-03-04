@@ -5,17 +5,16 @@ int8_t	darray_push(t_darray *array, void *element)
 {
 	int8_t	ret;
 
+	ret = SUCCESS;
 	if (array != NULL)
 	{
-		ret = FAILURE;
 		array->end++;
 		if (array->end >= array->max)
 			ret = darray_expand(array);
-		else 
-			ret = 0;
-		array->contents[array->end] = element;
-		return (ret);
+		if (ret == SUCCESS)
+			array->contents[array->end] = element;
 	}
 	else
-		return(ft_print_err_failure(ARRAY_IS_NULL, STD_ERR));
-}	
+		ret = ft_print_err_failure(ARRAY_IS_NULL, STD_ERR);
+	return (ret);
+}

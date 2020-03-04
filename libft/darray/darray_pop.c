@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   darray_pop.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:59:36 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 20:04:06 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/04 11:55:19 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*darray_pop(t_darray *array)
 		{
 			if (array->end > 0)
 				array->end--;
-			if ((array->end > array->expand_rate) && (array->end % array->expand_rate))
+			if (array->end > array->expand_rate)
 				darray_contract(array);
 		}
 	}

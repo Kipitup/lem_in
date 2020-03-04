@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_darray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 09:58:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 20:04:02 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/04 15:03:12 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int8_t	test_push_pop(t_darray *array)
 	while (i < 10)
 	{
 		val = darray_new(array);
-		*val = i; 
+		*val = i;
 		darray_push(array, val);
 		i++;
 	}
@@ -45,27 +45,14 @@ int8_t	test_push_pop(t_darray *array)
 
 int8_t	test_expand_contract(t_darray *array, int *val1, int *val2)
 {
-    int old_max;
-
-	old_max = array->max;
     darray_expand(array);
-	ft_printf("newsize after expand = %d\n", array->max);
-	if (array->max != old_max + array->expand_rate)
-		return(ft_print_err_failure("wrong size after expand", STD_ERR));
-	old_max = array->max;
     darray_expand(array);
-	ft_printf("newsize after second expand = %d\n", array->max);
-	if (array->max != old_max + array->expand_rate)
-		return(ft_print_err_failure("wrong size after expand", STD_ERR));
+	ft_printf("newsize after both expand = %d\n", array->max);
+	darray_push(array, val1);
    	darray_contract(array);
 	ft_printf("newsize after contract = %d\n", array->max);
-	if (array->max != array->expand_rate)
-		return(ft_print_err_failure("Should stay at the expand_rate at least", STD_ERR));
-   	darray_contract(array);
-	ft_printf("newsize after second contract = %d\n\n", array->max);
-	if (array->max != array->expand_rate)
-		return(ft_print_err_failure("Should stay at the expand_rate at least", STD_ERR));
-    return (TRUE);
+	return (TRUE);
+
 }
 
 int8_t	test_remove(t_darray *array, int *val1, int *val2)
@@ -79,7 +66,7 @@ int8_t	test_remove(t_darray *array, int *val1, int *val2)
 	if (darray_get(array, 0) != NULL)
 		return (ft_print_err_failure("array->content[0] should be NULL", STD_ERR));
 	ft_memdel((void**)&val_removed);
-	
+
 	val_removed = darray_remove(array, 1);
 	if (val_removed == NULL)
 		return (ft_print_err_failure("removed should not be NULL", STD_ERR));
@@ -89,11 +76,6 @@ int8_t	test_remove(t_darray *array, int *val1, int *val2)
 		return (ft_print_err_failure("array->content[1] should be NULL", STD_ERR));
 	ft_memdel((void**)&val_removed);
 	return (TRUE);
-}
-
-void	test_destroy(t_darray **array)
-{
-	darray_destroy(array);
 }
 
 int8_t	test_get(t_darray *array, int *val1, int *val2)
@@ -109,46 +91,39 @@ int8_t	test_get(t_darray *array, int *val1, int *val2)
 
 int8_t	test_new_and_set(t_darray *array, int *val1, int *val2)
 {
-	int	*new_element1;
-	int	*new_element2;
-	
+	int8_t	ret;
+
 	ft_printf("\nval1\t= %d\tval2\t= %d\n\n", *val1, *val2);
-	new_element1 = darray_new_and_set(array, 0, val1);
-	new_element2 = darray_new_and_set(array, 1, val2);
+	ret = darray_new_and_set(array, 0, val1);
+	ret = darray_new_and_set(array, 1, val2);
 	ft_printf("content[0]\t= %d\n", *((int*)array->contents[0]));
-	ft_printf("content[1]\t= %d\n\n", (int)new_element2[0]);
 	test_get(array, val1, val2);
 	test_expand_contract(array, val1, val2);
 	test_push_pop(array);
 
-//	ft_memdel((void**)&new_element1);
-//	ft_memdel((void**)&new_element2);
 	return (TRUE);
+}
+
+void	del_fake(void **smthing)
+{
+	ft_printf("salut I'm deleting\n");
 }
 
 int8_t	test_create(void)
 {
 	t_darray	*array = NULL;
-	static int	val1[] = {68};
-	static int	val2[] = {42};
-	array = darray_create(sizeof(int), 100);
+	int	val1[] = {68};
+	int	val2[] = {42};
+	array = darray_create(sizeof(int), DEFAULT_ARRAY_SIZE);
 
 	if (array == NULL)
 		return (ft_print_err_failure("darray_create failed.", STD_ERR));
-	if (array->contents == NULL)
-		return (ft_print_err_failure("contents are wrong in darray", STD_ERR));
-	if (array->end != 0)
-		return (ft_print_err_failure("end isn't at the right spot", STD_ERR));
-	if (array->element_size != sizeof(int))
-		return (ft_print_err_failure("element size is wrong.", STD_ERR));
-	if (array->max != 100)
-		return (ft_print_err_failure("wrong max length on initial size", STD_ERR));
 
 	ft_printf("\n{c_green}Dynamic array created{c_end}\n");
 
 	ft_printf("\n--- make and set new elements ---\n");
 	test_new_and_set(array, val1, val2);
-	test_destroy(&array);
+	darray_clear_destroy(&array, &del_fake);
 	return (TRUE);
 }
 

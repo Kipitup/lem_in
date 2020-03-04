@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   darray_create.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:04:30 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 10:45:46 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/04 14:45:25 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_darray	*darray_create(size_t element_size, size_t init_max)
 			array->contents = ft_memalloc(init_max * sizeof(void *));
 			if (array->contents == NULL)
 			{
-				darray_clear_destroy(&array);
+				darray_destroy(&array);
 				return (ft_print_err_null(CONTENT_FAIL, STD_ERR));
 			}
 			array->end = 0;

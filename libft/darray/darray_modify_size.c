@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   darray_modify_size.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:59:46 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/03 16:22:46 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/04 14:17:49 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int8_t	darray_resize(t_darray *array, size_t newsize)
 {
-	void	*contents;
+	void	**new_contents;
 	int8_t	ret;
 
 	ret = FAILURE;
@@ -26,21 +26,20 @@ static int8_t	darray_resize(t_darray *array, size_t newsize)
 	else
 	{
 		array->max = newsize;
-		contents = realloc(array->contents, array->max * sizeof(void*));
-		if (contents == NULL)
-			ret = FAILURE;
-		else
+		new_contents = realloc(array->contents, (array->max * sizeof(void*)));
+		if (new_contents != NULL)
 		{
-			array->contents = contents;
+			array->contents = new_contents;
 			ret = SUCCESS;
 		}
-
+		else
+			ft_print_err_failure(FAILED_TO_EXPAND, STD_ERR);
 	}
 	return (ret);
 }
 
 /*
-** Since array->max is an index,+
+** Since array->max is an index
 */
 int8_t			darray_expand(t_darray *array)
 {
@@ -54,8 +53,6 @@ int8_t			darray_expand(t_darray *array)
 		ret = darray_resize(array, array->max + array->expand_rate);
 		if (ret == SUCCESS)
 			ft_memset(array->contents + old_max, 0, array->expand_rate);
-		else
-			ft_print_err_failure(FAILED_TO_EXPAND, STD_ERR);
 	}
 	else
 		ft_print_err_void(ARRAY_IS_NULL, STD_ERR);
