@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 09:58:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 18:13:53 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/04 18:42:13 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ int8_t	test_push_pop(t_darray *array)
 int8_t	test_expand_contract(t_darray *array, int *val1, int *val2)
 {
     darray_expand(array);
-    darray_expand(array);
-	ft_printf("newsize after both expand = %d\n", array->max);
-   	darray_contract(array);
-	ft_printf("newsize after contract = %d\n", array->max);
+	for (int i = 0; i <= array->end; i++)
+		ft_printf("content = %d\n", *((int*)array->contents[i]));
+    // darray_expand(array);
+	// ft_printf("newsize after both expand = %d\n", array->max);
+   	// darray_contract(array);
+	// ft_printf("newsize after contract = %d\n", array->max);
 	return (TRUE);
 
 }
