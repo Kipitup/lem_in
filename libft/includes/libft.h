@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/02 10:27:42 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/04 15:20:47 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *buff, int c, size_t len);
 char				*ft_memjoin_str(char const *s_first, char const *s_last);
+void				**ft_realloc(void **content, size_t size, size_t old_size);
 
 /*
 ** ############################################################################
