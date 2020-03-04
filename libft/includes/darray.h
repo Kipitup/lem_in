@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 17:15:36 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/04 18:09:35 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		*darray_pop(t_darray *array);
 void		darray_destroy(t_darray **array);
 void		darray_clear(t_darray **array);
 void		darray_clear_destroy(t_darray **array);
+void		**ft_realloc(t_darray *array, size_t size, size_t old_size);
 
 /*
 ** ********************************  ERRORS ************************************

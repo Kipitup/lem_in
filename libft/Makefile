@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/04 15:31:45 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/04 17:56:46 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,6 @@ endif
 
 SRCS += ft_memalloc.c
 # SRCS += ft_malloc_debug.c
-SRCS += ft_realloc.c
 SRCS += ft_atoi.c
 SRCS += ft_bzero.c
 SRCS += ft_isalnum.c
@@ -238,6 +237,7 @@ SRCS += darray_modify_size.c
 SRCS += darray_pop.c
 SRCS += darray_push.c
 SRCS += darray_utilities.c
+SRCS += ft_realloc.c
 
 #--------------------------------- FT_PRINTF ----------------------------------#
 SRCS += ft_printf.c

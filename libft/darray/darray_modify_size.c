@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:59:46 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 14:17:49 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/04 18:17:26 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 static int8_t	darray_resize(t_darray *array, size_t newsize)
 {
-	void	**new_contents;
+	void	**new_content;
+	size_t	old_max;
 	int8_t	ret;
 
 	ret = FAILURE;
@@ -25,11 +26,13 @@ static int8_t	darray_resize(t_darray *array, size_t newsize)
 		ret = ft_print_err_failure(NEWSIZE_ZERO, STD_ERR);
 	else
 	{
+		old_max = array->max;
 		array->max = newsize;
-		new_contents = realloc(array->contents, (array->max * sizeof(void*)));
-		if (new_contents != NULL)
+		new_content = ft_realloc(array, (array->max * sizeof(void*)),
+				(old_max * sizeof(void*)));
+		if (new_content != NULL)
 		{
-			array->contents = new_contents;
+			array->contents = new_content;
 			ret = SUCCESS;
 		}
 		else
@@ -41,6 +44,7 @@ static int8_t	darray_resize(t_darray *array, size_t newsize)
 /*
 ** Since array->max is an index
 */
+
 int8_t			darray_expand(t_darray *array)
 {
 	size_t	old_max;
@@ -65,9 +69,10 @@ int8_t			darray_contract(t_darray *array)
 
 	if (array != NULL)
 	{
-		newsize = (array->end < array->expand_rate) ? array->expand_rate : array->end;
+		newsize = (array->end < array->expand_rate) ? array->expand_rate
+			: array->end;
 		return (darray_resize(array, newsize));
 	}
 	else
-		return(ft_print_err_failure(ARRAY_IS_NULL, STD_ERR));
+		return (ft_print_err_failure(ARRAY_IS_NULL, STD_ERR));
 }
