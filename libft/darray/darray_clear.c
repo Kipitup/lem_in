@@ -6,14 +6,14 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 10:35:38 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:05:44 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/05 17:45:12 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "darray.h"
 #include "libft.h"
 
-void	darray_clear(t_darray **array)
+void	darray_clear_content(t_darray **array, t_del_func del_func)
 {
 	size_t 		i;
 	t_darray	*to_del;
@@ -27,7 +27,7 @@ void	darray_clear(t_darray **array)
 			while (i <= to_del->end)
 			{
 				if (to_del->contents[i] != NULL)
-					to_del->del_func((to_del->contents) + i);
+					del_func((to_del->contents) + i);
 				i++;
 			}
 		}

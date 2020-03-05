@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/04 17:56:46 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/05 18:04:12 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ HEAD += btree.h
 HEAD += ft_printf.h
 HEAD += define_pf.h
 HEAD += darray.h
+HEAD += hashmap.h
 
 vpath %.h $(INCLUDES)
 
@@ -227,7 +228,12 @@ SRCS += ft_print_err_false.c
 SRCS += ft_print_err_void.c
 
 #----------------------------------- HASH -------------------------------------#
-SRCS += ft_hash_void_data.c
+SRCS += hash_function.c
+SRCS += compare_function.c
+SRCS += hashmap_create.c
+SRCS += hashmap_set.c
+SRCS += hashmap_clean.c
+SRCS += hashmap_print.c
 
 #---------------------------------- DARRAY -------------------------------------#
 SRCS += darray_clear.c

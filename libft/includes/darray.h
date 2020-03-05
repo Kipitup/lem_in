@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:37:42 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/05 17:33:33 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct	s_darray {
 	size_t		sizeof_elem;
 	size_t		expand_rate;
 	void		**contents;
-	t_del_func	del_func;
 }				t_darray;
 
 
@@ -40,16 +39,14 @@ int8_t		darray_set(t_darray *array, size_t i, void *element);
 void		*darray_get(t_darray *array, size_t i);
 void		*darray_remove(t_darray *array, size_t i);
 void		*darray_new(t_darray *array);
-t_darray	*darray_create(size_t sizeof_elem, size_t initial_max,
-							t_del_func del_func);
+t_darray	*darray_create(size_t sizeof_elem, size_t initial_max);
 int8_t		darray_expand(t_darray *array);
 int8_t		darray_contract(t_darray *array);
 int8_t		darray_push(t_darray *array, void *element);
 void		*darray_pop(t_darray *array);
-void		darray_destroy_content(t_darray **array);
 void		darray_destroy(t_darray **array);
-void		darray_clear(t_darray **array);
-void		darray_clear_destroy(t_darray **array);
+void		darray_clear_content(t_darray **array, t_del_func del_func);
+void		darray_clear_destroy(t_darray **array, t_del_func del_func);
 void		**ft_realloc(t_darray *array, size_t size, size_t old_size);
 
 /*

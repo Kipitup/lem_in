@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   hashmap_print.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 15:45:06 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 15:31:31 by fkante           ###   ########.fr       */
+/*   Created: 2020/03/05 18:00:01 by fkante            #+#    #+#             */
+/*   Updated: 2020/03/05 18:05:38 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "hashmap.h"
+#include "darray.h"
 #include "libft.h"
 
-int		ft_strequ(char const *s1, char const *s2)
+void	print_node(t_hashnode *node)
 {
-	int i;
-
-	if (s1 == NULL || s2 == NULL)
-		return (FALSE);
-	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	ft_printf("--> node:\n\t- key: %s\n\t- data: %s\n\t- hash: %u\n",
+			(char*)node->key, (char*)node->data, node->hash);
 }

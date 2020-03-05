@@ -6,14 +6,26 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:25:17 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:37:43 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/05 16:11:05 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "darray.h"
 
-void	**ft_realloc(t_darray *array, size_t new_size, size_t old_size)
+static void	darray_destroy_content(t_darray **array)
+{
+	if (array != NULL && *array != NULL)
+	{
+		if ((*array)->contents != NULL)
+		{
+			free((*array)->contents);
+			(*array)->contents = NULL;
+		}
+	}
+}
+
+void		**ft_realloc(t_darray *array, size_t new_size, size_t old_size)
 {
 	void	**tmp;
 	size_t	i;
