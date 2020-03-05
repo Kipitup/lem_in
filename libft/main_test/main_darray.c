@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 09:58:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 18:42:13 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/05 11:34:39 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int8_t	test_push_pop(t_darray *array)
 	int32_t	*val;
 
 	i = 0;
-	while (i < 10)
+	while (i < 50)
 	{
 		val = darray_new(array);
 		*val = i;
@@ -30,7 +30,7 @@ int8_t	test_push_pop(t_darray *array)
 	for (i = 0; i <= array->end; i++)
 		ft_printf("content = %d\n", *((int*)array->contents[i]));
 	ft_printf("------------ pop -----------\n");
-	i = 10;
+	i = 40;
 	while (i > 0)
 	{
         val = darray_pop(array);
@@ -48,10 +48,10 @@ int8_t	test_expand_contract(t_darray *array, int *val1, int *val2)
     darray_expand(array);
 	for (int i = 0; i <= array->end; i++)
 		ft_printf("content = %d\n", *((int*)array->contents[i]));
-    // darray_expand(array);
-	// ft_printf("newsize after both expand = %d\n", array->max);
-   	// darray_contract(array);
-	// ft_printf("newsize after contract = %d\n", array->max);
+     darray_expand(array);
+	 ft_printf("newsize after both expand = %d\n", array->max);
+   	 darray_contract(array);
+	 ft_printf("newsize after contract = %d\n", array->max);
 	return (TRUE);
 
 }
@@ -101,7 +101,7 @@ int8_t	test_new_and_set(t_darray *array, int *val1, int *val2)
 	ret = darray_set(array, 0, val1);
 	ret = darray_set(array, 1, val2);
 	test_get(array, val1, val2);
-	test_expand_contract(array, val1, val2);
+//	test_expand_contract(array, val1, val2);
 	test_push_pop(array);
 
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:59:46 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 18:53:42 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/05 11:23:51 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int8_t	darray_resize(t_darray *array, size_t newsize)
 	{
 		old_max = array->max;
 		array->max = newsize;
-		new_content = ft_realloc(array, (array->max * sizeof(void*)), (old_max * sizeof(void*)));
+		new_content = ft_realloc(array, array->max, old_max);
 		if (new_content != NULL)
 		{
 			array->contents = new_content;
