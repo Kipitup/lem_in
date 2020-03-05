@@ -21,9 +21,9 @@ static int8_t	darray_resize(t_darray *array, size_t newsize)
 
 	ret = FAILURE;
 	if (array == NULL)
-		ret = ft_print_err_failure(ARRAY_IS_NULL, STD_ERR);
+		ret = ft_perror_failure(ARRAY_IS_NULL, STD_ERR);
 	else if (newsize == 0)
-		ret = ft_print_err_failure(NEWSIZE_ZERO, STD_ERR);
+		ret = ft_perror_failure(NEWSIZE_ZERO, STD_ERR);
 	else
 	{
 		old_max = array->max;
@@ -35,7 +35,7 @@ static int8_t	darray_resize(t_darray *array, size_t newsize)
 			ret = SUCCESS;
 		}
 		else
-			ft_print_err_failure(FAILED_TO_EXPAND, STD_ERR);
+			ft_perror_failure(FAILED_TO_EXPAND, STD_ERR);
 	}
 	return (ret);
 }
@@ -58,7 +58,7 @@ int8_t			darray_expand(t_darray *array)
 			ft_memset(array->contents + old_max, 0, array->expand_rate);
 	}
 	else
-		ft_print_err_void(ARRAY_IS_NULL, STD_ERR);
+		ft_perror_void(ARRAY_IS_NULL, STD_ERR);
 	return (ret);
 }
 
@@ -73,5 +73,5 @@ int8_t			darray_contract(t_darray *array)
 		return (darray_resize(array, newsize));
 	}
 	else
-		return (ft_print_err_failure(ARRAY_IS_NULL, STD_ERR));
+		return (ft_perror_failure(ARRAY_IS_NULL, STD_ERR));
 }

@@ -212,9 +212,9 @@ void				ft_putstr_fd(const char *s, int fd);
 ** ################################# ERROR ####################################
 ** ############################################################################
 */
-void				*ft_print_err_null(char *str, int8_t fd);
-int8_t				ft_print_err_failure(char *str, int8_t fd);
-uint8_t				ft_print_err_false(char *str, int8_t fd);
-void				ft_print_err_void(char *str, int8_t fd);
+void				*ft_perror_null(char *str, int8_t fd);
+int8_t				ft_perror_failure(char *str, int8_t fd);
+uint8_t				ft_perror_false(char *str, int8_t fd);
+void				ft_perror_void(char *str, int8_t fd);
 
 #endif

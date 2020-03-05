@@ -30,6 +30,6 @@ void	*darray_pop(t_darray *array)
 		}
 	}
 	else
-		ft_print_err_null(FAILED_TO_POP, STD_ERR);
+		ft_perror_null(FAILED_TO_POP, STD_ERR);
 	return (element);
 }

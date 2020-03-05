@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_err_null.c                                :+:      :+:    :+:   */
+/*   ft_perror_null.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void		*ft_print_err_null(char *str, int8_t fd)
+void		*ft_perror_null(char *str, int8_t fd)
 {
 	if (str && *str != '\0')
 		ft_dprintf(fd, "Error: %s\n", str);

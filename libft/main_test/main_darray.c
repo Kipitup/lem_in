@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 09:58:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:34:39 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/05 11:37:44 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int8_t	test_push_pop(t_darray *array)
         val = darray_pop(array);
 		ft_printf("popped = %d\n", *val);
 		if (val == NULL)
-			return (ft_print_err_failure("pop shouldn't be NULL", STD_ERR));
+			return (ft_perror_failure("pop shouldn't be NULL", STD_ERR));
         ft_memdel((void**)&val);
 		i--;
     }
@@ -61,20 +61,20 @@ int8_t	test_remove(t_darray *array, int *val1, int *val2)
     int *val_removed = darray_remove(array, 0);
 
 	if (val_removed == NULL)
-		return (ft_print_err_failure("removed should not be NULL", STD_ERR));
+		return (ft_perror_failure("removed should not be NULL", STD_ERR));
     if (*val_removed != *val1)
-		return (ft_print_err_failure("val_removed should be == to val1", STD_ERR));
+		return (ft_perror_failure("val_removed should be == to val1", STD_ERR));
 	if (darray_get(array, 0) != NULL)
-		return (ft_print_err_failure("array->content[0] should be NULL", STD_ERR));
+		return (ft_perror_failure("array->content[0] should be NULL", STD_ERR));
 	ft_memdel((void**)&val_removed);
 
 	val_removed = darray_remove(array, 1);
 	if (val_removed == NULL)
-		return (ft_print_err_failure("removed should not be NULL", STD_ERR));
+		return (ft_perror_failure("removed should not be NULL", STD_ERR));
     if (*val_removed != *val2)
-		return (ft_print_err_failure("val_removed should be == to val2", STD_ERR));
+		return (ft_perror_failure("val_removed should be == to val2", STD_ERR));
 	if (darray_get(array, 1) != NULL)
-		return (ft_print_err_failure("array->content[1] should be NULL", STD_ERR));
+		return (ft_perror_failure("array->content[1] should be NULL", STD_ERR));
 	ft_memdel((void**)&val_removed);
 	return (TRUE);
 }
@@ -83,10 +83,10 @@ int8_t	test_get(t_darray *array, int *val1, int *val2)
 {
 	ft_printf("darray get 0 = %d\n", *((int*)darray_get(array, 0)));
 	if (darray_get(array, 0) != val1)
-		return (ft_print_err_failure("Wrong first value.", STD_ERR));
+		return (ft_perror_failure("Wrong first value.", STD_ERR));
 	ft_printf("darray get 1 = %d\n\n", *((int*)darray_get(array, 1)));
 	if (darray_get(array, 1) != val2)
-		return (ft_print_err_failure("Wrong second value.", STD_ERR));
+		return (ft_perror_failure("Wrong second value.", STD_ERR));
 	return (TRUE);
 }
 
@@ -115,7 +115,7 @@ int8_t	test_create(void)
 	array = darray_create(sizeof(int), DEFAULT_ARRAY_SIZE, NULL);
 
 	if (array == NULL)
-		return (ft_print_err_failure("darray_create failed.", STD_ERR));
+		return (ft_perror_failure("darray_create failed.", STD_ERR));
 
 	ft_printf("\n{c_green}Dynamic array created{c_end}\n");
 

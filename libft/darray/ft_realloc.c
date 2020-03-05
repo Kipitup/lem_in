@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:25:17 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:34:46 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/05 11:37:43 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	**ft_realloc(t_darray *array, size_t new_size, size_t old_size)
 		}
 	}
 	else
-		ft_print_err_failure("realloc failed / array is NULL", STD_ERR);
+		ft_perror_failure("realloc failed / array is NULL", STD_ERR);
 	return (tmp);
 }

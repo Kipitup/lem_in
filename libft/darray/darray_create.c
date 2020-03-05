@@ -26,18 +26,18 @@ t_darray	*darray_create(size_t sizeof_elem, size_t init_max,
 		{
 			array->end = 0;
 			array->max = init_max;
-			array->element_size = sizeof_elem;
+			array->sizeof_elem = sizeof_elem;
 			array->expand_rate = DEFAULT_EXPAND_RATE;
 			array->del_func = (del_func == NULL) ? &ft_memdel : del_func;
 			array->contents = ft_memalloc(init_max * sizeof(void *));
 			if (array->contents == NULL)
 			{
 				darray_destroy(&array);
-				ft_print_err_null(CONTENT_FAIL, STD_ERR);
+				ft_perror_null(CONTENT_FAIL, STD_ERR);
 			}
 		}
 	}
 	else
-		ft_print_err_null(INITIAL_MAX_ZERO, STD_ERR);
+		ft_perror_null(INITIAL_MAX_ZERO, STD_ERR);
 	return (array);
 }

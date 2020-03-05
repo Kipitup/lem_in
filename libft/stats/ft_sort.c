@@ -22,7 +22,7 @@ int32_t				*ft_sort(int32_t *tab, size_t size)
 	heap = heap_tree(tab, size, MIN_HEAP);
 	sorted_array = ft_memalloc(sizeof(int32_t) * size);
 	if (sorted_array == NULL && heap == NULL)
-		return (ft_print_err_null("memory allocation failed", STD_ERR));
+		return (ft_perror_null("memory allocation failed", STD_ERR));
 	while (i < size)
 	{
 		sorted_array[i] = heap->A[ROOT];

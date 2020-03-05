@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_err_failure.c                             :+:      :+:    :+:   */
+/*   ft_perror_failure.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-int8_t		ft_print_err_failure(char *str, int8_t fd)
+int8_t		ft_perror_failure(char *str, int8_t fd)
 {
 	if (str && *str != '\0')
 		ft_dprintf(fd, "Error: %s\n", str);

@@ -27,6 +27,6 @@ int8_t	darray_push(t_darray *array, void *element)
 			array->contents[array->end] = element;
 	}
 	else
-		ret = ft_print_err_failure(ARRAY_IS_NULL, STD_ERR);
+		ret = ft_perror_failure(ARRAY_IS_NULL, STD_ERR);
 	return (ret);
 }

@@ -22,7 +22,7 @@ void	darray_clear(t_darray **array)
 	if (array != NULL && *array != NULL)
 	{
 		to_del = *array;
-		if (to_del->element_size > 0)
+		if (to_del->sizeof_elem > 0)
 		{
 			while (i <= to_del->end)
 			{
@@ -33,5 +33,5 @@ void	darray_clear(t_darray **array)
 		}
 	}
 	else
-		ft_print_err_void(CLEAR_NULL, STD_ERR);
+		ft_perror_void(CLEAR_NULL, STD_ERR);
 }

@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:05:44 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/05 11:37:42 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /*
 ** 'max' is the number of block initially malloc
 ** 'end' is index that define the last assigned element
-** 'element_size' is the byte' size of each element in content
+** 'sizeof_elem' is the byte' size of each element in content
 ** 'expand_rate' when end >= max, then we expand the array by the expand_rate
 */
 
@@ -29,7 +29,7 @@ typedef	void (*t_del_func)(void **);
 typedef struct	s_darray {
 	size_t		end;
 	size_t		max;
-	size_t		element_size;
+	size_t		sizeof_elem;
 	size_t		expand_rate;
 	void		**contents;
 	t_del_func	del_func;
@@ -40,7 +40,7 @@ int8_t		darray_set(t_darray *array, size_t i, void *element);
 void		*darray_get(t_darray *array, size_t i);
 void		*darray_remove(t_darray *array, size_t i);
 void		*darray_new(t_darray *array);
-t_darray	*darray_create(size_t element_size, size_t initial_max,
+t_darray	*darray_create(size_t sizeof_elem, size_t initial_max,
 							t_del_func del_func);
 int8_t		darray_expand(t_darray *array);
 int8_t		darray_contract(t_darray *array);
