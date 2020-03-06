@@ -6,26 +6,13 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:42:38 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 18:24:54 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/06 15:13:59 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashmap.h"
 #include "libft.h"
 #include "darray.h"
-
-void	del_node(void **node)
-{
-	t_hashnode *node_tmp;
-
-	if (node != NULL && *node != NULL)
-	{
-		node_tmp = *((t_hashnode**)node);
-		ft_memdel(&(node_tmp->key));
-		ft_memdel(&(node_tmp->data));
-		ft_memdel(node);
-	}
-}
 
 void	del_map(t_hashmap **map_to_del)
 {
@@ -39,7 +26,7 @@ void	del_map(t_hashmap **map_to_del)
 		while (i < map->size)
 		{
 			if (map->bucket[i] != NULL)
-				darray_clear_destroy((t_darray**)&(map->bucket[i]), &del_node);
+				darray_clear_destroy((t_darray**)&(map->bucket[i]), &del_hashmap_node);
 			i++;
 		}
 		ft_memdel((void**)&(map->bucket));
