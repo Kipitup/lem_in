@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/05 18:04:12 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/06 10:45:58 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -312,6 +312,9 @@ $(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
 
 clean:
 	$(RM) -R $(BUILD_DIR)
+	$(RM) -R a.out
+	$(RM) -R hash_valgrind
+	$(RM) -R hash_valgrind.dSYM
 
 fclean: clean
 	$(RM) $(NAME)

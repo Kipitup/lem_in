@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 18:07:12 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/06 10:52:56 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ static int8_t		push_node(t_hashmap *map, t_hashnode *node, uint32_t hash)
 		}
 	}
 	else
+	{
 		ret = darray_push(map->bucket[index], (void*)node);
+		map->nb_collision++;
+	}
 	return (ret);
 }
 
@@ -51,7 +54,10 @@ int8_t				hashmap_set(t_hashmap *map, void *key, void *data)
 		node = hash_node_create(key, data, hash);
 		print_node(node);
 		if (node != NULL)
+		{
 			ret = push_node(map, node, hash);
+			map->nb_of_elem++;
+		}
 		else
 			ret = ft_perror_failure(NODE_NULL, STD_ERR);
 	}
@@ -59,5 +65,3 @@ int8_t				hashmap_set(t_hashmap *map, void *key, void *data)
 		ret = ft_perror_failure(MAP_NULL, STD_ERR);
 	return (ret);
 }
-
-// nb of elem ++ and or colission ++
