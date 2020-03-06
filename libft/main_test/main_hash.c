@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_hash.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:22:18 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 18:12:50 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/06 19:10:02 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ int				main(void)
 {
 	t_hashmap	*map;
 	t_hashnode	*node;
-	void		*key_to_found;
+	void		*key_to_find;
 	int8_t		ret;
 
 	map = hashmap_create(NULL, NULL);
 	if (map != NULL)
 	{
-		key_to_found = allocate_elem(key_to_found, "francis");
+		key_to_find = allocate_elem(key_to_find, "francis");
 		ret = test_set_elem(map);
-		node = hashmap_get(map, key_to_found);
-		ft_printf("key to found ---- %s\n", key_to_found);
-//		print_node(node);
+	//	node = hashmap_get(map, key_to_find);
+	//	ft_printf("key to find ---- %s\n", key_to_find);
+	//	print_node(node);
 		ft_printf("ret: %d\n", ret);
 		del_map(&map);
-		ft_memdel(&key_to_found);
+		ft_memdel(&key_to_find);
 	}
 	return (0);
 }

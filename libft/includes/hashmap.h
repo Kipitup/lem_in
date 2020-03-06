@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 15:13:55 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/06 20:20:05 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <inttypes.h>
 
 # define DJB_HASH_CONSTANT		5381
-# define DEFAULT_NB_OF_BUCKETS	4999	
+# define DEFAULT_NB_OF_BUCKETS	2	
 
 typedef uint8_t 		(*t_hash_comp)(void *, void *);
 typedef uint32_t 		(*t_hash_func)(void *, size_t);
@@ -57,6 +57,7 @@ t_hashmap			*hashmap_create(t_hash_comp compare, t_hash_func hash);
 t_hashnode			*hash_node_create(void *key, void *data, uint32_t hash);
 int8_t				hashmap_set(t_hashmap *map, void *key, void *data);
 void				*hashmap_get(t_hashmap *map, void *key);
+t_hashmap			*hashmap_resize(t_hashmap *map);
 void				print_node(t_hashnode *node);
 void				del_map(t_hashmap **map);
 

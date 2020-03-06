@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 15:23:25 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/06 15:50:40 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # define DEFAULT_EXPAND_RATE	20
 # define DEFAULT_ARRAY_SIZE		10
 /*
-**	WARNING: the dynamic array is agnostic of what is in content. So you'll need
-**	to give it the appropriate clean function. No leaks can be tolerated.
+**	WARNING: the dynamic array is agnostic of what is in content. However you'll
+**	need to give it the appropriate clean function. NO LEAKS MAY BE TOLERATED.
 **	You'll need to go in the del_function.c file and add the appropriate del
 **	function. Then, when calling darray_clear_content or darray_clear_destroy
 **	pass the del function you created.
