@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 18:18:09 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/06 18:03:38 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <inttypes.h>
 
 # define DJB_HASH_CONSTANT		5381
-# define DEFAULTF_NB_OF_BUCKETS	4999
+# define DEFAULT_NB_OF_BUCKETS	4999	
 
 typedef uint8_t 		(*t_hash_comp)(void *, void *);
 typedef uint32_t 		(*t_hash_func)(void *, size_t);
@@ -72,9 +72,12 @@ uint8_t				default_compare(void *a, void *b);
 /*
 ** ********************************  ERRORS ************************************
 */
-# define BUCKET_ALLOC_FAIL		"Malloc fail when trying to create bucket"
-# define MAP_ALLOC_FAIL			"Malloc fail when trying to create map"
-# define MAP_NULL				"Map is null"
-# define NODE_NULL				"Node is null"
+# define BUCKET_ALLOC_FAIL	"Malloc fail when trying to create bucket"
+# define NO_BUCKET			"No bucket at the specified index"
+# define ARRAY_KEY_NULL		"array or key was null while looking for node"
+# define NODE_SEARCH_NULL	"Failed to get node"
+# define MAP_ALLOC_FAIL		"Malloc fail when trying to create map"
+# define MAP_NULL			"Map is null"
+# define NODE_NULL			"Node is null"
 
 #endif

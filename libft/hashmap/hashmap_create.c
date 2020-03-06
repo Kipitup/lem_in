@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:23:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 18:19:12 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/06 13:23:09 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ t_hashmap	*hashmap_create(t_hash_comp compare, t_hash_func hash)
 	{
 		map->compare = (compare == NULL) ? &default_compare : compare;
 		map->hash = (hash == NULL) ? &ft_hash_void_data : hash;
-		map->size = DEFAULTF_NB_OF_BUCKETS;
+		map->size = DEFAULT_NB_OF_BUCKETS;
 		map->nb_of_elem = 0;
 		map->nb_collision = 0;
-		map->bucket = ft_memalloc(DEFAULTF_NB_OF_BUCKETS * (sizeof(t_darray*)));
+		map->bucket = ft_memalloc(DEFAULT_NB_OF_BUCKETS * (sizeof(t_darray*)));
 		if (map->bucket == NULL)
 		{
 			ft_perror_void(BUCKET_ALLOC_FAIL, STD_ERR);

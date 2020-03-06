@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 10:52:56 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/06 16:19:16 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int8_t		push_node(t_hashmap *map, t_hashnode *node, uint32_t hash)
 	int8_t		ret;
 	
 	ret = FAILURE;
-	index = hash % DEFAULTF_NB_OF_BUCKETS;
+	index = hash % DEFAULT_NB_OF_BUCKETS;
 	if (map->bucket[index] == NULL)
 	{
 		array = darray_create(sizeof(t_hashnode*), DEFAULT_ARRAY_SIZE);
 		if (array != NULL)
 		{
-			ret = darray_push(array, (void*)node);
+			ret = darray_set(array, 0, (void*)node);
 			if (ret == SUCCESS)
 				map->bucket[index] = array;
 			else
@@ -52,7 +52,7 @@ int8_t				hashmap_set(t_hashmap *map, void *key, void *data)
 	{
 		hash = map->hash(key, ft_strlen((char*)key));
 		node = hash_node_create(key, data, hash);
-		print_node(node);
+		//print_node(node);
 		if (node != NULL)
 		{
 			ret = push_node(map, node, hash);
