@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 16:52:56 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/06 15:23:25 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@
 # define DEFAULT_EXPAND_RATE	20
 # define DEFAULT_ARRAY_SIZE		10
 /*
-** 'max' is the number of block initially malloc
-** 'end' is index that define the last assigned element
-** 'sizeof_elem' is the byte' size of each element in content
-** 'expand_rate' when end >= max, then we expand the array by the expand_rate
+**	WARNING: the dynamic array is agnostic of what is in content. So you'll need
+**	to give it the appropriate clean function. No leaks can be tolerated.
+**	You'll need to go in the del_function.c file and add the appropriate del
+**	function. Then, when calling darray_clear_content or darray_clear_destroy
+**	pass the del function you created.
+**
+**	'max' is the number of block initially malloc
+**	'end' is index that define the last assigned element
+**	'sizeof_elem' is the byte' size of each element in content
+**	'expand_rate' when end >= max, then we expand the array by the expand_rate
 */
 
-typedef	void (*t_del_func)(void **);
+typedef	void (*t_del_func)(void *);
 
 typedef struct	s_darray {
 	size_t		end;
@@ -48,6 +54,8 @@ void		darray_destroy(t_darray **array);
 void		darray_clear_content(t_darray **array, t_del_func del_func);
 void		darray_clear_destroy(t_darray **array, t_del_func del_func);
 void		**ft_realloc(t_darray *array, size_t size, size_t old_size);
+void		del_hashmap_node(void *content);
+void		del_vector(void *content);
 
 /*
 ** ********************************  ERRORS ************************************
