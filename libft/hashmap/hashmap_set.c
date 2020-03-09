@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 19:59:28 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:18:11 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ static int8_t		should_map_resize(t_hashmap *map)
 	ret = SUCCESS;
 	limit = (size_t)ft_log2_n(map->size);
 	if (map->nb_collision >= limit)
-	{
-		ft_printf("let's resize !!\n");
 		ret = hashmap_resize(map);
-	}
 	return (ret);
 }
 
@@ -36,13 +33,13 @@ static int8_t		push_node(t_hashmap *map, t_hashnode *node, uint32_t hash)
 	int8_t		ret;
 	
 	ret = FAILURE;
-	index = hash % DEFAULT_NB_OF_BUCKETS;
+	index = hash % map->size;
 	if (map->bucket[index] == NULL)
 	{
 		array = darray_create(sizeof(t_hashnode*), DEFAULT_ARRAY_SIZE);
 		if (array != NULL)
 		{
-			ret = darray_push(array, (void*)node);
+			ret = darray_set(array, 0, (void*)node);
 			if (ret == SUCCESS)
 				map->bucket[index] = array;
 			else

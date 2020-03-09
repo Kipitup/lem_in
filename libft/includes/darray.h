@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 15:50:40 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 10:39:40 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void		del_vector(void *content);
 # define FAILED_TO_EXPAND		"Failed to expand array to new size"
 # define FAILED_TO_POP			"Attempt to pop from empty array"
 # define CONTENT_FAIL			"Failed to allocated memory for content"
+# define REALLOC_FAIL			"Reallocation failed"
 
 #endif

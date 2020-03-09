@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/07 17:38:53 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:33:00 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <inttypes.h>
 
 # define DJB_HASH_CONSTANT		5381
-# define DEFAULT_NB_OF_BUCKETS	2	
+# define DEFAULT_NB_OF_BUCKETS	4999	
 
 typedef uint8_t 		(*t_hash_comp)(void *, void *);
 typedef uint32_t 		(*t_hash_func)(void *, size_t);

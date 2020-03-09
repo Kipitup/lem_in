@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/07 18:01:45 by amartino         ###   ########.fr        #
+#    Updated: 2020/03/09 10:41:44 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -237,6 +237,7 @@ SRCS += hashmap_set.c
 SRCS += hashmap_get.c
 SRCS += hashmap_clean.c
 SRCS += hashmap_print.c
+SRCS += hashmap_resize.c
 
 #---------------------------------- DARRAY -------------------------------------#
 SRCS += darray_clear.c

@@ -6,13 +6,13 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:22:18 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 19:10:02 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:06:56 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "hashmap.h"
-
+#include "darray.h"
 
 static char		*allocate_elem(char *elem, char *str_to_insert)
 {
@@ -50,12 +50,22 @@ int				main(void)
 	{
 		key_to_find = allocate_elem(key_to_find, "francis");
 		ret = test_set_elem(map);
-	//	node = hashmap_get(map, key_to_find);
-	//	ft_printf("key to find ---- %s\n", key_to_find);
-	//	print_node(node);
+		node = hashmap_get(map, key_to_find);
+		ft_printf("key to find ---- %s\n", key_to_find);
+		print_node(node);
+		ft_memdel(&key_to_find);
+		key_to_find = allocate_elem(key_to_find, "room_start");
+		node = hashmap_get(map, key_to_find);
+		ft_printf("key to find ---- %s\n", key_to_find);
+		print_node(node);
+		ft_memdel(&key_to_find);
+		key_to_find = allocate_elem(key_to_find, "alex");
+		node = hashmap_get(map, key_to_find);
+		ft_printf("key to find ---- %s\n", key_to_find);
+		print_node(node);
+		ft_memdel(&key_to_find);
 		ft_printf("ret: %d\n", ret);
 		del_map(&map);
-		ft_memdel(&key_to_find);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 11:27:35 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/07 17:32:43 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:05:12 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 #include "darray.h"
 #include "libft.h"
 
-static void	*get_node(t_hashmap *map, t_hashnode *node,
-						void *key, uint32_t hash)
+static void	*get_node(t_hashmap *map, void *key, uint32_t hash)
 {
 	t_darray	*array;
+	t_hashnode	*node;
 	size_t		index_bucket;
 	size_t		i;
 
-	index_bucket = hash % DEFAULT_NB_OF_BUCKETS;
+	index_bucket = hash % map->size;
 	array = map->bucket[index_bucket];
 	i = 0;
+	node = NULL;
 	if (array != NULL && key != NULL)
 	{
 		while (i <= array->end)
@@ -51,7 +52,7 @@ void		*hashmap_get(t_hashmap *map, void *key)
 	if (map != NULL)
 	{
 		hash = map->hash(key, ft_strlen((char*)key));
-		node = get_node(map, node, key, hash);
+		node = get_node(map, key, hash);
 		if (node == NULL)
 			ft_perror_failure(NODE_SEARCH_NULL, STD_ERR);
 	}

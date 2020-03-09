@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/07 17:59:42 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:35:52 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@
 # include "ft_printf.h"
 
 // #define ft_memalloc(X) ft_malloc_debug(X, __FILE__, __LINE__, __func__)
-
-/*
-** # for linux set-up #
-*/
 
 # define FALSE					0
 # define TRUE					1
