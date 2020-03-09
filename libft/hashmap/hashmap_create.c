@@ -43,11 +43,11 @@ t_hashmap	*hashmap_create(t_hash_comp compare, t_hash_func hash)
 		map->bucket = ft_memalloc(DEFAULT_NB_OF_BUCKETS * (sizeof(t_darray*)));
 		if (map->bucket == NULL)
 		{
-			ft_perror_void(BUCKET_ALLOC_FAIL, STD_ERR);
+			ft_perror(BUCKET_ALLOC_FAIL, __FILE__, __LINE__);
 			del_map(&map);
 		}
 	}
 	else
-		ft_perror_void(MAP_ALLOC_FAIL, STD_ERR);
+		ft_perror(MAP_ALLOC_FAIL, __FILE__, __LINE__);
 	return (map);
 }

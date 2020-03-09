@@ -39,7 +39,7 @@ static void	*get_node(t_hashmap *map, void *key, uint32_t hash)
 		}
 	}
 	else
-		ft_perror_void(ARRAY_KEY_NULL, STD_ERR);
+		ft_perror(ARRAY_KEY_NULL, __FILE__, __LINE__);
 	return (node);
 }
 
@@ -54,9 +54,9 @@ void		*hashmap_get(t_hashmap *map, void *key)
 		hash = map->hash(key, ft_strlen((char*)key));
 		node = get_node(map, key, hash);
 		if (node == NULL)
-			ft_perror_failure(NODE_SEARCH_NULL, STD_ERR);
+			ft_perror_failure(NODE_SEARCH_NULL, __FILE__, __LINE__);
 	}
 	else
-		ft_perror_void(MAP_NULL, STD_ERR);
+		ft_perror(MAP_NULL, __FILE__, __LINE__);
 	return (node);
 }

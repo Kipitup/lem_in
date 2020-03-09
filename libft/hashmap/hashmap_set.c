@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/09 14:18:11 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:16:56 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int8_t		push_node(t_hashmap *map, t_hashnode *node, uint32_t hash)
 	t_darray	*array;
 	size_t		index;
 	int8_t		ret;
-	
+
 	ret = FAILURE;
 	index = hash % map->size;
 	if (map->bucket[index] == NULL)
@@ -71,9 +71,9 @@ int8_t				hashmap_set(t_hashmap *map, void *key, void *data)
 			ret = should_map_resize(map);
 		}
 		else
-			ret = ft_perror_failure(NODE_NULL, STD_ERR);
+			ret = ft_perror_failure(NODE_NULL, __FILE__, __LINE__);
 	}
 	else
-		ret = ft_perror_failure(MAP_NULL, STD_ERR);
+		ret = ft_perror_failure(MAP_NULL, __FILE__, __LINE__);
 	return (ret);
 }

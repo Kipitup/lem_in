@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 18:31:14 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 14:32:18 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:12:35 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include "darray.h"
 
 static int8_t	push_node(void **bucket, size_t map_size, size_t *nb_collision,
-							t_hashnode *node, uint32_t hash)
+		t_hashnode *node)
 {
 	t_darray	*array;
 	size_t		index;
 	int8_t		ret;
-	
+
 	ret = FAILURE;
-	index = hash % map_size;
+	index = node->hash % map_size;
 	if (bucket[index] == NULL)
 	{
 		array = darray_create(sizeof(t_hashnode*), DEFAULT_ARRAY_SIZE);
@@ -43,7 +43,6 @@ static int8_t	push_node(void **bucket, size_t map_size, size_t *nb_collision,
 	return (ret);
 }
 
-
 static int8_t	handle_collision(t_darray *array, void **content, size_t n_size,
 									size_t *nb_collision)
 {
@@ -58,11 +57,11 @@ static int8_t	handle_collision(t_darray *array, void **content, size_t n_size,
 		node = darray_get(array, i);
 		if (node != NULL)
 		{
-			ret = push_node(content, n_size, nb_collision, node, node->hash);
+			ret = push_node(content, n_size, nb_collision, node);
 			darray_remove(array, i);
 		}
 		else
-			ft_perror_void(NODE_SEARCH_NULL, STD_ERR);
+			ft_perror(NODE_SEARCH_NULL, __FILE__, __LINE__);
 		i++;
 	}
 	return (ret);
@@ -119,6 +118,6 @@ int8_t			hashmap_resize(t_hashmap *map)
 		map->size = new_size;
 	}
 	else
-		ret = ft_perror_failure(RESIZE_FAIL, STD_ERR);
+		ret = ft_perror_failure(RESIZE_FAIL, __FILE__, __LINE__);
 	return (ret);
 }

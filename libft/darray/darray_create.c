@@ -31,11 +31,11 @@ t_darray	*darray_create(size_t sizeof_elem, size_t init_max)
 			if (array->contents == NULL)
 			{
 				darray_destroy(&array);
-				ft_perror_null(CONTENT_FAIL, STD_ERR);
+				ft_perror_null(CONTENT_FAIL, __FILE__, __LINE__);
 			}
 		}
 	}
 	else
-		ft_perror_null(INITIAL_MAX_ZERO, STD_ERR);
+		ft_perror_null(INITIAL_MAX_ZERO, __FILE__, __LINE__);
 	return (array);
 }

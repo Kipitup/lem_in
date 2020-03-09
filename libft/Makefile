@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/09 10:41:44 by amartino         ###   ########.fr        #
+#    Updated: 2020/03/09 15:46:33 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -224,10 +224,10 @@ SRCS += red_black_tool.c
 SRCS += red_black_rotation.c
 
 #----------------------------------- ERROR ------------------------------------#
-SRCS += ft_print_err_null.c
-SRCS += ft_print_err_failure.c
-SRCS += ft_print_err_false.c
-SRCS += ft_print_err_void.c
+SRCS += ft_perror_null.c
+SRCS += ft_perror_failure.c
+SRCS += ft_perror_false.c
+SRCS += ft_perror.c
 
 #----------------------------------- HASH -------------------------------------#
 SRCS += hash_function.c

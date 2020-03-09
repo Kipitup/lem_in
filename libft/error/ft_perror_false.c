@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror_null.c                                :+:      :+:    :+:   */
+/*   ft_perror_false.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/16 15:34:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/04 18:24:27 by amartino         ###   ########.fr       */
+/*   Created: 2020/01/16 15:35:28 by amartino          #+#    #+#             */
+/*   Updated: 2020/03/09 16:07:33 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-void		*ft_perror_null(char *str, int8_t fd)
+uint8_t		ft_perror_false(char *str, const char *file, int line)
 {
-	if (str && *str != '\0')
-		ft_dprintf(fd, "Error: %s\n", str);
-	return (NULL);
+	if (str != NULL && file != NULL)
+		ft_dprintf(STD_ERR, "{c_magenta}[{c_end}%s : %d{c_magenta}]{c_end}\
+ {c_red}Error: %s{c_end}\n", file, line, str);
+	return (FALSE);
 }

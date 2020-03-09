@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/09 14:35:52 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:53:21 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,9 +210,9 @@ void				ft_putstr_fd(const char *s, int fd);
 ** ################################# ERROR ####################################
 ** ############################################################################
 */
-void				*ft_perror_null(char *str, int8_t fd);
-int8_t				ft_perror_failure(char *str, int8_t fd);
-uint8_t				ft_perror_false(char *str, int8_t fd);
-void				ft_perror_void(char *str, int8_t fd);
+void				*ft_perror_null(char *str, const char *file, int line);
+int8_t				ft_perror_failure(char *str, const char *file, int line);
+uint8_t				ft_perror_false(char *str, const char *file, int line);
+void				ft_perror(char *str, const char *file, int line);
 
 #endif

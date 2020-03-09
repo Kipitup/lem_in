@@ -34,7 +34,7 @@ void		**ft_realloc(t_darray *array, size_t new_size, size_t old_size)
 			ft_memdel((void**)&array->contents);
 		}
 		else
-			ft_perror_null(REALLOC_FAIL, STD_ERR);
+			ft_perror_null(REALLOC_FAIL, __FILE__, __LINE__);
 	}
 	return (tmp);
 }

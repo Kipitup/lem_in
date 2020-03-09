@@ -36,5 +36,5 @@ void	darray_clear_content(t_darray **array_to_del, t_del_func del_func)
 		}
 	}
 	else
-		ft_perror_void(CLEAR_NULL, STD_ERR);
+		ft_perror(CLEAR_NULL, __FILE__, __LINE__);
 }
