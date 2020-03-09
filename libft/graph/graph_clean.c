@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   graph_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/09 14:50:14 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 17:23:24 by amartino         ###   ########.fr       */
+/*   Created: 2020/03/09 19:05:43 by amartino          #+#    #+#             */
+/*   Updated: 2020/03/09 19:14:41 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "graph.h"
 #include "libft.h"
-#include "ft_printf.h"
 
-void		ft_perror(char *str, const char *file, int line)
+void	clean_recurse(t_adj_node **node)
 {
-	if (str != NULL && file != NULL)
+	if (node != NULL && *node != NULL)
 	{
-		if (DEBUG == ON)
+		while ((*node)->next != NULL)
+			clean_recurse(&((*node)->next));
+		ft_memdel((void**)node);
+	}
+}
+
+void	clean_graph(t_graph **graph)
+{
+	size_t		i;
+
+	i = 0;
+	if (graph != NULL && *graph != NULL)
+	{
+		while (i < (*graph)->size)
 		{
-			ft_dprintf(STD_ERR, "{c_magenta}[{c_end}%s : %d{c_magenta}]{c_end}\
-					{c_red}Error: %s{c_end}\n", file, line, str);
+			clean_recurse(&((*graph)->array[i].head));
+			i++;
 		}
-		else
-		{
-			ft_dprintf(STD_ERR, "{c_red}Error: %s{c_end}\n", str);
-		}
+		ft_memdel((void**)&((*graph)->array));
+		ft_memdel((void**)graph);
 	}
 }

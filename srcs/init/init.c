@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 16:31:20 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/09 18:37:49 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static t_lemin			*init_struct_lemin(void)
 	{
 		lemin->output = vct_new(DEFAULT_VCT_SIZE);
 		lemin->room = vct_new(DEFAULT_VCT_SIZE);
-		lemin->link = vct_new(DEFAULT_VCT_SIZE);
 		if (lemin->output == NULL || lemin->room == NULL || lemin->link == NULL)
 			clean_lemin(&(lemin));
 	}

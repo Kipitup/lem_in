@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 15:38:05 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/09 19:07:34 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_lemin
 {
 	t_vector		*output;
 	t_vector		*room;
-	t_vector		*link;
+	t_graph			*link;
 	t_vector		*start;
 	t_vector		*end;
 	size_t			nb_ants;
@@ -45,26 +45,6 @@ typedef struct	s_st_machine
 }				t_st_machine;
 
 typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);
-
-/*
-** ############################# ADJACENCY LIST ##################################
-*/
-typedef struct	s_adj_node
-{
-	size_t				dest;
-	struct s_adj_node	*next;
-}				t_adj_node;
-
-typedef struct	s_adj_list
-{
-	t_adj_node			*head;
-}				t_adj_list;
-
-typedef struct	s_graph
-{
-	t_adj_list			*array;
-	size_t				size;
-}				t_graph;
 
 /*
 ** ############################################################################

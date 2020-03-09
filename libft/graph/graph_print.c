@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   graph_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/09 14:50:14 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 17:23:24 by amartino         ###   ########.fr       */
+/*   Created: 2020/03/09 19:06:02 by amartino          #+#    #+#             */
+/*   Updated: 2020/03/09 19:07:14 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "graph.h"
 #include "ft_printf.h"
 
-void		ft_perror(char *str, const char *file, int line)
+void	print_adj_list(t_graph *graph)
 {
-	if (str != NULL && file != NULL)
+	t_adj_node	*node;
+	size_t		i;
+
+	i = 0;
+	while (i < graph->size)
 	{
-		if (DEBUG == ON)
+		ft_printf("vertex %d\nhead", i);
+		node = graph->array[i].head;
+		while (node != NULL)
 		{
-			ft_dprintf(STD_ERR, "{c_magenta}[{c_end}%s : %d{c_magenta}]{c_end}\
-					{c_red}Error: %s{c_end}\n", file, line, str);
+			ft_printf(" -> %d", node->dest);
+			node = node->next;
 		}
-		else
-		{
-			ft_dprintf(STD_ERR, "{c_red}Error: %s{c_end}\n", str);
-		}
+		ft_printf("\n");
+		i++;
 	}
 }

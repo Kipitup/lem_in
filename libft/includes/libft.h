@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/09 15:53:21 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 19:19:41 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define STD_ERR				STDERR_FILENO
 # define INTMIN_LEN				11
 # define INTMAX_LEN				10
+# define DEBUG					ON
 
 # include <sys/types.h>
 # include <sys/stat.h>
