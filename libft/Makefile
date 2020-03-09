@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/06 18:09:43 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/07 18:01:45 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,6 +149,8 @@ SRCS += get_next_line.c
 SRCS += ft_atol.c
 SRCS += ft_log2_n.c
 SRCS += ft_check_int_len.c
+SRCS += ft_is_prime.c
+SRCS += ft_find_next_prime.c
 
 #------------------------------------ STAT ------------------------------------#
 SRCS += ft_get_high.c

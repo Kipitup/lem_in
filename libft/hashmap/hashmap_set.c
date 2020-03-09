@@ -6,13 +6,28 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 13:42:37 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/06 19:59:28 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashmap.h"
 #include "darray.h"
 #include "libft.h"
+
+static int8_t		should_map_resize(t_hashmap *map)
+{
+	size_t		limit;
+	int8_t		ret;
+
+	ret = SUCCESS;
+	limit = (size_t)ft_log2_n(map->size);
+	if (map->nb_collision >= limit)
+	{
+		ft_printf("let's resize !!\n");
+		ret = hashmap_resize(map);
+	}
+	return (ret);
+}
 
 static int8_t		push_node(t_hashmap *map, t_hashnode *node, uint32_t hash)
 {
@@ -27,7 +42,7 @@ static int8_t		push_node(t_hashmap *map, t_hashnode *node, uint32_t hash)
 		array = darray_create(sizeof(t_hashnode*), DEFAULT_ARRAY_SIZE);
 		if (array != NULL)
 		{
-			ret = darray_set(array, 0, (void*)node);
+			ret = darray_push(array, (void*)node);
 			if (ret == SUCCESS)
 				map->bucket[index] = array;
 			else
@@ -52,11 +67,11 @@ int8_t				hashmap_set(t_hashmap *map, void *key, void *data)
 	{
 		hash = map->hash(key, ft_strlen((char*)key));
 		node = hash_node_create(key, data, hash);
-		//print_node(node);
 		if (node != NULL)
 		{
 			ret = push_node(map, node, hash);
 			map->nb_of_elem++;
+			ret = should_map_resize(map);
 		}
 		else
 			ret = ft_perror_failure(NODE_NULL, STD_ERR);

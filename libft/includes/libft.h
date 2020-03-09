@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 16:46:35 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/07 17:59:42 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,8 @@ ssize_t				ft_get_n_highest(int32_t *tab, size_t nth, size_t start,
 ssize_t				ft_get_n_smallest(int32_t *tab, size_t nth, size_t start,
 										size_t limit);
 int32_t				*ft_sort(int32_t *tab, size_t size);
+uint8_t				ft_is_prime(uint32_t nb);
+uint32_t			ft_find_next_prime(uint32_t nb);
 
 /*
 ** ############################################################################
