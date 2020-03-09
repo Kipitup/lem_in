@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/03 22:04:06 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:49:23 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int32_t 	get_coord(t_st_machine *sm, t_vector *line)
+static int32_t 	    get_coord(t_st_machine *sm, t_vector *line)
 {
 	char		*str;
 	int32_t		coord;

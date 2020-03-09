@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/28 19:37:31 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:31:20 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_lemin			*init_struct_lemin(void)
 	return (lemin);
 }
 
-static t_st_machine	*init_struct(void)
+static t_st_machine	    *init_struct(void)
 {
 	t_st_machine *sm;
 
@@ -43,13 +43,15 @@ static t_st_machine	*init_struct(void)
 	return (sm);
 }
 
-t_lemin			*init(void)
+t_lemin			        *init(void)
 {
 	t_lemin			*lemin;
+//	t_hash_map		*hashmap;
 	t_st_machine	*sm;
 
 	lemin = NULL;
 	sm = init_struct();
+//	hashmap =  hashmap_create(NULL, NULL);
 	if (sm != NULL)
 	{
 		parse(sm);

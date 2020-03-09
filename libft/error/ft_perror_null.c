@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_perror_null.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 15:45:06 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 15:31:31 by fkante           ###   ########.fr       */
+/*   Created: 2020/01/16 15:34:27 by amartino          #+#    #+#             */
+/*   Updated: 2020/03/09 16:07:30 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 
-int		ft_strequ(char const *s1, char const *s2)
+void		*ft_perror_null(char *str, const char *file, int line)
 {
-	int i;
-
-	if (s1 == NULL || s2 == NULL)
-		return (FALSE);
-	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	if (str != NULL && file != NULL)
+		ft_dprintf(STD_ERR, "{c_magenta}[{c_end}%s : %d{c_magenta}]{c_end}\
+ {c_red}Error: %s{c_end}\n", file, line, str);
+	return (NULL);
 }

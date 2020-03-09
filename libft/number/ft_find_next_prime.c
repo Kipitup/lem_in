@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 15:45:06 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 15:31:31 by fkante           ###   ########.fr       */
+/*   Created: 2020/03/07 17:40:04 by amartino          #+#    #+#             */
+/*   Updated: 2020/03/09 10:54:26 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strequ(char const *s1, char const *s2)
+uint32_t		ft_find_next_prime(uint32_t nb)
 {
-	int i;
+	uint32_t	prime;
 
-	if (s1 == NULL || s2 == NULL)
-		return (FALSE);
-	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	if (ft_is_prime(nb) == TRUE)
+		prime = nb;
+	else
+        prime = ft_find_next_prime(nb + 1);
+	return (prime);
 }

@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   darray_push.c                                      :+:      :+:    :+:   */
+/*   hashmap_clean.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/04 16:41:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:31:09 by fkante           ###   ########.fr       */
+/*   Created: 2020/03/05 16:42:38 by fkante            #+#    #+#             */
+/*   Updated: 2020/03/09 16:18:53 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "darray.h"
+#include "hashmap.h"
 #include "libft.h"
+#include "darray.h"
 
-int8_t	darray_push(t_darray *array, void *element)
+void	del_map(t_hashmap **map_to_del)
 {
-	int8_t	ret;
+	t_hashmap	*map;
+	size_t		i;
 
-	ret = SUCCESS;
-	if (array != NULL)
+	i = 0;
+	if (map_to_del != NULL && *map_to_del != NULL)
 	{
-		if ((array->end + 1) >= array->max)
-			ret = darray_expand(array);
-		array->end++;
-		if (ret == SUCCESS)
-			array->contents[array->end] = element;
+		map = *map_to_del;
+		while (i < map->size)
+		{
+			if (map->bucket[i] != NULL)
+				darray_clear_destroy((t_darray**)&(map->bucket[i]),
+										&del_hashmap_node);
+			i++;
+		}
+		ft_memdel((void**)&(map->bucket));
+		ft_memdel((void**)map_to_del);
 	}
-	else
-		ret = ft_perror_failure(ARRAY_IS_NULL, __FILE__, __LINE__);
-	return (ret);
 }

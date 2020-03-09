@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/04 17:56:46 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/09 15:52:25 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ HEAD += btree.h
 HEAD += ft_printf.h
 HEAD += define_pf.h
 HEAD += darray.h
+HEAD += hashmap.h
 
 vpath %.h $(INCLUDES)
 
@@ -148,6 +149,8 @@ SRCS += get_next_line.c
 SRCS += ft_atol.c
 SRCS += ft_log2_n.c
 SRCS += ft_check_int_len.c
+SRCS += ft_is_prime.c
+SRCS += ft_find_next_prime.c
 
 #------------------------------------ STAT ------------------------------------#
 SRCS += ft_get_high.c
@@ -221,13 +224,20 @@ SRCS += red_black_tool.c
 SRCS += red_black_rotation.c
 
 #----------------------------------- ERROR ------------------------------------#
-SRCS += ft_print_err_null.c
-SRCS += ft_print_err_failure.c
-SRCS += ft_print_err_false.c
-SRCS += ft_print_err_void.c
+SRCS += ft_perror_null.c
+SRCS += ft_perror_failure.c
+SRCS += ft_perror_false.c
+SRCS += ft_perror.c
 
 #----------------------------------- HASH -------------------------------------#
-SRCS += ft_hash_void_data.c
+SRCS += hash_function.c
+SRCS += compare_function.c
+SRCS += hashmap_create.c
+SRCS += hashmap_set.c
+SRCS += hashmap_get.c
+SRCS += hashmap_clean.c
+SRCS += hashmap_print.c
+SRCS += hashmap_resize.c
 
 #---------------------------------- DARRAY -------------------------------------#
 SRCS += darray_clear.c
@@ -238,6 +248,7 @@ SRCS += darray_pop.c
 SRCS += darray_push.c
 SRCS += darray_utilities.c
 SRCS += ft_realloc.c
+SRCS += del_function.c
 
 #--------------------------------- FT_PRINTF ----------------------------------#
 SRCS += ft_printf.c
@@ -306,6 +317,9 @@ $(OBJS): $(BUILD_DIR)%.o: %.c $(HEAD) Makefile
 
 clean:
 	$(RM) -R $(BUILD_DIR)
+	$(RM) -R a.out
+	$(RM) -R hash_valgrind
+	$(RM) -R hash_valgrind.dSYM
 
 fclean: clean
 	$(RM) $(NAME)

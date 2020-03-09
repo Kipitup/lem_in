@@ -6,12 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/28 19:21:30 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:38:05 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef LEM_IN_H
+# define LEM_IN_H
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -47,6 +47,26 @@ typedef struct	s_st_machine
 typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);
 
 /*
+** ############################# ADJACENCY LIST ##################################
+*/
+typedef struct	s_adj_node
+{
+	size_t				dest;
+	struct s_adj_node	*next;
+}				t_adj_node;
+
+typedef struct	s_adj_list
+{
+	t_adj_node			*head;
+}				t_adj_list;
+
+typedef struct	s_graph
+{
+	t_adj_list			*array;
+	size_t				size;
+}				t_graph;
+
+/*
 ** ############################################################################
 ** ################################# INIT #####################################
 ** ############################################################################
@@ -61,12 +81,26 @@ t_vector 		*get_room(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);
+int8_t			hashmap_setup(t_lemin *lemin);
 
 /*
 ** ############################################################################
 ** ################################# TOOL #####################################
 ** ############################################################################
 */
+void			hash_rooms(t_lemin *lemin);
+
+/*
+** ############################################################################
+** ################################# LIST #####################################
+** ############################################################################
+*/
+t_adj_node		*new_adj_list_node(size_t dest);
+t_graph			*init_graph(size_t size);
+int8_t			add_edge(t_graph *graph, size_t src, size_t dest);
+void			print_link(t_graph *graph);
+void			clean_recurse(t_adj_node **node);
+void			clean_graph(t_graph **graph);
 
 /*
 ** ############################################################################

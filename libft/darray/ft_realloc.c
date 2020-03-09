@@ -6,38 +6,35 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:25:17 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:37:43 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/09 10:24:42 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "darray.h"
 
-void	**ft_realloc(t_darray *array, size_t new_size, size_t old_size)
+void		**ft_realloc(t_darray *array, size_t new_size, size_t old_size)
 {
 	void	**tmp;
 	size_t	i;
 
-	tmp = NULL;
 	i = 0;
-	if (array != NULL)
+	tmp = NULL;
+	new_size = (new_size > old_size) ? new_size : old_size;
+	if (array != NULL && new_size > 0)
 	{
-		new_size = (new_size > old_size) ? new_size : old_size;
-		if (new_size > 0)
+		tmp = ft_memalloc(new_size * sizeof(void*));
+		if (tmp != NULL)
 		{
-			tmp = ft_memalloc(new_size * sizeof(void*));
-			if (tmp != NULL)
+			while (i <= array->end)
 			{
-				while (i <= array->end)
-				{
-					tmp[i] = array->contents[i];
-					i++;
-				}
-				darray_destroy_content(&array);
+				tmp[i] = array->contents[i];
+				i++;
 			}
+			ft_memdel((void**)&array->contents);
 		}
+		else
+			ft_perror_null(REALLOC_FAIL, __FILE__, __LINE__);
 	}
-	else
-		ft_perror_failure("realloc failed / array is NULL", STD_ERR);
 	return (tmp);
 }

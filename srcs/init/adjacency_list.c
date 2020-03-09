@@ -6,28 +6,11 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:54:26 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/02 18:38:27 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:17:30 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-typedef struct	s_adj_node
-{
-	size_t			dest;
-	struct s_adj_node	*next;
-}				t_adj_node;
-
-typedef struct	s_adj_list
-{
-	t_adj_node			*head;
-}				t_adj_list;
-
-typedef struct	s_graph
-{
-	t_adj_list			*array;
-	size_t				size;
-}				t_graph;
 
 t_adj_node		*new_adj_list_node(size_t dest)
 {
@@ -118,32 +101,5 @@ void	clean_graph(t_graph **graph)
 		}
 		ft_memdel((void**)&((*graph)->array));
 		ft_memdel((void**)graph);
-
 	}
-}
-
-int				main(void)
-{
-	t_graph		*graph;
-	size_t		size;
-	int8_t		ret;
-
-	size = 5;
-	graph = NULL;
-	graph = init_graph(size);
-	if (graph != NULL)
-	{
-		ret = add_edge(graph, 0, 1);
-		if (ret != FAILURE)
-			ret = add_edge(graph, 0, 4);
-		if (ret != FAILURE)
-			ret = add_edge(graph, 1, 2);
-		if (ret != FAILURE)
-			ret = add_edge(graph, 2, 0);
-		if (ret != FAILURE)
-			ret = add_edge(graph, 3, 4);
-		print_link(graph);
-	}
-	clean_graph(&graph);
-	return (0);
 }

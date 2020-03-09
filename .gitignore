@@ -1,5 +1,6 @@
 #binary
 lem-in
+hash_valgrind
 
 # Object files
 libftprintf/build/*.o
@@ -22,6 +23,7 @@ libftprintf/*.a
 
 # Debug files
 *.dSYM/*
+*/*.dSYM/*
 *.su
 *.idb
 *.pdb

@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/02/28 20:19:53 by amartino         ###   ########.fr        #
+#    Updated: 2020/03/09 15:50:44 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -89,6 +89,7 @@ SRCS += parse_room
 SRCS += parse_room_link
 SRCS += parse_command
 SRCS += parse_tools
+SRCS += hashmap_setup 
 
 # solve
 SRCS += lem_in

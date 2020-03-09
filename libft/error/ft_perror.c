@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror_null.c                                :+:      :+:    :+:   */
+/*   ft_perror.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/16 15:34:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/04 18:24:27 by amartino         ###   ########.fr       */
+/*   Created: 2020/03/09 14:50:14 by amartino          #+#    #+#             */
+/*   Updated: 2020/03/09 16:06:06 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-void		*ft_perror_null(char *str, int8_t fd)
+void		ft_perror(char *str, const char *file, int line)
 {
-	if (str && *str != '\0')
-		ft_dprintf(fd, "Error: %s\n", str);
-	return (NULL);
+	if (str != NULL && file != NULL)
+		ft_dprintf(STD_ERR, "{c_magenta}[{c_end}%s : %d{c_magenta}]{c_end}\
+ {c_red}Error: %s{c_end}\n", file, line, str);
 }

@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 16:46:35 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/09 15:53:21 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@
 # include "ft_printf.h"
 
 // #define ft_memalloc(X) ft_malloc_debug(X, __FILE__, __LINE__, __func__)
-
-/*
-** # for linux set-up #
-*/
 
 # define FALSE					0
 # define TRUE					1
@@ -181,6 +177,8 @@ ssize_t				ft_get_n_highest(int32_t *tab, size_t nth, size_t start,
 ssize_t				ft_get_n_smallest(int32_t *tab, size_t nth, size_t start,
 										size_t limit);
 int32_t				*ft_sort(int32_t *tab, size_t size);
+uint8_t				ft_is_prime(uint32_t nb);
+uint32_t			ft_find_next_prime(uint32_t nb);
 
 /*
 ** ############################################################################
@@ -212,9 +210,9 @@ void				ft_putstr_fd(const char *s, int fd);
 ** ################################# ERROR ####################################
 ** ############################################################################
 */
-void				*ft_perror_null(char *str, int8_t fd);
-int8_t				ft_perror_failure(char *str, int8_t fd);
-uint8_t				ft_perror_false(char *str, int8_t fd);
-void				ft_perror_void(char *str, int8_t fd);
+void				*ft_perror_null(char *str, const char *file, int line);
+int8_t				ft_perror_failure(char *str, const char *file, int line);
+uint8_t				ft_perror_false(char *str, const char *file, int line);
+void				ft_perror(char *str, const char *file, int line);
 
 #endif

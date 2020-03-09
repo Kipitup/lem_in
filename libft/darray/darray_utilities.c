@@ -28,10 +28,10 @@ int8_t	darray_set(t_darray *array, size_t i, void *element)
 			ret = SUCCESS;
 		}
 		else
-			ft_perror_failure(SET_ABOVE_MAX, STD_ERR);
+			ft_perror_failure(SET_ABOVE_MAX, __FILE__, __LINE__);
 	}
 	else
-		ft_perror_failure(ARRAY_IS_NULL, STD_ERR);
+		ft_perror_failure(ARRAY_IS_NULL, __FILE__, __LINE__);
 	return (ret);
 }
 
@@ -42,10 +42,10 @@ void	*darray_get(t_darray *array, size_t i)
 		if (i < array->max)
 			return (array->contents[i]);
 		else
-			return (ft_perror_null(GET_ABOVE_MAX, STD_ERR));
+			return (ft_perror_null(GET_ABOVE_MAX, __FILE__, __LINE__));
 	}
 	else
-		return (ft_perror_null(ARRAY_IS_NULL, STD_ERR));
+		return (ft_perror_null(ARRAY_IS_NULL, __FILE__, __LINE__));
 
 }
 
@@ -60,7 +60,7 @@ void	*darray_remove(t_darray *array, size_t index)
 		array->contents[index] = NULL;
 	}
 	else
-		ft_perror_void(ARRAY_IS_NULL, STD_ERR);
+		ft_perror(ARRAY_IS_NULL, __FILE__, __LINE__);
 	return (element);
 }
 
@@ -71,7 +71,7 @@ void	*darray_new(t_darray *array)
 		if (array->sizeof_elem > 0)
 			return (ft_memalloc(array->sizeof_elem));
 		else
-			return (ft_perror_null(ARRAY_SIZE_ZERO, STD_ERR));
+			return (ft_perror_null(ARRAY_SIZE_ZERO, __FILE__, __LINE__));
 	}
-	return (ft_perror_null(ARRAY_IS_NULL, STD_ERR));
+	return (ft_perror_null(ARRAY_IS_NULL, __FILE__, __LINE__));
 }
