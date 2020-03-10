@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 15:14:26 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/09 19:07:34 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ enum	e_states
 typedef struct	s_lemin
 {
 	t_vector		*output;
-	t_hashmap		*room;
-	t_vector		*link;
+	t_vector		*room;
+	t_graph			*link;
 	t_vector		*start;
 	t_vector		*end;
 	size_t			nb_ants;

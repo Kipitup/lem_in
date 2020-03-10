@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/09 15:52:25 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/09 19:05:13 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ HEAD += ft_printf.h
 HEAD += define_pf.h
 HEAD += darray.h
 HEAD += hashmap.h
+HEAD += graph.h
 
 vpath %.h $(INCLUDES)
 
@@ -278,6 +279,11 @@ SRCS += statemachine_asprintf.c
 SRCS += states.c
 SRCS += width_and_precision.c
 
+#--------------------------------- FT_PRINTF ----------------------------------#
+SRCS += adjacency_list.c
+SRCS += graph_clean.c
+SRCS += graph_print.c
+
 PATH_SRCS += ./vector
 PATH_SRCS += ./darray
 PATH_SRCS += ./ft_printf/bonus
@@ -295,6 +301,7 @@ PATH_SRCS += ./memory
 PATH_SRCS += ./print
 PATH_SRCS += ./math
 PATH_SRCS += ./hashmap
+PATH_SRCS += ./graph
 PATH_SRCS += .
 
 vpath %.c $(PATH_SRCS)

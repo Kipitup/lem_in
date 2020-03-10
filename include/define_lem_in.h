@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 17:32:57 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/09 20:01:57 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@
 # define SPECIAL_ROOM		5
 
 # define MALLOC_ERR			"memory allocation failed"
+# define ROOM_DONT_EXIST	"You're trying to link a room that doesn't exist"
+# define WRONG_LINK_FORMAT	"Wrong input format"
 
 #endif
