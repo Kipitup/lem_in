@@ -6,12 +6,13 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:41:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/05 11:31:09 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 14:40:53 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "darray.h"
 #include "libft.h"
+#include "hashmap.h"
 
 int8_t	darray_push(t_darray *array, void *element)
 {

@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/09 15:54:47 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 14:49:21 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ t_hashnode			*hash_node_create(void *key, void *data, uint32_t hash);
 int8_t				hashmap_set(t_hashmap *map, void *key, void *data);
 void				*hashmap_get(t_hashmap *map, void *key);
 int8_t				hashmap_resize(t_hashmap *map);
-void				print_node(t_hashnode *node);
 void				del_map(t_hashmap **map);
 
 /*
@@ -68,6 +67,8 @@ void				del_map(t_hashmap **map);
 */
 uint32_t			ft_hash_void_data(void *data, size_t len);
 uint8_t				default_compare(void *a, void *b);
+void				print_node(t_hashnode *node, size_t index);
+void				print_hashmap(t_hashmap *map);
 
 /*
 ** ********************************  ERRORS ************************************

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:46:37 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/28 13:25:24 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 14:54:26 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ static size_t	get_nb_of_ants(t_st_machine *sm, t_vector *line)
 			size = (size_t)tmp;
 		else
 			sm->state = E_ERROR;
-			// sm->state = sm->state;
 	}
 	return (size);
 }
 
-uint8_t		ant(t_st_machine *sm, t_vector *line)
+uint8_t			ant(t_st_machine *sm, t_vector *line)
 {
 	uint8_t			ret;
 

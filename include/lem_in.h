@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 15:38:05 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:14:26 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "define_lem_in.h"
+# include "hashmap.h"
 
 enum	e_states
 {
@@ -30,7 +31,7 @@ enum	e_states
 typedef struct	s_lemin
 {
 	t_vector		*output;
-	t_vector		*room;
+	t_hashmap		*room;
 	t_vector		*link;
 	t_vector		*start;
 	t_vector		*end;
@@ -47,7 +48,7 @@ typedef struct	s_st_machine
 typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);
 
 /*
-** ############################# ADJACENCY LIST ##################################
+** ############################# ADJACENCY LIST ###############################
 */
 typedef struct	s_adj_node
 {
@@ -77,18 +78,19 @@ uint8_t			ant(t_st_machine *sm, t_vector *line);
 uint8_t			room(t_st_machine *sm, t_vector *line);
 uint8_t			room_link(t_st_machine *sm, t_vector *line);
 uint8_t			command(t_st_machine *sm, t_vector *line);
-t_vector 		*get_room(t_st_machine *sm, t_vector *line);
+int8_t 			get_room(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);
-int8_t			hashmap_setup(t_lemin *lemin);
 
 /*
 ** ############################################################################
 ** ################################# TOOL #####################################
 ** ############################################################################
 */
-void			hash_rooms(t_lemin *lemin);
+void			get_second_coord(t_vector *coord, char *second_coord);
+char			*get_coord(t_st_machine *sm, t_vector *line);
+t_vector	 	*get_room_name(t_st_machine *sm, t_vector *dup);
 
 /*
 ** ############################################################################

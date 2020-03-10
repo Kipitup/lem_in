@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:22:18 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/09 16:19:51 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:59:59 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,24 @@ int				main(void)
 	map = hashmap_create(NULL, NULL);
 	if (map != NULL)
 	{
-		key_to_find = allocate_elem(key_to_find, "francis");
+//		key_to_find = allocate_elem(key_to_find, "francis");
 		ret = test_set_elem(map);
-		node = hashmap_get(map, key_to_find);
+/*		node = hashmap_get(map, key_to_find);
 		ft_printf("key to find ---- %s\n", key_to_find);
-		print_node(node);
+		print_node(node, 0);
 		ft_memdel(&key_to_find);
 		key_to_find = allocate_elem(key_to_find, "room_start");
 		node = hashmap_get(map, key_to_find);
 		ft_printf("key to find ---- %s\n", key_to_find);
-		print_node(node);
+		print_node(node, 0);
 		ft_memdel(&key_to_find);
 		key_to_find = allocate_elem(key_to_find, "alex");
 		node = hashmap_get(map, key_to_find);
 		ft_printf("key to find ---- %s\n", key_to_find);
-		print_node(node);
+		print_node(node, 0);
 		ft_memdel(&key_to_find);
-		ft_printf("ret: %d\n", ret);
+		ft_printf("ret: %d\n", ret);*/
+		print_hashmap(map);
 		del_map(&map);
 	}
 	return (0);
