@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 16:13:37 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 19:27:14 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void				print_hashmap(t_hashmap *map);
 # define NODE_SEARCH_NULL	"Failed to get node"
 # define MAP_ALLOC_FAIL		"Malloc fail when trying to create map"
 # define MAP_NULL			"Map is null"
+# define INPUT_NULL			"At least one of the input is null"
 # define NODE_NULL			"Node is null"
 
 #endif

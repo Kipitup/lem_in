@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 16:33:59 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 19:30:59 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static t_vector		*get_name_and_coord(t_st_machine *sm, t_vector *line)
 	}
 	get_second_coord(coord, get_coord(sm, line));
 	vct_del(&dup);
-	hashmap_set(sm->lemin->room, key->str, coord->str);
+	hashmap_set(sm->lemin->room, ft_strdup(key->str), ft_strdup(coord->str));
+	vct_del(&coord);
 	return (key);
 }
 

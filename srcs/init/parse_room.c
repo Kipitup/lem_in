@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 16:45:02 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 19:30:59 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_vector 	*get_room_name(t_st_machine *sm, t_vector *dup)
 	if (vct_chr(dup, '-') != FAILURE)
 		sm->state = E_ERROR;
 	else
-		room = vct_joinfree(&room, &dup, FIRST);
+		room = vct_dup(dup);
 	return (room);
 }
 
@@ -74,7 +74,9 @@ int8_t 		get_room(t_st_machine *sm, t_vector *line)
 	}
 	get_second_coord(coord, get_coord(sm, line));
 	vct_del(&dup);
-	hashmap_set(sm->lemin->room, key->str, coord->str);
+	hashmap_set(sm->lemin->room, ft_strdup(key->str), ft_strdup(coord->str));
+	vct_del(&key);
+	vct_del(&coord);
 	return (TRUE);
 }
 

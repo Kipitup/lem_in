@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 14:31:34 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 19:25:53 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int8_t				hashmap_set(t_hashmap *map, void *key, void *data)
 	uint32_t	hash;
 	int8_t		ret;
 
-	if (map != NULL)
+	if (map != NULL && key != NULL && data != NULL)
 	{
 		hash = map->hash(key, ft_strlen((char*)key));
 		node = hash_node_create(key, data, hash);
@@ -74,6 +74,6 @@ int8_t				hashmap_set(t_hashmap *map, void *key, void *data)
 			ret = ft_perror_failure(NODE_NULL, __FILE__, __LINE__);
 	}
 	else
-		ret = ft_perror_failure(MAP_NULL, __FILE__, __LINE__);
+		ret = ft_perror_failure(INPUT_NULL, __FILE__, __LINE__);
 	return (ret);
 }

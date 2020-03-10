@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 16:21:25 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 17:59:25 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static void	add_link_adj_list(t_st_machine *sm, t_vector *src, t_vector *dest)
 	else
 	{
 		get_node_index(sm, node_src, node_dest);
-		print_node(node_src);
-		print_node(node_dest);
 		ret = add_edge(sm->lemin->link, node_src->index, node_dest->index);
 		if (ret == FAILURE)
 			sm->state = E_ERROR;
@@ -98,7 +96,6 @@ uint8_t		room_link(t_st_machine *sm, t_vector *line)
 			init_adjacency_list(sm); //replace by hashmap->nb_ol_elem
 		if (sm->state != E_ERROR)
 			get_link(sm, line);
-		print_adj_list(sm->lemin->link);
 	}
 	else
 	{

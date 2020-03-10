@@ -6,14 +6,15 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:14:10 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/06 15:24:05 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 19:18:17 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "darray.h"
 #include "libft.h"
-
 #include "hashmap.h"
+#include "vector.h"
+
 void	del_hashmap_node(void *content)
 {
 	t_hashnode *node;
@@ -21,13 +22,14 @@ void	del_hashmap_node(void *content)
 	node = (t_hashnode*)content;
 	if (content != NULL)
 	{
-		ft_memdel((void**)&node->key);
-		ft_memdel((void**)&node->data);
+		free(node->key);
+		free(node->data);
+		node->key = NULL;
+		node->data = NULL;
 		free(node);
 	}
 }
 
-#include "vector.h"
 void	del_vector(void *content)
 {
 	t_vector	*vector;
