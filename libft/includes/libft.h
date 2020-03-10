@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/09 19:19:41 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:33:10 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <string.h>
 # include "vector.h"
 # include "ft_printf.h"
+# include "hashmap.h"
+# include "graph.h"
+# include "darray.h"
 
 // #define ft_memalloc(X) ft_malloc_debug(X, __FILE__, __LINE__, __func__)
 
@@ -36,7 +39,7 @@
 # define STD_ERR				STDERR_FILENO
 # define INTMIN_LEN				11
 # define INTMAX_LEN				10
-# define DEBUG					ON
+# define DEBUG					OFF
 
 # include <sys/types.h>
 # include <sys/stat.h>

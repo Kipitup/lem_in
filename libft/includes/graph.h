@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 19:21:31 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 15:45:30 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define GRAPH_H
 
 # include <stdlib.h>
+
+/*
+**								ADJACENCY LIST
+**	An array of lists is used. Size of the array is equal to the number of
+**	vertices. Let the array be array[]. An entry array[i] represents the list
+**	of vertices adjacent to the ith vertex. This representation can also be used
+**	to represent a weighted graph. The weights of edges can be represented as
+**	lists of pairs.
+*/
 
 /*
 ** ############################################################################
@@ -47,6 +56,5 @@ int8_t			add_edge(t_graph *graph, size_t src, size_t dest);
 void			print_adj_list(t_graph *graph);
 void			clean_recurse(t_adj_node **node);
 void			clean_graph(t_graph **graph);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:30:22 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/20 10:57:44 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 16:22:40 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void			vct_del(t_vector **vector)
 {
-	if (*vector != NULL && (*vector)->str != NULL)
+	if (vector != NULL && *vector != NULL && (*vector)->str != NULL)
 		ft_strdel(&((*vector)->str));
 	ft_memdel((void**)vector);
 }

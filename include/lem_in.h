@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 15:27:53 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:44:45 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 # define LEM_IN_H
 
 # include "libft.h"
-# include "ft_printf.h"
 # include "define_lem_in.h"
-# include "hashmap.h"
 
 enum	e_states
 {
-	E_ANT,
-	E_ROOM,
-	E_LINK,
-	E_COMMAND,
-	E_ERROR,
-	E_END
+	E_ERROR = FAILURE,
+	E_ANT = 0,
+	E_ROOM = 1,
+	E_LINK = 2,
+	E_COMMAND = 3,
+	E_END = 4
 };
 
 typedef struct	s_lemin
@@ -48,31 +46,12 @@ typedef struct	s_st_machine
 typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);
 
 /*
-** ############################# ADJACENCY LIST ###############################
-*/
-typedef struct	s_adj_node
-{
-	size_t				dest;
-	struct s_adj_node	*next;
-}				t_adj_node;
-
-typedef struct	s_adj_list
-{
-	t_adj_node			*head;
-}				t_adj_list;
-
-typedef struct	s_graph
-{
-	t_adj_list			*array;
-	size_t				size;
-}				t_graph;
-
-/*
 ** ############################################################################
 ** ################################# INIT #####################################
 ** ############################################################################
 */
 t_lemin			*init(void);
+void			init_adjacency_list(t_st_machine *sm);
 void			parse(t_st_machine *sm);
 uint8_t			ant(t_st_machine *sm, t_vector *line);
 uint8_t			room(t_st_machine *sm, t_vector *line);
@@ -82,6 +61,8 @@ int8_t 			get_room(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);
+uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
+								t_hashnode *dest);
 
 /*
 ** ############################################################################

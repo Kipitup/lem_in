@@ -6,13 +6,26 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 18:37:49 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 16:09:47 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_lemin			*init_struct_lemin(void)
+void				init_adjacency_list(t_st_machine *sm)
+{
+	size_t 		size;
+
+	size = sm->lemin->room->nb_of_elem;
+	sm->lemin->link = init_graph(size);
+	if (sm->lemin->link == NULL)
+	{
+		ft_perror(ADJ_LIST_MALLOC, __FILE__, __LINE__);
+		sm->state = E_ERROR;
+	}
+}
+
+static t_lemin		*init_struct_lemin(void)
 {
 	t_lemin		*lemin;
 
@@ -21,14 +34,13 @@ static t_lemin			*init_struct_lemin(void)
 	{
 		lemin->output = vct_new(DEFAULT_VCT_SIZE);
 		lemin->room = hashmap_create(NULL, NULL);//compare , free function
-		lemin->link = vct_new(DEFAULT_VCT_SIZE);
-		if (lemin->output == NULL || lemin->room == NULL || lemin->link == NULL)
+		if (lemin->output == NULL || lemin->room == NULL)
 			clean_lemin(&(lemin));
 	}
 	return (lemin);
 }
 
-static t_st_machine		*init_struct(void)
+static t_st_machine	*init_struct(void)
 {
 	t_st_machine *sm;
 
@@ -43,7 +55,7 @@ static t_st_machine		*init_struct(void)
 	return (sm);
 }
 
-t_lemin					*init(void)
+t_lemin				*init(void)
 {
 	t_lemin			*lemin;
 	t_st_machine	*sm;

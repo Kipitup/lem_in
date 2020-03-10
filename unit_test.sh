@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 17:38:05 by amartino          #+#    #+#              #
-#    Updated: 2020/02/28 20:10:47 by amartino         ###   ########.fr        #
+#    Updated: 2020/03/10 13:40:05 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -161,6 +161,7 @@ check_output_correct_map () # $1 is the test file
 #======TEST======#
 # '-f': vrai si le fichier existe dans le répertoire courant
 # '-s': vrai si le fichier existe dans le répertoire courant et si sa taille est supérieure à zéro
+# '&' indicate that what follow is a file descriptor
 echo "----> ${GREEN}Running unit tests:${END_C}\n"
 
 printf "      ${UNDERLINE}${YELLOW}incorrect map:${END_C}\n\n"
@@ -171,10 +172,10 @@ do
 	then
 		if [ "$leak" = true ]
 		then
-			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC
+			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1
 			check_leak $MAP
 		else
-			$EXEC < $MAP > $LOG_EXEC
+			$EXEC < $MAP > $LOG_EXEC 2>&1
 		fi
 		check_output_incorrect_map $MAP
 	fi
@@ -188,10 +189,10 @@ do
 	then
 		if [ "$leak" = true ]
 		then
-			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC
+			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1
 			check_leak $MAP
 		else
-			$EXEC < $MAP > $LOG_EXEC
+			$EXEC < $MAP > $LOG_EXEC 2>&1
 		fi
 		check_output_correct_map $MAP
 	fi

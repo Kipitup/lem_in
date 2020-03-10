@@ -6,12 +6,10 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:23:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/06 13:23:09 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:41:10 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
-#include "darray.h"
 #include "libft.h"
 
 t_hashnode	*hash_node_create(void *key, void *data, uint32_t hash)
@@ -23,6 +21,7 @@ t_hashnode	*hash_node_create(void *key, void *data, uint32_t hash)
 	{
 		node->key = key;
 		node->data = data;
+		node->index = -1;
 		node->hash = hash;
 	}
 	return (node);

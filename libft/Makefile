@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/09 19:05:13 by amartino         ###   ########.fr        #
+#    Updated: 2020/03/10 11:27:54 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -279,7 +279,7 @@ SRCS += statemachine_asprintf.c
 SRCS += states.c
 SRCS += width_and_precision.c
 
-#--------------------------------- FT_PRINTF ----------------------------------#
+#------------------------------- ADJACENCY LIST -------------------------------#
 SRCS += adjacency_list.c
 SRCS += graph_clean.c
 SRCS += graph_print.c

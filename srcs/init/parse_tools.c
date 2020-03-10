@@ -6,11 +6,35 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:28:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/03 15:50:16 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 16:01:37 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+uint8_t is_it_special_room(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
+{
+	t_graph		*graph;
+	char		*start;
+	char		*end;
+	uint8_t		ret;
+
+	ret = TRUE;
+	graph = sm->lemin->link;
+	start = vct_getstr(sm->lemin->start);
+	end = vct_getstr(sm->lemin->end);
+	if (ft_strequ(src->key, start) == TRUE)
+		src->index = 0;
+	else if (ft_strequ(src->key, end) == TRUE)
+		src->index = graph->size - 1;
+	else if (ft_strequ(dest->key, start) == TRUE)
+		dest->index = 0;
+	else if (ft_strequ(dest->key, end) == TRUE)
+		dest->index = graph->size - 1;
+	else
+		ret = FALSE;
+	return (ret);
+}
 
 uint8_t	is_it_all_digit(t_vector *line)
 {

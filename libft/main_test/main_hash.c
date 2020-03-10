@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:22:18 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 13:59:59 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 16:14:49 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ int				main(void)
 		ret = test_set_elem(map);
 /*		node = hashmap_get(map, key_to_find);
 		ft_printf("key to find ---- %s\n", key_to_find);
-		print_node(node, 0);
+		print_node(node);
 		ft_memdel(&key_to_find);
 		key_to_find = allocate_elem(key_to_find, "room_start");
 		node = hashmap_get(map, key_to_find);
 		ft_printf("key to find ---- %s\n", key_to_find);
-		print_node(node, 0);
+		print_node(node);
 		ft_memdel(&key_to_find);
 		key_to_find = allocate_elem(key_to_find, "alex");
 		node = hashmap_get(map, key_to_find);
 		ft_printf("key to find ---- %s\n", key_to_find);
-		print_node(node, 0);
+		print_node(node);
 		ft_memdel(&key_to_find);
 		ft_printf("ret: %d\n", ret);*/
 		print_hashmap(map);

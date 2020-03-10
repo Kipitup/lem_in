@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 14:49:21 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 16:13:37 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <inttypes.h>
+# include <unistd.h>
 
 # define DJB_HASH_CONSTANT		5381
 # define DEFAULT_NB_OF_BUCKETS	4999	
@@ -36,15 +37,17 @@ typedef struct	s_hashmap
 }				t_hashmap;
 
 /*
-** Work like a dictionnary. You can associate a key with a data.
-** For exemple, name could be the key, and 42 the value. 'name' will be hash and
-** placed in the array at index: (hash % NB_OF_BUCKETS). At the index, you will
-** find the data '42'
+**	Work like a dictionnary. You can associate a key with a data.
+**	For exemple,'name' could be the key, and '42' the value. 'name' will be hash
+**	and the node will be placed in the array at index: (hash % NB_OF_BUCKETS).
+**	Each node has a optionnal index that can bu used in another data 
+**	structure (ex: adjacency list).
 */
 typedef struct	s_hashnode
 {
 	void			*key;
 	void			*data;
+	ssize_t			index;
 	uint32_t		hash;
 }				t_hashnode;
 
@@ -67,7 +70,7 @@ void				del_map(t_hashmap **map);
 */
 uint32_t			ft_hash_void_data(void *data, size_t len);
 uint8_t				default_compare(void *a, void *b);
-void				print_node(t_hashnode *node, size_t index);
+void				print_node(t_hashnode *node);
 void				print_hashmap(t_hashmap *map);
 
 /*

@@ -6,56 +6,85 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 20:16:46 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/10 16:21:25 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int8_t	does_room_exist(t_st_machine *sm, t_vector *room)
+static void	get_node_index(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 {
-//	t_hashnode	*node;
-//
-//	node = hashmap_get(sm->room, vct_getstr(room));
-//	if (node == NULL)
-//	{
-//		ft_perror(ROOM_DONT_EXIST, __FILE__, __LINE__);
-//		return (E_ERROR);
-//	}
-	return (E_LINK);
+	t_graph		*graph;
+	size_t		i;
+
+	i = 1;
+	graph = sm->lemin->link;
+	is_it_special_room(sm, src, dest);
+	if (src->index == NOT_SET)
+	{
+		while (i < graph->size && graph->array[i].head != NULL) 
+			i++;
+		src->index = i;
+		if (dest->index == NOT_SET)
+			dest->index = i + 1;
+	}
+	else if (dest->index == NOT_SET)
+	{
+		while (i < graph->size && graph->array[i].head != NULL) 
+			i++;
+		dest->index = i;
+	}
 }
 
-static void		get_link(t_st_machine *sm, t_vector *line)
+static void	add_link_adj_list(t_st_machine *sm, t_vector *src, t_vector *dest)
 {
-	t_vector	*room;
-	size_t		index;
+	t_hashnode	*node_src;
+	t_hashnode	*node_dest;
 	int8_t		ret;
 
-	index = vct_chr(line, '-');
-	room = vct_ndup(line, index);
-	sm->state = does_room_exist(sm, room);
-	if (sm->state != E_ERROR)
+	node_src = hashmap_get(sm->lemin->room, vct_getstr(src));
+	node_dest = hashmap_get(sm->lemin->room, vct_getstr(dest));
+	if (node_src == NULL || node_dest == NULL)
 	{
-	//	ret = add_edge(sm->link, 
-	}
-	vct_del(&dup);
-}
-
-static void		init_adjacency_list(t_st_machine *sm, size_t size)
-{
-	sm->link = init_graph(size);
-	if (sm->link == NULL)
-	{
-		ft_perror(ADJ_LIST_MALLOC, __FILE__, __LINE__);
+		ft_perror(ROOM_DONT_EXIST, __FILE__, __LINE__);
 		sm->state = E_ERROR;
 	}
+	else
+	{
+		get_node_index(sm, node_src, node_dest);
+		print_node(node_src);
+		print_node(node_dest);
+		ret = add_edge(sm->lemin->link, node_src->index, node_dest->index);
+		if (ret == FAILURE)
+			sm->state = E_ERROR;
+	}
+}
+
+static void	get_link(t_st_machine *sm, t_vector *line)
+{
+	t_vector	*src;
+	t_vector	*dest;
+	size_t		index;
+
+	index = vct_chr(line, '-');
+	src = vct_ndup(line, index);
+	dest = vct_dup_from(line, (index + 1));
+	if (src != NULL && dest != NULL)
+		add_link_adj_list(sm, src, dest);
+	else
+	{
+		ft_perror(VECTOR_FAIL, __FILE__, __LINE__);
+		sm->state = E_ERROR;
+	}
+	vct_del(&src);
+	vct_del(&dest);
 }
 
 /*
  **	The return (TRUE or FALSE) will determine whether or not the parser should
  **	read the next line.
  */
-uint8_t			room_link(t_st_machine *sm, t_vector *line)
+uint8_t		room_link(t_st_machine *sm, t_vector *line)
 {
 	uint8_t		ret;
 
@@ -65,10 +94,11 @@ uint8_t			room_link(t_st_machine *sm, t_vector *line)
 	else if (vct_chr_count(line, '-') == 1)
 	{
 		add_line_to_output(sm, line, ROOM_LINK);
-		if (sm->link == NULL)
-			init_adjacency_list(sm, 6); //replace by hashmap->nb_ol_elem
+		if (sm->lemin->link == NULL)
+			init_adjacency_list(sm); //replace by hashmap->nb_ol_elem
 		if (sm->state != E_ERROR)
 			get_link(sm, line);
+		print_adj_list(sm->lemin->link);
 	}
 	else
 	{

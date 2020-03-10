@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:00:01 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 14:41:16 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/10 16:15:30 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #include "darray.h"
 #include "libft.h"
 
-void		print_node(t_hashnode *node, size_t index)
+void		print_node(t_hashnode *node)
 {
 	if (node != NULL)
 	{
-		ft_printf("-> node %d:", index);
 		ft_printf("\n\t- key: {c_green}%s{c_end}\n\t- data: %s\n\t- hash: %u\n",
 				(char*)node->key, (char*)node->data, node->hash);
 	}
@@ -34,7 +33,10 @@ static void	print_hashmap_bis(t_darray *array)
 	{
 		node = darray_get(array, index_node);
 		if (node != NULL)
-			print_node(node, index_node);
+		{
+			ft_printf("-> node %d:", index_node);
+			print_node(node);
+		}
 		index_node++;
 	}
 }
