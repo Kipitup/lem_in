@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 15:25:09 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/04 13:53:10 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/11 20:58:13 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,16 @@ size_t			vct_len(t_vector *vector);
 int8_t			vct_increase_scale(t_vector *vector, size_t scale);
 void			vct_bzero(t_vector *vector);
 void			vct_del(t_vector **vector);
+void			vct_del_tab(t_vector ***vct_tab);
+void			vct_del_tab_content(t_vector **vct_tab);
 char			*vct_getstr(t_vector *vector);
 char			vct_getchar_at(t_vector *vector, size_t index);
 void			vct_print(t_vector *vector);
 void			vct_print_nl(t_vector *vector);
+void			vct_print_tab(t_vector **vector);
 int8_t			vct_read_line(const int fd, t_vector **line);
 int8_t			vct_read_line_for_push_swap(const int fd, t_vector **line);
+t_vector		**vct_split(t_vector *input, char c);
 
 /*
 **********************
