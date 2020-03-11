@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:54:26 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 13:56:33 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:54:05 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,28 @@ static t_adj_node	*new_adj_list_node(size_t dest)
 	if (new_node != NULL)
 		new_node->dest = dest;
 	return (new_node);
+}
+
+uint8_t				does_link_exist(t_graph *graph, size_t src, size_t dest)
+{
+	t_adj_node	*node_src;
+	uint8_t		ret;
+
+	ret = FALSE;
+	if (graph != NULL)
+	{
+		node_src = graph->array[src].head;
+		while (node_src != NULL)
+		{
+			if (node_src->dest == dest)
+			{
+				ret = TRUE;
+				break;
+			}
+			node_src = node_src->next;
+		}
+	}
+	return (ret);
 }
 
 int8_t				add_edge(t_graph *graph, size_t src, size_t dest)

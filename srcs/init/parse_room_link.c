@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 17:59:25 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:53:08 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	add_link_adj_list(t_st_machine *sm, t_vector *src, t_vector *dest)
 	t_hashnode	*node_dest;
 	int8_t		ret;
 
+	ret = SUCCESS;
 	node_src = hashmap_get(sm->lemin->room, vct_getstr(src));
 	node_dest = hashmap_get(sm->lemin->room, vct_getstr(dest));
 	if (node_src == NULL || node_dest == NULL)
@@ -52,7 +53,11 @@ static void	add_link_adj_list(t_st_machine *sm, t_vector *src, t_vector *dest)
 	else
 	{
 		get_node_index(sm, node_src, node_dest);
-		ret = add_edge(sm->lemin->link, node_src->index, node_dest->index);
+		if (does_link_exist(sm->lemin->link, node_src->index,
+					node_dest->index) == FALSE)
+		{
+			ret = add_edge(sm->lemin->link, node_src->index, node_dest->index);
+		}
 		if (ret == FAILURE)
 			sm->state = E_ERROR;
 	}

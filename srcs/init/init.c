@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 19:13:38 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/11 11:07:00 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ void				init_adjacency_list(t_st_machine *sm)
 		ft_perror(ADJ_LIST_MALLOC, __FILE__, __LINE__);
 		sm->state = E_ERROR;
 	}
+}
+
+static void			last_quick_check(t_st_machine *sm)
+{
+	if (sm->lemin->output->len == 0)
+		sm->state = ft_perror_failure(EMPTY_FILE, __FILE__, __LINE__);
+	else if (sm->lemin->start == NULL || sm->lemin->end == NULL)
+		sm->state = ft_perror_failure(NO_START_OR_END, __FILE__, __LINE__);
 }
 
 static t_lemin		*init_struct_lemin(void)
@@ -65,6 +73,7 @@ t_lemin				*init(void)
 	if (sm != NULL)
 	{
 		parse(sm);
+		last_quick_check(sm);
 		if (sm->state != E_ERROR)
 			lemin = sm->lemin;
 		else
