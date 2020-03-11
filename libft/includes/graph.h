@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 14:38:37 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:45:52 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ typedef struct	s_adj_node
 {
 	size_t				dest;
 	struct s_adj_node	*next;
+	uint8_t				available;
 }				t_adj_node;
 
 typedef struct	s_adj_list
 {
 	t_adj_node			*head;
+	size_t				distance;
 }				t_adj_list;
 
 typedef struct	s_graph

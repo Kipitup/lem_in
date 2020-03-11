@@ -1,0 +1,39 @@
+Each room will have a variable 'distance'
+	distance = how far is the room from start
+
+Each link will have a variable 'available'
+	available = 0 (YES)
+				1 (FRONT is used)
+				2 (BACK is used)
+				3 (BOTH are used)
+
+The BFS will always go from left to right.
+When going back, if 2 node have the same distance, always take the right one.
+
+BFS exploration phase:
+	- Every exploration will be made on a copy of the graph (== adjacency list)
+	- You can only visit a room if the link to the room is available in your direction.
+	- If a room has been visited do not rexplore or change the distance.
+	- If you end up in the room start, abandon the path.
+
+BFS path found:
+	- Update the links, from which the path is going through.
+	- If a link is equal 3 (BOTH direction are used):
+		- Don't save the current path
+		- Save all the previous paths found. (This will be one possible BFS solution)
+		- Reset the all of the graph (distance, link, previously deleted link).
+		- Delete the used link.  
+		- Restart the BFS.
+	- Else:
+		- Restart the BFS.
+
+After all BFS possibily has been explored:
+	- Do some simulatino on every possible BFS you found. Something like:
+		- portion = nb_of_ant / nb_of_path; (need to check if nb_of_ant % nb_of_path == 0)
+		- total = path_1->distance * portion + .. + path_n * distance;
+	- Take the fatest.
+
+
+Potential(s) problem(s):
+	- What if there are multiple links equal to 3 (BOTH) ? Should I delete only
+	the first one, or all of them ?
