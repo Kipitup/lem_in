@@ -14,8 +14,8 @@ an0ther_ro0m 3 0
 ##end
 THE_END 1 1
 #done for the room NOW the links
-start-1
 1-2
 #comment right in the middle of - the links
 2-this_is_aR00m
+this_is_aR00m-THE_END
 ##i'm done guys, please ignore me

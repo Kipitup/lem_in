@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 10:49:04 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/01 17:53:55 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/12 14:19:32 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct					s_rb_tree
 	struct s_rb_tree	*left;
 	struct s_rb_tree	*right;
 	int32_t				key;
-	uint8_t				color : 1;
+	uint8_t				color;
+	char				padding[3];
 }								t_rb_tree;
 
 # define RED			0
@@ -64,8 +65,9 @@ typedef struct					s_rb_tree
 */
 typedef struct				s_heap
 {
-	int32_t				*A;
+	int32_t				*array;
 	uint8_t				type;
+	char				padding[7];
 }							t_heap;
 
 # define HEAP_SIZE		0

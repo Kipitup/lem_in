@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 15:55:56 by fkante            #+#    #+#             */
-/*   Updated: 2020/01/17 16:04:49 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/12 14:41:17 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t		ft_get_high_in_range(int32_t *tab, size_t start, size_t end)
 {
-	int32_t		high;
+	size_t		high;
 
 	high = start;
 	while (start < end)

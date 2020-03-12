@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 11:33:36 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:21:47 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@
 # define ADJ_LIST_MALLOC	"Fail to init the adjacency list"
 # define VECTOR_FAIL		"Vector allocation failed"
 # define EMPTY_FILE			"Empty file"
-# define NO_START_OR_END	"Room start and/or end is missing"
+# define NO_START			"Room start is missing"
+# define NO_END				"Room end is missing"
+# define NO_LINK_TO_START	"Missing a link to the start room"
+# define NO_LINK_TO_END		"Missing a link to the end room"
 # define DASH_IN_ROOM_NAME	"Room name cannot contain '-'"
 
 #endif

@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/11 20:26:44 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/12 13:59:16 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = clang
 AR = ar -rcs
 CFLAGS += -Wall
 CFLAGS += -Wextra
-CFLAGS += -Werror
+#CFLAGS += -Werror
 BUILD_DIR = objs/
 
 INCLUDES = ./includes
@@ -46,18 +46,18 @@ else ifeq ($(debug), 1)
 else ifeq ($(debug), 2)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
-	CFLAGS += -ansi
+	#CFLAGS += -ansi
 	CFLAGS += -pedantic
 else ifeq ($(debug), 3)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
-	CFLAGS += -ansi
+	#CFLAGS += -ansi
 	CFLAGS += -pedantic
 	CFLAGS += -Wpadded
 else ifeq ($(debug), 4)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
-	CFLAGS += -ansi
+	#CFLAGS += -ansi
 	CFLAGS += -pedantic
 	CFLAGS += -Wpadded
 	CFLAGS += -Weverything
@@ -129,7 +129,6 @@ SRCS += ft_swap.c
 SRCS += ft_nb_unitlen.c
 SRCS += ft_absolute.c
 SRCS += ft_fibonacci.c
-SRCS += ft_memjoin_str.c
 SRCS += ft_sqrt.c
 SRCS += ft_pow.c
 SRCS += ft_pow_positive.c

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 11:33:08 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:18:17 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ int8_t 		get_room(t_st_machine *sm, t_vector *line)
 	return (TRUE);
 }
 
+/*
+** The return (TRUE or FALSE) will determine whether or not the parser should
+** read the next line.
+*/
 uint8_t		room(t_st_machine *sm, t_vector *line)
 {
 	uint8_t		ret;

@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:57:07 by fkante            #+#    #+#             */
-/*   Updated: 2019/04/20 15:19:43 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/12 12:21:10 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strcat(char *s1, const char *s2)
 {
-	int i;
-	int y;
+	size_t	i;
+	size_t 	y;
 
 	y = 0;
 	i = ft_strlen(s1);

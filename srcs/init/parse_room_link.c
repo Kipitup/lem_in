@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 17:22:16 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:26:10 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ static void	get_link(t_st_machine *sm, t_vector *line)
 }
 
 /*
- **	The return (TRUE or FALSE) will determine whether or not the parser should
- **	read the next line.
+** The return (TRUE or FALSE) will determine whether or not the parser should
+** read the next line.
  */
 uint8_t		room_link(t_st_machine *sm, t_vector *line)
 {
@@ -98,14 +98,12 @@ uint8_t		room_link(t_st_machine *sm, t_vector *line)
 	{
 		add_line_to_output(sm, line, ROOM_LINK);
 		if (sm->lemin->link == NULL)
-			init_adjacency_list(sm); //replace by hashmap->nb_ol_elem
+			init_adjacency_list(sm);
 		if (sm->state != E_ERROR)
 			get_link(sm, line);
 	}
 	else
 	{
-		vct_print(line);
-		ft_printf("salut\nlen of line is: %zu\nstr: %s\n", line->len, line->str);
 		ft_perror(WRONG_LINK_FORMAT, __FILE__, __LINE__);
 		sm->state = E_ERROR;
 	}

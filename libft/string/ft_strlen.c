@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 16:48:49 by fkante            #+#    #+#             */
-/*   Updated: 2019/10/02 15:02:48 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:37:31 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t		ft_strlen(const char *c)
 {
-	int i;
+	size_t	i;
 
 	i = 0;
 	while (c[i])

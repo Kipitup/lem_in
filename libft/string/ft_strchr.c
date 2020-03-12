@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:23:48 by fkante            #+#    #+#             */
-/*   Updated: 2019/09/13 13:19:42 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:13:52 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+			return ((char *)s + i);
 		i++;
 	}
 	return (NULL);

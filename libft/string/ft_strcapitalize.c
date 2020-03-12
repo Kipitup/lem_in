@@ -6,9 +6,11 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 14:32:58 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/11 14:03:04 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 13:47:43 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strcapitalize(char *str)
 {

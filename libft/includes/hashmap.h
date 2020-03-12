@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 19:27:14 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:46:25 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_hashnode
 	void			*data;
 	ssize_t			index;
 	uint32_t		hash;
+	char			padding[4];
 }				t_hashnode;
 
 /*

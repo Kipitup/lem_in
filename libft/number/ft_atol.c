@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:37:24 by amartino          #+#    #+#             */
-/*   Updated: 2019/11/22 16:37:37 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 13:40:01 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int64_t		ft_atol(const char *str)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		tmp = tmp * 10 + (str[i] - '0');
+		tmp = tmp * 10 + (uint64_t)(str[i] - '0');
 		i++;
 	}
 	return ((int64_t)tmp * neg);

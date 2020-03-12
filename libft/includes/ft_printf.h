@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 14:14:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/28 16:57:25 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:47:28 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ typedef struct	s_state_machine
 	uint64_t			width;
 	uint64_t			precision;
 	uint32_t			option;
-	int8_t				fd;
 	enum e_main_states	state;
+	int8_t				fd;
+	char				padding[7];
 }				t_state_machine;
 
 typedef struct	s_flag
@@ -41,6 +42,7 @@ typedef struct	s_flag
 	uint64_t			width;
 	uint64_t			precision;
 	uint32_t			option;
+	char				padding[4];
 }				t_flag;
 
 typedef int8_t		(*t_statefunc)(t_state_machine *self, char *input,

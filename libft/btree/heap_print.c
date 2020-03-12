@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 11:17:18 by amartino          #+#    #+#             */
-/*   Updated: 2020/01/23 17:33:05 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:22:55 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_heap_tree(t_heap *heap, size_t index, size_t deep)
 	size_t		space;
 
 	space = NB_OF_SPACE * deep;
-	if ((int32_t)index > heap->A[HEAP_SIZE])
+	if ((int32_t)index > heap->array[HEAP_SIZE])
 		return ;
 
 	print_heap_tree(heap, get_right_child(index), deep + 1);
@@ -33,7 +33,7 @@ void	print_heap_tree(t_heap *heap, size_t index, size_t deep)
 	// printf("\n");
     for (size_t i = 0; i < space; i++)
         printf(" ");
-    printf("%d\n", heap->A[index]);
+    printf("%d\n", heap->array[index]);
 
 	print_heap_tree(heap, get_left_child(index), deep + 1);
 }

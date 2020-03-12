@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 10:52:13 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/21 09:06:33 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/12 14:23:14 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	get_right_child(size_t index)
 
 void	clean_heap_tree(t_heap **heap)
 {
-	ft_memdel((void**)&((*heap)->A));
+	ft_memdel((void**)&((*heap)->array));
 	ft_memdel((void**)heap);
 }
 

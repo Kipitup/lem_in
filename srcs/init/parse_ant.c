@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:46:37 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 14:54:26 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/12 11:17:37 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ static size_t	get_nb_of_ants(t_st_machine *sm, t_vector *line)
 	return (size);
 }
 
+/*
+** The return (TRUE or FALSE) will determine whether or not the parser should
+** read the next line.
+*/
 uint8_t			ant(t_st_machine *sm, t_vector *line)
 {
 	uint8_t			ret;

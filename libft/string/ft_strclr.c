@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 10:33:16 by fkante            #+#    #+#             */
-/*   Updated: 2019/04/24 18:12:14 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/12 12:14:42 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_strclr(char *s)
 {
-	int i;
-	int t;
+	size_t	i;
+	size_t	t;
 
 	if (s == NULL)
 		return ;

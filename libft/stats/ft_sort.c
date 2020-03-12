@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 12:38:52 by amartino          #+#    #+#             */
-/*   Updated: 2020/01/20 16:57:45 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:36:28 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int32_t				*ft_sort(int32_t *tab, size_t size)
 		return (ft_perror_null("memory allocation failed", __FILE__, __LINE__));
 	while (i < size)
 	{
-		sorted_array[i] = heap->A[ROOT];
+		sorted_array[i] = heap->array[ROOT];
 		delete_root(heap);
 		i++;
 	}

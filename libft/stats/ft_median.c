@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 12:01:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/01/20 17:54:12 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:35:08 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int8_t		ft_median(int32_t *tab, size_t size, int32_t *median)
 		return (FAILURE);
 	while (over_half < size)
 	{
-		if (tab[over_half] > heap->A[ROOT])
+		if (tab[over_half] > heap->array[ROOT])
 		{
-			heap->A[ROOT] = tab[over_half];
+			heap->array[ROOT] = tab[over_half];
 			heapify(heap, ROOT);
 		}
 		over_half++;
 	}
-	*median = heap->A[ROOT];
+	*median = heap->array[ROOT];
 	clean_heap_tree(&heap);
 	return (SUCCESS);
 } 

@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 13:33:10 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 13:50:08 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 # include "graph.h"
 # include "darray.h"
 
-// #define ft_memalloc(X) ft_malloc_debug(X, __FILE__, __LINE__, __func__)
-
+/*
+** #define ft_memalloc(X) ft_malloc_debug(X, __FILE__, __LINE__, __func__)
+*/
 # define FALSE					0
 # define TRUE					1
 # define FAILURE				-1
@@ -46,9 +47,9 @@
 # include <fcntl.h>
 # include <time.h>
 
-
-// void		*ft_malloc_debug(size_t size, const char *file, int line, const char *function);
-
+/*
+** void		*ft_malloc_debug(size_t size, const char *file, int line, const char *function);
+*/
 /*
 ** ############################################################################
 ** ############################## STRUCTURES ##################################
@@ -90,7 +91,6 @@ void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *buff, int c, size_t len);
-char				*ft_memjoin_str(char const *s_first, char const *s_last);
 
 /*
 ** ############################################################################

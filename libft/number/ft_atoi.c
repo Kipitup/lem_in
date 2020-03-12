@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 17:23:59 by fkante            #+#    #+#             */
-/*   Updated: 2019/11/19 16:46:41 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/12 11:53:30 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_atoi(const char *str)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		tmp = tmp * 10 + (str[i] - '0');
+		tmp = tmp * 10 + (uint64_t)(str[i] - '0');
 		i++;
 	}
 	if (tmp > LONG_MAX)

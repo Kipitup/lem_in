@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 21:08:05 by amartino          #+#    #+#             */
-/*   Updated: 2020/01/23 21:16:25 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:35:41 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ ssize_t		ft_get_n_smallest(int32_t *tab, size_t nth, size_t start,
 	}
 	while (i < (limit + start))
 	{
-		if (tab[i] == heap->A[ROOT])
+		if (tab[i] == heap->array[ROOT])
 			break ;
 		i++;
 	}

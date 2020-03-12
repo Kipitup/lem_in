@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:08:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/11 09:28:54 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/12 14:33:01 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	If the file doesn't end with a '\n', then error
 */
 
-int8_t	parse_line_ps(t_vector *vector, t_vector **line, uint8_t the_end)
+static int8_t	parse_line_ps(t_vector *vector, t_vector **line, uint8_t end)
 {
 	ssize_t	index;
 	int8_t	ret;
@@ -28,13 +28,13 @@ int8_t	parse_line_ps(t_vector *vector, t_vector **line, uint8_t the_end)
 	if (index >= 0)
 	{
 		ret = TRUE;
-		*line = vct_sub(vector, START, index);
+		*line = vct_sub(vector, START, (size_t)index);
 		if (*line == NULL)
 			ret = FAILURE;
-		if (vct_pop_from(vector, (index + 1), START) == FAILURE)
+		if (vct_pop_from(vector, ((size_t)index + 1), START) == FAILURE)
 			ret = FAILURE;
 	}
-	else if (the_end == TRUE)
+	else if (end == TRUE)
 	{
 		ret = TRUE;
 		*line = vct_dup(vector);
@@ -45,23 +45,23 @@ int8_t	parse_line_ps(t_vector *vector, t_vector **line, uint8_t the_end)
 	return (ret);
 }
 
-int8_t	read_file_ps(t_vector *vector, t_vector **line, const int fd)
+static int8_t	read_file_ps(t_vector *vector, t_vector **line, const int fd)
 {
 	ssize_t		ret;
 	char		buff[BUFF_SIZE + 1];
 
 	ret = read(fd, &buff, BUFF_SIZE);
 	buff[ret] = '\0';
-	if (vct_addnstr(vector, buff, ret) == FAILURE)
+	if (vct_addnstr(vector, buff, (size_t)ret) == FAILURE)
 		return (FAILURE);
 	if (vct_chr(vector, '\n') >= 0)
 		return (parse_line_ps(vector, line, FALSE));
 	else if (vector->len > 0)
 		ret = FAILURE;
-	return (ret);
+	return ((int8_t)ret);
 }
 
-int8_t		vct_read_line_for_push_swap(const int fd, t_vector **line)
+int8_t			vct_read_line_for_push_swap(const int fd, t_vector **line)
 {
 	static t_vector	*vector = NULL;
 	ssize_t			ret;

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 10:42:35 by amartino          #+#    #+#             */
-/*   Updated: 2020/01/20 11:43:22 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 13:39:02 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "define_pf.h"
 
-int8_t		round_up(t_vector *vector, uint64_t accuracy)
+static int8_t		round_up(t_vector *vector, uint64_t accuracy)
 {
 	char	c;
 
@@ -34,7 +34,7 @@ int8_t		round_up(t_vector *vector, uint64_t accuracy)
 	return (SUCCESS);
 }
 
-int8_t		check_for_rounding_up(t_vector *vector, double value)
+static int8_t		check_for_rounding_up(t_vector *vector, double value)
 {
 	int64_t		cast;
 	uint64_t	accuracy;
@@ -48,7 +48,7 @@ int8_t		check_for_rounding_up(t_vector *vector, double value)
 	return (vector == NULL ? FAILURE : SUCCESS);
 }
 
-int8_t		nb_to_string(t_vector *vector, double value, uint64_t accuracy)
+static int8_t		nb_to_string(t_vector *vector, double value, uint64_t accuracy)
 {
 	const char	*base_str;
 	uint64_t	i;
@@ -70,7 +70,7 @@ int8_t		nb_to_string(t_vector *vector, double value, uint64_t accuracy)
 	return (vector == NULL ? FAILURE : SUCCESS);
 }
 
-t_vector	*ft_ftoa(double value, uint64_t precision, uint32_t option)
+t_vector			*ft_ftoa(double value, uint64_t precision, uint32_t option)
 {
 	t_vector	*vector;
 	char		*str;

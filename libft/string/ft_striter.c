@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 11:20:34 by fkante            #+#    #+#             */
-/*   Updated: 2019/04/24 18:04:12 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/12 12:27:16 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	int i;
-	int l;
+	size_t	i;
+	size_t	l;
 
 	if (s == NULL || f == NULL)
 		return ;

@@ -6,10 +6,11 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:06:10 by fkante            #+#    #+#             */
-/*   Updated: 2019/09/20 10:44:46 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/12 11:52:12 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "define_pf.h"
 
 static void	itoa_exception(uint64_t value, char *ptr, uint64_t flag)

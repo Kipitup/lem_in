@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 11:03:55 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/21 08:54:02 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/12 14:22:32 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void	swap(t_heap *heap, size_t parent, size_t child)
 {
 	int32_t		tmp;
 
-	tmp = heap->A[parent];
-	heap->A[parent] = heap->A[child];
-	heap->A[child] = tmp;
+	tmp = heap->array[parent];
+	heap->array[parent] = heap->array[child];
+	heap->array[child] = tmp;
 }
 
 void 	is_parent_valid(t_heap *heap, size_t child)
 {
-	size_t		parent;
+	size_t		p;
 
-	parent = get_heap_parent(child);
-	if ((heap->type == MIN_HEAP && heap->A[parent] > heap->A[child]) == TRUE
-	 || (heap->type == MAX_HEAP && heap->A[parent] < heap->A[child]) == TRUE)
+	p = get_heap_parent(child);
+	if ((heap->type == MIN_HEAP && heap->array[p] > heap->array[child]) == TRUE
+	 || (heap->type == MAX_HEAP && heap->array[p] < heap->array[child]) == TRUE)
 	{
-		swap(heap, parent, child);
-		is_parent_valid(heap, parent);
+		swap(heap, p, child);
+		is_parent_valid(heap, p);
 	}
 }
 
@@ -41,18 +41,18 @@ void	heapify(t_heap *heap, size_t parent)
 	size_t		extremum;
 
 	l = get_left_child(parent);
-	l = (int32_t)l > heap->A[HEAP_SIZE] ? parent : l;
+	l = (int32_t)l > heap->array[HEAP_SIZE] ? parent : l;
 	r = get_right_child(parent);
-	r = (int32_t)r > heap->A[HEAP_SIZE] ? parent : r;
+	r = (int32_t)r > heap->array[HEAP_SIZE] ? parent : r;
 	if (heap->type == MIN_HEAP)
 	{
-		extremum = heap->A[parent] > heap->A[l] ? l : parent;
-		extremum = heap->A[extremum] > heap->A[r] ? r : extremum;
+		extremum = heap->array[parent] > heap->array[l] ? l : parent;
+		extremum = heap->array[extremum] > heap->array[r] ? r : extremum;
 	}
 	else
 	{
-		extremum = heap->A[parent] < heap->A[l] ? l : parent;
-		extremum = heap->A[extremum] < heap->A[r] ? r : extremum;
+		extremum = heap->array[parent] < heap->array[l] ? l : parent;
+		extremum = heap->array[extremum] < heap->array[r] ? r : extremum;
 	}
 	if (extremum != parent)
 	{
