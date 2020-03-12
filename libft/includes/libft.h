@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/12 13:50:08 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 16:24:35 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ int					ft_fibonacci(int index);
 double				ft_pow(double x, double exponent);
 unsigned long		ft_pow_positive(unsigned long x, unsigned long exponent);
 uint32_t			ft_log2_n(uint32_t nb);
+int					ft_sqrt(int nb);
 
 /*
 ** ############################################################################

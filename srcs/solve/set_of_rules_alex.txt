@@ -10,19 +10,34 @@ Each link will have a variable 'available'
 The BFS will always go from left to right.
 When going back, if 2 node have the same distance, always take the right one.
 
+Every exploration will be made on a copy of the graph, (dup of the adjacency list).
+
+Every possible BFS solution will be store in a darray. each bucket will contain a
+a linked list with all the paths. Each path will has his own linked list with all
+the room it's going through.
+
+
 BFS exploration phase:
-	- Every exploration will be made on a copy of the graph (== adjacency list)
+	- Every time you visit a room, update the link status.
 	- You can only visit a room if the link to the room is available in your direction.
-	- If a room has been visited do not rexplore or change the distance.
+	- If a room has been visited do not rexplore or change the distance. (This rule
+	is trivial since the BFS does not add to the queue a room already visited)
 	- If you end up in the room start, abandon the path.
+	- The BFS will stop if:
+		- every has been visited
+		- the room end has been reached
+
+BFS go back and find the path:
+	- As said earlier, go from right to left.
+	- Every time you go back to a room, add this room to a linked list.
 
 BFS path found:
 	- Update the links, from which the path is going through.
-	- If a link is equal 3 (BOTH direction are used):
+	- If a (or more) link is equal 3 (BOTH direction are used):
 		- Don't save the current path
 		- Save all the previous paths found. (This will be one possible BFS solution)
 		- Reset the all of the graph (distance, link, previously deleted link).
-		- Delete the used link.  
+		- Delete the used link. (all of them)  
 		- Restart the BFS.
 	- Else:
 		- Restart the BFS.
@@ -35,5 +50,4 @@ After all BFS possibily has been explored:
 
 
 Potential(s) problem(s):
-	- What if there are multiple links equal to 3 (BOTH) ? Should I delete only
-	the first one, or all of them ?
+	-  How a dispatch the ant is wrong => it a flow, so fill every path until they are full

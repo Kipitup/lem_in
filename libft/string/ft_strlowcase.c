@@ -6,9 +6,11 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 14:06:40 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/11 14:07:49 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 16:25:56 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strlowcase(char *str)
 {

@@ -6,30 +6,29 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 10:09:31 by fkante            #+#    #+#             */
-/*   Updated: 2019/04/25 10:19:44 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/12 16:21:25 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** Locate the last occurence of c
+*/
 char	*ft_strrchr(const char *s, int c)
 {
-	int i;
-	int y;
+	ssize_t	i;
 
-	if (c == 0)
+	if (c == '\0')
 		return ((char*)s + ft_strlen(s));
-	y = 0;
-	i = ft_strlen(s);
+	i = (size_t)ft_strlen(s);
 	while (i >= 0)
 	{
 		if (s[i] == (char)c)
 		{
-			y = i;
-			return ((char*)&s[y]);
+			return ((char*)s + i);
 		}
 		i--;
-		y++;
 	}
 	return (NULL);
 }

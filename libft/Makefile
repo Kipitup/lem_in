@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/12 14:48:55 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/12 16:26:29 by amartino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = clang
 AR = ar -rcs
 CFLAGS += -Wall
 CFLAGS += -Wextra
-#CFLAGS += -Werror
+CFLAGS += -Werror
 BUILD_DIR = objs/
 
 INCLUDES = ./includes

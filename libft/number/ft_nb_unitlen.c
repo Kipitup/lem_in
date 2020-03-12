@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 08:57:55 by fkante            #+#    #+#             */
-/*   Updated: 2019/04/26 15:31:43 by fkante           ###   ########.fr       */
+/*   Updated: 2020/03/12 16:25:15 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_nb_unitlen(int nb)
 	length = 0;
 	if (nb <= 0)
 		length++;
-	nb = ft_absolute(nb);
+	nb = (int)ft_absolute(nb);
 	while (nb != 0)
 	{
 		nb = nb / 10;
