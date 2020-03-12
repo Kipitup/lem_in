@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:28:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 16:01:37 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:24:27 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-uint8_t is_it_special_room(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
+uint8_t	is_it_special_room(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 {
 	t_graph		*graph;
 	char		*start;
@@ -70,7 +70,7 @@ void	add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type)
 		sm->state = E_ERROR;
 }
 
-uint8_t		check_for_comment_or_command(t_st_machine *sm, t_vector *line)
+uint8_t	check_for_comment_or_command(t_st_machine *sm, t_vector *line)
 {
 	uint8_t	ret;
 

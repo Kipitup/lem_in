@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 11:26:10 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:25:40 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	get_node_index(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 	is_it_special_room(sm, src, dest);
 	if (src->index == NOT_SET)
 	{
-		while (i < graph->size && graph->array[i].head != NULL) 
+		while (i < graph->size && graph->array[i].head != NULL)
 			i++;
 		src->index = i;
 		if (dest->index == NOT_SET)
@@ -30,7 +30,7 @@ static void	get_node_index(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 	}
 	else if (dest->index == NOT_SET)
 	{
-		while (i < graph->size && graph->array[i].head != NULL) 
+		while (i < graph->size && graph->array[i].head != NULL)
 			i++;
 		dest->index = i;
 	}
@@ -84,9 +84,10 @@ static void	get_link(t_st_machine *sm, t_vector *line)
 }
 
 /*
-** The return (TRUE or FALSE) will determine whether or not the parser should
-** read the next line.
- */
+**	The return (TRUE or FALSE) will determine whether or not the parser should
+**	read the next line.
+*/
+
 uint8_t		room_link(t_st_machine *sm, t_vector *line)
 {
 	uint8_t		ret;

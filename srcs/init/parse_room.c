@@ -6,37 +6,49 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 11:18:17 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:21:51 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		get_second_coord(t_vector *coord, char *second_coord)
-{
-	vct_addchar(coord, ' ');
-	vct_addstr(coord, second_coord);
-}
-
-char		*get_coord(t_st_machine *sm, t_vector *line)
+void		get_second_coord(t_st_machine *sm, t_vector *coord,
+								t_vector *second_coord)
 {
 	char		*str;
 	int64_t		tmp;
 
-	str = NULL;
-	if (is_it_all_digit(line) == TRUE)
+	str = vct_getstr(second_coord);
+	if (is_it_all_digit(second_coord) == TRUE)
 	{
-		str = vct_getstr(line);
+		tmp = ft_atol(str);
+		if (tmp > INT_MAX || tmp < INT_MIN || ft_check_int_len(str) == FAILURE)
+			sm->state = E_ERROR;
+		vct_addchar(coord, ' ');
+		vct_cat(coord, second_coord);
+	}
+	else
+		sm->state = E_ERROR;
+}
+
+t_vector	*get_coord(t_st_machine *sm, t_vector *dup)
+{
+	char		*str;
+	int64_t		tmp;
+
+	str = vct_getstr(dup);
+	if (is_it_all_digit(dup) == TRUE)
+	{
 		tmp = ft_atol(str);
 		if (tmp > INT_MAX || tmp < INT_MIN || ft_check_int_len(str) == FAILURE)
 			sm->state = E_ERROR;
 	}
 	else
 		sm->state = E_ERROR;
-	return (str);
+	return (dup);
 }
 
-t_vector 	*get_room_name(t_st_machine *sm, t_vector *dup)
+t_vector	*get_room_name(t_st_machine *sm, t_vector *dup)
 {
 	t_vector	*room;
 
@@ -51,36 +63,20 @@ t_vector 	*get_room_name(t_st_machine *sm, t_vector *dup)
 	return (room);
 }
 
-//code un peu moche mais temporaire le temps de trouver la façon d'organiser la data
-int8_t 		get_room(t_st_machine *sm, t_vector *line)
+int8_t		get_room(t_st_machine *sm, t_vector *line)
 {
+	t_vector	**tab_vct;
 	t_vector	*key;
-	t_vector	*coord;
-	t_vector	*dup;
-	ssize_t		index;
-	size_t		count;
+	t_vector	*crd;
 
-	count = 2;
-	dup = NULL;
-	while (count > 0)
-	{
-		index = vct_chr(line, ' ');
-		if (dup != NULL)
-			vct_del(&dup);
-		dup = vct_ndup(line, index);
-		if (count == 2)
-			key = get_room_name(sm, dup);
-		else if (count == 1)
-			coord = vct_newstr(get_coord(sm, dup));
-		vct_pop_from(line, ((size_t)index + 1), START);
-		count--;
-	}
-	get_second_coord(coord, get_coord(sm, line));
-	vct_del(&dup);
+	tab_vct = vct_split(line, ' ');
+	key = get_room_name(sm, tab_vct[0]);
+	crd = get_coord(sm, tab_vct[1]);
+	get_second_coord(sm, crd, tab_vct[2]);
 	if (sm->state != E_ERROR)
-		hashmap_set(sm->lemin->room, ft_strdup(key->str), ft_strdup(coord->str));
+		hashmap_set(sm->lemin->room, ft_strdup(key->str), ft_strdup(crd->str));
 	vct_del(&key);
-	vct_del(&coord);
+	vct_del_tab(&tab_vct);
 	return (TRUE);
 }
 
@@ -98,7 +94,7 @@ uint8_t		room(t_st_machine *sm, t_vector *line)
 	else if (vct_chr_count(line, ' ') == 2)
 	{
 		add_line_to_output(sm, line, ROOM);
-		ret = get_room(sm, line);	
+		ret = get_room(sm, line);
 		if (ret == FALSE)
 			sm->state = E_ERROR;
 	}

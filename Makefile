@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/03/09 17:34:44 by fkante           ###   ########.fr        #
+#    Updated: 2020/03/12 14:44:45 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -40,18 +40,15 @@ else ifeq ($(debug), 1)
 else ifeq ($(debug), 2)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
-	CFLAGS += -ansi
 	CFLAGS += -pedantic
 else ifeq ($(debug), 3)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
-	CFLAGS += -ansi
 	CFLAGS += -pedantic
 	CFLAGS += -Wpadded
 else ifeq ($(debug), 4)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
-	CFLAGS += -ansi
 	CFLAGS += -pedantic
 	CFLAGS += -Wpadded
 	CFLAGS += -Weverything

@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/03/12 13:59:16 by amartino         ###   ########.fr        #
+#    Updated: 2020/03/12 14:48:55 by fkante           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -210,7 +210,7 @@ SRCS += vct_strequ.c
 SRCS += vct_strnequ.c
 SRCS += vct_sub.c
 SRCS += vct_split.c
-SRCS += vct_clean_tab.c
+SRCS += vct_del_tab.c
 SRCS += vct_print_tab.c
 
 #----------------------------------- BTREE ------------------------------------#

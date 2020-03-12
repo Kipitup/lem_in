@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 11:32:14 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:17:35 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void				init_adjacency_list(t_st_machine *sm)
 {
-	size_t 		size;
+	size_t	size;
 
 	size = sm->lemin->room->nb_of_elem;
 	sm->lemin->link = init_graph(size);

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 19:30:59 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:39:15 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_st_machine
 {
 	t_lemin			*lemin;
 	enum e_states	state;
+	char			padding[4];			
 }				t_st_machine;
 
 typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);
@@ -69,8 +70,9 @@ uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
 ** ################################# TOOL #####################################
 ** ############################################################################
 */
-void			get_second_coord(t_vector *coord, char *second_coord);
-char			*get_coord(t_st_machine *sm, t_vector *line);
+void			get_second_coord(t_st_machine *sm, t_vector *coord,
+								t_vector *second_coord);
+t_vector		*get_coord(t_st_machine *sm, t_vector *line);
 t_vector	 	*get_room_name(t_st_machine *sm, t_vector *dup);
 
 /*

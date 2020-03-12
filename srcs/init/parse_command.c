@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 11:18:00 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:19:38 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,17 @@
 
 static t_vector		*get_name_and_coord(t_st_machine *sm, t_vector *line)
 {
+	t_vector	**tab_vct;
 	t_vector	*key;
-	t_vector	*coord;
-	t_vector	*dup;
-	ssize_t		index;
-	size_t		count;
+	t_vector	*crd;
 
-	count = 2;
-	dup = NULL;
-	while (count > 0)
-	{
-		index = vct_chr(line, ' ');
-		if (dup != NULL)
-			vct_del(&dup);
-		dup = vct_ndup(line, index);
-		if (count == 2)
-			key = get_room_name(sm, dup);
-		else if (count == 1)
-			coord = vct_newstr(get_coord(sm, dup));
-		vct_pop_from(line, ((size_t)index + 1), START);
-		count--;
-	}
-	get_second_coord(coord, get_coord(sm, line));
-	vct_del(&dup);
+	tab_vct = vct_split(line, ' ');
+	key = get_room_name(sm, tab_vct[0]);
+	crd = get_coord(sm, tab_vct[1]);
+	get_second_coord(sm, crd, tab_vct[2]);
 	if (sm->state != E_ERROR)
-		hashmap_set(sm->lemin->room, ft_strdup(key->str), ft_strdup(coord->str));
-	vct_del(&coord);
+		hashmap_set(sm->lemin->room, ft_strdup(key->str), ft_strdup(crd->str));
+	vct_del_tab(&tab_vct);
 	return (key);
 }
 
