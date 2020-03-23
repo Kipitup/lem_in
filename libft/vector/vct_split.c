@@ -12,6 +12,16 @@
 
 #include "vector.h"
 
+/*
+** 	Splits the input vector into multiple vectors separated by one or more
+**	of the characters.
+**	Pointers to the vectors are stored in successive elements in the array
+**	pointed to by vct_tab.
+**
+**	One would of course keep track of the table created. The content and 
+**	the table should be deleted, when its use is done.
+*/
+
 static size_t	word_count(t_vector *vct_input, char c)
 {
 	char	*str;

@@ -12,6 +12,10 @@
 
 #include "vector.h"
 
+/*
+**	Free the table of vectors and set it to NULL
+*/
+
 void			vct_del_tab_content(t_vector **vct_tab)
 {
 	size_t	i;

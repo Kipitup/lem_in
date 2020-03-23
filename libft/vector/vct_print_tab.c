@@ -12,6 +12,10 @@
 
 #include "vector.h"
 
+/*
+**	Print the table of vectors with there respective index and a new line.
+*/
+
 void	vct_print_tab(t_vector **tab)
 {
 	size_t	i;
