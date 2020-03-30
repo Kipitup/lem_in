@@ -37,8 +37,7 @@ BFS go back and find the path:
 	- Every time you go back to a room, add this room to a linked list.
 
 BFS path found:
-	- Update the links, from which the path is going through.
-	- If a (or more) link is equal 3 (BOTH direction are used):
+	- If a link (or more) is equal 3 (BOTH direction are used):
 		- Don't save the current path
 		- Save all the previous paths found. (This will be one possible BFS solution)
 		- Reset the all of the graph (distance, link, previously deleted link).
@@ -47,12 +46,13 @@ BFS path found:
 	- Else:
 		- Restart the BFS.
 
-After all BFS possibilies have been explored:
+After all BFS possibily has been explored:
 	- Do some simulation on every possible BFS you found. Something like:
-		- portion = nb_of_ant / nb_of_path; (need to check if nb_of_ant % nb_of_path == 0)
-		- total = path_1->distance * portion + .. + path_n * distance;
+		- portion = nb_of_ant / nb_path; (need to check if nb_ant % nb_path == 0)
+		- total = path_1->distance * portion + .. + path_n->distance  * portion;
 	- Take the fatest.
 
 
 Potential(s) problem(s):
-	-  How a dispatch the ant is wrong => it a flow, so fill every path until they are full
+	-  How to dispatch the ant is wrong => it a flow, so fill every path until they
+	are full
