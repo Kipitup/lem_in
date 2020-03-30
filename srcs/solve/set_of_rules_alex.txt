@@ -1,31 +1,36 @@
 Each room will have a variable 'distance'
-	distance = how far is the room from start
+	distance = how many steps are between start and the room
 
 Each link will have a variable 'available'
-	available = 0 (YES)
-				1 (FRONT is used)
-				2 (BACK is used)
-				3 (BOTH are used)
+	available = TRUE 
+				FALSE
 
 The BFS will always go from left to right.
-When going back, if 2 node have the same distance, always take the right one.
+
+When going back, if two paths have the same distance, we take the first one from right
+to left.
+
+Moreover, when bfs finish on END:
+	if many paths have the same distance, from right to left, we add one by one valid
+	(only unused nodes and no double crossing links) paths to our solution.
 
 Every exploration will be made on a copy of the graph, (dup of the adjacency list).
 
-Every possible BFS solution will be store in a darray. each bucket will contain a
+Every possible BFS solution will be store in a darray. Each bucket will contain a
 a linked list with all the paths. Each path will has his own linked list with all
 the room it's going through.
 
-
 BFS exploration phase:
-	- Every time you visit a room, update the link status.
+	- Every time you visit a room:
+		- update the link status.
+		- update available status.
+	- A room is considered VISITED only when all its links have be checked.
 	- You can only visit a room if the link to the room is available in your direction.
-	- If a room has been visited do not rexplore or change the distance. (This rule
-	is trivial since the BFS does not add to the queue a room already visited)
+	- If a room's distance has been set, do not change the distance.
 	- If you end up in the room start, abandon the path.
 	- The BFS will stop if:
-		- every has been visited
-		- the room end has been reached
+		- every room has been visited
+		- the room END has been reached
 
 BFS go back and find the path:
 	- As said earlier, go from right to left.
@@ -37,13 +42,13 @@ BFS path found:
 		- Don't save the current path
 		- Save all the previous paths found. (This will be one possible BFS solution)
 		- Reset the all of the graph (distance, link, previously deleted link).
-		- Delete the used link. (all of them)  
+		- Delete the used link. (all of them) 
 		- Restart the BFS.
 	- Else:
 		- Restart the BFS.
 
-After all BFS possibily has been explored:
-	- Do some simulatino on every possible BFS you found. Something like:
+After all BFS possibilies have been explored:
+	- Do some simulation on every possible BFS you found. Something like:
 		- portion = nb_of_ant / nb_of_path; (need to check if nb_of_ant % nb_of_path == 0)
 		- total = path_1->distance * portion + .. + path_n * distance;
 	- Take the fatest.
