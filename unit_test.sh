@@ -118,8 +118,7 @@ check_leak () # $1 is the test file
 
 check_output_incorrect_map () # $1 is the test file
 {
-	OUTPUT="$(printf $1 | cut -d '/' -f 4)"
-	OUTPUT+=":"
+	OUTPUT="$(printf $1 | cut -d '/' -f 4):"
 	printf "      ${WHITE}%-35s ${END_C}" $OUTPUT
 	if grep -q "error" "$LOG_EXEC"
 	then
@@ -139,8 +138,7 @@ check_output_incorrect_map () # $1 is the test file
 
 check_output_correct_map () # $1 is the test file
 {
-	OUTPUT="$(printf $1 | cut -d '/' -f 4)"
-	OUTPUT+=":"
+	OUTPUT="$(printf $1 | cut -d '/' -f 4):"
 	printf "      ${WHITE}%-35s ${END_C}" $OUTPUT
 	if grep -q "error" "$LOG_EXEC"
 	then

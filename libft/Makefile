@@ -15,7 +15,7 @@ CC = clang
 AR = ar -rcs
 CFLAGS += -Wall
 CFLAGS += -Wextra
-CFLAGS += -Werror
+CFLAGS += -Werror -fPIC
 BUILD_DIR = objs/
 
 INCLUDES = ./includes
@@ -39,25 +39,22 @@ vpath %.h $(INCLUDES)
 
 # FLAGS
 ifeq ($(debug), 0)
-	CFLAGS += -g3
+	CFLAGS = -g3
 else ifeq ($(debug), 1)
-	CFLAGS += -g3
+	CFLAGS = -g3
 	CFLAGS += -fsanitize=address,undefined
 else ifeq ($(debug), 2)
-	CFLAGS += -g3
+	CFLAGS = -g3
 	CFLAGS += -fsanitize=address,undefined
-	#CFLAGS += -ansi
 	CFLAGS += -pedantic
 else ifeq ($(debug), 3)
-	CFLAGS += -g3
+	CFLAGS = -g3
 	CFLAGS += -fsanitize=address,undefined
-	#CFLAGS += -ansi
 	CFLAGS += -pedantic
 	CFLAGS += -Wpadded
 else ifeq ($(debug), 4)
-	CFLAGS += -g3
+	CFLAGS = -g3
 	CFLAGS += -fsanitize=address,undefined
-	#CFLAGS += -ansi
 	CFLAGS += -pedantic
 	CFLAGS += -Wpadded
 	CFLAGS += -Weverything

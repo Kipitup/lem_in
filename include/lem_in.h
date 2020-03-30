@@ -26,22 +26,29 @@ enum	e_states
 	E_END = 4
 };
 
+typedef struct	s_solution
+{
+	t_darray			*path;
+	t_graph				*graph;
+	struct s_solution	*next;
+}				t_solution;
+
 typedef struct	s_lemin
 {
-	t_vector		*output;
-	t_hashmap		*room;
-	t_graph			*link;
-	t_vector		*start;
-	t_vector		*end;
-	size_t			nb_ants;
-
+	t_vector			*output;
+	t_hashmap			*room;
+	t_graph				*link;
+	t_solution			*result;
+	t_vector			*start;
+	t_vector			*end;
+	size_t				nb_ants;
 }				t_lemin;
 
 typedef struct	s_st_machine
 {
-	t_lemin			*lemin;
-	enum e_states	state;
-	char			padding[4];			
+	t_lemin				*lemin;
+	enum e_states		state;
+	char				padding[4];			
 }				t_st_machine;
 
 typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);

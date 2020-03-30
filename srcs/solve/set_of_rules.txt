@@ -5,10 +5,7 @@ Each link will have a variable 'available'
 	available = TRUE 
 				FALSE
 
-The BFS will always go from left to right.
-
-When going back, if two paths have the same distance, we take the first one from right
-to left.
+We cycle through the list the natural way, first in first out.
 
 Moreover, when bfs finish on END:
 	if many paths have the same distance, from right to left, we add one by one valid
@@ -23,23 +20,21 @@ the room it's going through.
 BFS exploration phase:
 	- Every time you visit a room:
 		- update the link status.
-		- update available status.
+		- update distance.
 	- A room is considered VISITED only when all its links have be checked.
 	- You can only visit a room if the link to the room is available in your direction.
 	- If a room's distance has been set, do not change the distance.
-	- If you end up in the room start, abandon the path.
 	- The BFS will stop if:
 		- every room has been visited
 		- the room END has been reached
 
 BFS go back and find the path:
-	- As said earlier, go from right to left.
-	- Every time you go back to a room, add this room to a linked list.
+	- As said earlier, first in first out.
+	- Every time you go back to a room, add this room to the linked list.
 
 BFS path found:
 	- If a link (or more) is equal 3 (BOTH direction are used):
-		- Don't save the current path
-		- Save all the previous paths found. (This will be one possible BFS solution)
+		- Save and add only valid paths to the struct.
 		- Reset the all of the graph (distance, link, previously deleted link).
 		- Delete the used link. (all of them) 
 		- Restart the BFS.
