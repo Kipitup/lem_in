@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:54:26 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 14:54:05 by amartino         ###   ########.fr       */
+/*   Updated: 2020/04/01 12:06:05 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,7 @@ static t_adj_node	*new_adj_list_node(size_t dest)
 	return (new_node);
 }
 
-uint8_t				does_link_exist(t_graph *graph, size_t src, size_t dest)
-{
-	t_adj_node	*node_src;
-	uint8_t		ret;
-
-	ret = FALSE;
-	if (graph != NULL)
-	{
-		node_src = graph->array[src].head;
-		while (node_src != NULL)
-		{
-			if (node_src->dest == dest)
-			{
-				ret = TRUE;
-				break;
-			}
-			node_src = node_src->next;
-		}
-	}
-	return (ret);
-}
-
-int8_t				add_edge(t_graph *graph, size_t src, size_t dest)
+int8_t				add_one_sided_edge(t_graph *graph, size_t src, size_t dest)
 {
 	t_adj_node		*new_node;
 
@@ -56,13 +34,17 @@ int8_t				add_edge(t_graph *graph, size_t src, size_t dest)
 		return (FAILURE);
 	new_node->next = graph->array[src].head;
 	graph->array[src].head = new_node;
-
-	new_node = new_adj_list_node(src);
-	if (new_node == NULL)
-		return (FAILURE);
-	new_node->next = graph->array[dest].head;
-	graph->array[dest].head = new_node;
 	return (SUCCESS);
+}
+
+int8_t				add_edge(t_graph *graph, size_t src, size_t dest)
+{
+	int8_t	ret;
+
+	ret = add_one_sided_edge(graph, src, dest);
+	if (ret == SUCCESS)
+		ret = add_one_sided_edge(graph, dest, src);
+	return (ret);
 }
 
 t_graph				*init_graph(size_t size)

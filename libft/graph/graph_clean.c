@@ -6,14 +6,14 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:05:43 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 19:14:41 by amartino         ###   ########.fr       */
+/*   Updated: 2020/03/31 12:02:17 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graph.h"
 #include "libft.h"
 
-void	clean_recurse(t_adj_node **node)
+static void	clean_recurse(t_adj_node **node)
 {
 	if (node != NULL && *node != NULL)
 	{
@@ -23,7 +23,7 @@ void	clean_recurse(t_adj_node **node)
 	}
 }
 
-void	clean_graph(t_graph **graph)
+void		clean_graph(t_graph **graph)
 {
 	size_t		i;
 
