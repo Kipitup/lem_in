@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/01 12:03:30 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/02 12:26:19 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ static int8_t	dup_edge_recurse(t_adj_node	*node, t_graph *duplicate,
 	{
 		ret = dup_edge_recurse(node->next, duplicate, src);	
 		if (ret == SUCCESS)
-			ret = add_one_sided_edge(duplicate, src, node->dest);
+			ret = add_edge_one_way(duplicate, src, node->dest);
 	}
 	return (ret);
 }
 
+/*
+**	Create a duplicate of a given graph, with all his vertices and edges in the
+**	exact order.
+*/
 t_graph			*dup_adj_list(t_graph *graph)
 {
 	t_graph		*duplicate;
@@ -43,7 +47,7 @@ t_graph			*dup_adj_list(t_graph *graph)
 			ret = dup_edge_recurse(graph->array[i].head, duplicate, i);
 			if (ret == FAILURE)
 			{
-				clean_graph(&duplicate);
+				clean_adj_graph(&duplicate);
 				break ;
 			}
 			i++;
@@ -52,24 +56,24 @@ t_graph			*dup_adj_list(t_graph *graph)
 	return (duplicate);
 }
 
-uint8_t				does_link_exist(t_graph *graph, size_t index, size_t dest)
+/*
+**	Get the link (edge) between vertices src and dest. If the link does not
+**	exist, NULL is return.
+*/
+t_adj_node		*get_link(t_graph *graph, size_t src, size_t dest)
 {
-	t_adj_node	*node_src;
-	uint8_t		ret;
+	t_adj_node	*node;
 
-	ret = FALSE;
+	node = NULL;
 	if (graph != NULL)
 	{
-		node_src = graph->array[index].head;
-		while (node_src != NULL)
+		node = graph->array[src].head;
+		while (node != NULL)
 		{
-			if (node_src->dest == dest)
-			{
-				ret = TRUE;
+			if (node->dest == dest)
 				break;
-			}
-			node_src = node_src->next;
+			node = node->next;
 		}
 	}
-	return (ret);
+	return (node);
 }

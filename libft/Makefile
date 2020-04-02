@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/04/01 11:25:59 by amartinod        ###   ########.fr        #
+#    Updated: 2020/04/02 12:29:52 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -282,7 +282,9 @@ SRCS += width_and_precision.c
 SRCS += adjacency_list.c
 SRCS += graph_clean.c
 SRCS += graph_print.c
+SRCS += adj_remove_edge.c
 SRCS += adj_tools.c
+SRCS += adj_check.c
 
 PATH_SRCS += ./vector
 PATH_SRCS += ./darray

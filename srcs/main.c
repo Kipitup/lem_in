@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/01 12:12:07 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/02 15:12:50 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		main(void)
 	{
 		print_hashmap(lemin->room);
 		print_adj_list(lemin->link);
-		ft_printf("\n\n");
 		vct_print(lemin->output);
 		ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
 	}

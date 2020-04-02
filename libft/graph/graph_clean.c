@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:05:43 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/31 12:02:17 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/02 12:21:48 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	clean_recurse(t_adj_node **node)
 	}
 }
 
-void		clean_graph(t_graph **graph)
+void		clean_adj_graph(t_graph **graph)
 {
 	size_t		i;
 

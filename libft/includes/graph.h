@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/01 12:01:42 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/02 12:31:49 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,15 @@ typedef struct	s_graph
 ** ############################################################################
 */
 t_graph			*init_graph(size_t size);
-uint8_t			does_link_exist(t_graph *graph, size_t index, size_t dest);
 int8_t			add_edge(t_graph *graph, size_t src, size_t dest);
-int8_t			add_one_sided_edge(t_graph *graph, size_t src, size_t dest);
+int8_t			add_edge_one_way(t_graph *graph, size_t src, size_t dest);
+void			remove_edge(t_graph *graph, size_t src, size_t dest);
+void			remove_edge_one_way(t_graph *graph, size_t src, size_t dest);
+t_adj_node		*get_link(t_graph *graph, size_t src, size_t dest);
 void			print_adj_list(t_graph *graph);
-void			clean_graph(t_graph **graph);
+void			clean_adj_graph(t_graph **graph);
 t_graph			*dup_adj_list(t_graph *graph);
+int8_t			is_link_available(t_graph *graph, size_t src, size_t dest);
+uint8_t			is_link_used_both_way(t_graph *graph, size_t src, size_t dest);
 
 #endif

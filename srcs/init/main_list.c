@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:14:06 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/09 14:14:18 by fkante           ###   ########.fr       */
+/*   Updated: 2020/04/02 12:23:37 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int				main(void)
 			ret = add_edge(graph, 3, 4);
 		print_link(graph);
 	}
-	clean_graph(&graph);
+	clean_adj_graph(&graph);
 	return (0);
 }

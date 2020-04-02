@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:54:26 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/01 12:06:05 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/02 12:17:26 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_adj_node	*new_adj_list_node(size_t dest)
 	return (new_node);
 }
 
-int8_t				add_one_sided_edge(t_graph *graph, size_t src, size_t dest)
+int8_t				add_edge_one_way(t_graph *graph, size_t src, size_t dest)
 {
 	t_adj_node		*new_node;
 
@@ -41,9 +41,9 @@ int8_t				add_edge(t_graph *graph, size_t src, size_t dest)
 {
 	int8_t	ret;
 
-	ret = add_one_sided_edge(graph, src, dest);
+	ret = add_edge_one_way(graph, src, dest);
 	if (ret == SUCCESS)
-		ret = add_one_sided_edge(graph, dest, src);
+		ret = add_edge_one_way(graph, dest, src);
 	return (ret);
 }
 
