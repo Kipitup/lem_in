@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/02 16:30:55 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/03 09:57:28 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		handle_link_used_both_way(t_lemin *lemin)
 
 	//save all valid paths
 
-//	lemin->result->next = init_new_solution();
+//	lemin->result->next = init_new_solution(lemin->result);
 	prev = lemin->result;
 	lemin->result = lemin->result->next;
 	//need to had a pointer *prev in the t_solution so we can navigate easily
