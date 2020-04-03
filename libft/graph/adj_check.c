@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 10:11:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/02 10:12:40 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/03 14:37:58 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ int8_t			is_link_available(t_graph *graph, size_t src, size_t dest)
 /*
 **	Check if the edge between vertices src and dest is used in both direction.
 */
-uint8_t			is_link_used_both_way(t_graph *graph, size_t src, size_t dest)
+int8_t			is_link_used_both_way(t_graph *graph, size_t src, size_t dest)
 {
-	if ((is_link_available(graph, src, dest) == FALSE)
-			&& (is_link_available(graph, dest, src) == FALSE))
-	{
+	int8_t		ret1;
+	int8_t		ret2;
+	
+	ret1 = is_link_available(graph, src, dest);
+	ret2 = is_link_available(graph, dest, src);
+	if (ret1 == FALSE && ret2 == FALSE)
 		return (TRUE);
-	}
-	return (FALSE);
+	else if (ret1 == FAILURE || ret2 == FAILURE)
+		return (FAILURE);
+	else
+		return (FALSE);
 }
 
 

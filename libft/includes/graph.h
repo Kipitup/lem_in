@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/02 12:31:49 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/03 14:34:02 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int8_t			add_edge(t_graph *graph, size_t src, size_t dest);
 int8_t			add_edge_one_way(t_graph *graph, size_t src, size_t dest);
 void			remove_edge(t_graph *graph, size_t src, size_t dest);
 void			remove_edge_one_way(t_graph *graph, size_t src, size_t dest);
+t_adj_list		*get_vertex(t_graph *graph, size_t src);
 t_adj_node		*get_link(t_graph *graph, size_t src, size_t dest);
 void			print_adj_list(t_graph *graph);
 void			clean_adj_graph(t_graph **graph);

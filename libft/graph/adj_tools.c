@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/02 12:26:19 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/03 14:33:51 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,19 @@ t_graph			*dup_adj_list(t_graph *graph)
 		}
 	}
 	return (duplicate);
+}
+
+/*
+**	Get vertex 
+*/
+t_adj_list		*get_vertex(t_graph *graph, size_t src)
+{
+	t_adj_list	*vertex;
+
+	vertex = NULL;
+	if (graph != NULL)
+		vertex = graph->array[src];
+	return (vertex);
 }
 
 /*
