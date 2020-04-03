@@ -41,6 +41,7 @@
 # define INTMIN_LEN				11
 # define INTMAX_LEN				10
 # define DEBUG					OFF
+# define OPEN					0
 
 # include <sys/types.h>
 # include <sys/stat.h>

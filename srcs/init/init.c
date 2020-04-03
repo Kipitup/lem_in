@@ -18,7 +18,7 @@ void				init_adjacency_list(t_st_machine *sm)
 
 	size = sm->lemin->room->nb_of_elem;
 	sm->lemin->link = init_graph(size);
-	if (sm->lemin->link == NULL)
+	if (sm->lemin->link == NULL && sm->lemin->result->graph)
 	{
 		ft_perror(ADJ_LIST_MALLOC, __FILE__, __LINE__);
 		sm->state = E_ERROR;
@@ -74,7 +74,7 @@ static t_st_machine	*init_struct(void)
 
 t_lemin				*init(void)
 {
-	t_lemin			*lemin;
+	t_lemin		*lemin;
 	t_st_machine	*sm;
 
 	lemin = NULL;

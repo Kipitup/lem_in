@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/03 14:34:02 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/12 11:46:06 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GRAPH_H
 
 # include <stdlib.h>
+# include <inttypes.h>
 
 /*
 **								ADJACENCY LIST
@@ -57,6 +58,7 @@ typedef struct	s_graph
 ** ############################################################################
 */
 t_graph			*init_graph(size_t size);
+uint8_t			does_link_exist(t_graph *graph, size_t src, size_t dest);
 int8_t			add_edge(t_graph *graph, size_t src, size_t dest);
 int8_t			add_edge_one_way(t_graph *graph, size_t src, size_t dest);
 void			remove_edge(t_graph *graph, size_t src, size_t dest);

@@ -14,20 +14,23 @@
 
 int		main(void)
 {
-	t_lemin		*lemin;
+    t_lemin	*lemin;
 
-	lemin = init();
-	if (lemin != NULL)
-	{
-		print_hashmap(lemin->room);
-		print_adj_list(lemin->link);
-		vct_print(lemin->output);
-		ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
-	}
-	else
-		ft_dprintf(STD_ERR, "error\n");
-	clean_lemin(&lemin);
-	return (SUCCESS);
+    lemin = init();
+    if (lemin != NULL)
+    {
+        //print_hashmap(lemin->room);
+        print_adj_list(lemin->link);
+        //vct_print(lemin->output);
+        if (lemin->link != NULL)
+            bfs(lemin->link, lemin->result);
+        ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
+    }
+    else
+        ft_dprintf(STD_ERR, "error\n");
+    clean_lemin(&lemin);
+    // need to free sol when its over
+    return (SUCCESS);
 }
 
 // __attribute__((destructor))void	dest_end()

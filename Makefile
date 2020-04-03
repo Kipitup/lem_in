@@ -66,6 +66,7 @@ LIB_PATH = $(LIB_DIR)/$(LIB)
 PATH_SRC += srcs
 PATH_SRC += srcs/init
 PATH_SRC += srcs/solve
+PATH_SRC += srcs/print
 PATH_SRC += srcs/clean
 
 vpath %.c $(PATH_SRC)
@@ -80,6 +81,7 @@ SRCS += main
 
 # init
 SRCS += init
+SRCS += init_sol
 SRCS += parse
 SRCS += parse_ant
 SRCS += parse_room
@@ -89,6 +91,10 @@ SRCS += parse_tools
 
 # solve
 SRCS += lem_in
+SRCS += bfs 
+
+# print
+SRCS += print_queue 
 
 # clean
 SRCS += clean

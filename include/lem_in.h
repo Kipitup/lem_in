@@ -26,6 +26,14 @@ enum	e_states
 	E_END = 4
 };
 
+typedef struct	s_queue
+{
+       t_adj_list       **element;
+       size_t           front;
+       size_t           size;
+       size_t           limit;
+}               t_queue;
+
 typedef struct	s_solution
 {
 	t_darray			*path;
@@ -59,6 +67,7 @@ typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);
 ** ############################################################################
 */
 t_lemin			*init(void);
+t_solution		*init_sol(t_graph *graph);
 void			init_adjacency_list(t_st_machine *sm);
 void			parse(t_st_machine *sm);
 uint8_t			ant(t_st_machine *sm, t_vector *line);
@@ -92,7 +101,13 @@ t_graph			*init_graph(size_t size);
 int8_t			add_edge(t_graph *graph, size_t src, size_t dest);
 void			print_link(t_graph *graph);
 void			clean_recurse(t_adj_node **node);
-void			clean_graph(t_graph **graph);
+
+/*
+** ############################################################################
+** ################################## BFS #####################################
+** ############################################################################
+*/
+int8_t                  bfs(t_graph *graph, t_solution *sol);
 
 /*
 ** ############################################################################
@@ -101,5 +116,12 @@ void			clean_graph(t_graph **graph);
 */
 void			clean_lemin(t_lemin **lemin);
 void			clean_state_machine(t_st_machine **sm);
+
+/*
+** ############################################################################
+** ################################# PRINT ####################################
+** ############################################################################
+*/
+void                    print_queue(t_queue *queue);
 
 #endif

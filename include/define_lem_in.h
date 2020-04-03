@@ -19,6 +19,8 @@
 # define FAILURE			-1
 # define START				0
 # define END				1
+# define VISITED			1
+# define OPEN                           0
 
 # define COMMENT			0
 # define COMMAND			1
@@ -39,5 +41,7 @@
 # define NO_LINK_TO_START	"Missing a link to the start room"
 # define NO_LINK_TO_END		"Missing a link to the end room"
 # define DASH_IN_ROOM_NAME	"Room name cannot contain '-'"
+# define QUEUE_FULL	        "Queue Overflow, too many elements"
+# define QUEUE_EMPTY	        "Queue is empty"
 
 #endif

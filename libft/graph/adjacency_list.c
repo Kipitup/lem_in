@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:54:26 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/02 12:17:26 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/03/11 14:54:05 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int8_t				add_edge_one_way(t_graph *graph, size_t src, size_t dest)
 	new_node = new_adj_list_node(dest);
 	if (new_node == NULL)
 		return (FAILURE);
+        graph->array[src].usable = OPEN;
+        graph->array[src].distance = 0;
 	new_node->next = graph->array[src].head;
 	graph->array[src].head = new_node;
 	return (SUCCESS);
