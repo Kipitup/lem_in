@@ -14,13 +14,13 @@ void    print_queue(t_queue *queue)
         for(i = queue->front; i < queue->size; i++)
         {
             ft_printf("links");
-            tmp = queue->element[i]->head;
-            while (queue->element[i]->head != NULL)
+            tmp = queue->element[i].head;
+            while (queue->element[i].head != NULL)
             {
-                ft_printf(" -> %d", queue->element[i]->head->dest);
-                queue->element[i]->head = queue->element[i]->head->next;
+                ft_printf(" -> %d", queue->element[i].head->dest);
+                queue->element[i].head = queue->element[i].head->next;
             }
-            queue->element[i]->head = tmp;
+            queue->element[i].head = tmp;
             ft_printf("\n");
         }
     }    

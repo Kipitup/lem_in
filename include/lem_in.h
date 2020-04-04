@@ -28,12 +28,20 @@ enum	e_states
 
 typedef struct	s_queue
 {
-       t_adj_list       **element;
+       t_adj_list       *element;
+       size_t           size;
+       struct s_queue   *next;
+}               t_queue;
+
+/*
+typedef struct	s_queue
+{
+       t_adj_list       *element;
        size_t           front;
        size_t           size;
        size_t           limit;
 }               t_queue;
-
+*/
 typedef struct	s_solution
 {
 	t_darray			*path;
@@ -67,7 +75,7 @@ typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);
 ** ############################################################################
 */
 t_lemin			*init(void);
-t_solution		*init_sol(t_graph *graph);
+void		        init_sol(t_lemin *lemin);
 void			init_adjacency_list(t_st_machine *sm);
 void			parse(t_st_machine *sm);
 uint8_t			ant(t_st_machine *sm, t_vector *line);
@@ -108,6 +116,7 @@ void			clean_recurse(t_adj_node **node);
 ** ############################################################################
 */
 int8_t                  bfs(t_graph *graph, t_solution *sol);
+int8_t                  bfs_list(t_solution *sol);
 
 /*
 ** ############################################################################
@@ -123,5 +132,6 @@ void			clean_state_machine(t_st_machine **sm);
 ** ############################################################################
 */
 void                    print_queue(t_queue *queue);
+int8_t                  queue_empty(t_queue *queue); // needs to be removed for adj_list
 
 #endif

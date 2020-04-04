@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/02 15:12:50 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/04 15:12:29 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ int		main(void)
     if (lemin != NULL)
     {
         //print_hashmap(lemin->room);
-        print_adj_list(lemin->link);
+        //print_adj_list(lemin->link);
         //vct_print(lemin->output);
         if (lemin->link != NULL)
-            bfs(lemin->link, lemin->result);
+           init_sol(lemin);
+        if (lemin->result->graph != NULL)
+            print_adj_list(lemin->result->graph);
+        ft_printf("--------------------------------------\n");
+        bfs_list(lemin->result);
         ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
     }
     else

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:54:26 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 14:54:05 by amartino         ###   ########.fr       */
+/*   Updated: 2020/04/04 23:18:48 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,24 @@ static t_adj_node	*new_adj_list_node(size_t dest)
 	return (new_node);
 }
 
+int8_t				add_edge_rear(t_graph *graph, size_t src, size_t dest)
+{
+	t_adj_node		*new_node;
+	t_adj_node		*tmp;
+
+	if (graph == NULL)
+		return (FAILURE);
+	new_node = new_adj_list_node(dest);
+	if (new_node == NULL)
+		return (FAILURE);
+	tmp = graph->array[src].head;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	new_node->next = NULL;
+	tmp->next = new_node;
+	return (SUCCESS);
+}
+
 int8_t				add_edge_one_way(t_graph *graph, size_t src, size_t dest)
 {
 	t_adj_node		*new_node;
@@ -32,8 +50,8 @@ int8_t				add_edge_one_way(t_graph *graph, size_t src, size_t dest)
 	new_node = new_adj_list_node(dest);
 	if (new_node == NULL)
 		return (FAILURE);
-        graph->array[src].usable = OPEN;
-        graph->array[src].distance = 0;
+	graph->array[src].usable = OPEN;
+	graph->array[src].distance = 0;
 	new_node->next = graph->array[src].head;
 	graph->array[src].head = new_node;
 	return (SUCCESS);

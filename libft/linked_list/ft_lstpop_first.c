@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_sol.c                                         :+:      :+:    :+:   */
+/*   ft_lstpop_first.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/04 14:23:38 by francis          ###   ########.fr       */
+/*   Created: 2020/04/04 15:46:39 by francis           #+#    #+#             */
+/*   Updated: 2020/04/04 15:48:49 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-void  init_sol(t_lemin *lemin)
+void	ft_lstpop_first(t_list **alst)
 {
-    lemin->result = ft_memalloc(sizeof(t_solution));
-    if (lemin->result != NULL)
-        lemin->result->graph = dup_adj_list(lemin->link);
+	t_list	*new_first;
+
+	if (alst != NULL && *alst != NULL)
+        {
+        	new_first = (*alst)->next;
+	        free(*alst);
+        	*alst = new_first;
+        }
 }

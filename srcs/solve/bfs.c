@@ -12,6 +12,16 @@
 
 #include "lem_in.h"
 
+int8_t           queue_empty(t_queue *queue)
+{
+    int8_t      ret;
+
+    ret = TRUE;
+    if (queue->size > 0)
+        ret = FALSE;
+    return (ret);
+}
+
 static t_queue          *init_queue(size_t nb_max_elem)
 {
     t_queue     *queue;
@@ -27,27 +37,17 @@ static t_queue          *init_queue(size_t nb_max_elem)
     return (queue);
 }
 
-static int8_t           queue_empty(t_queue *queue)
+static void             add_to_queue(t_queue *queue, t_adj_list node, size_t step)
 {
-    int8_t      ret;
-
-    ret = TRUE;
-    if (queue->size > 0)
-        ret = FALSE;
-    return (ret);
-}
-
-static void             add_to_queue(t_queue *queue, t_adj_list *node, size_t step)
-{
-    if (node != NULL)
+    if (node.head != NULL)
     {
         if (queue->size == queue->limit)
             ft_perror(QUEUE_FULL, __FILE__, __LINE__);
         else
         {
-            if (node->usable == OPEN && node->distance == 0)
+            if (node.usable == OPEN && node.distance == 0)
             {
-                node->distance = step;
+                node.distance = step;
                 queue->element[queue->size] = node;
                 queue->size++;
             }
@@ -55,11 +55,11 @@ static void             add_to_queue(t_queue *queue, t_adj_list *node, size_t st
     }
 }
 
-static t_adj_list      *remove_from_queue(t_queue *queue)
+static t_adj_list      remove_from_queue(t_queue *queue)
 {
-    t_adj_list  *front_node;
+    t_adj_list  front_node;
 
-    front_node = NULL;
+    front_node.head = NULL;
     if (queue_empty(queue) == TRUE)
         ft_perror(QUEUE_EMPTY, __FILE__, __LINE__);
     else
@@ -71,7 +71,7 @@ static t_adj_list      *remove_from_queue(t_queue *queue)
             queue->front = 0;
             queue->size = 0;
         }
-        front_node->usable = VISITED;
+        front_node.usable = VISITED;
     }
     return (front_node);
 }
@@ -80,7 +80,7 @@ static t_adj_list      *remove_from_queue(t_queue *queue)
 int8_t                  bfs(t_graph *graph, t_solution *sol)
 {
     t_queue     *queue;
-    t_adj_list  *current_node;
+    t_adj_list  current_node;
     size_t      step;
     int8_t      ret;
 
@@ -90,18 +90,18 @@ int8_t                  bfs(t_graph *graph, t_solution *sol)
     queue = init_queue(graph->size);
     if (queue != NULL)
     {
-        add_to_queue(queue, &(graph->array[0]), step);
+        add_to_queue(queue, graph->array[0], step);
         while (queue_empty(queue) == FALSE && ret != END)
         {
             step++;
             print_queue(queue);
             current_node = remove_from_queue(queue);
-            while (current_node->head != NULL)
+            while (current_node.head != NULL)
             {
-                add_to_queue(queue, &(graph->array[current_node->head->dest]), step);
-                if (current_node->head->dest == graph->size - 1)
+                add_to_queue(queue, graph->array[current_node.head->dest], step);
+                if (current_node.head->dest == graph->size - 1)
                     ret = END;
-                current_node->head = current_node->head->next;
+                current_node.head = current_node.head->next;
             }
         }
         for (size_t i = 0; i < graph->size; i++)
