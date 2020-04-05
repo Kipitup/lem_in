@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/04 16:16:04 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/05 19:08:42 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ t_graph			*dup_adj_list(t_graph *graph)
 /*
 **	Get vertex 
 */
-t_adj_list		*get_vertex(t_graph *graph, size_t src)
+t_adj_list		get_vertex(t_graph *graph, size_t src)
 {
-	t_adj_list	*vertex;
+	t_adj_list	vertex;
 
-	vertex = NULL;
-	if (graph != NULL)
-		vertex = graph->array + src;
+//	vertex = NULL;
+//	if (graph != NULL)
+		vertex = graph->array[src];
 	return (vertex);
 }
 

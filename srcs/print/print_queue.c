@@ -1,27 +1,26 @@
 #include "lem_in.h"
 
-void    print_queue(t_queue *queue)
+void	print_queue(t_graph *queue)
 {
-    t_adj_node *tmp;
-    size_t i;
+	t_adj_node	*node;
 
-    i = queue->front;
-    if  (queue_empty(queue) == TRUE)
-        ft_printf("Queue is empty");
-    else
-    {
-        ft_printf("\nQueue contains\n");
-        for(i = queue->front; i < queue->size; i++)
-        {
-            ft_printf("links");
-            tmp = queue->element[i].head;
-            while (queue->element[i].head != NULL)
-            {
-                ft_printf(" -> %d", queue->element[i].head->dest);
-                queue->element[i].head = queue->element[i].head->next;
-            }
-            queue->element[i].head = tmp;
-            ft_printf("\n");
-        }
-    }    
+	if (queue != NULL)
+	{
+		ft_printf("Queue\nhead");
+		node = queue->array[0].head;
+		while (node != NULL)
+		{
+			ft_printf(" -> %d", node->dest);
+			node = node->next;
+		}
+		ft_printf("\n");
+		ft_printf("Visited\nhead");
+		node = queue->array[1].head;
+		while (node != NULL)
+		{
+			ft_printf(" -> %d", node->dest);
+			node = node->next;
+		}
+		ft_printf("\n");
+	}
 }

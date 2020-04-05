@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/04 15:12:29 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/05 20:56:54 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		main(void)
             print_adj_list(lemin->result->graph);
         ft_printf("--------------------------------------\n");
         bfs_list(lemin->result);
-        ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
+        //ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
     }
     else
         ft_dprintf(STD_ERR, "error\n");

@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/04 14:39:44 by francis          ###   ########.fr        #
+#    Updated: 2020/04/05 20:32:57 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -92,8 +92,10 @@ SRCS += parse_tools
 # solve
 SRCS += lem_in
 SRCS += bfs_list 
+SRCS += bfs_tools 
 
 # print
+SRCS += print_queue 
 
 # clean
 SRCS += clean

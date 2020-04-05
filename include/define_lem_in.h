@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 11:21:47 by amartino         ###   ########.fr       */
+/*   Updated: 2020/04/05 17:14:09 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define START				0
 # define END				1
 # define VISITED			1
-# define OPEN                           0
+# define OPEN				0
 
 # define COMMENT			0
 # define COMMAND			1
@@ -42,6 +42,6 @@
 # define NO_LINK_TO_END		"Missing a link to the end room"
 # define DASH_IN_ROOM_NAME	"Room name cannot contain '-'"
 # define QUEUE_FULL	        "Queue Overflow, too many elements"
-# define QUEUE_EMPTY	        "Queue is empty"
+# define QUEUE_EMPTY        "Queue is empty"
 
 #endif
