@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/02 15:12:50 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/08 11:11:48 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int		main(void)
 		vct_print(lemin->output);
 		ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
 	}
-	else
-		ft_dprintf(STD_ERR, "error\n");
 	clean_lemin(&lemin);
 	return (SUCCESS);
 }

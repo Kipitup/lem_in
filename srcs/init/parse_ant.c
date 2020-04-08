@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:46:37 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 11:17:37 by amartino         ###   ########.fr       */
+/*   Updated: 2020/04/08 17:59:48 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ static size_t	get_nb_of_ants(t_st_machine *sm, t_vector *line)
 		if (tmp <= INT_MAX && tmp >= 0 && ft_check_int_len(str) == SUCCESS)
 			size = (size_t)tmp;
 		else
-			sm->state = E_ERROR;
+			sm->state = ft_perror_failure(ANT_NOT_INT, __FILE__, __LINE__);
 	}
+	else
+		sm->state = ft_perror_failure(ANT_NOT_INT, __FILE__, __LINE__);
 	return (size);
 }
 

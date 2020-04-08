@@ -6,49 +6,30 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 14:21:51 by fkante           ###   ########.fr       */
+/*   Updated: 2020/04/08 18:20:10 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		get_second_coord(t_st_machine *sm, t_vector *coord,
-								t_vector *second_coord)
+static t_vector	*get_coord(t_st_machine *sm, t_vector *coord)
 {
 	char		*str;
 	int64_t		tmp;
 
-	str = vct_getstr(second_coord);
-	if (is_it_all_digit(second_coord) == TRUE)
+	str = vct_getstr(coord);
+	if (is_it_all_digit(coord) == TRUE)
 	{
 		tmp = ft_atol(str);
 		if (tmp > INT_MAX || tmp < INT_MIN || ft_check_int_len(str) == FAILURE)
-			sm->state = E_ERROR;
-		vct_addchar(coord, ' ');
-		vct_cat(coord, second_coord);
+			sm->state = ft_perror_failure(COORD_NOT_INT, __FILE__, __LINE__);
 	}
 	else
-		sm->state = E_ERROR;
+		sm->state = ft_perror_failure(COORD_NOT_INT, __FILE__, __LINE__);
+	return (coord);
 }
 
-t_vector	*get_coord(t_st_machine *sm, t_vector *dup)
-{
-	char		*str;
-	int64_t		tmp;
-
-	str = vct_getstr(dup);
-	if (is_it_all_digit(dup) == TRUE)
-	{
-		tmp = ft_atol(str);
-		if (tmp > INT_MAX || tmp < INT_MIN || ft_check_int_len(str) == FAILURE)
-			sm->state = E_ERROR;
-	}
-	else
-		sm->state = E_ERROR;
-	return (dup);
-}
-
-t_vector	*get_room_name(t_st_machine *sm, t_vector *dup)
+static t_vector	*get_room_name(t_st_machine *sm, t_vector *dup)
 {
 	t_vector	*room;
 
@@ -58,33 +39,47 @@ t_vector	*get_room_name(t_st_machine *sm, t_vector *dup)
 		ft_perror(DASH_IN_ROOM_NAME, __FILE__, __LINE__);
 		sm->state = E_ERROR;
 	}
-	else
-		room = vct_dup(dup);
-	return (room);
+	else if (vct_getchar_at(dup, START) == 'L')
+	{
+		ft_perror(ROOM_START_WITH_L, __FILE__, __LINE__);
+		sm->state = E_ERROR;
+	}
+	return (dup);
 }
 
-int8_t		get_room(t_st_machine *sm, t_vector *line)
+int8_t			get_room(t_st_machine *sm, t_vector *line)
 {
 	t_vector	**tab_vct;
 	t_vector	*key;
-	t_vector	*crd;
+	t_vector	*coord;
+	t_vector	*coord2;
+	int8_t		ret;
 
+	ret = FAILURE;
 	tab_vct = vct_split(line, ' ');
-	key = get_room_name(sm, tab_vct[0]);
-	crd = get_coord(sm, tab_vct[1]);
-	get_second_coord(sm, crd, tab_vct[2]);
-	if (sm->state != E_ERROR)
-		hashmap_set(sm->lemin->room, ft_strdup(key->str), ft_strdup(crd->str));
-	vct_del(&key);
-	vct_del_tab(&tab_vct);
-	return (TRUE);
+	if (tab_vct != NULL)
+	{
+		key = get_room_name(sm, tab_vct[0]);
+		coord = get_coord(sm, tab_vct[1]);
+		vct_addchar(coord, ' ');
+		coord2 = get_coord(sm, tab_vct[2]);
+		if (vct_cat(coord, coord2) == FAILURE)
+			sm->state = E_ERROR;
+		if (sm->state != E_ERROR)
+			ret = hashmap_set(sm->lemin->room, ft_strdup(key->str),
+					ft_strdup(coord->str));
+		vct_del_tab(&tab_vct);
+	}
+	else
+		sm->state = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
+	return (ret);
 }
 
 /*
 ** The return (TRUE or FALSE) will determine whether or not the parser should
 ** read the next line.
 */
-uint8_t		room(t_st_machine *sm, t_vector *line)
+uint8_t			room(t_st_machine *sm, t_vector *line)
 {
 	uint8_t		ret;
 
@@ -94,9 +89,9 @@ uint8_t		room(t_st_machine *sm, t_vector *line)
 	else if (vct_chr_count(line, ' ') == 2)
 	{
 		add_line_to_output(sm, line, ROOM);
-		ret = get_room(sm, line);
-		if (ret == FALSE)
-			sm->state = E_ERROR;
+		get_room(sm, line);
+		if (sm->state == E_ERROR)
+			ret = FALSE;
 	}
 	else
 	{

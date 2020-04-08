@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/03 14:34:02 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/08 10:58:08 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ void			print_adj_list(t_graph *graph);
 void			clean_adj_graph(t_graph **graph);
 t_graph			*dup_adj_list(t_graph *graph);
 int8_t			is_link_available(t_graph *graph, size_t src, size_t dest);
-uint8_t			is_link_used_both_way(t_graph *graph, size_t src, size_t dest);
+int8_t			is_link_used_both_way(t_graph *graph, size_t src, size_t dest);
 
 #endif

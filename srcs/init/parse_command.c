@@ -6,41 +6,31 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 14:19:38 by fkante           ###   ########.fr       */
+/*   Updated: 2020/04/08 18:09:40 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_vector		*get_name_and_coord(t_st_machine *sm, t_vector *line)
-{
-	t_vector	**tab_vct;
-	t_vector	*key;
-	t_vector	*crd;
-
-	tab_vct = vct_split(line, ' ');
-	key = get_room_name(sm, tab_vct[0]);
-	crd = get_coord(sm, tab_vct[1]);
-	get_second_coord(sm, crd, tab_vct[2]);
-	if (sm->state != E_ERROR)
-		hashmap_set(sm->lemin->room, ft_strdup(key->str), ft_strdup(crd->str));
-	vct_del_tab(&tab_vct);
-	return (key);
-}
-
 static t_vector		*getspecial_room(t_st_machine *sm, t_vector *room,
-										t_vector *new_line)
+										t_vector *line)
 {
+	size_t	index;
+
 	if (room != NULL)
-		sm->state = E_ERROR;
-	else if (vct_chr_count(new_line, ' ') == 2)
+		sm->state = ft_perror_failure(MANY_START_OR_END, __FILE__, __LINE__);
+	else if (vct_chr_count(line, ' ') == 2 && vct_getchar_at(line, 0) != '#')
 	{
-		room = get_name_and_coord(sm, new_line);
-		if (room == NULL)
-			sm->state = E_ERROR;
+		if (get_room(sm, line) != FAILURE)
+		{
+			index = vct_chr(line, ' ');
+			room = vct_ndup(line, index);
+			if (room == NULL)
+				sm->state = E_ERROR;
+		}
 	}
 	else
-		sm->state = E_ERROR;
+		sm->state = ft_perror_failure(NO_ROOM_AFTER_CMD, __FILE__, __LINE__);
 	return (room);
 }
 
