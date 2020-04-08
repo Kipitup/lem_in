@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/05 20:51:39 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/08 18:00:45 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ enum	e_states
 	E_COMMAND = 3,
 	E_END = 4
 };
+
+typedef struct	s_path
+{
+	size_t			vertex;
+	struct s_path	*next;
+}				t_path;
 
 typedef struct	s_solution
 {
@@ -100,10 +106,11 @@ void			clean_recurse(t_adj_node **node);
 ** ############################################################################
 */
 int8_t			bfs_list(t_solution *sol);
-t_graph			*init_queue(void);
+t_graph			*init_queue(t_graph *graph_orig);
 t_adj_list		next_vertex(t_graph *graph, t_graph *queue);
-int8_t			is_distance_zero(t_adj_list *node);
 void			add_step(t_adj_list *node, size_t step);
+int8_t			last_room_visited(t_graph *graph);
+int8_t			store_path_and_reset(t_solution *sol);
 
 /*
 ** ############################################################################
@@ -119,5 +126,6 @@ void			clean_state_machine(t_st_machine **sm);
 ** ############################################################################
 */
 void			print_queue(t_graph *queue);
+void			print_path(t_solution *sol);
 
 #endif

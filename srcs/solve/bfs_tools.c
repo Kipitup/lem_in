@@ -6,20 +6,22 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 20:27:33 by francis           #+#    #+#             */
-/*   Updated: 2020/04/05 20:51:30 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/08 14:35:52 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int8_t		is_distance_zero(t_adj_list *node)
+int8_t		last_room_visited(t_graph *graph)
 {
+	size_t	end_room_index;
 	int8_t	ret;
 
-	ret = TRUE;
-	if (node != NULL && node->distance != 0)
-		ret = FALSE;
-	return (ret);
+	end_room_index = graph->size - 1;
+	ret = SUCCESS;
+	if (graph->array[end_room_index].distance == UNVISITED)
+		ret = FAILURE;
+	return(ret);
 }
 
 void		add_step(t_adj_list *node, size_t step)
@@ -31,16 +33,30 @@ void		add_step(t_adj_list *node, size_t step)
 t_adj_list	next_vertex(t_graph *graph, t_graph *queue)
 {
 	t_adj_list	node;
-
-	node = get_vertex(graph, queue->array[0].head->dest);
+	
+	if (queue->array[0].head->next != NULL)
+		node = get_vertex(graph, queue->array[0].head->dest);
+	else
+		node.head = NULL;
 	return (node);
 }
 
-t_graph		*init_queue(void)
+t_graph		*init_queue(t_graph *graph_orig)
 {
 	t_graph		*queue;
+	t_adj_node	*start_node;
 
 	queue = init_graph(2);
-	//init start node ? to avoid duplicate of 0 in queue 
+	if (queue != NULL && graph_orig != NULL)
+	{
+		start_node = ft_memalloc(sizeof(t_adj_node));
+		if (start_node != NULL)
+		{
+			start_node->dest = 0;
+			queue->array[1].head = start_node;
+			queue->array[1].distance = 0;
+			graph_orig->array[0].distance = 0;
+		}
+	}
 	return (queue);
 }

@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/04/05 21:04:59 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/08 16:51:13 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int8_t		is_vertex_visited_queue(t_graph *queue, t_adj_list node)
+static int8_t	is_vertex_visited_queue(t_graph *queue, t_adj_list node)
 {
 	t_adj_list	visited;
 	t_adj_node	*tmp;
@@ -35,29 +35,6 @@ static int8_t		is_vertex_visited_queue(t_graph *queue, t_adj_list node)
 	return (ret);
 }
 
-static int8_t		is_vertex_in_queue(t_graph *queue, t_adj_list node)
-{
-	t_adj_list	copy_queue;
-	t_adj_node	*tmp;
-	size_t		next_node;
-	int8_t		ret;
-
-	ret = FALSE;
-	next_node = node.head->dest;
-	copy_queue = queue->array[0];
-	if (copy_queue.head != NULL)
-	{
-		tmp = copy_queue.head;
-		while (tmp->next != NULL && ret == FALSE)
-		{
-			if (tmp->dest == next_node)
-				ret = TRUE;
-			tmp = tmp->next;
-		}
-	}
-	return (ret);
-}
-
 static void     remove_from_queue(t_graph *queue)
 {
 	if (queue != NULL)
@@ -70,55 +47,64 @@ static void     remove_from_queue(t_graph *queue)
 	}
 }
 
-static void		add_to_queue(t_graph *queue, t_adj_list node, t_graph *graph, size_t step)
+static void		add_to_queue(t_graph *queue, t_adj_list node)
 {
-	if (queue != NULL && node.usable != VISITED)
+	if (queue != NULL)
 	{
 		if (queue->array[0].head == NULL)
 			add_edge_one_way(queue, 0, node.head->dest);
-		else if (is_vertex_visited_queue(queue, node) == FALSE && is_vertex_in_queue(queue, node) != VISITED)
+//		else if (is_vertex_visited_queue(queue, node) == FALSE)
+		else if (node.distance != UNVISITED)
 			add_edge_rear(queue, 0, node.head->dest);
-		if (node.head->dest != 0 && is_distance_zero(&(graph->array[node.head->dest])) == TRUE)
-		{
-			add_step(&(graph->array[node.head->dest]), step);
-		}
-		if (node.head->next == NULL)
-			node.usable = VISITED;
 	}
 }
+
+static int8_t	set_distance(t_adj_list node, t_graph *graph)
+{
+	size_t	next_node;
+	int8_t	ret;
+
+	ret = SUCCESS;
+	if (graph != NULL && node.head != NULL)
+	{
+		next_node = node.head->dest;
+		if (graph->array[next_node].distance == UNVISITED)
+			graph->array[next_node].distance = node.distance + 1;
+		else
+			ret = FAILURE;
+	}
+	return (ret);
+}
 /*
- ** DONT FORGET Protection in get_vertex for the node, also in next_vertex
- */
-int8_t				bfs_list(t_solution *sol)
+** DONT FORGET Protection in get_vertex for the node, also in next_vertex
+** protection in case of failure, need to free queue, also path
+*/
+
+int8_t			bfs_list(t_solution *sol)
 {
 	t_graph		*queue;
 	t_adj_list	node;
-	size_t		step;
-	int8_t		ret;
 
-	ret = START;
-	step = 0;
-	queue = init_queue();
-	if (queue != NULL)
+	queue = init_queue(sol->graph);
+	if (queue != NULL && sol != NULL)
 	{
 		node = get_vertex(sol->graph, 0);
-		while (queue != NULL && ret != END)
+		while (queue != NULL)
 		{
-			step++;
 			while (node.head != NULL)
 			{
-				add_to_queue(queue, node, sol->graph, step);
-				node.head = node.head->next;
+				if (set_distance(node, sol->graph) == SUCCESS)
+					add_to_queue(queue, node);
+				else
+					node.head = node.head->next;
 			}
-			ft_printf("---------------------------\n");
 			node = next_vertex(sol->graph, queue);
-			print_queue(queue);
 			remove_from_queue(queue);
-			if (queue->array[0].head->dest == sol->graph->size - 1)
-				ret = END;
+			if (last_room_visited(sol->graph) == SUCCESS)
+				break ;
 		}
-		//for (size_t i = 0; i < sol->graph->size; i++)
-		//	print_adj_node(sol->graph->array[i]);
+		store_path_and_reset(sol);
+		print_path(sol);
 	}
 	return (0);
 }

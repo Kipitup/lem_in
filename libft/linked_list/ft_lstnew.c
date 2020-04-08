@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:18:30 by fkante            #+#    #+#             */
-/*   Updated: 2019/05/08 13:42:14 by fkante           ###   ########.fr       */
+/*   Updated: 2020/04/08 16:14:36 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		if (!(list_new->content = (void*)malloc(content_size)))
+		list_new->content = (void*)malloc(content_size);
+		if (list_new->content == NULL)
 		{
 			free(list_new);
 			return (NULL);

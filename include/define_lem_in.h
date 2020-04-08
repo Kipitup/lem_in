@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/05 17:14:09 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/08 11:30:18 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define START				0
 # define END				1
 # define VISITED			1
+# define UNVISITED			-1
 # define OPEN				0
 
 # define COMMENT			0

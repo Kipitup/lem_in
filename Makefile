@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/05 20:32:57 by francis          ###   ########.fr        #
+#    Updated: 2020/04/08 16:55:51 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -93,9 +93,11 @@ SRCS += parse_tools
 SRCS += lem_in
 SRCS += bfs_list 
 SRCS += bfs_tools 
+SRCS += bfs_store_and_repath 
 
 # print
 SRCS += print_queue 
+SRCS += print_path 
 
 # clean
 SRCS += clean
