@@ -1,0 +1,14 @@
+#let's go
+10
+1 0 -0000000000000023
+2 1 1
+this_is_aR00m 2 0
+##start
+start 0 1
+an0ther_ro0m 3 0
+##end
+LTHE_END 1 1
+start-1
+1-2
+2-this_is_aR00m
+this_is_aR00m-LTHE_END

@@ -6,15 +6,17 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/08 17:38:36 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 17:17:09 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	GRAPH_H
 # define GRAPH_H
 
+# include <unistd.h>
+# include <stdint.h>
 # include <stdlib.h>
-# include <inttypes.h>
+# include <limits.h>
 
 /*
 **								ADJACENCY LIST

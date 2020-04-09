@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 17:38:05 by amartino          #+#    #+#              #
-#    Updated: 2020/03/10 13:40:05 by amartino         ###   ########.fr        #
+#    Updated: 2020/04/08 18:57:35 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -14,9 +14,12 @@
 #====ARGV=====#
 # '-z' : true if the lenght of the string is 0
 # '-n' : true if the lenght of the string is nonzero
+correct=true
+incorrect=true
 continue=false
 verbose=false
 leak=false
+
 if [ -n "$1" ]
 then
 	if [[ $1 == *"c"* ]]
@@ -33,11 +36,32 @@ then
 	fi
 	if [[ $1 == "--help" ]]
 	then
-		printf "usage: ./unit_test [-c | -v | -l]\n"
+		printf "Usage: ./unit_test [-c | -v | -l] [correct | incorrect]\n"
 		echo "-c: if error, continue"
 		echo "-v: verbose"
 		echo "-l: check leaks"
+		echo "correct: test only the correct map"
+		echo "incorrect: test only the incorrect map"
 		exit
+	fi
+	if [[ $1 == "correct" ]]
+	then
+		incorrect=false
+	fi
+	if [[ $1 == "incorrect" ]]
+	then
+		correct=false
+	fi
+	if [ -n "$2" ]
+	then
+		if [[ $2 == "correct" ]]
+		then
+			incorrect=false
+		fi
+		if [[ $2 == "incorrect" ]]
+		then
+			correct=false
+		fi
 	fi
 fi
 
@@ -107,6 +131,7 @@ check_leak () # $1 is the test file
 			if [ "$verbose" = true ]
 			then
 				cat $LOG_LEAK
+				echo ""
 			fi
 			if [ "$continue" = false ]
 			then
@@ -120,14 +145,20 @@ check_output_incorrect_map () # $1 is the test file
 {
 	OUTPUT="$(printf $1 | cut -d '/' -f 4):"
 	printf "      ${WHITE}%-35s ${END_C}" $OUTPUT
-	if grep -q "error" "$LOG_EXEC"
+	if grep -q "Error" "$LOG_EXEC"
 	then
 		printf "${LIGHT_GREEN}✓${END_C}\n"
+		if [ "$verbose" = true ]
+		then
+			cat $LOG_EXEC
+			echo ""
+		fi
 	else
 		printf "${RED}✖${END_C}\n"
 		if [ "$verbose" = true ]
 		then
 			cat $LOG_EXEC
+			echo ""
 		fi
 		if [ "$continue" = false ]
 		then
@@ -153,6 +184,10 @@ check_output_correct_map () # $1 is the test file
 		fi
 	else
 		printf "${LIGHT_GREEN}✓${END_C}\n"
+		if [ "$verbose" = true ]
+		then
+			cat $LOG_EXEC
+		fi
 	fi
 }
 
@@ -162,39 +197,45 @@ check_output_correct_map () # $1 is the test file
 # '&' indicate that what follow is a file descriptor
 echo "----> ${GREEN}Running unit tests:${END_C}\n"
 
-printf "      ${UNDERLINE}${YELLOW}incorrect map:${END_C}\n\n"
-
-for MAP in ${MAP_DIR}/${INCORRECT_MAP_DIR}/*.map
-do
-	if test -f $MAP
-	then
-		if [ "$leak" = true ]
+if [ "$incorrect" = true ]
+then
+	printf "      ${UNDERLINE}${YELLOW}incorrect map:${END_C}\n\n"
+	
+	for MAP in ${MAP_DIR}/${INCORRECT_MAP_DIR}/*.map
+	do
+		if test -f $MAP
 		then
-			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1
-			check_leak $MAP
-		else
-			$EXEC < $MAP > $LOG_EXEC 2>&1
+			if [ "$leak" = true ]
+			then
+				$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1
+				check_leak $MAP
+			else
+				$EXEC < $MAP > $LOG_EXEC 2>&1
+			fi
+			check_output_incorrect_map $MAP
 		fi
-		check_output_incorrect_map $MAP
-	fi
-done
+	done
+fi
 
-printf "\n      ${UNDERLINE}${YELLOW}correct map:${END_C}\n\n"
-
-for MAP in ${MAP_DIR}/${CORRECT_MAP_DIR}/*.map
-do
-	if test -f $MAP
-	then
-		if [ "$leak" = true ]
+if [ "$correct" = true ]
+then
+	printf "\n      ${UNDERLINE}${YELLOW}correct map:${END_C}\n\n"
+	
+	for MAP in ${MAP_DIR}/${CORRECT_MAP_DIR}/*.map
+	do
+		if test -f $MAP
 		then
-			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1
-			check_leak $MAP
-		else
-			$EXEC < $MAP > $LOG_EXEC 2>&1
+			if [ "$leak" = true ]
+			then
+				$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1
+				check_leak $MAP
+			else
+				$EXEC < $MAP > $LOG_EXEC 2>&1
+			fi
+			check_output_correct_map $MAP
 		fi
-		check_output_correct_map $MAP
-	fi
-done
+	done
+fi
 
 #======THE END======#
 printf "\n\n----> ${GREEN}Unit test complete!${END_C}\n"

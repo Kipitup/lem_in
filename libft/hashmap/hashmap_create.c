@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:23:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 11:41:10 by amartino         ###   ########.fr       */
+/*   Updated: 2020/04/09 11:34:03 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_hashnode	*hash_node_create(void *key, void *data, uint32_t hash)
 	{
 		node->key = key;
 		node->data = data;
-		node->index = -1;
+		node->opt_index = -1;
 		node->hash = hash;
 	}
 	return (node);

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:28:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 14:24:27 by fkante           ###   ########.fr       */
+/*   Updated: 2020/04/09 11:34:18 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ uint8_t	is_it_special_room(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 	start = vct_getstr(sm->lemin->start);
 	end = vct_getstr(sm->lemin->end);
 	if (ft_strequ(src->key, start) == TRUE)
-		src->index = 0;
+		src->opt_index = 0;
 	else if (ft_strequ(src->key, end) == TRUE)
-		src->index = graph->size - 1;
+		src->opt_index = graph->size - 1;
 	else if (ft_strequ(dest->key, start) == TRUE)
-		dest->index = 0;
+		dest->opt_index = 0;
 	else if (ft_strequ(dest->key, end) == TRUE)
-		dest->index = graph->size - 1;
+		dest->opt_index = graph->size - 1;
 	else
 		ret = FALSE;
 	return (ret);
@@ -67,7 +67,7 @@ void	add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type)
 	vct_cat(sm->lemin->output, line);
 	vct_addstr(sm->lemin->output, "\033[0m\n");
 	if (sm->lemin->output == NULL)
-		sm->state = E_ERROR;
+		sm->state = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
 }
 
 uint8_t	check_for_comment_or_command(t_st_machine *sm, t_vector *line)
