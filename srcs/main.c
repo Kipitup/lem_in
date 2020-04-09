@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/08 12:27:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 16:37:31 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ int		main(void)
         //vct_print(lemin->output);
         if (lemin->link != NULL)
            init_sol(lemin);
-        if (lemin->result != NULL && lemin->result->graph != NULL)
+		if (lemin->result != NULL && lemin->result->graph != NULL)
 		{
 			print_adj_list(lemin->result->graph);
         	ft_printf("--------------------------------------\n");
         	bfs_list(lemin->result);
+			for (int i = 0; lemin->result->path->contents[i] != NULL; i++)
+				print_path(lemin->result->path->contents[i]);
 		}
         //ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
     }

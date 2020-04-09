@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/04/08 16:51:13 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 16:37:39 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ static int8_t	is_vertex_visited_queue(t_graph *queue, t_adj_list node)
 
 static void     remove_from_queue(t_graph *queue)
 {
-	if (queue != NULL)
+	if (queue != NULL && queue->array[0].head != NULL)
 	{
-		if (queue->array[1].head == NULL)
-			add_edge_one_way(queue, 1, queue->array[0].head->dest);
-		else if (is_vertex_visited_queue(queue, queue->array[0]) == FALSE)
+		if (is_vertex_visited_queue(queue, queue->array[0]) == FALSE)
 			add_edge_rear(queue, 1, queue->array[0].head->dest);
 		remove_edge_one_way(queue, 0, queue->array[0].head->dest);
 	}
@@ -51,10 +49,9 @@ static void		add_to_queue(t_graph *queue, t_adj_list node)
 {
 	if (queue != NULL)
 	{
-		if (queue->array[0].head == NULL)
+		if (queue->array[0].head == NULL && node.head->available == OPEN)
 			add_edge_one_way(queue, 0, node.head->dest);
-//		else if (is_vertex_visited_queue(queue, node) == FALSE)
-		else if (node.distance != UNVISITED)
+		else if (node.distance != UNVISITED && node.head->available == OPEN)
 			add_edge_rear(queue, 0, node.head->dest);
 	}
 }
@@ -64,21 +61,25 @@ static int8_t	set_distance(t_adj_list node, t_graph *graph)
 	size_t	next_node;
 	int8_t	ret;
 
-	ret = SUCCESS;
+	ret = FAILURE;
 	if (graph != NULL && node.head != NULL)
 	{
-		next_node = node.head->dest;
-		if (graph->array[next_node].distance == UNVISITED)
-			graph->array[next_node].distance = node.distance + 1;
-		else
-			ret = FAILURE;
+		if (node.head->available == OPEN)
+		{
+			next_node = node.head->dest;
+			if (graph->array[next_node].distance == UNVISITED)
+			{
+				graph->array[next_node].distance = node.distance + 1;
+				ret = SUCCESS;
+			}
+		}
 	}
 	return (ret);
 }
 /*
-** DONT FORGET Protection in get_vertex for the node, also in next_vertex
-** protection in case of failure, need to free queue, also path
-*/
+ ** DONT FORGET Protection in get_vertex for the node, also in next_vertex
+ ** protection in case of failure, need to free queue, also path
+ */
 
 int8_t			bfs_list(t_solution *sol)
 {
@@ -103,8 +104,8 @@ int8_t			bfs_list(t_solution *sol)
 			if (last_room_visited(sol->graph) == SUCCESS)
 				break ;
 		}
-		store_path_and_reset(sol);
-		print_path(sol);
+		store_path_and_reset(sol); //dont forget to clean path
 	}
+	clean_adj_graph(&queue);
 	return (0);
 }

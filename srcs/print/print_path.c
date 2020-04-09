@@ -6,37 +6,39 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/04/08 17:34:12 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 14:44:49 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	print_path(t_solution *sol)
+void	print_links(t_adj_list node)
 {
-	t_darray	*array;
-	t_path		*tmp;
-	size_t		i;
-
-	i = 0;
-	if (sol != NULL && sol->path != NULL)
+	while (node.head != NULL)
 	{
-		ft_printf("BFS paths found:\n");
-		array = sol->path;
-		i = 0;
-		if (array != NULL)
+		ft_printf("dest = %d\t", node.head->dest);
+		ft_printf("available = %d\n", node.head->available);
+		node.head = node.head->next;
+	}
+}
+
+void	print_path(t_path *path)
+{
+	t_path		*tmp;
+
+	if (path != NULL)
+	{
+		ft_printf("BFS path found:\n");
+		tmp = path;
+		ft_printf("path: ");
+		while (tmp != NULL)
 		{
-			tmp = darray_get(array, i);
-			ft_printf("path[%d]: ", i++);
-			while (tmp != NULL)
-			{
-				if (tmp->vertex == 0)
-					ft_printf("%d", tmp->vertex);
-				else
-					ft_printf(" -> %d", tmp->vertex);
-				tmp = tmp->next;
-			}
-			ft_printf("\n");
+			if (tmp->vertex == 0)
+				ft_printf("%d", tmp->vertex);
+			else
+				ft_printf(" -> %d", tmp->vertex);
+			tmp = tmp->next;
 		}
+		ft_printf("\n");
 	}
 }

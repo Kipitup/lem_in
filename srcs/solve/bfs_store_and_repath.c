@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/08 18:02:55 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 16:33:01 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static t_path	*trace_path_and_update_links(t_graph *graph)
 	path = ft_memalloc(sizeof(t_path));
 	if (path != NULL)
 	{
+		path->next = NULL;
 		path->vertex = index;
 		while (index > 0)
 		{
@@ -60,9 +61,21 @@ static t_path	*trace_path_and_update_links(t_graph *graph)
 			lstadd(&path, new_step);
 			index = vertex;
 		}
+		update_links(graph, path);
 	}
-//	update_links(graph, path);
 	return (path);
+}
+
+static void		reset_graph(t_graph *graph)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < graph->size)
+	{
+		graph->array[i].distance = UNVISITED;
+		i++;
+	}
 }
 
 int8_t			store_path_and_reset(t_solution *sol)
@@ -73,13 +86,14 @@ int8_t			store_path_and_reset(t_solution *sol)
 
 	array = sol->path;
 	ret = FAILURE;
-	path_found = trace_path_and_update_links(sol->graph);
-	if (path_found != NULL)
+	//check for double links
+	if ((path_found = trace_path_and_update_links(sol->graph)) != NULL)
 	{
 		if (array->contents[0] == NULL)
 			ret = darray_set(array, 0, (void*)path_found);
 		else
 			ret = darray_push(array, (void*)path_found);
 	}
+	reset_graph(sol->graph);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 20:27:33 by francis           #+#    #+#             */
-/*   Updated: 2020/04/08 14:35:52 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 14:30:36 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_adj_list	next_vertex(t_graph *graph, t_graph *queue)
 {
 	t_adj_list	node;
 	
-	if (queue->array[0].head->next != NULL)
+	if (queue->array[0].head != NULL)
 		node = get_vertex(graph, queue->array[0].head->dest);
 	else
 		node.head = NULL;

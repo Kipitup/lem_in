@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/08 18:00:45 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 15:43:59 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ enum	e_states
 
 typedef struct	s_path
 {
+	char			*name;	
 	size_t			vertex;
+	size_t			ant_nb;
 	struct s_path	*next;
 }				t_path;
 
@@ -110,6 +112,7 @@ t_graph			*init_queue(t_graph *graph_orig);
 t_adj_list		next_vertex(t_graph *graph, t_graph *queue);
 void			add_step(t_adj_list *node, size_t step);
 int8_t			last_room_visited(t_graph *graph);
+void			update_links(t_graph *graph, t_path *path);
 int8_t			store_path_and_reset(t_solution *sol);
 
 /*
@@ -118,6 +121,7 @@ int8_t			store_path_and_reset(t_solution *sol);
 ** ############################################################################
 */
 void			clean_lemin(t_lemin **lemin);
+void			clean_path(void *path);
 void			clean_state_machine(t_st_machine **sm);
 
 /*
@@ -125,7 +129,8 @@ void			clean_state_machine(t_st_machine **sm);
 ** ################################# PRINT ####################################
 ** ############################################################################
 */
+void			print_links(t_adj_list node);
 void			print_queue(t_graph *queue);
-void			print_path(t_solution *sol);
+void			print_path(t_path *path);
 
 #endif
