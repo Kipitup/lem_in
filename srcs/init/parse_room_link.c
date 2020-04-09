@@ -6,8 +6,8 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/01 16:21:15 by amartinod        ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2020/04/09 16:59:56 by amartinod        ###   ########.fr       */
+/*                                         how to know if something has been written in the standard output c                                   */
 /* ************************************************************************** */
 
 #include "lem_in.h"
@@ -20,46 +20,43 @@ static void	get_node_index(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 	i = 1;
 	graph = sm->lemin->link;
 	is_it_special_room(sm, src, dest);
-	if (src->index == NOT_SET)
+	if (src->opt_index == NOT_SET)
 	{
 		while (i < graph->size && graph->array[i].head != NULL)
 			i++;
-		src->index = i;
-		if (dest->index == NOT_SET)
-			dest->index = i + 1;
+		src->opt_index = i;
+		if (dest->opt_index == NOT_SET)
+			dest->opt_index = i + 1;
 	}
-	else if (dest->index == NOT_SET)
+	else if (dest->opt_index == NOT_SET)
 	{
 		while (i < graph->size && graph->array[i].head != NULL)
 			i++;
-		dest->index = i;
+		dest->opt_index = i;
 	}
 }
 
-static void	add_link_adj_list(t_st_machine *sm, t_vector *src, t_vector *dest)
+static void	add_link_adj_list(t_st_machine *sm, t_vector *nsrc, t_vector *ndest)
 {
-	t_hashnode	*node_src;
-	t_hashnode	*node_dest;
+	t_hashnode	*src;
+	t_hashnode	*dest;
 	int8_t		ret;
 
 	ret = SUCCESS;
-	node_src = hashmap_get(sm->lemin->room, vct_getstr(src));
-	node_dest = hashmap_get(sm->lemin->room, vct_getstr(dest));
-	if (node_src == NULL || node_dest == NULL)
-	{
-		ft_perror(ROOM_DONT_EXIST, __FILE__, __LINE__);
-		sm->state = E_ERROR;
-	}
+	src = hashmap_get(sm->lemin->room, vct_getstr(nsrc));
+	dest = hashmap_get(sm->lemin->room, vct_getstr(ndest));
+	if (src == NULL || dest == NULL)
+		sm->state = ft_perror(ROOM_DONT_EXIST, __FILE__, __LINE__);
 	else
 	{
-		get_node_index(sm, node_src, node_dest);
-		if (get_link(sm->lemin->link, node_src->index,
-					node_dest->index) == NULL)
+		get_node_index(sm, src, dest);
+		if (get_link(sm->lemin->link, src->opt_index,
+					dest->opt_index) == NULL)
 		{
-			ret = add_edge(sm->lemin->link, node_src->index, node_dest->index);
+			ret = add_edge(sm->lemin->link, src->opt_index, dest->opt_index);
 		}
 		if (ret == FAILURE)
-			sm->state = E_ERROR;
+			sm->state = ft_perror_failure(ADD_EDGE_FAILED, __FILE__, __LINE__);
 	}
 }
 
@@ -87,7 +84,6 @@ static void	add_link(t_st_machine *sm, t_vector *line)
 **	The return (TRUE or FALSE) will determine whether or not the parser should
 **	read the next line.
 */
-
 uint8_t		room_link(t_st_machine *sm, t_vector *line)
 {
 	uint8_t		ret;

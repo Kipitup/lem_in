@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/08 18:03:54 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/09 09:31:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@
 # define COORD_NOT_INT		"Coordinates should be a positive integer"
 # define ANT_NOT_INT		"Ant should be a positive integer"
 # define NO_ROOM_AFTER_CMD	"No room specified after the command start or end"
+# define READ_LINE_ERR		"Reading the the standard input failed"
+# define ADD_EDGE_FAILED	"Adding an edge to the adjacency list failed"
 
 #endif

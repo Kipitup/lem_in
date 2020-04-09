@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/08 18:09:40 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/09 09:26:56 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_vector		*getspecial_room(t_st_machine *sm, t_vector *room,
 			index = vct_chr(line, ' ');
 			room = vct_ndup(line, index);
 			if (room == NULL)
-				sm->state = E_ERROR;
+				sm->state = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
 		}
 	}
 	else
@@ -41,8 +41,8 @@ static void			next_room_is_special(t_st_machine *sm, uint8_t type)
 
 	new_line = NULL;
 	ret = vct_read_line(STD_IN, &new_line);
-	if (ret <= 0)
-		sm->state = E_ERROR;
+	if (ret < 0)
+		sm->state = ft_perror_failure(READ_LINE_ERR, __FILE__, __LINE__);
 	else
 	{
 		add_line_to_output(sm, new_line, SPECIAL_ROOM);

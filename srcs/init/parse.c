@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 11:06:42 by amartino         ###   ########.fr       */
+/*   Updated: 2020/04/09 09:20:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		parse(t_st_machine *sm)
 		if (ret == SUCCESS)
 			sm->state = E_END;
 		else if (ret == FAILURE)
-			sm->state = E_ERROR;
+			sm->state = ft_perror_failure(READ_LINE_ERR, __FILE__, __LINE__);
 		else
 			read_next_line = parser[sm->state](sm, line);
 	}

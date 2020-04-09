@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:26:09 by fkante            #+#    #+#             */
-/*   Updated: 2020/04/08 17:41:20 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/09 10:31:53 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ t_vector		**vct_split(t_vector *vct_input, char c)
 		if (vct_tab != NULL)
 			vct_tab = vct_fill(dup_input, vct_tab, c, count_word);
 	}
+	vct_del(&dup_input);
 	return (vct_tab);
 }

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/08 18:20:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/09 09:28:38 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int8_t			get_room(t_st_machine *sm, t_vector *line)
 		vct_addchar(coord, ' ');
 		coord2 = get_coord(sm, tab_vct[2]);
 		if (vct_cat(coord, coord2) == FAILURE)
-			sm->state = E_ERROR;
+			sm->state = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
 		if (sm->state != E_ERROR)
 			ret = hashmap_set(sm->lemin->room, ft_strdup(key->str),
 					ft_strdup(coord->str));
