@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 10:11:57 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/03 14:37:58 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/14 09:06:30 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,10 @@ int8_t			is_link_used_both_way(t_graph *graph, size_t src, size_t dest)
 	
 	ret1 = is_link_available(graph, src, dest);
 	ret2 = is_link_available(graph, dest, src);
-	if (ret1 == FALSE && ret2 == FALSE)
+	if (ret1 == 1 && ret2 == 1)
 		return (TRUE);
 	else if (ret1 == FAILURE || ret2 == FAILURE)
 		return (FAILURE);
 	else
 		return (FALSE);
 }
-
-

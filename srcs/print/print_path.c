@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/04/09 14:44:49 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/15 11:59:34 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	print_links(t_adj_list node)
+void	print_link_available(t_adj_list node)
 {
 	while (node.head != NULL)
 	{
@@ -20,6 +20,19 @@ void	print_links(t_adj_list node)
 		ft_printf("available = %d\n", node.head->available);
 		node.head = node.head->next;
 	}
+}
+
+void	print_all_links(t_graph *graph)
+{
+	size_t i;
+
+	i = 0;
+	while (i < graph->size)
+	{
+		ft_printf("---------------Node %d--------------\n", i);
+		print_link_available(graph->array[i]);
+		i++;
+	}                    
 }
 
 void	print_path(t_path *path)
@@ -41,4 +54,27 @@ void	print_path(t_path *path)
 		}
 		ft_printf("\n");
 	}
+}
+
+void	print_all_path(t_lemin *lemin)
+{
+	t_solution *begin;
+	size_t i;
+	size_t j;
+
+	begin = lemin->result;
+	j = 0;
+	while (lemin->result != NULL)
+	{
+		ft_printf("----------Path sequence %d----------\n", j);
+		i = 0;
+		while (lemin->result->path->contents[i] != NULL)
+		{
+			print_path(lemin->result->path->contents[i]);
+			i++;
+		}
+		j++;
+		lemin->result = lemin->result->next;
+	}
+	lemin->result = begin;
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bfs_list.c                                         :+:      :+:    :+:   */
+/*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/04/09 16:37:39 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/15 11:30:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,15 @@ static void		add_to_queue(t_graph *queue, t_adj_list node)
 	if (queue != NULL)
 	{
 		if (queue->array[0].head == NULL && node.head->available == OPEN)
+		{
 			add_edge_one_way(queue, 0, node.head->dest);
+			node.head->available = CLOSED;
+		}
 		else if (node.distance != UNVISITED && node.head->available == OPEN)
+		{
 			add_edge_rear(queue, 0, node.head->dest);
+			node.head->available = CLOSED;
+		}
 	}
 }
 
@@ -81,7 +87,7 @@ static int8_t	set_distance(t_adj_list node, t_graph *graph)
  ** protection in case of failure, need to free queue, also path
  */
 
-int8_t			bfs_list(t_solution *sol)
+void			bfs(t_solution *sol)
 {
 	t_graph		*queue;
 	t_adj_list	node;
@@ -100,12 +106,11 @@ int8_t			bfs_list(t_solution *sol)
 					node.head = node.head->next;
 			}
 			node = next_vertex(sol->graph, queue);
-			remove_from_queue(queue);
-			if (last_room_visited(sol->graph) == SUCCESS)
+			if (last_room_visited(sol->graph) == SUCCESS
+					|| queue->array[0].head == NULL)
 				break ;
+			remove_from_queue(queue);
 		}
-		store_path_and_reset(sol); //dont forget to clean path
 	}
 	clean_adj_graph(&queue);
-	return (0);
 }

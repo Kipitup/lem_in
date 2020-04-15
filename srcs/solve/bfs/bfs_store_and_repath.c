@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/09 16:33:01 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/15 12:08:06 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static size_t find_next_vertex(t_graph *graph, size_t index)
 	return ((size_t)next_vertex);
 }
 
-static t_path	*trace_path_and_update_links(t_graph *graph)
+static t_path	*trace_path(t_solution *sol)
 {
 	t_path	*path;
 	t_path	*new_step;
 	size_t	vertex;
 	size_t	index;
 
-	index = graph->size - 1;
+	index = sol->graph->size - 1;
 	path = ft_memalloc(sizeof(t_path));
 	if (path != NULL)
 	{
@@ -54,19 +54,18 @@ static t_path	*trace_path_and_update_links(t_graph *graph)
 		path->vertex = index;
 		while (index > 0)
 		{
-			vertex = find_next_vertex(graph, index);
+			vertex = find_next_vertex(sol->graph, index);
 			new_step = ft_memalloc(sizeof(t_path));
 			if (new_step != NULL)
 				new_step->vertex = vertex;
 			lstadd(&path, new_step);
 			index = vertex;
 		}
-		update_links(graph, path);
 	}
 	return (path);
 }
 
-static void		reset_graph(t_graph *graph)
+static void		reset_distance(t_graph *graph)
 {
 	size_t	i;
 
@@ -78,7 +77,7 @@ static void		reset_graph(t_graph *graph)
 	}
 }
 
-int8_t			store_path_and_reset(t_solution *sol)
+int8_t			store_valid_path_and_reset(t_solution *sol)
 {
 	t_darray	*array;
 	t_path		*path_found;
@@ -86,14 +85,19 @@ int8_t			store_path_and_reset(t_solution *sol)
 
 	array = sol->path;
 	ret = FAILURE;
-	//check for double links
-	if ((path_found = trace_path_and_update_links(sol->graph)) != NULL)
+	if ((path_found = trace_path(sol)) != NULL)
 	{
-		if (array->contents[0] == NULL)
-			ret = darray_set(array, 0, (void*)path_found);
+		if (is_path_valid(sol->graph, path_found) == SUCCESS)
+		{
+			if (array->contents[0] == NULL)
+				ret = darray_set(array, 0, (void*)path_found);
+			else
+				ret = darray_push(array, (void*)path_found);
+			update_links(sol);
+		}
 		else
-			ret = darray_push(array, (void*)path_found);
+			update_links_with_last_wrong_path(sol, path_found);
 	}
-	reset_graph(sol->graph);
+	reset_distance(sol->graph);
 	return (ret);
 }
