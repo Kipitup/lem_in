@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/09 17:12:44 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/10 18:08:10 by amartinod        ###   ########.fr       */
 /*                                         how to know if something has been written in the standard output c                                   */
 /* ************************************************************************** */
 
@@ -36,13 +36,24 @@ static void	get_node_index(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 	}
 }
 
+static void add_edge_and_nam(t_st_machine *sm, t_hashnode *src, t_hashnode *dst)
+{
+	int8_t		ret;
+
+	ret = add_edge(sm->lemin->link, src->opt_index, dst->opt_index);
+	if (ret == SUCCESS)
+		ret = add_vertex_name(sm->lemin->link, src->opt_index, (char*)src->key);
+	if (ret == SUCCESS)
+		ret = add_vertex_name(sm->lemin->link, dst->opt_index, (char*)dst->key);
+	if (ret == FAILURE)
+		sm->state = ft_perror_failure(ADD_EDGE_FAILED, __FILE__, __LINE__);
+}
+
 static void	add_link_adj_list(t_st_machine *sm, t_vector *nsrc, t_vector *ndest)
 {
 	t_hashnode	*src;
 	t_hashnode	*dest;
-	int8_t		ret;
 
-	ret = SUCCESS;
 	src = hashmap_get(sm->lemin->room, vct_getstr(nsrc));
 	dest = hashmap_get(sm->lemin->room, vct_getstr(ndest));
 	if (src == NULL || dest == NULL)
@@ -50,13 +61,8 @@ static void	add_link_adj_list(t_st_machine *sm, t_vector *nsrc, t_vector *ndest)
 	else
 	{
 		get_node_index(sm, src, dest);
-		if (get_link(sm->lemin->link, src->opt_index,
-					dest->opt_index) == NULL)
-		{
-			ret = add_edge(sm->lemin->link, src->opt_index, dest->opt_index);
-		}
-		if (ret == FAILURE)
-			sm->state = ft_perror_failure(ADD_EDGE_FAILED, __FILE__, __LINE__);
+		if (get_link(sm->lemin->link, src->opt_index, dest->opt_index) == NULL)
+			add_edge_and_nam(sm, src, dest);
 	}
 }
 
@@ -81,9 +87,9 @@ static void	add_link(t_st_machine *sm, t_vector *line)
 }
 
 /*
-**	The return (TRUE or FALSE) will determine whether or not the parser should
-**	read the next line.
-*/
+ **	The return (TRUE or FALSE) will determine whether or not the parser should
+ **	read the next line.
+ */
 uint8_t		room_link(t_st_machine *sm, t_vector *line)
 {
 	uint8_t		ret;

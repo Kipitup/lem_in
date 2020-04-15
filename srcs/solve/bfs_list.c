@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/04/09 16:37:39 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/14 09:34:20 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ static int8_t	set_distance(t_adj_list node, t_graph *graph)
 	}
 	return (ret);
 }
-/*
- ** DONT FORGET Protection in get_vertex for the node, also in next_vertex
- ** protection in case of failure, need to free queue, also path
- */
 
+/*
+** DONT FORGET Protection in get_vertex for the node, also in next_vertex
+** protection in case of failure, need to free queue, also path
+*/
 int8_t			bfs_list(t_solution *sol)
 {
 	t_graph		*queue;

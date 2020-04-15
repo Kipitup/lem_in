@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/09 17:20:29 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/10 22:12:13 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,24 @@ t_graph			*dup_adj_list(t_graph *graph)
 	return (duplicate);
 }
 
-/*
-**	Get vertex 
-*/
+int8_t			add_vertex_name(t_graph *graph, size_t i, char *name)
+{
+	char		*dup_name;
+	int8_t		ret;
+	
+	ret = FAILURE;
+	if (graph != NULL && name != NULL)
+	{
+		dup_name = ft_strdup(name);
+		if (dup_name != NULL)
+		{
+			graph->array[i].name = dup_name;
+			ret = SUCCESS;
+		}
+	}
+	return (ret);
+}
+
 t_adj_list		get_vertex(t_graph *graph, size_t src)
 {
 	t_adj_list	vertex;
