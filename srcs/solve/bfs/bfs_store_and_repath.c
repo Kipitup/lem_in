@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/15 12:08:06 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/16 14:45:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,24 @@ static t_path	*trace_path(t_solution *sol)
 	t_path	*new_step;
 	size_t	vertex;
 	size_t	index;
+	size_t	len;
 
 	index = sol->graph->size - 1;
+	len = 0;
 	path = ft_memalloc(sizeof(t_path));
 	if (path != NULL)
 	{
-		path->next = NULL;
 		path->vertex = index;
 		while (index > 0)
 		{
 			vertex = find_next_vertex(sol->graph, index);
-			new_step = ft_memalloc(sizeof(t_path));
-			if (new_step != NULL)
+			if ((new_step = ft_memalloc(sizeof(t_path))) != NULL)
+			{
 				new_step->vertex = vertex;
-			lstadd(&path, new_step);
-			index = vertex;
+				new_step->len = ++len;
+				lstadd(&path, new_step);
+				index = vertex;
+			}
 		}
 	}
 	return (path);

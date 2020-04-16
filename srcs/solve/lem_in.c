@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/15 12:01:09 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/16 14:45:58 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,17 @@ void		lem_in(t_lemin *lemin)
 	if (lemin->result != NULL)
 	{
 		ret = SUCCESS;
-		sol = lemin->result;
-		print_adj_list(sol->graph);
-		ft_printf("--------------------------------------\n");
+		print_adj_list(lemin->link);
 		while (ret == SUCCESS)
 		{
-			bfs(sol);
-			if ((ret = store_valid_path_and_reset(sol)) == FAILURE)
-				handle_link_used_both_way(lemin);
+			sol = lemin->result;
+			if ((ret = bfs(sol)) == SUCCESS)
+			{
+				if ((store_valid_path_and_reset(sol)) == FAILURE)
+					handle_link_used_both_way(lemin);
+			}
 		}
-		ft_printf("--------------------------------------\n");
-		ret = SUCCESS;
-		sol = lemin->result;
-		print_adj_list(sol->graph);
-		if (ret == SUCCESS)
-		{
-			bfs(sol);
-			if ((ret = store_valid_path_and_reset(sol)) == FAILURE)
-				handle_link_used_both_way(lemin);
-		}
-		ft_printf("--------------------------------------\n");
-		ret = SUCCESS;
-		sol = lemin->result;
-		print_adj_list(sol->graph);
-		if (ret == SUCCESS)
-		{
-			bfs(sol);
-			if ((ret = store_valid_path_and_reset(sol)) == FAILURE)
-				handle_link_used_both_way(lemin);
-		}
-		while (lemin->result->prev != NULL)
-			lemin->result = lemin->result->prev;
 	}
+	while (lemin->result->prev != NULL)
+		lemin->result = lemin->result->prev;
 }
