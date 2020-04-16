@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/16 12:53:50 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/16 15:07:33 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void			update_links(t_solution *sol);
 void			update_links_with_last_wrong_path(t_solution *sol, t_path *pa);
 int8_t			store_valid_path_and_reset(t_solution *sol);
 void			handle_link_used_both_way(t_lemin *lemin);
-int8_t			is_path_valid(t_graph *graph, t_path *path);
+uint8_t			is_path_valid(t_graph *graph, t_path *path);
 
 /*
 ** ############################################################################

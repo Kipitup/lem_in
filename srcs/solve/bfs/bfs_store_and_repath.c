@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/16 14:45:27 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/16 15:15:44 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int8_t			store_valid_path_and_reset(t_solution *sol)
 	ret = FAILURE;
 	if ((path_found = trace_path(sol)) != NULL)
 	{
-		if (is_path_valid(sol->graph, path_found) == SUCCESS)
+		if (is_path_valid(sol->graph, path_found) == TRUE)
 		{
 			if (array->contents[0] == NULL)
 				ret = darray_set(array, 0, (void*)path_found);
