@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/17 16:29:12 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/17 17:31:32 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ static void			set_network(t_network *net, size_t nb_ants)
 	len_diff = 0;
 	while (i < net->nb_of_flow)
 	{
-		net->flow[i].len = 3;
-		//net->flow[i].len = net->all_path->contents[i]->path->len - 1;
+		net->flow[i].len = ((t_path*)net->all_path->contents[i])->len - 1;
 		i++;
 	}
 	i = 0;

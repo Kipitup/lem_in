@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/04/09 16:37:39 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/17 17:29:35 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int8_t			bfs(t_solution *sol)
 	t_graph		*queue;
 	int8_t		ret;
 
+	ret = FAILURE;
 	if (sol != NULL)
 	{
-		ret = FAILURE;
 		queue = init_queue(sol->graph);
 		node = next_vertex(sol->graph, queue);
 		while (queue->array[0].head != NULL && ret != SUCCESS)

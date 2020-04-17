@@ -88,7 +88,7 @@ void			lem_in(t_lemin *lemin);
 ** ############################################################################
 */
 t_lemin			*init(void);
-void			init_sol(t_lemin *lemin);
+void			init_solution(t_lemin *lemin);
 t_solution		*init_new_solution(t_lemin *lemin);
 void			init_adjacency_list(t_st_machine *sm);
 void			parse(t_st_machine *sm);

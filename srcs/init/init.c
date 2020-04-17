@@ -88,7 +88,7 @@ t_lemin				*init(void)
 			lemin = sm->lemin;
 		else
 			clean_lemin(&(sm->lemin));
-		init_sol(lemin);
+		init_solution(lemin);
 		clean_state_machine(&sm);
 	}
 	return (lemin);

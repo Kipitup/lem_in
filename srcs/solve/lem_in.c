@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/16 15:15:30 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/17 17:32:21 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		lem_in(t_lemin *lemin)
 	if (lemin->result != NULL)
 	{
 		ret = SUCCESS;
-		print_adj_list(lemin->link);
+//		print_adj_list(lemin->link);
 		while (ret == SUCCESS)
 		{
 			sol = lemin->result;

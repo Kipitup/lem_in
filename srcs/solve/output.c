@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/17 17:17:14 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/17 17:33:13 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
 
 	ant = 1;
 	line = net->flow[0].len + net->flow[0].capacity;
+	vct_addchar(output, '\n');
 	while (line > 0)
 	{
 		i = 0;

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_sol.c                                         :+:      :+:    :+:   */
+/*   init_solution.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/15 11:15:51 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/17 17:28:15 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	init_sol(t_lemin *lemin)
+void	init_solution(t_lemin *lemin)
 {
 	t_solution	*sol;
 
@@ -31,6 +31,7 @@ t_solution	*init_new_solution(t_lemin *lemin)
 {
 	t_solution	*new_sol;
 
+	new_sol = NULL;
 	if (lemin != NULL)
 	{
 		new_sol = ft_memalloc(sizeof(t_solution));
