@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/09 10:27:56 by francis          ###   ########.fr        #
+#    Updated: 2020/04/15 09:19:21 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -66,6 +66,7 @@ LIB_PATH = $(LIB_DIR)/$(LIB)
 PATH_SRC += srcs
 PATH_SRC += srcs/init
 PATH_SRC += srcs/solve
+PATH_SRC += srcs/solve/bfs
 PATH_SRC += srcs/print
 PATH_SRC += srcs/clean
 
@@ -91,10 +92,16 @@ SRCS += parse_tools
 
 # solve
 SRCS += lem_in
-SRCS += bfs_list 
+
+# bfs
+SRCS += bfs
+
+# tools 
 SRCS += bfs_tools 
 SRCS += bfs_store_and_repath 
 SRCS += update_links
+SRCS += is_path_valid 
+SRCS += handle_link_used_both_way
 
 # print
 SRCS += print_queue 

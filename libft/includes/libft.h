@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/04/04 15:49:05 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/14 09:06:23 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define INTMAX_LEN				10
 # define DEBUG					OFF
 # define OPEN					0
+# define CLOSED					1
 
 # include <sys/types.h>
 # include <sys/stat.h>

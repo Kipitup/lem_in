@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bfs_list.c                                         :+:      :+:    :+:   */
+/*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/04/09 16:37:39 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/16 13:22:42 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ static void     remove_from_queue(t_graph *queue)
 	if (queue != NULL && queue->array[0].head != NULL)
 	{
 		if (is_vertex_visited_queue(queue, queue->array[0]) == FALSE)
-			add_edge_rear(queue, 1, queue->array[0].head->dest);
+		{
+			if (queue->array[1].head == NULL)
+				add_edge_one_way(queue, 1, queue->array[0].head->dest);
+			else
+				add_edge_rear(queue, 1, queue->array[0].head->dest);
+		}
 		remove_edge_one_way(queue, 0, queue->array[0].head->dest);
 	}
 }
@@ -50,9 +55,15 @@ static void		add_to_queue(t_graph *queue, t_adj_list node)
 	if (queue != NULL)
 	{
 		if (queue->array[0].head == NULL && node.head->available == OPEN)
+		{
 			add_edge_one_way(queue, 0, node.head->dest);
+			node.head->available = CLOSED;
+		}
 		else if (node.distance != UNVISITED && node.head->available == OPEN)
+		{
 			add_edge_rear(queue, 0, node.head->dest);
+			node.head->available = CLOSED;
+		}
 	}
 }
 
@@ -81,16 +92,18 @@ static int8_t	set_distance(t_adj_list node, t_graph *graph)
  ** protection in case of failure, need to free queue, also path
  */
 
-int8_t			bfs_list(t_solution *sol)
+int8_t			bfs(t_solution *sol)
 {
-	t_graph		*queue;
 	t_adj_list	node;
+	t_graph		*queue;
+	int8_t		ret;
 
-	queue = init_queue(sol->graph);
-	if (queue != NULL && sol != NULL)
+	if (sol != NULL)
 	{
-		node = get_vertex(sol->graph, 0);
-		while (queue != NULL)
+		ret = FAILURE;
+		queue = init_queue(sol->graph);
+		node = next_vertex(sol->graph, queue);
+		while (queue->array[0].head != NULL && ret != SUCCESS)
 		{
 			while (node.head != NULL)
 			{
@@ -99,13 +112,12 @@ int8_t			bfs_list(t_solution *sol)
 				else
 					node.head = node.head->next;
 			}
-			node = next_vertex(sol->graph, queue);
 			remove_from_queue(queue);
-			if (last_room_visited(sol->graph) == SUCCESS)
-				break ;
+			node = next_vertex(sol->graph, queue);
+			if (end_room_visited(sol->graph) == TRUE)
+				ret = SUCCESS;
 		}
-		store_path_and_reset(sol); //dont forget to clean path
 	}
 	clean_adj_graph(&queue);
-	return (0);
+	return (ret);
 }

@@ -6,42 +6,31 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/03 09:57:28 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/16 15:15:30 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		remove_link_used_both_way(t_graph *prev, t_graph *curr)
+void		lem_in(t_lemin *lemin)
 {
-	size_t		src;
-	t_adj_node	*node;
+	t_solution	*sol;
+	int8_t		ret;
 
-	src = 0;
-	while (src < prev->size)
+	if (lemin->result != NULL)
 	{
-		node = prev->array[src].head;
-		while (node != NULL)
+		ret = SUCCESS;
+		print_adj_list(lemin->link);
+		while (ret == SUCCESS)
 		{
-			if (src <= node->dest)
+			sol = lemin->result;
+			if ((ret = bfs(sol)) == SUCCESS)
 			{
-				if (is_link_used_both_way(prev, src, node->dest) == TRUE)
-					remove_edge(curr, src, node->dest);
+				if ((store_valid_path_and_reset(sol)) == FAILURE)
+					handle_link_used_both_way(lemin);
 			}
-			node = node->next;
 		}
 	}
-}
-
-void		handle_link_used_both_way(t_lemin *lemin)
-{
-	t_solution	*prev;
-
-	//save all valid paths
-
-//	lemin->result->next = init_new_solution(lemin->result);
-	prev = lemin->result;
-	lemin->result = lemin->result->next;
-	//need to had a pointer *prev in the t_solution so we can navigate easily
-	remove_link_used_both_way(prev->graph, lemin->result->graph);
+	while (lemin->result->prev != NULL)
+		lemin->result = lemin->result->prev;
 }

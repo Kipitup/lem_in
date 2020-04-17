@@ -6,21 +6,21 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 20:27:33 by francis           #+#    #+#             */
-/*   Updated: 2020/04/09 14:30:36 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/16 11:53:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int8_t		last_room_visited(t_graph *graph)
+uint8_t		end_room_visited(t_graph *graph)
 {
 	size_t	end_room_index;
-	int8_t	ret;
+	uint8_t	ret;
 
 	end_room_index = graph->size - 1;
-	ret = SUCCESS;
+	ret = TRUE;
 	if (graph->array[end_room_index].distance == UNVISITED)
-		ret = FAILURE;
+		ret = FALSE;
 	return(ret);
 }
 
@@ -53,8 +53,8 @@ t_graph		*init_queue(t_graph *graph_orig)
 		if (start_node != NULL)
 		{
 			start_node->dest = 0;
-			queue->array[1].head = start_node;
-			queue->array[1].distance = 0;
+			queue->array[0].head = start_node;
+			queue->array[0].distance = 0;
 			graph_orig->array[0].distance = 0;
 		}
 	}
