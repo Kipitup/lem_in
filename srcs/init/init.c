@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/14 09:38:10 by francis          ###   ########.fr       */
+/*   Updated: 2020/03/12 14:17:35 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ t_lemin				*init(void)
 	if (sm != NULL)
 	{
 		parse(sm);
-		last_quick_check(sm);
+		if (sm->state != E_ERROR)
+			last_quick_check(sm);
 		if (sm->state != E_ERROR)
 			lemin = sm->lemin;
 		else

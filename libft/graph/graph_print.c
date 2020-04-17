@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:06:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/05 16:45:44 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/10 18:07:05 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_adj_list(t_graph *graph)
 	{
 		while (i < graph->size)
 		{
-			ft_printf("vertex %d\nhead", i);
+			ft_printf("vertex %d [name: %s]\nhead", i, graph->array[i].name);
 			node = graph->array[i].head;
 			while (node != NULL)
 			{

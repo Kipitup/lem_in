@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:26:09 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/12 11:55:31 by fkante           ###   ########.fr       */
+/*   Updated: 2020/04/09 10:31:53 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,18 @@ static t_vector	**vct_fill(t_vector *vct_input, t_vector **vct_tab, char c,
 t_vector		**vct_split(t_vector *vct_input, char c)
 {
 	t_vector	**vct_tab;
+	t_vector	*dup_input;
 	size_t		count_word;
 
 	vct_tab = NULL;
-	if (vct_input != NULL)
+	dup_input = vct_dup(vct_input);
+	if (dup_input != NULL)
 	{
-		count_word = word_count(vct_input, c);
+		count_word = word_count(dup_input, c);
 		vct_tab = ft_memalloc((count_word + 1) * sizeof(t_vector*));
 		if (vct_tab != NULL)
-			vct_tab = vct_fill(vct_input, vct_tab, c, count_word);
+			vct_tab = vct_fill(dup_input, vct_tab, c, count_word);
 	}
+	vct_del(&dup_input);
 	return (vct_tab);
 }

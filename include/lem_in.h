@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/16 15:07:33 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 15:43:59 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,24 +81,20 @@ void			init_adjacency_list(t_st_machine *sm);
 void			parse(t_st_machine *sm);
 uint8_t			ant(t_st_machine *sm, t_vector *line);
 uint8_t			room(t_st_machine *sm, t_vector *line);
+int8_t			get_room(t_st_machine *sm, t_vector *line);
 uint8_t			room_link(t_st_machine *sm, t_vector *line);
 uint8_t			command(t_st_machine *sm, t_vector *line);
-int8_t 			get_room(t_st_machine *sm, t_vector *line);
-uint8_t			is_it_all_digit(t_vector *line);
-uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
-void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);
-uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
-								t_hashnode *dest);
 
 /*
 ** ############################################################################
 ** ################################# TOOL #####################################
 ** ############################################################################
 */
-void			get_second_coord(t_st_machine *sm, t_vector *coord,
-								t_vector *second_coord);
-t_vector		*get_coord(t_st_machine *sm, t_vector *line);
-t_vector	 	*get_room_name(t_st_machine *sm, t_vector *dup);
+void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);
+uint8_t			is_it_all_digit(t_vector *line);
+uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
+uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
+								t_hashnode *dest);
 
 /*
 ** ############################################################################

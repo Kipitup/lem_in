@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/08 18:15:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/09 09:31:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@
 # define NO_LINK_TO_START	"Missing a link to the start room"
 # define NO_LINK_TO_END		"Missing a link to the end room"
 # define DASH_IN_ROOM_NAME	"Room name cannot contain '-'"
+# define ROOM_START_WITH_L	"Room name cannot start with an 'L'"
+# define MANY_START_OR_END	"There is more than one room start or/and room end"
+# define COORD_NOT_INT		"Coordinates should be a positive integer"
+# define ANT_NOT_INT		"Ant should be a positive integer"
+# define NO_ROOM_AFTER_CMD	"No room specified after the command start or end"
+# define READ_LINE_ERR		"Reading the the standard input failed"
+# define ADD_EDGE_FAILED	"Adding an edge to the adjacency list failed"
 # define QUEUE_FULL	        "Queue Overflow, too many elements"
 # define QUEUE_EMPTY        "Queue is empty"
 

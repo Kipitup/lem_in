@@ -6,15 +6,17 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/08 17:38:36 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/10 18:08:54 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	GRAPH_H
 # define GRAPH_H
 
+# include <unistd.h>
+# include <stdint.h>
 # include <stdlib.h>
-# include <inttypes.h>
+# include <limits.h>
 
 /*
 **								ADJACENCY LIST
@@ -41,6 +43,7 @@ typedef struct	                        s_adj_node
 typedef struct	                        s_adj_list
 {
 	t_adj_node			*head;
+	char				*name;
 	ssize_t				distance;
 	uint8_t				usable;
 	char				padding[7];
@@ -62,6 +65,7 @@ uint8_t			does_link_exist(t_graph *graph, size_t src, size_t dest);
 int8_t			add_edge(t_graph *graph, size_t src, size_t dest);
 int8_t			add_edge_one_way(t_graph *graph, size_t src, size_t dest);
 int8_t			add_edge_rear(t_graph *graph, size_t src, size_t dest);
+int8_t			add_vertex_name(t_graph *graph, size_t i, char *name);
 void			remove_edge(t_graph *graph, size_t src, size_t dest);
 void			remove_edge_one_way(t_graph *graph, size_t src, size_t dest);
 t_adj_list		get_vertex(t_graph *graph, size_t src);
