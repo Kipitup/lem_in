@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/15 09:19:21 by francis          ###   ########.fr        #
+#    Updated: 2020/04/17 12:19:15 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -102,6 +102,8 @@ SRCS += bfs_store_and_repath
 SRCS += update_links
 SRCS += is_path_valid 
 SRCS += handle_link_used_both_way
+SRCS += output
+SRCS += choose_best_solution
 
 # print
 SRCS += print_queue 

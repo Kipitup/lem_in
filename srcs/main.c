@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/09 16:37:31 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/17 16:21:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(void)
 	{
 		lem_in(lemin);
 		print_all_path(lemin);
-		//ft_printf("\n\nNB OF ANTS: %zu\n", lemin->nb_ants);
+        print_final_output(lemin);
 	}
 	else
 		ft_dprintf(STD_ERR, "error\n");

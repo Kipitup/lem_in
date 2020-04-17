@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/09 15:43:59 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/17 17:18:17 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ enum	e_states
 	E_COMMAND = 3,
 	E_END = 4
 };
+
+typedef struct	s_flow
+{
+	size_t			len;
+	size_t			capacity;
+}				t_flow;
+
+typedef struct	s_network
+{
+	t_darray		*all_path;
+	t_flow			*flow;
+	size_t			nb_of_flow;
+}				t_network;
 
 typedef struct	s_path
 {
@@ -95,6 +108,7 @@ uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
 								t_hashnode *dest);
+t_network		*choose_best_solution(t_solution *result, size_t nb_ants);
 
 /*
 ** ############################################################################
@@ -131,6 +145,7 @@ uint8_t			is_path_valid(t_graph *graph, t_path *path);
 void			clean_lemin(t_lemin **lemin);
 void			clean_path(void *path);
 void			clean_state_machine(t_st_machine **sm);
+void			clean_network(t_network **net);
 
 /*
 ** ############################################################################
@@ -142,5 +157,6 @@ void			print_link_available(t_adj_list node);
 void			print_queue(t_graph *queue);
 void			print_path(t_path *path);
 void			print_all_path(t_lemin *lemin);
+void			print_final_output(t_lemin *lemin);
 
 #endif
