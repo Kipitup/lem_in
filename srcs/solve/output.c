@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/20 11:53:27 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/20 11:58:52 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ static uint8_t	push_next_ant_and_move_other(t_path *room, t_vector *output,
 
 	ret = FALSE;
 	if (room->next != NULL)
-	{
-//		room->next->ant_nb = room->ant_nb;
-		ret = add_next_ant_move(room->next, output, room->ant_nb);
-	}
+		ret = push_next_ant_and_move_other(room->next, output, room->ant_nb);
 	room->ant_nb = ant;
 	if (ant > 0)
 	{
