@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/17 17:32:21 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/20 09:46:55 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		lem_in(t_lemin *lemin)
 					handle_link_used_both_way(lemin);
 			}
 		}
-	}
+	}//protect if lemin == NULL || lemin->result == NUL
 	while (lemin->result->prev != NULL)
 		lemin->result = lemin->result->prev;
 }

@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/16 15:15:44 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/20 10:28:51 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ static size_t find_next_vertex(t_graph *graph, size_t index)
 	return ((size_t)next_vertex);
 }
 
+/*
+**	Becareful, the name of the path is not malloc. So do no free it from here.
+**	just put it to NULL
+*/
 static t_path	*trace_path(t_solution *sol)
 {
 	t_path	*path;
@@ -53,12 +57,15 @@ static t_path	*trace_path(t_solution *sol)
 	if (path != NULL)
 	{
 		path->vertex = index;
+		path->name = sol->graph->array[index].name;
+		ft_printf("name : %s\n", sol->graph->array[index].name);
 		while (index > 0)
 		{
 			vertex = find_next_vertex(sol->graph, index);
-			if ((new_step = ft_memalloc(sizeof(t_path))) != NULL)
+			if ((new_step = ft_memalloc(sizeof(t_path))) != NULL)//what if malloc fail
 			{
 				new_step->vertex = vertex;
+				new_step->name = sol->graph->array[vertex].name;
 				new_step->len = ++len;
 				lstadd(&path, new_step);
 				index = vertex;
