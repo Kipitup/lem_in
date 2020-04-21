@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/17 17:33:13 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/20 11:58:52 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@
 **	another structure. The free will be done there.
 */ 
 
-static uint8_t	add_next_ant_move(t_path *room, t_vector *output)
+static uint8_t	push_next_ant_and_move_other(t_path *room, t_vector *output,
+		size_t ant)
 {
 	uint8_t		ret;
 
 	ret = FALSE;
 	if (room->next != NULL)
-	{
-		room->next->ant_nb = room->ant_nb;
-		ret = add_next_ant_move(room->next, output);
-	}
-	if (room->ant_nb > 0)
+		ret = push_next_ant_and_move_other(room->next, output, room->ant_nb);
+	room->ant_nb = ant;
+	if (ant > 0)
 	{
 		vct_addchar(output, 'L');
 		vct_addnb(output, room->ant_nb);
@@ -46,26 +45,28 @@ static uint8_t	add_next_ant_move(t_path *room, t_vector *output)
 
 static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
 {
+	t_path		*room_after_start;
 	size_t		i;
-	size_t		line;
+	size_t		line_total;
 	size_t		ant;
 
 	ant = 1;
-	line = net->flow[0].len + net->flow[0].capacity;
-	vct_addchar(output, '\n');
-	while (line > 0)
+	line_total = net->flow[0].len + net->flow[0].capacity;
+	while (line_total > 0)
 	{
 		i = 0;
 		while (i <= net->all_path->end)
 		{
-			if (ant < nb_ants)
-				((t_path*)(net->all_path->contents[i]))->ant_nb = ant;
-			add_next_ant_move(net->all_path->contents[i], output);
+			room_after_start = ((t_path*)net->all_path->contents[i])->next;
+			if (ant <= nb_ants)
+				push_next_ant_and_move_other(room_after_start, output, ant);
+			else
+				push_next_ant_and_move_other(room_after_start, output, 0);
 			i++;
 			ant++;
 		}
 		vct_addchar(output, '\n');
-		line--;
+		line_total--;
 	}
 }
 

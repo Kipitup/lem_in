@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/21 12:44:11 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/17 16:21:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			main(void)
+int		main(void)
 {
 	t_lemin		*lemin;
 

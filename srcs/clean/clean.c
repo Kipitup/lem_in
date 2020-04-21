@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/21 14:25:57 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/21 15:11:39 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	clean_lst_path(void *path)
 
 	while (path != NULL)
 	{
-		ft_strdel(&((t_path*)path)->name);
+//		ft_strdel(&((t_path*)path)->name);
 		tmp = path;
 		path = ((t_path*)path)->next;
 		tmp->next = NULL;
