@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/17 16:21:12 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/21 16:29:36 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int		main(void)
 		print_all_path(lemin);
 		//        print_final_output(lemin);
 	}
-	else
-		ft_dprintf(STD_ERR, "error\n");
 	clean_lemin(&lemin);
 	// need to free all of sol list when its over
 	return (SUCCESS);

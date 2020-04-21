@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/21 17:31:37 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/21 17:58:35 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static t_path	*trace_path(t_solution *sol)
 	{
 		path->vertex = index;
 		path->name = sol->graph->array[index].name;
-		ft_printf("name : %s\n", sol->graph->array[index].name);
 		while (index > 0)
 		{
 			vertex = find_next_vertex(sol->graph, index);
@@ -103,7 +102,7 @@ int8_t			store_valid_path_and_reset(t_solution *sol)
 
 	array = sol->path;
 	ret = FAILURE;
-	if ((path_found = trace_path(sol)) != NULL)
+	if ((path_found = trace_path(sol)) != NULL)// free path if false
 	{
 		if (is_path_valid(sol->graph, path_found) == TRUE)
 		{

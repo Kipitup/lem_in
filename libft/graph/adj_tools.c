@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/20 12:02:38 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/21 16:28:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int8_t	dup_edge_recurse(t_adj_node	*node, t_graph *duplicate,
 }
 
 /*
-**	Create a duplicate of a given graph, with all his vertices and edges in the
-**	exact order.
-*/
+ **	Create a duplicate of a given graph, with all his vertices and edges in the
+ **	exact order.
+ */
 t_graph			*dup_adj_list(t_graph *graph)
 {
 	t_graph		*duplicate;
@@ -61,19 +61,22 @@ t_graph			*dup_adj_list(t_graph *graph)
 int8_t			add_vertex_name(t_graph *graph, size_t i, char *name)
 {
 	char		*dup_name;
-	int8_t		ret;
-	
-	ret = FAILURE;
+
 	if (graph != NULL && name != NULL)
 	{
-		dup_name = ft_strdup(name);
-		if (dup_name != NULL)
+		if (graph->array[i].name == NULL)
 		{
-			graph->array[i].name = dup_name;
-			ret = SUCCESS;
+			dup_name = ft_strdup(name);
+			if (dup_name != NULL)
+			{
+				graph->array[i].name = dup_name;
+				return (SUCCESS);
+			}
 		}
+		else
+				return (SUCCESS);
 	}
-	return (ret);
+	return (FAILURE);
 }
 
 t_adj_list		get_vertex(t_graph *graph, size_t src)
@@ -81,14 +84,14 @@ t_adj_list		get_vertex(t_graph *graph, size_t src)
 	t_adj_list	vertex;
 
 	//if (graph != NULL)
-		vertex = graph->array[src];
+	vertex = graph->array[src];
 	return (vertex);
 }
 
 /*
-**	Get the link (edge) between vertices src and dest. If the link does not
-**	exist, NULL is return.
-*/
+ **	Get the link (edge) between vertices src and dest. If the link does not
+ **	exist, NULL is return.
+ */
 t_adj_node		*get_link(t_graph *graph, size_t src, size_t dest)
 {
 	t_adj_node	*node;
