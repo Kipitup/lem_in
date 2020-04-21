@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/16 15:15:44 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/21 14:46:50 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,28 @@ static void	lstadd(t_path **alst, t_path *new)
 
 static size_t find_next_vertex(t_graph *graph, size_t index)
 {
-	t_adj_list	current_vertex;
+	t_adj_list	current;
+	t_adj_node	*link;
 	ssize_t		distance_orig;
-	ssize_t		next_vertex;
+	ssize_t		next;
 
-	current_vertex = graph->array[index];
-	distance_orig = current_vertex.distance;
-	while (current_vertex.head != NULL)
+	current = graph->array[index];
+	distance_orig = current.distance;
+	while (current.head != NULL)
 	{
-		next_vertex = current_vertex.head->dest;
-		if (graph->array[next_vertex].distance == distance_orig - 1)
-			break ;
-		current_vertex.head = current_vertex.head->next;
+		next = current.head->dest;
+		if (graph->array[next].distance == distance_orig - 1)
+		{
+			link = get_link(graph, next, index);
+			if (link->available == CLOSED)
+			{
+				graph->array[next].usable++;
+				break ;
+			}
+		}
+		current.head = current.head->next;
 	}
-	return ((size_t)next_vertex);
+	return ((size_t)next);
 }
 
 static t_path	*trace_path(t_solution *sol)
@@ -99,7 +107,10 @@ int8_t			store_valid_path_and_reset(t_solution *sol)
 			update_links(sol);
 		}
 		else
+		{
 			update_links_with_last_wrong_path(sol, path_found);
+			clean_lst_path(path_found);
+		}
 	}
 	reset_distance(sol->graph);
 	return (ret);

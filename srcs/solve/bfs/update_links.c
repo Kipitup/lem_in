@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 10:25:32 by francis           #+#    #+#             */
-/*   Updated: 2020/04/15 10:32:39 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/21 10:12:13 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	reset_links(t_graph *graph)
 		tmp = graph->array[i].head;
 		while (tmp != NULL)
 		{
-			tmp->available = OPEN;
+			if (tmp->available == CLOSED)
+				tmp->available = OPEN;
 			tmp = tmp->next;
 		}
 		i++;
@@ -33,7 +34,7 @@ static void	reset_links(t_graph *graph)
 void	update_links(t_solution *sol)
 {
 	t_path		*path;
-	t_path		*current;
+	t_path		*curr;
 	t_path		*next;
 	t_adj_node	*link;
 	size_t		i;
@@ -43,14 +44,17 @@ void	update_links(t_solution *sol)
 	while (i <= sol->path->end)
 	{
 		path = sol->path->contents[i];
-		current = path;
-		while (current->next != NULL && current->vertex != sol->graph->size - 1)
+		if (path != NULL)
 		{
-			next = current->next;
-			link = get_link(sol->graph, current->vertex, next->vertex);
-			if (link != NULL)
-				link->available = CLOSED;
-			current = current->next;
+			curr = path;
+			while (curr->next != NULL && curr->vertex != sol->graph->size - 1)
+			{
+				next = curr->next;
+				link = get_link(sol->graph, curr->vertex, next->vertex);
+				if (link != NULL && link->available < USED_MULTIPLE)
+					link->available = CLOSED;
+				curr = curr->next;
+			}
 		}
 		i++;
 	}

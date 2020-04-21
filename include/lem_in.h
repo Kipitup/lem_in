@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/17 17:18:17 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/21 12:42:57 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ uint8_t			command(t_st_machine *sm, t_vector *line);
 ** ############################################################################
 */
 void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);
+void			rewind_solution(t_lemin *lemin);
 uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
@@ -136,6 +137,7 @@ void			update_links_with_last_wrong_path(t_solution *sol, t_path *pa);
 int8_t			store_valid_path_and_reset(t_solution *sol);
 void			handle_link_used_both_way(t_lemin *lemin);
 uint8_t			is_path_valid(t_graph *graph, t_path *path);
+uint8_t			check_vertex_used(t_solution *sol);
 
 /*
 ** ############################################################################
@@ -146,6 +148,8 @@ void			clean_lemin(t_lemin **lemin);
 void			clean_path(void *path);
 void			clean_state_machine(t_st_machine **sm);
 void			clean_network(t_network **net);
+void			clean_all_solution(t_lemin **lemin);
+void			clean_lst_path(void *path);
 
 /*
 ** ############################################################################

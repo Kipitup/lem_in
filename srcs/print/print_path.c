@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/04/16 10:47:53 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/21 12:50:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,24 @@ void	print_all_path(t_lemin *lemin)
 	t_solution *begin;
 	t_path 		*path;
 	size_t i;
-	size_t j;
 
 	begin = lemin->result;
-	j = 0;
 	while (lemin->result != NULL)
 	{
-		ft_printf("----------Path sequence %d----------\n", j);
+		ft_printf("{c_blue}------------ Path sequence ------------{c_end}\n");
 		i = 0;
-		while (lemin->result->path->contents[i] != NULL)
+		while (i <= lemin->result->path->end)
 		{
 			path = lemin->result->path->contents[i];
-			print_path(path);
-			ft_printf("Path length = %d\n\n", path->len);
+			if (path != NULL)
+			{
+				print_path(path);
+				ft_printf("Path length = %d\n\n", path->len);
+			}
 			i++;
 		}
-		j++;
 		lemin->result = lemin->result->next;
 	}
 	lemin->result = begin;
+	rewind_solution(lemin);
 }

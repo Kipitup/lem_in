@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:05:43 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/02 12:21:48 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/21 12:39:32 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		clean_adj_graph(t_graph **graph)
 		while (i < (*graph)->size)
 		{
 			clean_recurse(&((*graph)->array[i].head));
+			ft_memdel((void**)&((*graph)->array[i].name));
 			i++;
 		}
 		ft_memdel((void**)&((*graph)->array));

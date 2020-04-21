@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_path_valid.c                                    :+:      :+:    :+:   */
+/*   rewind_solution.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/14 10:37:12 by francis           #+#    #+#             */
-/*   Updated: 2020/04/21 10:36:03 by francis          ###   ########.fr       */
+/*   Created: 2020/04/21 12:43:43 by francis           #+#    #+#             */
+/*   Updated: 2020/04/21 12:45:20 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-
-uint8_t			is_path_valid(t_graph *graph, t_path *path)
+void	rewind_solution(t_lemin *lemin)
 {
-	t_path		*begin;
-	t_path		*nx;
-	size_t		end;
-	int8_t		ret;
-
-	begin = path;
-	ret = TRUE;
-	end = graph->size - 1;
-	if (path->vertex == 0)
+	if (lemin != NULL && lemin->result != NULL)
 	{
-		while (path->next != NULL)
-		{
-			nx = path->next;
-			if (is_link_used_both_way(graph, path->vertex, nx->vertex) == TRUE)
-				ret = FALSE;
-			path = path->next;
-		}
-		if (path->vertex != end)
-			ret = FALSE;
+		while (lemin->result->prev != NULL)
+			lemin->result = lemin->result->prev;
 	}
-	path = begin;
-	return (ret);
 }

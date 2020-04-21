@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/17 17:26:23 by amartinod        ###   ########.fr        #
+#    Updated: 2020/04/21 12:44:43 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -104,6 +104,8 @@ SRCS += is_path_valid
 SRCS += handle_link_used_both_way
 SRCS += output
 SRCS += choose_best_solution
+SRCS += check_vertex_used
+SRCS += rewind_solution
 
 # print
 SRCS += print_queue 

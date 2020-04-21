@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/09 09:31:12 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/20 11:28:54 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define UNVISITED			-1
 # define OPEN				0
 # define CLOSED				1
+# define USED_MULTIPLE		2
 
 # define COMMENT			0
 # define COMMAND			1
