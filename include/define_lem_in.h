@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/20 11:28:54 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/22 11:39:14 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ROOM_LINK			4
 # define SPECIAL_ROOM		5
 # define NOT_SET			-1
+# define VISU				1
 
 # define MALLOC_ERR			"memory allocation failed"
 # define ROOM_DONT_EXIST	"You're trying to link a room that doesn't exist"

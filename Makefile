@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/21 16:04:34 by francis          ###   ########.fr        #
+#    Updated: 2020/04/22 12:03:39 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -83,6 +83,7 @@ SRCS += main
 # init
 SRCS += init
 SRCS += init_solution
+SRCS += init_file_for_visu
 SRCS += parse
 SRCS += parse_ant
 SRCS += parse_room
