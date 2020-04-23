@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/22 14:12:21 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/22 17:32:14 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void			lem_in(t_lemin *lemin);
 */
 t_lemin			*init(void);
 void			init_solution(t_lemin *lemin);
-void			init_file_for_visu(t_graph *graph);
+void			init_file_for_visu(t_graph *graph, t_network *net);
 t_solution		*init_new_solution(t_lemin *lemin);
 void			init_adjacency_list(t_st_machine *sm);
 void			parse(t_st_machine *sm);

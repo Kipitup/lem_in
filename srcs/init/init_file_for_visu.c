@@ -6,15 +6,16 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 11:57:52 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/22 14:38:22 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/23 11:37:14 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	init_file_for_visu(t_graph *graph)
+void	init_file_for_visu(t_graph *graph, t_network *net)
 {
 	t_adj_node	*node;
+	t_path		*tmp;
 	size_t		i;
 	int			fd;
 	
@@ -30,6 +31,18 @@ void	init_file_for_visu(t_graph *graph)
 				ft_dprintf(fd, "%zu-%zu\n", i, node->dest);
 				node = node->next;
 			}
+			i++;
+		}
+		i = 0;
+		while (i <= net->all_path->end)
+		{
+			tmp = net->all_path->contents[i];
+			while (tmp != NULL)
+			{
+				ft_dprintf(fd, "%zu ", tmp->vertex);
+				tmp = tmp->next;
+			}
+			ft_dprintf(fd, "\n");
 			i++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/20 11:58:52 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/22 17:31:22 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void				print_final_output(t_lemin *lemin)
 		net = choose_best_solution(lemin->result, lemin->nb_ants);
 		if (net != NULL)
 		{
+			if (VISU == TRUE) 
+				init_file_for_visu(lemin->link, net);
 			increase_by = net->flow[0].len + net->flow[0].capacity;
 			increase_by *= net->flow[0].capacity * 10;
 			if (vct_increase_scale(lemin->output, increase_by) == SUCCESS)
