@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    unit_test.sh                                       :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/27 17:38:05 by amartino          #+#    #+#              #
-#    Updated: 2020/04/23 15:54:58 by amartinod        ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 #!/bin/bash
 
 #====ARGV=====#
@@ -16,6 +5,7 @@
 # '-n' : true if the lenght of the string is nonzero
 parsing=false
 gen=false
+gen_option=false
 path_to_map=false
 continue=false
 verbose=false
@@ -63,6 +53,15 @@ then
 	elif [[ $1 == "gen" ]] || [[ $2 == "gen" ]]
 	then
 		gen=true
+		if [[ $2 == *"--"* ]]
+		then
+			gen_option=$2
+		elif [[ $3 == *"--"* ]]
+		then
+			gen_option=$3
+		else
+			gen_option="--help"
+		fi
 	else
 		if [ -n "$2" ]
 		then
@@ -108,7 +107,15 @@ END_C="\033[0m";
 printf "\n----> ${CYAN}U ${MAGENTA}N ${YELLOW}I ${WHITE}T  ${RED}T ${GREEN}E ${YELLOW}S ${MAGENTA}T ${END_C} ${HIGH}LEM-IN${END_C} <----\n\n"
 
 
-#======MAKE======#
+#======MAKE======#Participer à la réunion Zoom
+https://us02web.zoom.us/j/89372536342?pwd=bzYzcHZRd0hvZCtpMGU5MzBjeEtGZz09
+
+ID de réunion : 893 7253 6342
+Mot de passe : 8kff4W
+
+
+
+
 echo "----> ${GREEN}Makefile running${END_C}\n"
 
 # redirige la sortie d'erreur (2) et la sortie standard (1) dans un fichier
@@ -231,12 +238,17 @@ elif [ "$gen" = true ]
 then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
-	./generator --flow-ten > maps/generator/flow_ten.map
-	if [ "$leak" = true ]
+	if [[ $gen_option == "--help" ]]
 	then
-		$VALGRIND $SHOW_LEAK $EXEC < maps/generator/flow_ten.map
+		./generator $gen_option
 	else
-		$EXEC < maps/generator/flow_ten.map
+		./generator $gen_option > maps/generator/random.map
+		if [ "$leak" = true ]
+		then
+			$VALGRIND $SHOW_LEAK $EXEC < maps/generator/random.map
+		else
+			$EXEC < maps/generator/random.map
+		fi
 	fi
 else
 	printf "\n      ${UNDERLINE}${YELLOW}manual mode:${END_C}\n\n"
