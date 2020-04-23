@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/21 17:59:32 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/17 17:32:21 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,8 @@ void		lem_in(t_lemin *lemin)
 			sol = lemin->result;
 			if ((ret = bfs(sol)) == SUCCESS)
 			{
-				if (link_used_both_ways(sol->graph) == TRUE)
+				if ((store_valid_path_and_reset(sol)) == FAILURE)
 					handle_link_used_both_way(lemin);
-				else
-					store_valid_path_and_reset(sol);
-				/*else
-				{
-					if (check_vertex_used(sol) == TRUE)
-						update_links(sol);
-				}*/
 			}
 		}
 	}//protect if lemin == NULL || lemin->result == NULL

@@ -6,11 +6,36 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 10:34:48 by francis           #+#    #+#             */
-/*   Updated: 2020/04/16 15:16:08 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/23 16:13:57 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+uint8_t			link_used_both_ways(t_graph *graph)
+{
+	t_adj_node	*current;
+	size_t		i;
+	uint8_t		ret;
+
+	ret = FALSE;
+	i = 0;
+	if (graph != NULL)
+	{
+		while (i < graph->size)
+		{
+			current = graph->array[i].head;
+			while (current != NULL)
+			{
+				if (is_link_used_both_way(graph, i, current->dest) == TRUE)
+					ret = TRUE;
+				current = current->next;
+			}
+			i++;
+		}
+	}
+	return (ret);
+}
 
 static void	remove_link_used_both_way(t_graph *prev, t_graph *curr)
 {

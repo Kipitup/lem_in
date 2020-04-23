@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/21 17:58:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/21 17:31:37 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int8_t			store_valid_path_and_reset(t_solution *sol)
 				ret = darray_set(array, 0, (void*)path_found);
 			else
 				ret = darray_push(array, (void*)path_found);
-			update_links(sol);
+			check_vertex_used(sol);
 		}
 		else
 		{

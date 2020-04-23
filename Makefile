@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/22 12:03:39 by amartinod        ###   ########.fr        #
+#    Updated: 2020/04/21 12:44:43 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -99,6 +99,7 @@ SRCS += bfs
 
 # tools 
 SRCS += bfs_tools 
+SRCS += bfs_second_tools 
 SRCS += bfs_store_and_repath 
 SRCS += update_links
 SRCS += is_path_valid 

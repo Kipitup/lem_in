@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/22 17:32:14 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/21 12:42:57 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,11 +135,13 @@ void			add_step(t_adj_list *node, size_t step);
 uint8_t			end_room_visited(t_graph *graph);
 void			update_links(t_solution *sol);
 void			update_links_with_last_wrong_path(t_solution *sol, t_path *pa);
+void			reset_vertex_usable(t_graph *graph, t_path *pth, size_t index);
 int8_t			store_valid_path_and_reset(t_solution *sol);
 void			handle_link_used_both_way(t_lemin *lemin);
 uint8_t			link_used_both_ways(t_graph *graph);
 uint8_t			is_path_valid(t_graph *graph, t_path *path);
-uint8_t			check_vertex_used(t_solution *sol);
+int8_t			check_vertex_used(t_solution *sol);
+size_t			first_path_with_multiple(t_solution *sol, size_t index);
 
 /*
 ** ############################################################################
