@@ -13,18 +13,18 @@ leak=false
 
 usage () #
 {
-	printf "Usage: ./unit_test [-c | v | l] [parsing | path_to_map | gen]\n\n"
-	echo "You must specify the type of test you want to do:"
-	echo "\tparsing : test all incorrect map"
-	echo "\tpath_to_map : launch the program with a specific map to test\n"
-	echo "\tgen : launch the generator\n"
-	echo "optional flag:"
-	echo "\t-c: if error, continue"
-	echo "\t-v: verbose"
-	echo "\t-l: check leaks"
-	echo "\t--help: show this help message and exit"
-	echo "For multiple flags, put everything in the same argument:"
-	echo "\texample :-cvl\n"
+	printf "Usage: ./unit_test [-c | v | l] [parsing | path_to_map | gen [generator option]]\n\n"
+	printf "You must specify the type of test you want to do:\n"
+	printf "\tparsing : test all incorrect map\n"
+	printf "\tpath_to_map : launch the program with a specific map to test\n"
+	printf "\tgen : launch the generator.\n\n"
+	printf "optional flag:\n"
+	printf "\t-c: if error, continue\n"
+	printf "\t-v: verbose\n"
+	printf "\t-l: check leaks\n"
+	printf "\t--help: show this help message and exit\n"
+	printf "For multiple flags, put everything in the same argument:\n"
+	printf "\texample :-cvl\n\n"
 	exit
 }
 
@@ -88,35 +88,27 @@ SHOW_LEAK="--track-origins=yes --leak-check=full --show-leak-kinds=definite,indi
 
 
 #======COLORS======#
-EOC="\033[0m";
-RED="\033[31m";
-GREEN="\033[32m";
-LIGHT_GREEN="\033[92m";
-YELLOW="\033[33m"
-BLUE="\033[34m"
-MAGENTA="\033[35m"
-CYAN="\033[36m"
-WHITE="\033[37m"
-HIGH="\033[1m";
-UNDERLINE="\033[4m";
-END_C="\033[0m";
+EOC="\e[0m";
+RED="\e[31m";
+GREEN="\e[32m";
+LIGHT_GREEN="\e[92m";
+YELLOW="\e[33m"
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+CYAN="\e[36m"
+WHITE="\e[37m"
+HIGH="\e[1m";
+UNDERLINE="\e[4m";
+END_C="\e[0m";
 
 
 #======START TEST======#
 # Beautifulllll message
-printf "\n----> ${CYAN}U ${MAGENTA}N ${YELLOW}I ${WHITE}T  ${RED}T ${GREEN}E ${YELLOW}S ${MAGENTA}T ${END_C} ${HIGH}LEM-IN${END_C} <----\n\n"
+printf "\n----> ${CYAN}U ${MAGENTA}N ${YELLOW}I ${WHITE}T  ${RED}T ${GREEN}E ${YELLOW}S ${MAGENTA}T ${END_C} ${HIGH}LEM-IN${END_C} <----\n"
 
 
-#======MAKE======#Participer à la réunion Zoom
-https://us02web.zoom.us/j/89372536342?pwd=bzYzcHZRd0hvZCtpMGU5MzBjeEtGZz09
-
-ID de réunion : 893 7253 6342
-Mot de passe : 8kff4W
-
-
-
-
-echo "----> ${GREEN}Makefile running${END_C}\n"
+#======MAKE======#
+printf "\n----> ${GREEN}Makefile running${END_C}\n"
 
 # redirige la sortie d'erreur (2) et la sortie standard (1) dans un fichier
 # '#?': return value of the last executed command
@@ -150,7 +142,7 @@ check_leak () # $1 is the test file
 			if [ "$verbose" = true ]
 			then
 				cat $LOG_LEAK
-				echo ""
+				printf "\n"
 			fi
 			if [ "$continue" = false ]
 			then
@@ -170,14 +162,14 @@ check_output_parsing_map () # $1 is the test file
 		if [ "$verbose" = true ]
 		then
 			cat $LOG_EXEC
-			echo ""
+			printf "\n"
 		fi
 	else
 		printf "${RED}✖${END_C}\n"
 		if [ "$verbose" = true ]
 		then
 			cat $LOG_EXEC
-			echo ""
+			printf "\n"
 		fi
 		if [ "$continue" = false ]
 		then
@@ -214,7 +206,7 @@ check_output_correct_map () # $1 is the test file
 # '-f': vrai si le fichier existe dans le répertoire courant
 # '-s': vrai si le fichier existe dans le répertoire courant et si sa taille est supérieure à zéro
 # '&' indicate that what follow is a file descriptor
-echo "----> ${GREEN}Running unit tests:${END_C}\n"
+printf "\n----> ${GREEN}Running unit tests:${END_C}\n"
 
 if [ "$parsing" = true ]
 then
