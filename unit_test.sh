@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/27 17:38:05 by amartino          #+#    #+#              #
-#    Updated: 2020/04/08 18:57:35 by amartinod        ###   ########.fr        #
+#    Updated: 2020/04/23 15:54:58 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
@@ -14,11 +14,29 @@
 #====ARGV=====#
 # '-z' : true if the lenght of the string is 0
 # '-n' : true if the lenght of the string is nonzero
-correct=true
-incorrect=true
+parsing=false
+gen=false
+path_to_map=false
 continue=false
 verbose=false
 leak=false
+
+usage () #
+{
+	printf "Usage: ./unit_test [-c | v | l] [parsing | path_to_map | gen]\n\n"
+	echo "You must specify the type of test you want to do:"
+	echo "\tparsing : test all incorrect map"
+	echo "\tpath_to_map : launch the program with a specific map to test\n"
+	echo "\tgen : launch the generator\n"
+	echo "optional flag:"
+	echo "\t-c: if error, continue"
+	echo "\t-v: verbose"
+	echo "\t-l: check leaks"
+	echo "\t--help: show this help message and exit"
+	echo "For multiple flags, put everything in the same argument:"
+	echo "\texample :-cvl\n"
+	exit
+}
 
 if [ -n "$1" ]
 then
@@ -36,38 +54,31 @@ then
 	fi
 	if [[ $1 == "--help" ]]
 	then
-		printf "Usage: ./unit_test [-c | -v | -l] [correct | incorrect]\n"
-		echo "-c: if error, continue"
-		echo "-v: verbose"
-		echo "-l: check leaks"
-		echo "correct: test only the correct map"
-		echo "incorrect: test only the incorrect map"
+		usage
 		exit
 	fi
-	if [[ $1 == "correct" ]]
+	if [[ $1 == "parsing" ]] || [[ $2 == "parsing" ]]
 	then
-		incorrect=false
-	fi
-	if [[ $1 == "incorrect" ]]
+		parsing=true
+	elif [[ $1 == "gen" ]] || [[ $2 == "gen" ]]
 	then
-		correct=false
-	fi
-	if [ -n "$2" ]
-	then
-		if [[ $2 == "correct" ]]
+		gen=true
+	else
+		if [ -n "$2" ]
 		then
-			incorrect=false
-		fi
-		if [[ $2 == "incorrect" ]]
-		then
-			correct=false
+			path_to_map=$2
+		else
+			path_to_map=$1
 		fi
 	fi
+else
+	usage
+	exit
 fi
 
 #====EDIT PATH=====#
 EXEC=./lem-in
-MAP_DIR=maps/map_unit_test
+MAP_DIR=maps/
 INCORRECT_MAP_DIR=incorrect_map
 CORRECT_MAP_DIR=correct_map
 LOG_MAKE=/tmp/log_makefile.txt
@@ -117,6 +128,7 @@ then
 fi
 
 #======MAIN_FUNC======#
+
 # The grep is done because, sometime, after a test is leaking, the next one
 # throw a comment even though there is no leak. So I make sure there is no
 # comment before throwing an error. If you know why, please fix it.
@@ -141,7 +153,7 @@ check_leak () # $1 is the test file
 	fi
 }
 
-check_output_incorrect_map () # $1 is the test file
+check_output_parsing_map () # $1 is the test file
 {
 	OUTPUT="$(printf $1 | cut -d '/' -f 4):"
 	printf "      ${WHITE}%-35s ${END_C}" $OUTPUT
@@ -197,7 +209,7 @@ check_output_correct_map () # $1 is the test file
 # '&' indicate that what follow is a file descriptor
 echo "----> ${GREEN}Running unit tests:${END_C}\n"
 
-if [ "$incorrect" = true ]
+if [ "$parsing" = true ]
 then
 	printf "      ${UNDERLINE}${YELLOW}incorrect map:${END_C}\n\n"
 	
@@ -212,30 +224,29 @@ then
 			else
 				$EXEC < $MAP > $LOG_EXEC 2>&1
 			fi
-			check_output_incorrect_map $MAP
+			check_output_parsing_map $MAP
 		fi
 	done
-fi
-
-if [ "$correct" = true ]
+elif [ "$gen" = true ]
 then
-	printf "\n      ${UNDERLINE}${YELLOW}correct map:${END_C}\n\n"
-	
-	for MAP in ${MAP_DIR}/${CORRECT_MAP_DIR}/*.map
-	do
-		if test -f $MAP
-		then
-			if [ "$leak" = true ]
-			then
-				$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1
-				check_leak $MAP
-			else
-				$EXEC < $MAP > $LOG_EXEC 2>&1
-			fi
-			check_output_correct_map $MAP
-		fi
-	done
+	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
+
+	./generator --flow-ten > maps/generator/flow_ten.map
+	if [ "$leak" = true ]
+	then
+		$VALGRIND $SHOW_LEAK $EXEC < maps/generator/flow_ten.map
+	else
+		$EXEC < maps/generator/flow_ten.map
+	fi
+else
+	printf "\n      ${UNDERLINE}${YELLOW}manual mode:${END_C}\n\n"
+	if [ "$leak" = true ]
+	then
+		$VALGRIND $SHOW_LEAK $EXEC < $path_to_map
+	else
+		$EXEC < $path_to_map
+	fi
 fi
 
 #======THE END======#
-printf "\n\n----> ${GREEN}Unit test complete!${END_C}\n"
+printf "\n----> ${GREEN}Unit test complete!${END_C}\n"
