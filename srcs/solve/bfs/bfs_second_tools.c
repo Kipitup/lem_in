@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 21:22:36 by francis           #+#    #+#             */
-/*   Updated: 2020/04/24 10:35:01 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/24 10:46:18 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	reset_vertex_usable(t_graph *graph, t_path *path, size_t vertex_index)
 			{
 				link = get_link(graph, path->vertex, next->vertex);
 				if (link != NULL)
-
+					link->available = 0;
 			}
 			if (path->vertex != 0 && path->vertex != graph->size - 1)
 				graph->array[path->vertex].usable--;
