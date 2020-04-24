@@ -6,40 +6,28 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/24 10:27:03 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/24 16:01:10 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void			print_debug_network(t_network *net)
-{
-	size_t	i;
-
-	i = 0;
-	while (net != NULL && i < net->nb_of_flow)
-	{
-		ft_dprintf(STD_ERR, "flow[%zu]:\n\t- len is    %zu\n\tcapacity is %zu\n",
-				i, net->flow[i].len, net->flow[i].capacity);
-		i++;
-	}
-}
-
 /*
 **	We substract the diff from the nb_ants ant dispatch it equally among each
-**	flow. Then add the diff between flow[last].len - flow[i].len w/ 0 < i < last
+**	flow. Then add the diff between flow[last_index].len - flow[i].len
+**	with 0 < i < last_index
 */
-static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
+static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff,
+		size_t	last_index)
 {
 	size_t		i;
-	size_t		last;
 	uint32_t	rest;
 
 	i = 0;
-	rest = (nb_ants - diff) % net->nb_of_flow;
-	while (i < net->nb_of_flow)
+	rest = (nb_ants - diff) % (last_index + 1);
+	while (i <= last_index)
 	{
-		net->flow[i].capacity = (nb_ants - diff) / net->nb_of_flow;
+		net->flow[i].capacity = (nb_ants - diff) / (last_index + 1);
 		if (rest > 0)
 		{
 			net->flow[i].capacity++;
@@ -48,10 +36,9 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 		i++;
 	}
 	i = 0;
-	last = net->nb_of_flow - 1;
-	while (i < last)
+	while (i < last_index)
 	{
-		net->flow[i].capacity += net->flow[last].len - net->flow[i].len;
+		net->flow[i].capacity += net->flow[last_index].len - net->flow[i].len;
 		i++;
 	}
 }
@@ -59,33 +46,41 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 /*
 **	The len of each flow is define by then len of the path - 1;	
 **
-**	Diff is the sum of the difference between the biggest flow's and each other
-**	flow's len.
+**	Diff is the sum of the difference between the biggest usable flow's and each
+**	other flow's len. All the flow won't necessarily usable. If the number of
+**	ant is to small, only the smaller flow will be used.
 **	diff = flow[last].len - flow[0].len + ... + flow[last].len - flow[i].len;
 **	with 0 < i < last
+**	
 **	Since the paths are stored in the ascending order, last.len > i.len.
 */
 static void			set_network(t_network *net, size_t nb_ants)
 {
 	size_t		i;
 	size_t		last;
-	int64_t		len_diff;
+	size_t		len_diff;
 
 	i = 0;
-	len_diff = 0;
 	while (i < net->nb_of_flow)
 	{
 		net->flow[i].len = ((t_path*)net->all_path->contents[i])->len - 1;
 		i++;
 	}
-	i = 0;
 	last = net->nb_of_flow - 1;
-	while (i < last)
+	while (last > 0)
 	{
-		len_diff += net->flow[last].len - net->flow[i].len;
-		i++;
+		i = 0;
+		len_diff = 0;
+		while (i < last)
+		{
+			len_diff += net->flow[last].len - net->flow[i].len;
+			i++;
+		}
+		if (len_diff < nb_ants)
+			break ;
+		last--;
 	}
-	set_capacity(net, nb_ants, len_diff);
+	set_capacity(net, nb_ants, len_diff, last);
 }
 
 static t_network	*init_and_set_network(t_darray *all_path, size_t nb_ants)

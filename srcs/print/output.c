@@ -6,22 +6,29 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/22 17:31:22 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/24 12:21:57 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-//the path need to be store from the smallest to highest
-//need the lenght of each path
-//need to dispatch correctly te last ants in regards of the paths' lenght
-//need to clear the path of all ants (when all ants have been sent in the path)
+void			print_debug_network(t_network *net)
+{
+	size_t	i;
+
+	i = 0;
+	while (net != NULL && i < net->nb_of_flow)
+	{
+		ft_dprintf(STD_ERR, "flow[%zu]:\n\t- len is    %zu\n\tcapacity is %zu\n",
+				i, net->flow[i].len, net->flow[i].capacity);
+		i++;
+	}
+}
 
 /*
 **	Here net->path is not freed because it was not allocated in network but from
 **	another structure. The free will be done there.
 */ 
-
 static uint8_t	push_next_ant_and_move_other(t_path *room, t_vector *output,
 		size_t ant)
 {

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/10 18:08:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/24 16:12:34 by amartinod        ###   ########.fr       */
 /*                                         how to know if something has been written in the standard output c                                   */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ static void	add_link_adj_list(t_st_machine *sm, t_vector *nsrc, t_vector *ndest)
 	src = hashmap_get(sm->lemin->room, vct_getstr(nsrc));
 	dest = hashmap_get(sm->lemin->room, vct_getstr(ndest));
 	if (src == NULL || dest == NULL)
+	{
+		ft_printf("src->name %s and adresse src %p\nsrc->name %s and adresse src %p\n", nsrc->str, src, ndest->str, dest);
 		sm->state = ft_perror_failure(ROOM_DONT_EXIST, __FILE__, __LINE__);
+	}
 	else
 	{
 		get_node_index(sm, src, dest);

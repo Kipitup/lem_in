@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/24 10:15:11 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/24 16:00:04 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,6 @@ void			print_path(t_path *path);
 void			print_all_path(t_darray *all_path);
 void			print_all_solution(t_lemin *lemin);
 void			print_final_output(t_lemin *lemin);
+void			print_debug_network(t_network *net);
 
 #endif
