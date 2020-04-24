@@ -1,24 +1,16 @@
-#let's go
 10
 1 0 -0000000000000023
 2 1 1
 this_is_aR00m 2 0
-#next room will be the start
 ##start
 start 0 1
-#I will have to test that after a command there is a room, otherwise it's wrong
 an0ther_ro0m 3 0
-#let's
-#go for the end
 ##end
 THE_END 1 1
-#done for the room NOW the links
 start-1
 1-2
 2-1
 1-2
 2-1
-#comment right in the middle of - the links
 2-this_is_aR00m
 this_is_aR00m-THE_END
-##i'm done guys, please ignore me

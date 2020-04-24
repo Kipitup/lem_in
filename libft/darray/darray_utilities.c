@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:36:23 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/04 17:02:31 by amartino         ###   ########.fr       */
+/*   Updated: 2020/04/24 10:25:48 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,34 @@ void	*darray_get(t_darray *array, size_t i)
 	else
 		return (ft_perror_null(ARRAY_IS_NULL, __FILE__, __LINE__));
 
+}
+
+void	darray_remap_index(t_darray *array)
+{
+	size_t		i;
+	size_t		j;
+
+	i = 0;
+	j = 0;
+	if (array != NULL)
+	{
+		while (j <= array->end)
+		{
+			if (array->contents[j] == NULL)
+				j++;
+			else
+			{
+				if (j > i)
+				{
+					array->contents[i] = array->contents[j];
+					array->contents[j] = NULL;
+				}
+				j++;
+				i++;
+			}
+		}
+		array->end = i - 1;
+	}
 }
 
 void	*darray_remove(t_darray *array, size_t index)

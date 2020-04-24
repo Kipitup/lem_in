@@ -12,7 +12,6 @@
 
 import networkx as nx
 import matplotlib.pyplot as plt
-#https://github.com/daleroberts/itermplot use this to project picture in term
 
 paths = []
 
