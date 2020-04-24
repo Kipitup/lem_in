@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/21 12:42:57 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/24 10:15:11 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,8 @@ void			print_all_links(t_graph *graph);
 void			print_link_available(t_adj_list node);
 void			print_queue(t_graph *queue);
 void			print_path(t_path *path);
-void			print_all_path(t_lemin *lemin);
+void			print_all_path(t_darray *all_path);
+void			print_all_solution(t_lemin *lemin);
 void			print_final_output(t_lemin *lemin);
 
 #endif

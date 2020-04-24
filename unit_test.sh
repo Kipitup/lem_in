@@ -9,6 +9,7 @@ gen_option=false
 path_to_map=false
 continue=false
 verbose=false
+sanitize=false
 leak=false
 
 usage () #
@@ -21,6 +22,7 @@ usage () #
 	printf "optional flag:\n"
 	printf "\t-c: if error, continue\n"
 	printf "\t-v: verbose\n"
+	printf "\t-f: compile with fsanitize\n"
 	printf "\t-l: check leaks\n"
 	printf "\t--help: show this help message and exit\n"
 	printf "For multiple flags, put everything in the same argument:\n"
@@ -30,22 +32,25 @@ usage () #
 
 if [ -n "$1" ]
 then
-	if [[ $1 == *"c"* ]]
-	then
-		continue=true
-	fi
-	if [[ $1 == *"v"* ]]
-	then
-		verbose=true
-	fi
-	if [[ $1 == *"l"* ]]
-	then
-		leak=true
-	fi
 	if [[ $1 == "--help" ]]
 	then
 		usage
 		exit
+	fi
+	if [[ $1 == "-"*"c"* ]]
+	then
+		continue=true
+	fi
+	if [[ $1 == "-"*"v"* ]]
+	then
+		verbose=true
+	fi
+	if [[ $1 == "-"*"l"* ]]
+	then
+		leak=true
+	elif [[ $1 == "-"*"f"* ]]
+	then
+		sanitize=true
 	fi
 	if [[ $1 == "parsing" ]] || [[ $2 == "parsing" ]]
 	then
@@ -116,6 +121,9 @@ printf "\n----> ${GREEN}Makefile running${END_C}\n"
 if [ "$leak" = true ]
 then
 	make re debug=0 -j8 > $LOG_MAKE 2>&1
+elif [ "$sanitize" = true ]
+then
+	make re debug=1 -j8 > $LOG_MAKE 2>&1
 else
 	make -j8 > $LOG_MAKE 2>&1
 fi

@@ -6,13 +6,12 @@
 #    By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/22 11:00:06 by amartinod         #+#    #+#              #
-#    Updated: 2020/04/23 11:38:33 by amartinod        ###   ########.fr        #
+#    Updated: 2020/04/24 09:42:59 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import networkx as nx
 import matplotlib.pyplot as plt
-#https://github.com/daleroberts/itermplot use this to project picture in term
 
 paths = []
 

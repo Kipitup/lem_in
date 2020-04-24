@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/17 17:31:32 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/24 10:27:03 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static t_network	*init_and_set_network(t_darray *all_path, size_t nb_ants)
 	net = NULL;
 	if (all_path != NULL)
 	{
+		darray_remap_index(all_path);
 		net = ft_memalloc(sizeof(t_network));
 		if (net != NULL)
 		{
