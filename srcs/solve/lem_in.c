@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/17 17:32:21 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/24 10:18:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,25 @@ void		lem_in(t_lemin *lemin)
 	t_solution	*sol;
 	int8_t		ret;
 
-	if (lemin->result != NULL)
+	if (lemin != NULL)
 	{
-		ret = SUCCESS;
-		print_adj_list(lemin->link);
-		while (ret == SUCCESS)
+		if (lemin->result != NULL)
 		{
-			sol = lemin->result;
-			if ((ret = bfs(sol)) == SUCCESS)
+			ret = SUCCESS;
+			print_adj_list(lemin->link);
+			while (ret == SUCCESS)
 			{
-				if ((store_valid_path_and_reset(sol)) == FAILURE)
-					handle_link_used_both_way(lemin);
+				sol = lemin->result;
+				if ((ret = bfs(sol)) == SUCCESS)
+				{
+					if ((store_valid_path_and_reset(sol)) == FAILURE)
+						handle_link_used_both_way(lemin);
+				}
 			}
 		}
-	}//protect if lemin == NULL || lemin->result == NULL
+		else
+			ft_perror(SOLUT_UNITIALIZED, __FILE__, __LINE__);
+	}
+	else
+		ft_perror(LEMIN_UNITIALIZED, __FILE__, __LINE__);
 }

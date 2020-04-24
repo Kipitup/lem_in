@@ -6,18 +6,18 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/04/21 17:59:49 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/24 10:28:50 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int8_t	is_vertex_visited_queue(t_graph *queue, t_adj_list node)
+static uint8_t	is_vertex_visited_queue(t_graph *queue, t_adj_list node)
 {
 	t_adj_list	visited;
 	t_adj_node	*tmp;
 	size_t		next_node;
-	int8_t		ret;
+	uint8_t		ret;
 
 	ret = FALSE;
 	next_node = node.head->dest;
@@ -67,12 +67,12 @@ static void		add_to_queue(t_graph *queue, t_adj_list node)
 	}
 }
 
-static int8_t	set_distance(t_adj_list node, t_graph *graph)
+static uint8_t	set_distance(t_adj_list node, t_graph *graph)
 {
 	size_t	next_node;
-	int8_t	ret;
+	uint8_t	ret;
 
-	ret = FAILURE;
+	ret = FALSE;
 	if (graph != NULL && node.head != NULL)
 	{
 		if (node.head->available == OPEN)
@@ -81,16 +81,13 @@ static int8_t	set_distance(t_adj_list node, t_graph *graph)
 			if (graph->array[next_node].distance == UNVISITED)
 			{
 				graph->array[next_node].distance = node.distance + 1;
-				ret = SUCCESS;
+				ret = TRUE;
 			}
 		}
 	}
 	return (ret);
 }
-/*
- ** DONT FORGET Protection in get_vertex for the node, also in next_vertex
- ** protection in case of failure, need to free queue, also path
- */
+
 
 int8_t			bfs(t_solution *sol)
 {
@@ -107,7 +104,7 @@ int8_t			bfs(t_solution *sol)
 		{
 			while (node.head != NULL)
 			{
-				if (set_distance(node, sol->graph) == SUCCESS)
+				if (set_distance(node, sol->graph) == TRUE)
 					add_to_queue(queue, node);
 				else
 					node.head = node.head->next;

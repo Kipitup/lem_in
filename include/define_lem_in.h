@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/22 11:39:14 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/24 10:34:24 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define VISU				1
 
 # define MALLOC_ERR			"memory allocation failed"
+# define LEMIN_UNITIALIZED	"Lemin was not initialized properly"
+# define SOLUT_UNITIALIZED	"solution was not initialized properly"
 # define ROOM_DONT_EXIST	"You're trying to link a room that doesn't exist"
 # define WRONG_LINK_FORMAT	"Wrong input format"
 # define ADJ_LIST_MALLOC	"Fail to init the adjacency list"
@@ -54,5 +56,6 @@
 # define ADD_EDGE_FAILED	"Adding an edge to the adjacency list failed"
 # define QUEUE_FULL	        "Queue Overflow, too many elements"
 # define QUEUE_EMPTY        "Queue is empty"
+# define GRAPH_NULL        	"Graph is NULL"
 
 #endif
