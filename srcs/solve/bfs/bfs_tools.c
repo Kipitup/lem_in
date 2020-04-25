@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 20:27:33 by francis           #+#    #+#             */
-/*   Updated: 2020/04/16 11:53:27 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 09:02:05 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ uint8_t		end_room_visited(t_graph *graph)
 	ret = TRUE;
 	if (graph->array[end_room_index].distance == UNVISITED)
 		ret = FALSE;
-	return(ret);
+	return (ret);
 }
 
 void		add_step(t_adj_list *node, size_t step)
@@ -33,7 +33,7 @@ void		add_step(t_adj_list *node, size_t step)
 t_adj_list	next_vertex(t_graph *graph, t_graph *queue)
 {
 	t_adj_list	node;
-	
+
 	if (queue->array[0].head != NULL)
 		node = get_vertex(graph, queue->array[0].head->dest);
 	else

@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 10:34:48 by francis           #+#    #+#             */
-/*   Updated: 2020/04/23 16:13:57 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 09:02:57 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-uint8_t			link_used_both_ways(t_graph *graph)
+uint8_t		link_used_both_ways(t_graph *graph)
 {
 	t_adj_node	*current;
 	size_t		i;

@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/21 17:31:37 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 09:01:19 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	lstadd(t_path **alst, t_path *new)
+static void		lstadd(t_path **alst, t_path *new)
 {
 	if (alst != NULL && new != NULL)
 	{
@@ -21,7 +21,7 @@ static void	lstadd(t_path **alst, t_path *new)
 	}
 }
 
-static size_t find_next_vertex(t_graph *graph, size_t index)
+static size_t	find_next_vertex(t_graph *graph, size_t index)
 {
 	t_adj_list	current;
 	t_adj_node	*link;
@@ -51,6 +51,7 @@ static size_t find_next_vertex(t_graph *graph, size_t index)
 **	Becareful, the name of the path is not malloc. So do no free it from here.
 **	just put it to NULL
 */
+
 static t_path	*trace_path(t_solution *sol)
 {
 	t_path	*path;

@@ -6,13 +6,14 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 10:16:12 by francis           #+#    #+#             */
-/*   Updated: 2020/04/23 16:14:17 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 09:02:34 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	update_link_before_vertex(t_solution *sol, size_t current, size_t vertex_index)
+static void	update_link_before_vertex(t_solution *sol, size_t current,
+		size_t vertex_index)
 {
 	t_adj_list	node;
 	t_adj_node	*link;
@@ -34,7 +35,8 @@ static void	update_link_before_vertex(t_solution *sol, size_t current, size_t ve
 	}
 }
 
-static void	update_link_after_vertex(t_solution *sol, size_t next, size_t vertex_index)
+static void	update_link_after_vertex(t_solution *sol, size_t next,
+		size_t vertex_index)
 {
 	t_adj_list	node;
 	t_adj_node	*link;

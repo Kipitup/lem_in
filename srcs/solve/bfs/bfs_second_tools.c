@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 21:22:36 by francis           #+#    #+#             */
-/*   Updated: 2020/04/24 10:46:18 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 09:00:15 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-size_t			first_path_with_multiple(t_solution *sol, size_t vertex_index)
+size_t	first_path_with_multiple(t_solution *sol, size_t vertex_index)
 {
 	t_path	*path;
 	size_t	i;

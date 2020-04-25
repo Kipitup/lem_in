@@ -6,12 +6,11 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 10:37:12 by francis           #+#    #+#             */
-/*   Updated: 2020/04/21 10:36:03 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 09:03:24 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
 
 uint8_t			is_path_valid(t_graph *graph, t_path *path)
 {

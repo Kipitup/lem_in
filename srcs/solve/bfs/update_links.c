@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 10:25:32 by francis           #+#    #+#             */
-/*   Updated: 2020/04/21 10:12:13 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 09:04:10 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	reset_links(t_graph *graph)
 	}
 }
 
-void	update_links(t_solution *sol)
+void		update_links(t_solution *sol)
 {
 	t_path		*path;
 	t_path		*curr;
@@ -60,7 +60,8 @@ void	update_links(t_solution *sol)
 	}
 }
 
-void	update_links_with_last_wrong_path(t_solution *sol, t_path *wrong_path)
+void		update_links_with_last_wrong_path(t_solution *sol,
+		t_path *wrong_path)
 {
 	t_adj_node	*link;
 	t_path		*current;
