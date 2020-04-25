@@ -6,11 +6,32 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 21:22:36 by francis           #+#    #+#             */
-/*   Updated: 2020/04/25 09:00:15 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 09:19:25 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	lstadd(t_path **alst, t_path *new)
+{
+	if (alst != NULL && new != NULL)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
+}
+
+void	reset_distance(t_graph *graph)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < graph->size)
+	{
+		graph->array[i].distance = UNVISITED;
+		i++;
+	}
+}
 
 size_t	first_path_with_multiple(t_solution *sol, size_t vertex_index)
 {
