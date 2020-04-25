@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/21 15:36:14 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 08:33:53 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	clean_lst_path(void *path)
 void	clean_all_solution(t_lemin **lemin)
 {
 	t_solution *tmp;
-
+	
 	while ((*lemin)->result != NULL)
 	{
 		clean_adj_graph(&((*lemin)->result->graph));
-		darray_clear_destroy(&((*lemin)->result->path), &clean_lst_path);
+		darray_clear_destroy(&((*lemin)->result->path), &clean_lst_path); //protection if init of graph worked but dup didnt
 		tmp = (*lemin)->result;
 		(*lemin)->result = (*lemin)->result->next;
 		ft_memdel((void**)&tmp);
@@ -62,9 +62,10 @@ void	clean_state_machine(t_st_machine **sm)
 }
 
 /*
- **	all_path was not malloc in network. Is is only a reference from another
- **	structure (t_solution). So no need to free it.
- */
+**	all_path was not malloc in network. Is is only a reference from another
+**	structure (t_solution). So no need to free it.
+*/
+
 void		clean_network(t_network **net)
 {
 	if (net != NULL && *net != NULL)
@@ -76,4 +77,3 @@ void		clean_network(t_network **net)
 		ft_memdel((void**)net);
 	}
 }
-

@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/24 11:14:08 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 08:38:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	init_solution(t_lemin *lemin)
+void		init_solution(t_lemin *lemin)
 {
 	t_solution	*sol;
 

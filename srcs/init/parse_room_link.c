@@ -6,8 +6,8 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/24 16:12:34 by amartinod        ###   ########.fr       */
-/*                                         how to know if something has been written in the standard output c                                   */
+/*   Updated: 2020/04/25 08:36:57 by francis          ###   ########.fr       */
+/*											                                  */
 /* ************************************************************************** */
 
 #include "lem_in.h"
@@ -36,7 +36,7 @@ static void	get_node_index(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 	}
 }
 
-static void add_edge_and_nam(t_st_machine *sm, t_hashnode *src, t_hashnode *dst)
+static void	add_edge_and_nam(t_st_machine *sm, t_hashnode *src, t_hashnode *dst)
 {
 	int8_t		ret;
 
@@ -90,9 +90,10 @@ static void	add_link(t_st_machine *sm, t_vector *line)
 }
 
 /*
- **	The return (TRUE or FALSE) will determine whether or not the parser should
- **	read the next line.
- */
+**	The return (TRUE or FALSE) will determine whether or not the parser should
+**	read the next line.
+*/
+
 uint8_t		room_link(t_st_machine *sm, t_vector *line)
 {
 	uint8_t		ret;

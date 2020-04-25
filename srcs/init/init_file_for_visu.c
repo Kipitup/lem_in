@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 11:57:52 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/24 09:44:41 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/25 08:39:57 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void		add_path_to_file(t_network *net, int fd)
 void			init_file_for_visu(t_graph *graph, t_network *net)
 {
 	int			fd;
-	
-	fd = open("/tmp/visu_lemin.txt", O_RDWR | O_CREAT | O_TRUNC , 0744);
+
+	fd = open("/tmp/visu_lemin.txt", O_RDWR | O_CREAT | O_TRUNC, 0744);
 	if (fd != FAILURE)
 	{
 		if (graph != NULL)

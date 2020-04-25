@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/24 09:38:12 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/25 08:35:12 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static t_st_machine	*init_struct(void)
 
 t_lemin				*init(void)
 {
-	t_lemin		*lemin;
+	t_lemin			*lemin;
 	t_st_machine	*sm;
 
 	lemin = NULL;
@@ -87,7 +87,7 @@ t_lemin				*init(void)
 		if (sm->state != E_ERROR)
 		{
 			lemin = sm->lemin;
-			if (VISU == TRUE) 
+			if (VISU == TRUE)
 				init_file_for_visu(lemin->link, NULL);
 		}
 		else

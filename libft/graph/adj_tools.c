@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/24 11:11:37 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/24 11:16:56 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_graph			*dup_adj_list(t_graph *graph)
 			ret = dup_edge_recurse(graph->array[i].head, duplicate, i);
 			if (ret == FAILURE)
 			{
-				ft_printf("in\n");
 				clean_adj_graph(&duplicate);
 				break ;
 			}
