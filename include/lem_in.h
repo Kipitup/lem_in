@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/24 16:00:04 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/25 09:19:21 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ uint8_t			link_used_both_ways(t_graph *graph);
 uint8_t			is_path_valid(t_graph *graph, t_path *path);
 int8_t			check_vertex_used(t_solution *sol);
 size_t			first_path_with_multiple(t_solution *sol, size_t index);
+void			reset_distance(t_graph *graph);
+void			lstadd(t_path **alst, t_path *new);
 
 /*
 ** ############################################################################

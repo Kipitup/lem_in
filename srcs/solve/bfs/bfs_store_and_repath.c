@@ -6,20 +6,11 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/25 09:01:19 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 10:19:17 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static void		lstadd(t_path **alst, t_path *new)
-{
-	if (alst != NULL && new != NULL)
-	{
-		new->next = *alst;
-		*alst = new;
-	}
-}
 
 static size_t	find_next_vertex(t_graph *graph, size_t index)
 {
@@ -51,7 +42,52 @@ static size_t	find_next_vertex(t_graph *graph, size_t index)
 **	Becareful, the name of the path is not malloc. So do no free it from here.
 **	just put it to NULL
 */
+static uint8_t	create_and_add_step(t_solution *sol, t_path **path, size_t vertex, size_t len)
+{
+	t_path	*new_step;
+	uint8_t	ret;
+	
+	ret = FALSE;
+	if ((new_step = ft_memalloc(sizeof(t_path))) != NULL)//what if malloc fail
+	{
+		new_step->vertex = vertex;
+		new_step->name = sol->graph->array[vertex].name;
+		new_step->len = len;
+		lstadd(path, new_step);
+		ret = TRUE;
+	}
+	return (ret);
+}
 
+static t_path	*trace_path(t_solution *sol)
+{
+	t_path	*path;
+	size_t	index;
+	size_t	vertex;
+	size_t	len;
+
+	index = sol->graph->size - 1;
+	len = 0;
+	path = ft_memalloc(sizeof(t_path));
+	if (path != NULL)
+	{
+		path->vertex = index;
+		path->name = sol->graph->array[index].name;
+		while (index > 0)
+		{
+			vertex = find_next_vertex(sol->graph, index);
+			if (create_and_add_step(sol, &path, vertex, ++len) == TRUE)
+				index = vertex;
+			else
+			{
+				clean_lst_path(path);
+				break ;
+			}
+		}
+	}
+	return (path);
+}
+/*
 static t_path	*trace_path(t_solution *sol)
 {
 	t_path	*path;
@@ -82,18 +118,7 @@ static t_path	*trace_path(t_solution *sol)
 	}
 	return (path);
 }
-
-static void		reset_distance(t_graph *graph)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < graph->size)
-	{
-		graph->array[i].distance = UNVISITED;
-		i++;
-	}
-}
+*/
 
 int8_t			store_valid_path_and_reset(t_solution *sol)
 {
