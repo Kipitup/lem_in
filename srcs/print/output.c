@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/24 12:21:57 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/25 08:55:02 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void			print_debug_network(t_network *net)
 /*
 **	Here net->path is not freed because it was not allocated in network but from
 **	another structure. The free will be done there.
-*/ 
+*/
+
 static uint8_t	push_next_ant_and_move_other(t_path *room, t_vector *output,
 		size_t ant)
 {
@@ -81,13 +82,13 @@ void				print_final_output(t_lemin *lemin)
 {
 	t_network	*net;
 	size_t		increase_by;
-	
+
 	if (lemin != NULL)
 	{
 		net = choose_best_solution(lemin->result, lemin->nb_ants);
 		if (net != NULL)
 		{
-			if (VISU == TRUE) 
+			if (VISU == TRUE)
 				init_file_for_visu(lemin->link, net);
 			increase_by = net->flow[0].len + net->flow[0].capacity;
 			increase_by *= net->flow[0].capacity * 10;

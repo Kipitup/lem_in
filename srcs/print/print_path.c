@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/04/24 10:51:32 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/25 08:55:56 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_all_links(t_graph *graph)
 		ft_printf("---------------Node %d--------------\n", i);
 		print_link_available(graph->array[i]);
 		i++;
-	}                    
+	}
 }
 
 void	print_path(t_path *path)
@@ -58,8 +58,8 @@ void	print_path(t_path *path)
 
 void	print_all_path(t_darray *all_path)
 {
-	t_path 		*path;
-	size_t i;
+	t_path	*path;
+	size_t	i;
 
 	i = 0;
 	while (i <= all_path->end)

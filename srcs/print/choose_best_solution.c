@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/24 16:01:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/25 08:53:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 **	flow. Then add the diff between flow[last_index].len - flow[i].len
 **	with 0 < i < last_index
 */
+
 static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff,
-		size_t	last_index)
+		size_t last_index)
 {
 	size_t		i;
 	uint32_t	rest;
@@ -44,16 +45,17 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff,
 }
 
 /*
-**	The len of each flow is define by then len of the path - 1;	
+**	The len of each flow is define by then len of the path - 1;
 **
 **	Diff is the sum of the difference between the biggest usable flow's and each
 **	other flow's len. All the flow won't necessarily usable. If the number of
 **	ant is to small, only the smaller flow will be used.
 **	diff = flow[last].len - flow[0].len + ... + flow[last].len - flow[i].len;
 **	with 0 < i < last
-**	
+**
 **	Since the paths are stored in the ascending order, last.len > i.len.
 */
+
 static void			set_network(t_network *net, size_t nb_ants)
 {
 	size_t		i;
@@ -99,7 +101,7 @@ static t_network	*init_and_set_network(t_darray *all_path, size_t nb_ants)
 			net->flow = ft_memalloc(net->nb_of_flow * sizeof(t_flow));
 			if (net->flow != NULL)
 				set_network(net, nb_ants);
-			else	
+			else
 				clean_network(&net);
 		}
 	}
@@ -109,6 +111,7 @@ static t_network	*init_and_set_network(t_darray *all_path, size_t nb_ants)
 /*
 **	The number of line of the output will be: flow[0].len + flow[0].capacity.
 */
+
 t_network			*choose_best_solution(t_solution *result, size_t nb_ants)
 {
 	t_network	*best;
