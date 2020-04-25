@@ -82,9 +82,9 @@ fi
 
 #====EDIT PATH=====#
 EXEC=./lem-in
-MAP_DIR=maps/
+MAP_DIR=maps
 INCORRECT_MAP_DIR=incorrect_map
-CORRECT_MAP_DIR=correct_map
+GEN_DIR=generator
 LOG_MAKE=/tmp/log_makefile.txt
 LOG_EXEC=/tmp/log_exec.txt
 LOG_LEAK="/tmp/leaks.txt"
@@ -186,27 +186,92 @@ check_output_parsing_map () # $1 is the test file
 	fi
 }
 
-check_output_correct_map () # $1 is the test file
+# -e test if file exist
+store_result_in_new_file () # $1 is the name of the file
 {
-	OUTPUT="$(printf $1 | cut -d '/' -f 4):"
-	printf "      ${WHITE}%-35s ${END_C}" $OUTPUT
-	if grep -q "error" "$LOG_EXEC"
+	name=$1
+	if [[ -e $name.map ]]
+	then
+    	i=0
+    	while [[ -e $name-$i.map ]]
+		do
+			let i++
+		done
+		name=$name-$i
+	fi
+	mv ${MAP_DIR}/${GEN_DIR}/random.map "$name".map
+}
+
+# grep -c -> count number of match
+# grep -m1 -> stop after first match
+# sed is here to eliminate the color pattern
+# One difference is that [ does not do arithmetic evaluation but [[ does
+check_map () # $1 is the test file
+{
+	if grep -q "Error" "$LOG_EXEC"
 	then
 		printf "${RED}✖${END_C}\n"
+		mkdir ${MAP_DIR}/${GEN_DIR}/error_map 2>/dev/null
 		if [ "$verbose" = true ]
 		then
 			cat $LOG_EXEC
 		fi
-		if [ "$continue" = false ]
-		then
-			exit
-		fi
+		name=${MAP_DIR}/${GEN_DIR}/error_map/error	
+		store_result_in_new_file $name
 	else
 		printf "${LIGHT_GREEN}✓${END_C}\n"
+		mkdir ${MAP_DIR}/${GEN_DIR}/correct_map 2>/dev/null
 		if [ "$verbose" = true ]
 		then
 			cat $LOG_EXEC
 		fi
+		nb_line=$(grep -c "^L" ${LOG_EXEC})
+		limit=$(grep -m1 "#Here is the number of lines required:" ${LOG_EXEC} | sed 's/\[0m//g' | tr -dc "0-9")
+		if [[ "$nb_line" -lt "$limit" ]]
+		then
+			mkdir ${MAP_DIR}/${GEN_DIR}/correct_map/better 2>/dev/null
+			name=${MAP_DIR}/${GEN_DIR}/correct_map/better/better
+			name=$name-$nb_line-$limit
+		elif [[ "$nb_line" -gt "$limit" ]]
+		then
+			mkdir ${MAP_DIR}/${GEN_DIR}/correct_map/worse 2>/dev/null
+			name=${MAP_DIR}/${GEN_DIR}/correct_map/worse/worse
+			name=$name-$nb_line-$limit
+		else
+			mkdir ${MAP_DIR}/${GEN_DIR}/correct_map/equal 2>/dev/null
+			name=${MAP_DIR}/${GEN_DIR}/correct_map/equal/equal
+			name=$name-$nb_line-$limit
+		fi
+		store_result_in_new_file $name
+	fi
+}
+
+handle_map_loop () #
+{
+	printf "${RED}✖${END_C}\n"
+	mkdir ${MAP_DIR}/${GEN_DIR}/loop_map 2>/dev/null
+	name=${MAP_DIR}/${GEN_DIR}/loop_map/loop	
+	store_result_in_new_file $name
+}
+
+# $! expands to the last backgrounded process (through the use of &), and kill
+# returns false (0) if it didn't kill any process. Hence [ "$?" -ne 1 ] :
+# '#?': return value of the last executed command
+# '-ne': not equal to
+# Bash itself asynchronously, after the kill command has completed, outputs a
+# status message about the killed job, which you cannot suppress directly,
+# unless you use wait
+check_output_generator_map () #
+{
+	lemin_pid=$!
+	sleep 2 && kill $lemin_pid 2>&-
+	res=$?
+	wait $lemin_pid 2>&-
+	if [ $res -ne 1 ]
+	then
+		handle_map_loop
+	else
+		check_map
 	fi
 }
 
@@ -242,13 +307,17 @@ then
 	then
 		./generator $gen_option
 	else
-		./generator $gen_option > maps/generator/random.map
+		MAP=${MAP_DIR}/${GEN_DIR}/random.map
+		./generator $gen_option > $MAP
 		if [ "$leak" = true ]
 		then
-			$VALGRIND $SHOW_LEAK $EXEC < maps/generator/random.map
+			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1 &
+			check_leak $MAP
 		else
-			$EXEC < maps/generator/random.map
-		fi
+			$EXEC < $MAP > $LOG_EXEC 2>&1 &
+			#$EXEC < $MAP &
+		fi	
+		check_output_generator_map $MAP
 	fi
 else
 	printf "\n      ${UNDERLINE}${YELLOW}manual mode:${END_C}\n\n"
