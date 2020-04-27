@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/25 11:01:00 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/27 19:14:21 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void			print_debug_network(t_network *net)
 	size_t	i;
 
 	i = 0;
+	ft_dprintf(STD_ERR, "---------------------------------------------\n");
 	while (net != NULL && i < net->nb_of_flow)
 	{
 		ft_dprintf(STD_ERR, "flow[%zu]:\n\t- len is    %zu\n\tcapacity is %zu\n",
 				i, net->flow[i].len, net->flow[i].capacity);
 		i++;
 	}
+	ft_dprintf(STD_ERR, "---------------------------------------------\n");
 }
 
 /*
@@ -51,28 +53,48 @@ static uint8_t	push_next_ant_and_move_other(t_path *room, t_vector *output,
 	return (ret);
 }
 
-static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
+static void		compute_next_line(t_network *net, t_vector *output,
+		size_t nb_ants, size_t nb_of_usable_flow)
 {
 	t_path		*room_after_start;
 	size_t		i;
-	size_t		line_total;
 	size_t		ant;
 
+	i = 0;
 	ant = 1;
-	line_total = net->flow[0].len + net->flow[0].capacity;
-	while (line_total > 0)
+	while (i < nb_of_usable_flow)
 	{
-		i = 0;
-		while (i <= net->all_path->end)
+		room_after_start = ((t_path*)net->all_path->contents[i])->next;
+		if (ant <= nb_ants && net->flow[i].capacity > 0)
 		{
-			room_after_start = ((t_path*)net->all_path->contents[i])->next;
-			if (ant <= nb_ants)
-				push_next_ant_and_move_other(room_after_start, output, ant);
-			else
-				push_next_ant_and_move_other(room_after_start, output, 0);
-			i++;
+			push_next_ant_and_move_other(room_after_start, output, ant);
+			net->flow[i].capacity--;
 			ant++;
 		}
+		else
+			push_next_ant_and_move_other(room_after_start, output, 0);
+		i++;
+	}
+}
+
+static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
+{
+	size_t		i;
+	size_t		nb_of_usable_flow;
+	size_t		line_total;
+
+	i = 0;
+	nb_of_usable_flow = 0;
+	line_total = net->flow[0].len + net->flow[0].capacity;
+	while (i <= net->all_path->end)
+	{
+		if (net->flow[i].capacity > 0)
+			nb_of_usable_flow++;
+		i++;
+	}
+	while (line_total > 0)
+	{
+		compute_next_line(net, output, nb_ants, nb_of_usable_flow);
 		vct_addchar(output, '\n');
 		line_total--;
 	}

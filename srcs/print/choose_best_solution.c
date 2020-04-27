@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/27 11:53:40 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/27 18:38:54 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff,
 
 	i = 0;
 	rest = (nb_ants - diff) % (last_index + 1);
+	ft_dprintf(STD_ERR, "diff: %zu and last_index: %zu\n", diff, last_index);
 	while (i <= last_index)
 	{
 		net->flow[i].capacity = (nb_ants - diff) / (last_index + 1);
@@ -72,7 +73,7 @@ static size_t		calculate_diff(t_network *net, size_t nb_ants, size_t *last)
 			break ;
 		(*last)--;
 	}
-	if (*last == 0 && len_diff > nb_ants)
+	if (*last == 0 && len_diff >= nb_ants)
 		len_diff = 0;
 	return (len_diff);
 }

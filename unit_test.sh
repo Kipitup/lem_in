@@ -223,6 +223,18 @@ output_result () #
 	printf "________________________________________________\n"
 }
 
+
+
+legend_generator () #
+{
+	printf "\t${YELLOW}Legend:${END_C}\n"
+	printf "\t${RED}✖${END_C} => error, program output an error\n"
+	printf "\t${MAGENTA}∞${END_C} => loop, program was killed\n"
+	printf "\t${LIGHT_GREEN}✓${END_C} => correct, less moves than require\n"
+	printf "\t${GREEN}✓${END_C} => correct, as many moves as require\n"
+	printf "\t${YELLOW}✓${END_C} => correct, more moves than require\n\n\n"
+}
+
 # -e test if file exist
 store_result_in_new_file () # $1 is the name of the file
 {
@@ -273,7 +285,7 @@ check_map () # $1 is the test file
 			name=$name-$nb_line-$limit
 		elif [[ "$nb_line" -gt "$limit" ]]
 		then
-			printf "${MAGENTA}✓${END_C} "
+			printf "${YELLOW}✓${END_C} "
 			mkdir ${MAP_DIR}/${GEN_DIR}/correct_map/worse 2>/dev/null
 			let worse++
 			name=${MAP_DIR}/${GEN_DIR}/correct_map/worse/$1-ants-worse
@@ -291,7 +303,7 @@ check_map () # $1 is the test file
 
 handle_map_loop () #
 {
-	printf "${YELLOW}∞${END_C} "
+	printf "${MAGENTA}∞${END_C} "
 	mkdir ${MAP_DIR}/${GEN_DIR}/loop_map 2>/dev/null
 	let loop++
 	name=${MAP_DIR}/${GEN_DIR}/loop_map/$1-ants-loop	
@@ -380,6 +392,8 @@ then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
 	total_nb_test=$(( $nb_cycle * 3 + 3 + 3))
+
+	legend_generator
 
 	printf "1 ant, map with distinctive path:\n"
 	generate_map_and_test "--flow-one" "1" $nb_cycle

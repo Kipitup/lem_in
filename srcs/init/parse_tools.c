@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:28:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/09 11:34:18 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/27 19:33:58 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ uint8_t	is_it_all_digit(t_vector *line)
 
 void	add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type)
 {
+	(void)sm;
+	(void)line;
+	(void)type;
 	if (type == COMMENT)
 		vct_addstr(sm->lemin->output, "\033[0m");
 	else if (type == COMMAND)
