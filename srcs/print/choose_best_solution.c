@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/25 08:53:27 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/27 11:53:40 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,41 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff,
 }
 
 /*
-**	The len of each flow is define by then len of the path - 1;
-**
 **	Diff is the sum of the difference between the biggest usable flow's and each
-**	other flow's len. All the flow won't necessarily usable. If the number of
-**	ant is to small, only the smaller flow will be used.
+**	other flow's len. All the flow won't necessarily be usable. If the number of
+**	ant is to small, only the fastest flow will be used.
 **	diff = flow[last].len - flow[0].len + ... + flow[last].len - flow[i].len;
 **	with 0 < i < last
 **
 **	Since the paths are stored in the ascending order, last.len > i.len.
+*/
+static size_t		calculate_diff(t_network *net, size_t nb_ants, size_t *last)
+{
+	size_t		i;
+	size_t		len_diff;
+
+	*last = net->nb_of_flow - 1;
+	while (*last > 0)
+	{
+		i = 0;
+		len_diff = 0;
+		while (i < *last)
+		{
+			len_diff += net->flow[*last].len - net->flow[i].len;
+			i++;
+		}
+		if (len_diff < nb_ants)
+			break ;
+		(*last)--;
+	}
+	if (*last == 0 && len_diff > nb_ants)
+		len_diff = 0;
+	return (len_diff);
+}
+
+/*
+**	The len of each flow is define by then len of the path - 1;
+**
 */
 
 static void			set_network(t_network *net, size_t nb_ants)
@@ -68,20 +94,7 @@ static void			set_network(t_network *net, size_t nb_ants)
 		net->flow[i].len = ((t_path*)net->all_path->contents[i])->len - 1;
 		i++;
 	}
-	last = net->nb_of_flow - 1;
-	while (last > 0)
-	{
-		i = 0;
-		len_diff = 0;
-		while (i < last)
-		{
-			len_diff += net->flow[last].len - net->flow[i].len;
-			i++;
-		}
-		if (len_diff < nb_ants)
-			break ;
-		last--;
-	}
+	len_diff = calculate_diff(net, nb_ants, &last);
 	set_capacity(net, nb_ants, len_diff, last);
 }
 

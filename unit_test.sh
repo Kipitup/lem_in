@@ -5,7 +5,7 @@
 # '-n' : true if the lenght of the string is nonzero
 parsing=false
 gen=false
-gen_option=false
+nb_cycle=false
 path_to_map=false
 continue=false
 verbose=false
@@ -58,14 +58,22 @@ then
 	elif [[ $1 == "gen" ]] || [[ $2 == "gen" ]]
 	then
 		gen=true
-		if [[ $2 == *"--"* ]]
+		if [[ $1 == "gen" ]]
 		then
-			gen_option=$2
-		elif [[ $3 == *"--"* ]]
+			if [ -n "$2" ]
+			then
+				nb_cycle=$2
+			else
+				nb_cycle=10
+			fi
+		elif [[ $2 == "gen" ]]
 		then
-			gen_option=$3
-		else
-			gen_option="--help"
+			if [ -n "$3" ]
+			then
+				nb_cycle=$3
+			else
+				nb_cycle=10
+			fi
 		fi
 	else
 		if [ -n "$2" ]
@@ -108,6 +116,11 @@ END_C="\e[0m";
 
 
 #======START TEST======#
+best=0
+equal=0
+worse=0
+error=0
+loop=0
 # Beautifulllll message
 printf "\n----> ${CYAN}U ${MAGENTA}N ${YELLOW}I ${WHITE}T  ${RED}T ${GREEN}E ${YELLOW}S ${MAGENTA}T ${END_C} ${HIGH}LEM-IN${END_C} <----\n"
 
@@ -162,7 +175,7 @@ check_leak () # $1 is the test file
 
 check_output_parsing_map () # $1 is the test file
 {
-	OUTPUT="$(printf $1 | cut -d '/' -f 4):"
+	OUTPUT="$(printf $1 | cut -d '/' -f 3 | cut -d '.' -f1):"
 	printf "      ${WHITE}%-35s ${END_C}" $OUTPUT
 	if grep -q "Error" "$LOG_EXEC"
 	then
@@ -184,6 +197,30 @@ check_output_parsing_map () # $1 is the test file
 			exit
 		fi
 	fi
+}
+
+output_result () #
+{
+	total_good=$(($best+$equal+$worse))
+	pourc_error=$(($error * 100 / $total_nb_test))
+	pourc_loop=$(($loop * 100 / $total_nb_test))
+	pourc_good=$(($total_good * 100 / $total_nb_test))
+	#pourc_error=$(($pourc_error/$total_nb_test))
+	printf "\n\n________________________________________________\n"
+	printf "|\t\t  ${GREEN}${UNDERLINE}${HIGH}R E S U L T S${END_C}  \t\t|\n"
+	printf "|\t\t\t\t\t\t|\n"
+	printf "|\t\t\t\t\t\t|\n"
+	printf "|\t${CYAN}Total:   ${END_C}${HIGH}$total_nb_test${END_C} \t\t\t\t|\n"
+	printf "|\t------------------------------\t\t|\n"
+	printf "|\t${YELLOW}Error:${END_C}   ${HIGH}$error${END_C} ($pourc_error %%)\t\t\t|\n"
+	printf "|\t\t\t\t\t\t|\n"
+	printf "|\t${YELLOW}Loop:${END_C}    ${HIGH}$loop${END_C} ($pourc_loop %%)\t\t\t|\n"
+	printf "|\t\t\t\t\t\t|\n"
+	printf "|\t${YELLOW}Correct:${END_C} ${HIGH}$total_good${END_C} ($pourc_good %%)\t\t\t|\n"
+	printf "|\t   with: - Better: ${HIGH}$best${END_C}\t\t\t|\n"
+	printf "|\t\t - Equal:  ${HIGH}$equal${END_C}\t\t\t|\n"
+	printf "|\t\t - Worse:  ${HIGH}$worse${END_C}\t\t\t|\n"
+	printf "________________________________________________\n"
 }
 
 # -e test if file exist
@@ -210,16 +247,16 @@ check_map () # $1 is the test file
 {
 	if grep -q "Error" "$LOG_EXEC"
 	then
-		printf "${RED}✖${END_C}\n"
+		printf "${RED}✖${END_C} "
 		mkdir ${MAP_DIR}/${GEN_DIR}/error_map 2>/dev/null
 		if [ "$verbose" = true ]
 		then
 			cat $LOG_EXEC
 		fi
-		name=${MAP_DIR}/${GEN_DIR}/error_map/error	
+		let error++
+		name=${MAP_DIR}/${GEN_DIR}/error_map/$1-ants-error	
 		store_result_in_new_file $name
 	else
-		printf "${LIGHT_GREEN}✓${END_C}\n"
 		mkdir ${MAP_DIR}/${GEN_DIR}/correct_map 2>/dev/null
 		if [ "$verbose" = true ]
 		then
@@ -229,17 +266,23 @@ check_map () # $1 is the test file
 		limit=$(grep -m1 "#Here is the number of lines required:" ${LOG_EXEC} | sed 's/\[0m//g' | tr -dc "0-9")
 		if [[ "$nb_line" -lt "$limit" ]]
 		then
+			printf "${LIGHT_GREEN}✓${END_C} "
 			mkdir ${MAP_DIR}/${GEN_DIR}/correct_map/better 2>/dev/null
-			name=${MAP_DIR}/${GEN_DIR}/correct_map/better/better
+			let best++
+			name=${MAP_DIR}/${GEN_DIR}/correct_map/better/$1-ants-better
 			name=$name-$nb_line-$limit
 		elif [[ "$nb_line" -gt "$limit" ]]
 		then
+			printf "${MAGENTA}✓${END_C} "
 			mkdir ${MAP_DIR}/${GEN_DIR}/correct_map/worse 2>/dev/null
-			name=${MAP_DIR}/${GEN_DIR}/correct_map/worse/worse
+			let worse++
+			name=${MAP_DIR}/${GEN_DIR}/correct_map/worse/$1-ants-worse
 			name=$name-$nb_line-$limit
 		else
+			printf "${GREEN}✓${END_C} "
 			mkdir ${MAP_DIR}/${GEN_DIR}/correct_map/equal 2>/dev/null
-			name=${MAP_DIR}/${GEN_DIR}/correct_map/equal/equal
+			let equal++
+			name=${MAP_DIR}/${GEN_DIR}/correct_map/equal/$1-ants-equal
 			name=$name-$nb_line-$limit
 		fi
 		store_result_in_new_file $name
@@ -248,31 +291,64 @@ check_map () # $1 is the test file
 
 handle_map_loop () #
 {
-	printf "${RED}✖${END_C}\n"
+	printf "${YELLOW}∞${END_C} "
 	mkdir ${MAP_DIR}/${GEN_DIR}/loop_map 2>/dev/null
-	name=${MAP_DIR}/${GEN_DIR}/loop_map/loop	
+	let loop++
+	name=${MAP_DIR}/${GEN_DIR}/loop_map/$1-ants-loop	
 	store_result_in_new_file $name
 }
 
-# $! expands to the last backgrounded process (through the use of &), and kill
-# returns false (0) if it didn't kill any process. Hence [ "$?" -ne 1 ] :
+# $! expands to the last backgrounded process (through the use of &)
+# lsof => list open file | -p is for the processus id.
 # '#?': return value of the last executed command
-# '-ne': not equal to
+# '-eq': equal to
 # Bash itself asynchronously, after the kill command has completed, outputs a
 # status message about the killed job, which you cannot suppress directly,
 # unless you use wait
 check_output_generator_map () #
 {
 	lemin_pid=$!
-	sleep 2 && kill $lemin_pid 2>&-
-	res=$?
-	wait $lemin_pid 2>&-
-	if [ $res -ne 1 ]
+	j=30
+	while [[ $j -gt 0 ]]
+	do
+		lsof -p $lemin_pid &>/dev/null
+		ret=$?
+		if [[ $ret -eq 0 ]]
+		then
+			sleep 0.1
+		else
+			break
+		fi
+		j=$(( $j - 1 ))
+	done
+
+	if [ $ret -eq 0 ]
 	then
-		handle_map_loop
+		kill $lemin_pid 2>&-
+		wait $lemin_pid 2>&-
+		handle_map_loop $1
 	else
-		check_map
+		check_map $1
 	fi
+}
+
+generate_map_and_test () #
+{
+	tmp=$3
+	while [[ $tmp -gt 0 ]]
+	do
+		MAP=${MAP_DIR}/${GEN_DIR}/random.map
+		./generator $1 > $MAP
+		if [ "$leak" = true ]
+		then
+			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1 &
+			check_leak $MAP
+		else
+			$EXEC < $MAP > $LOG_EXEC 2>&1 &
+		fi
+		check_output_generator_map $2
+		tmp=$(( $tmp - 1 ))
+	done
 }
 
 #======TEST======#
@@ -303,22 +379,24 @@ elif [ "$gen" = true ]
 then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
-	if [[ $gen_option == "--help" ]]
-	then
-		./generator $gen_option
-	else
-		MAP=${MAP_DIR}/${GEN_DIR}/random.map
-		./generator $gen_option > $MAP
-		if [ "$leak" = true ]
-		then
-			$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1 &
-			check_leak $MAP
-		else
-			$EXEC < $MAP > $LOG_EXEC 2>&1 &
-			#$EXEC < $MAP &
-		fi	
-		check_output_generator_map $MAP
-	fi
+	total_nb_test=$(( $nb_cycle * 3 + 3 + 3))
+
+	printf "1 ant, map with distinctive path:\n"
+	generate_map_and_test "--flow-one" "1" $nb_cycle
+	
+	printf "\n\n~10 ant, map with distinctive path:\n"
+	generate_map_and_test "--flow-ten" "10" $nb_cycle
+	
+	printf "\n\n~100 ant, map with distinctive path:\n"
+	generate_map_and_test "--flow-thousand" "100" $nb_cycle
+	
+	printf "\n\nBig map (~1000 rooms) and a lot of ants to test time complexity:\n"
+	generate_map_and_test "--big" "big" 3
+	
+	printf "\n\nBig map with overlapping paths and a lots of ants :\n"
+	generate_map_and_test "--big-superposition" "big-superposition" 3
+
+	output_result
 else
 	printf "\n      ${UNDERLINE}${YELLOW}manual mode:${END_C}\n\n"
 	if [ "$leak" = true ]
