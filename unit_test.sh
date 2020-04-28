@@ -320,7 +320,7 @@ handle_map_loop () #
 check_output_generator_map () #
 {
 	lemin_pid=$!
-	j=30
+	j=70
 	while [[ $j -gt 0 ]]
 	do
 		lsof -p $lemin_pid &>/dev/null

@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/04/25 08:55:56 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/28 15:32:46 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	print_link_available(t_adj_list node)
 {
+	ft_printf("{c_yellow}------------ Link available ------------{c_end}\n");
 	while (node.head != NULL)
 	{
 		ft_printf("dest = %d\t", node.head->dest);
@@ -62,12 +63,13 @@ void	print_all_path(t_darray *all_path)
 	size_t	i;
 
 	i = 0;
+	ft_printf("{c_green}------------ Path sequence ------------{c_end}\n");
 	while (i <= all_path->end)
 	{
 		path = all_path->contents[i];
 		if (path != NULL)
 		{
-			print_path(path);
+		//	print_path(path);
 			ft_printf("Path length = %d\n\n", path->len);
 		}
 		i++;

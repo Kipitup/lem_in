@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 19:25:53 by amartino         ###   ########.fr       */
+/*   Updated: 2020/04/28 14:14:34 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static int8_t		should_map_resize(t_hashmap *map)
 	int8_t		ret;
 
 	ret = SUCCESS;
-	limit = (size_t)ft_log2_n(map->size);
+	limit = map->size / 100;
+	if (limit < 3)
+		limit = 3;
 	if (map->nb_collision >= limit)
 		ret = hashmap_resize(map);
 	return (ret);

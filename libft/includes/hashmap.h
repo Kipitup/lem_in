@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/04/09 11:33:36 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/28 14:59:43 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define DEFAULT_NB_OF_BUCKETS	4999	
 
 typedef uint8_t 		(*t_hash_comp)(void *, void *);
-typedef uint32_t 		(*t_hash_func)(void *, size_t);
+typedef uint32_t 		(*t_hash_func)(const void *, size_t);
 
 /*
 ** If no compare and hash functions are given, we'll use the default one.
@@ -69,7 +69,9 @@ void				del_map(t_hashmap **map);
 ** ############################## TOOLS FUNCTION ##############################
 ** ############################################################################
 */
-uint32_t			ft_hash_void_data(void *data, size_t len);
+uint32_t			ft_hash_void_data(const void *data, size_t len);
+uint32_t			ft_fnv1a_hash(const void *data, size_t len);
+uint32_t			ft_hash_str(const void *data, size_t len);
 uint8_t				default_compare(void *a, void *b);
 void				print_node(t_hashnode *node);
 void				print_hashmap(t_hashmap *map);

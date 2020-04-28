@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/25 08:36:57 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/28 15:02:38 by amartinod        ###   ########.fr       */
 /*											                                  */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ uint8_t		room_link(t_st_machine *sm, t_vector *line)
 	uint8_t		ret;
 
 	ret = TRUE;
+
 	if (vct_getchar_at(line, START) == '#')
 		ret = check_for_comment_or_command(sm, line);
 	else if (vct_chr_count(line, '-') == 1)

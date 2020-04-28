@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 18:31:14 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 15:53:37 by fkante           ###   ########.fr       */
+/*   Updated: 2020/04/28 15:09:16 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int8_t	push_node(void **bucket, size_t map_size, size_t *nb_collision,
 	else
 	{
 		ret = darray_push(bucket[index], (void*)node);
-		nb_collision++;
+		(*nb_collision)++;
 	}
 	return (ret);
 }
@@ -54,14 +54,11 @@ static int8_t	handle_collision(t_darray *array, void **content, size_t n_size,
 	ret = FAILURE;
 	while (i <= array->end)
 	{
-		node = darray_get(array, i);
+		node = darray_remove(array, i);
 		if (node != NULL)
-		{
 			ret = push_node(content, n_size, nb_collision, node);
-			darray_remove(array, i);
-		}
-		else
-			ft_perror(NODE_SEARCH_NULL, __FILE__, __LINE__);
+	//	else
+	//		ft_perror(NODE_SEARCH_NULL, __FILE__, __LINE__);
 		i++;
 	}
 	return (ret);
@@ -83,7 +80,10 @@ static int8_t	redispatch_node(t_hashmap *map, size_t i, void **content,
 		if (node != NULL)
 		{
 			index = node->hash % new_size;
-			content[index] = array;
+			if (content[index] == NULL)
+				content[index] = array;
+			else
+				ret = push_node(content, new_size, &map->nb_collision, node);
 			if (array->end > 0)
 			{
 				ret = handle_collision(array, content, new_size,
@@ -104,6 +104,7 @@ int8_t			hashmap_resize(t_hashmap *map)
 	i = 0;
 	ret = SUCCESS;
 	new_size = (size_t)ft_find_next_prime(map->size * 3);
+	ft_dprintf(STD_ERR, "Before resize from %zu to %zu. nb of element: %zu nb of collision: %zu\n", map->size, new_size, map->nb_of_elem, map->nb_collision);
 	content = ft_memalloc(new_size * (sizeof(t_darray*)));
 	if (content != NULL)
 	{
@@ -119,5 +120,6 @@ int8_t			hashmap_resize(t_hashmap *map)
 	}
 	else
 		ret = ft_perror_failure(RESIZE_FAIL, __FILE__, __LINE__);
+	ft_dprintf(STD_ERR, "After resize from %zu to %zu. nb of element: %zu nb of collision: %zu\n", map->size, new_size, map->nb_of_elem, map->nb_collision);
 	return (ret);
 }
