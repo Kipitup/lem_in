@@ -391,7 +391,7 @@ elif [ "$gen" = true ]
 then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
-	total_nb_test=$(( $nb_cycle * 3 + 3 + 3))
+	total_nb_test=$(( $nb_cycle * 3 + 5 + 5))
 
 	legend_generator
 
@@ -405,10 +405,10 @@ then
 	generate_map_and_test "--flow-thousand" "100" $nb_cycle
 	
 	printf "\n\nBig map (~1000 rooms) and a lot of ants to test time complexity:\n"
-	generate_map_and_test "--big" "big" 3
+	generate_map_and_test "--big" "big" 5
 	
 	printf "\n\nBig map with overlapping paths and a lots of ants :\n"
-	generate_map_and_test "--big-superposition" "big-superposition" 3
+	generate_map_and_test "--big-superposition" "big-superposition" 5
 
 	output_result
 else

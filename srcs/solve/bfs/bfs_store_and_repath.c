@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/25 10:19:17 by francis          ###   ########.fr       */
+/*   Updated: 2020/04/28 16:43:42 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static size_t	find_next_vertex(t_graph *graph, size_t index)
 **	Becareful, the name of the path is not malloc. So do no free it from here.
 **	just put it to NULL
 */
-static uint8_t	create_and_add_step(t_solution *sol, t_path **path, size_t vertex, size_t len)
+static uint8_t	create_and_add_step(t_solution *sol, t_path **path,
+		size_t vertex, size_t len)
 {
 	t_path	*new_step;
 	uint8_t	ret;
@@ -87,6 +88,34 @@ static t_path	*trace_path(t_solution *sol)
 	}
 	return (path);
 }
+
+int8_t			store_valid_path_and_reset(t_solution *sol)
+{
+	t_darray	*array;
+	t_path		*path_found;
+	int8_t		ret;
+
+	array = sol->path;
+	ret = FAILURE;
+	if ((path_found = trace_path(sol)) != NULL)// free path if false
+	{
+		if (is_path_valid(sol->graph, path_found) == TRUE)
+		{
+			if (array->contents[0] == NULL)
+				ret = darray_set(array, 0, (void*)path_found);
+			else
+				ret = darray_push(array, (void*)path_found);
+			check_vertex_used(sol);
+		}
+		else
+		{
+			update_links_with_last_wrong_path(sol, path_found);
+			clean_lst_path(path_found);
+		}
+	}
+	reset_distance(sol->graph);
+	return (ret);
+}
 /*
 static t_path	*trace_path(t_solution *sol)
 {
@@ -120,30 +149,4 @@ static t_path	*trace_path(t_solution *sol)
 }
 */
 
-int8_t			store_valid_path_and_reset(t_solution *sol)
-{
-	t_darray	*array;
-	t_path		*path_found;
-	int8_t		ret;
 
-	array = sol->path;
-	ret = FAILURE;
-	if ((path_found = trace_path(sol)) != NULL)// free path if false
-	{
-		if (is_path_valid(sol->graph, path_found) == TRUE)
-		{
-			if (array->contents[0] == NULL)
-				ret = darray_set(array, 0, (void*)path_found);
-			else
-				ret = darray_push(array, (void*)path_found);
-			check_vertex_used(sol);
-		}
-		else
-		{
-			update_links_with_last_wrong_path(sol, path_found);
-			clean_lst_path(path_found);
-		}
-	}
-	reset_distance(sol->graph);
-	return (ret);
-}
