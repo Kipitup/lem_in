@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/21 12:44:43 by francis          ###   ########.fr        #
+#    Updated: 2020/04/29 12:11:08 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -112,6 +112,7 @@ SRCS += rewind_solution
 # print
 SRCS += print_queue 
 SRCS += print_path 
+SRCS += print_path_second 
 
 # clean
 SRCS += clean

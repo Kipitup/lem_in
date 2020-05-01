@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/04/28 16:10:42 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/30 16:28:41 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	print_all_path(t_darray *all_path)
 		path = all_path->contents[i];
 		if (path != NULL)
 		{
-		//	print_path(path);
+	//		print_path(path);
 			ft_printf("Path length = %d\n\n", path->len);
 		}
 		i++;

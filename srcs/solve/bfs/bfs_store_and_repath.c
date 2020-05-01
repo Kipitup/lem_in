@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/04/28 16:43:42 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/04/29 17:45:29 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,37 +116,3 @@ int8_t			store_valid_path_and_reset(t_solution *sol)
 	reset_distance(sol->graph);
 	return (ret);
 }
-/*
-static t_path	*trace_path(t_solution *sol)
-{
-	t_path	*path;
-	t_path	*new_step;
-	size_t	vertex;
-	size_t	index;
-	size_t	len;
-
-	index = sol->graph->size - 1;
-	len = 0;
-	path = ft_memalloc(sizeof(t_path));
-	if (path != NULL)
-	{
-		path->vertex = index;
-		path->name = sol->graph->array[index].name;
-		while (index > 0)
-		{
-			vertex = find_next_vertex(sol->graph, index);
-			if ((new_step = ft_memalloc(sizeof(t_path))) != NULL)//what if malloc fail
-			{
-				new_step->vertex = vertex;
-				new_step->name = sol->graph->array[vertex].name;
-				new_step->len = ++len;
-				lstadd(&path, new_step);
-				index = vertex;
-			}
-		}
-	}
-	return (path);
-}
-*/
-
-

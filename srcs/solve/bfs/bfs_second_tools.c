@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 21:22:36 by francis           #+#    #+#             */
-/*   Updated: 2020/04/25 09:19:25 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/01 09:45:41 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ size_t	first_path_with_multiple(t_solution *sol, size_t vertex_index)
 	return (i);
 }
 
-void	reset_vertex_usable(t_graph *graph, t_path *path, size_t vertex_index)
+void	reset_vertex_usable_and_link(t_graph *graph, t_path *path, size_t vertex_index)
 {
 	t_adj_node	*link;
 	t_path		*next;
@@ -69,7 +69,7 @@ void	reset_vertex_usable(t_graph *graph, t_path *path, size_t vertex_index)
 			if (next != NULL && path->vertex != vertex_index)
 			{
 				link = get_link(graph, path->vertex, next->vertex);
-				if (link != NULL)
+				if (link != NULL && link->available != USED_MULTIPLE)
 					link->available = 0;
 			}
 			if (path->vertex != 0 && path->vertex != graph->size - 1)

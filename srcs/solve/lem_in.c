@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/28 16:43:18 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/01 09:52:51 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ void		lem_in(t_lemin *lemin)
 			ret = bfs(sol);
 			if (ret == SUCCESS)
 			{
+//				vertex_used_more(sol->graph);
 				if ((store_valid_path_and_reset(sol)) == FAILURE)
+				{
+//					ft_printf("{c_cyan}New Sequence{c_end}\n");
 					handle_link_used_both_way(lemin);
+				}
 //				print_all_path(sol->path);//print only the paths' len. more readable
 //				usleep(700000);
 			}
