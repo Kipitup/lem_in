@@ -320,7 +320,7 @@ handle_map_loop () #
 check_output_generator_map () #
 {
 	lemin_pid=$!
-	j=70
+	j=140
 	while [[ $j -gt 0 ]]
 	do
 		lsof -p $lemin_pid &>/dev/null
@@ -391,24 +391,25 @@ elif [ "$gen" = true ]
 then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
-	total_nb_test=$(( $nb_cycle * 3 + 5 + 5))
+	nb_test_big=20
+	total_nb_test=$(( $nb_cycle * 3 + $nb_test_big + $nb_test_big))
 
 	legend_generator
 
-	printf "1 ant, map with distinctive path:\n"
-	generate_map_and_test "--flow-one" "1" $nb_cycle
-	
-	printf "\n\n~10 ant, map with distinctive path:\n"
-	generate_map_and_test "--flow-ten" "10" $nb_cycle
-	
-	printf "\n\n~100 ant, map with distinctive path:\n"
-	generate_map_and_test "--flow-thousand" "100" $nb_cycle
+#	printf "1 ant, map with distinctive path:\n"
+#	generate_map_and_test "--flow-one" "1" $nb_cycle
+#	
+#	printf "\n\n~10 ant, map with distinctive path:\n"
+#	generate_map_and_test "--flow-ten" "10" $nb_cycle
+#	
+#	printf "\n\n~100 ant, map with distinctive path:\n"
+#	generate_map_and_test "--flow-thousand" "100" $nb_cycle
 	
 	printf "\n\nBig map (~1000 rooms) and a lot of ants to test time complexity:\n"
-	generate_map_and_test "--big" "big" 5
+	generate_map_and_test "--big" "big" $nb_test_big
 	
 	printf "\n\nBig map with overlapping paths and a lots of ants :\n"
-	generate_map_and_test "--big-superposition" "big-superposition" 5
+	generate_map_and_test "--big-superposition" "big-superposition" $nb_test_big
 
 	output_result
 else

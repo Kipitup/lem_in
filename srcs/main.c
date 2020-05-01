@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/26 11:23:09 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/01 10:03:22 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(void)
 	{
 		lem_in(lemin);
 		rewind_solution(lemin);
-		print_all_solution(lemin);
+//		print_all_solution(lemin);
 		print_final_output(lemin);
 	}
 	clean_lemin(&lemin);
