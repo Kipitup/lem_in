@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 10:16:12 by francis           #+#    #+#             */
-/*   Updated: 2020/05/01 09:43:53 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/02 11:00:02 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ void			check_vertex_used(t_solution *sol)
 	path_index = 0;
 	ret = FALSE;
 	update_links(sol);
-
 	while (vertex_index < graph->size)
 	{
 		if (graph->array[vertex_index].usable > 1)
