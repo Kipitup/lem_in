@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 10:25:32 by francis           #+#    #+#             */
-/*   Updated: 2020/04/25 09:04:10 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/01 11:49:47 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		update_links_with_last_wrong_path(t_solution *sol,
 	{
 		next = current->next;
 		link = get_link(sol->graph, current->vertex, next->vertex);
-		if (link != NULL)
+		if (link != NULL && link->available != USED_MULTIPLE)
 			link->available = CLOSED;
 		current = current->next;
 	}

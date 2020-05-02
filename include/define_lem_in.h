@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/28 15:45:19 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/01 11:23:49 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define TRUE				1
 # define SUCCESS			0
 # define FAILURE			-1
+# define NO_PATH_FOUND		-2
 # define START				0
 # define END				1
 # define VISITED			1

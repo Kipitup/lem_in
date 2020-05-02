@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 12:08:06 by francis           #+#    #+#             */
-/*   Updated: 2020/04/30 17:29:33 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/01 11:33:42 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	vertex_used_more(t_graph *graph)
 	{
 		if (graph->array[i].usable > 1)
 		{
-			ft_printf("{c_cyan}Node used more{c_end}\n");
+			ft_printf("\n{c_cyan}Node used more{c_end}\n");
 			break ;
 		}
 		i++;
