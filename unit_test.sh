@@ -257,8 +257,6 @@ store_result_in_new_file () # $1 is the name of the file
 	mv ${MAP_DIR}/${GEN_DIR}/random.map "$name".map
 }
 
-end_room=L
-
 # Bash's indirection feature ${!k} to get the parameter k
 # ${room1  <-- from variable romm1
 # ##   <-- greedy front trim
@@ -266,13 +264,14 @@ end_room=L
 # -    <-- until the last '-'
 check_if_room_are_used_only_once () #
 {
+	end_room=L
 	argc=$#
 	j=1
 	while [[ $j -le $argc ]]
 	do
-		k=$(($j + 1))
 		room1=${!j}
 		room1=${room1##*-}
+		k=$(($j + 1))
 		while [[ $k -le $argc ]]
 		do
 			room2=${!k}
@@ -281,10 +280,16 @@ check_if_room_are_used_only_once () #
 			then
 				if [ "$end_room" == "L" ]
 				then
+	#				echo ${!j} " and " ${!k}
 					end_room=$room1
 				elif [ "$room1" != "$end_room" ]
 				then
-					echo "equal" $room1 $room2
+					printf "\n\n${RED}✖${END_C}\n"
+					mkdir ${MAP_DIR}/${GEN_DIR}/error_map/ 2>/dev/null
+					name=${MAP_DIR}/${GEN_DIR}/error_map/$end_room-or$room1-room-collision
+					store_result_in_new_file $name
+					printf "The room ${RED}$room1${END_C} is used more than once on the same line\nfile: ${YELLOW}$name${END_C}\n"
+					exit
 				fi
 			fi
 			let k++
@@ -333,7 +338,7 @@ check_map () # $1 is the test file
 		fi
 		if [ "$full_check" = true ]
 		then
-			full_check_output
+			full_check_output $1
 		fi
 		nb_line=$(grep -c "^L" ${LOG_EXEC})
 		limit=$(grep -m1 "#Here is the number of lines required:" ${LOG_EXEC} | sed 's/\[0m//g' | tr -dc "0-9")
@@ -381,7 +386,7 @@ handle_map_loop () #
 check_output_generator_map () #
 {
 	lemin_pid=$!
-	j=140
+	j=500
 	while [[ $j -gt 0 ]]
 	do
 		lsof -p $lemin_pid &>/dev/null
@@ -463,7 +468,7 @@ elif [ "$gen" = true ]
 then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
-	nb_test_big=5
+	nb_test_big=10
 	total_nb_test=$(( $nb_cycle * 3 + $nb_test_big + $nb_test_big))
 
 	legend_generator

@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/27 19:14:21 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/02 17:16:15 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,48 +53,47 @@ static uint8_t	push_next_ant_and_move_other(t_path *room, t_vector *output,
 	return (ret);
 }
 
-static void		compute_next_line(t_network *net, t_vector *output,
-		size_t nb_ants, size_t nb_of_usable_flow)
+static size_t	compute_next_line(t_network *net, t_vector *output,
+		size_t nb_ants, size_t curr_ant)
 {
 	t_path		*room_after_start;
 	size_t		i;
-	size_t		ant;
 
 	i = 0;
-	ant = 1;
-	while (i < nb_of_usable_flow)
+	while (i < net->nb_of_usable_flow)
 	{
 		room_after_start = ((t_path*)net->all_path->contents[i])->next;
-		if (ant <= nb_ants && net->flow[i].capacity > 0)
+		if (curr_ant <= nb_ants && net->flow[i].capacity > 0)
 		{
-			push_next_ant_and_move_other(room_after_start, output, ant);
+			push_next_ant_and_move_other(room_after_start, output, curr_ant);
 			net->flow[i].capacity--;
-			ant++;
+			curr_ant++;
 		}
 		else
 			push_next_ant_and_move_other(room_after_start, output, 0);
 		i++;
 	}
+	return (curr_ant);
 }
 
 static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
 {
 	size_t		i;
-	size_t		nb_of_usable_flow;
+	size_t		curr_ant;
 	size_t		line_total;
 
 	i = 0;
-	nb_of_usable_flow = 0;
+	curr_ant = 1;
 	line_total = net->flow[0].len + net->flow[0].capacity;
 	while (i <= net->all_path->end)
 	{
 		if (net->flow[i].capacity > 0)
-			nb_of_usable_flow++;
+			net->nb_of_usable_flow++;
 		i++;
 	}
 	while (line_total > 0)
 	{
-		compute_next_line(net, output, nb_ants, nb_of_usable_flow);
+		curr_ant = compute_next_line(net, output, nb_ants, curr_ant);
 		vct_addchar(output, '\n');
 		line_total--;
 	}

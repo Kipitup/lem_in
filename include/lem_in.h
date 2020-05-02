@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/01 09:45:43 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/02 17:01:12 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_network
 	t_darray		*all_path;
 	t_flow			*flow;
 	size_t			nb_of_flow;
+	size_t			nb_of_usable_flow;
 }				t_network;
 
 typedef struct	s_path
