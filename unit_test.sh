@@ -5,6 +5,7 @@
 # '-n' : true if the lenght of the string is nonzero
 parsing=false
 gen=false
+full_check=false
 nb_cycle=false
 path_to_map=false
 continue=false
@@ -22,8 +23,9 @@ usage () #
 	printf "optional flag:\n"
 	printf "\t-c: if error, continue\n"
 	printf "\t-v: verbose\n"
-	printf "\t-f: compile with fsanitize\n"
+	printf "\t-s: compile with fsanitize\n"
 	printf "\t-l: check leaks\n"
+	printf "\t-f: for full check on the generator\n"
 	printf "\t--help: show this help message and exit\n"
 	printf "For multiple flags, put everything in the same argument:\n"
 	printf "\texample :-cvl\n\n"
@@ -45,10 +47,14 @@ then
 	then
 		verbose=true
 	fi
+	if [[ $1 == "-"*"f"* ]]
+	then
+		full_check=true
+	fi
 	if [[ $1 == "-"*"l"* ]]
 	then
 		leak=true
-	elif [[ $1 == "-"*"f"* ]]
+	elif [[ $1 == "-"*"s"* ]]
 	then
 		sanitize=true
 	fi
@@ -251,6 +257,57 @@ store_result_in_new_file () # $1 is the name of the file
 	mv ${MAP_DIR}/${GEN_DIR}/random.map "$name".map
 }
 
+end_room=L
+
+# Bash's indirection feature ${!k} to get the parameter k
+# ${room1  <-- from variable romm1
+# ##   <-- greedy front trim
+# *    <-- matches anything
+# -    <-- until the last '-'
+check_if_room_are_used_only_once () #
+{
+	argc=$#
+	j=1
+	while [[ $j -le $argc ]]
+	do
+		k=$(($j + 1))
+		room1=${!j}
+		room1=${room1##*-}
+		while [[ $k -le $argc ]]
+		do
+			room2=${!k}
+			room2=${room2##*-}
+			if [[ $room1 == $room2 ]]
+			then
+				if [ "$end_room" == "L" ]
+				then
+					end_room=$room1
+				elif [ "$room1" != "$end_room" ]
+				then
+					echo "equal" $room1 $room2
+				fi
+			fi
+			let k++
+		done
+		let j++
+	done
+}
+
+# -c for count | '^' for pattern a the beginning only
+# sed -n do not echo the output. 2p print the second line 
+full_check_output () #
+{
+	i=1
+	p=p
+	count=$(grep -c "^L" $LOG_EXEC)
+	while [[ $i -le $count ]]
+	do
+		line=$(grep "^L" $LOG_EXEC | sed -n $i$p)
+		check_if_room_are_used_only_once $line
+		let i++
+	done
+}
+
 # grep -c -> count number of match
 # grep -m1 -> stop after first match
 # sed is here to eliminate the color pattern
@@ -273,6 +330,10 @@ check_map () # $1 is the test file
 		if [ "$verbose" = true ]
 		then
 			cat $LOG_EXEC
+		fi
+		if [ "$full_check" = true ]
+		then
+			full_check_output
 		fi
 		nb_line=$(grep -c "^L" ${LOG_EXEC})
 		limit=$(grep -m1 "#Here is the number of lines required:" ${LOG_EXEC} | sed 's/\[0m//g' | tr -dc "0-9")
@@ -344,6 +405,16 @@ check_output_generator_map () #
 	fi
 }
 
+# time format to gee only the real time not the sys or user time
+# time output go directly to STD ERR so you need to redirect it to STD OUT so we
+# can store the STD OUT result in a shell variable
+mesure_time() #
+{
+	./generator $1 > $MAP
+	TIMEFORMAT='%R'
+	time=$( time ( $EXEC < $MAP > $LOG_EXEC 2>&1) 2>&1 )
+}
+
 generate_map_and_test () #
 {
 	tmp=$3
@@ -361,6 +432,7 @@ generate_map_and_test () #
 		check_output_generator_map $2
 		tmp=$(( $tmp - 1 ))
 	done
+	mesure_time $1
 }
 
 #======TEST======#
@@ -391,25 +463,30 @@ elif [ "$gen" = true ]
 then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
-	nb_test_big=20
+	nb_test_big=5
 	total_nb_test=$(( $nb_cycle * 3 + $nb_test_big + $nb_test_big))
 
 	legend_generator
 
-#	printf "1 ant, map with distinctive path:\n"
-#	generate_map_and_test "--flow-one" "1" $nb_cycle
-#	
-#	printf "\n\n~10 ant, map with distinctive path:\n"
-#	generate_map_and_test "--flow-ten" "10" $nb_cycle
-#	
-#	printf "\n\n~100 ant, map with distinctive path:\n"
-#	generate_map_and_test "--flow-thousand" "100" $nb_cycle
+	printf "${UNDERLINE}1 ant, map with distinctive path:${END_C}\n"
+	generate_map_and_test "--flow-one" "1" $nb_cycle
+	printf "\n\n${RED}time: $time s${END_C}"
+
+	printf "\n\n${UNDERLINE}~10 ant, map with distinctive path:${END_C}\n"
+	generate_map_and_test "--flow-ten" "10" $nb_cycle
+	printf "\n\n${RED}time: $time s${END_C}"
 	
-	printf "\n\nBig map (~1000 rooms) and a lot of ants to test time complexity:\n"
+	printf "\n\n${UNDERLINE}~100 ant, map with distinctive path:${END_C}\n"
+	generate_map_and_test "--flow-thousand" "100" $nb_cycle
+	printf "\n\n${RED}time: $time s${END_C}"
+	
+	printf "\n\n${UNDERLINE}Big map (~1000 rooms) and a lot of ants to test time complexity:${END_C}\n"
 	generate_map_and_test "--big" "big" $nb_test_big
+	printf "\n\n${RED}time: $time s${END_C}"
 	
-	printf "\n\nBig map with overlapping paths and a lots of ants :\n"
+	printf "\n\n${UNDERLINE}Big map with overlapping paths and a lots of ants :${END_C}\n"
 	generate_map_and_test "--big-superposition" "big-superposition" $nb_test_big
+	printf "\n\n${RED}time: $time s${END_C}"
 
 	output_result
 else
