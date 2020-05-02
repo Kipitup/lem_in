@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 10:25:32 by francis           #+#    #+#             */
-/*   Updated: 2020/05/01 11:49:47 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/02 12:43:05 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,14 @@ void		update_links(t_solution *sol)
 	}
 }
 
-void		update_links_with_last_wrong_path(t_solution *sol,
-		t_path *wrong_path)
+void		update_links_with_last_path(t_solution *sol, t_path *path)
 {
 	t_adj_node	*link;
 	t_path		*current;
 	t_path		*next;
 
 	update_links(sol);
-	current = wrong_path;
+	current = path;
 	while (current->next != NULL)
 	{
 		next = current->next;

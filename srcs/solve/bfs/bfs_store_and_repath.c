@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/05/02 11:06:21 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/02 12:43:08 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int8_t			store_valid_path_and_reset(t_solution *sol)
 	ret = FAILURE;
 	if ((path_found = trace_path(sol)) != NULL)// free path if false
 	{
-		update_links_with_last_wrong_path(sol, path_found);
+		update_links_with_last_path(sol, path_found);
 		if (is_path_valid(sol->graph, path_found) == TRUE)
 		{
 			if (array->contents[0] == NULL)
@@ -109,9 +109,7 @@ int8_t			store_valid_path_and_reset(t_solution *sol)
 			check_vertex_used(sol);
 		}
 		else
-		{
 			clean_lst_path(path_found);
-		}
 	}
 	reset_distance(sol->graph);
 	return (ret);
