@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 10:16:12 by francis           #+#    #+#             */
-/*   Updated: 2020/05/02 13:37:04 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/02 14:38:50 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,40 @@ void			check_vertex_used(t_solution *sol)
 {
 	t_graph	*graph;
 	t_path	*path_removed;
+	t_path	*path;
 	size_t	path_index;
+	uint8_t	ret;
+
+	path = NULL;
+	if (sol->path->end != 0)
+		path = sol->path->contents[sol->path->end];
+	graph = sol->graph;
+	path_index = 0;
+	ret = FALSE;
+	while (path != NULL)
+	{
+		if (graph->array[path->vertex].usable > 1 && path->vertex != 0 && path->vertex != graph->size)
+		{
+			path_index = sol->path->end;
+			ret = find_path_with_vertex(sol, path->vertex, path_index);
+			if (ret == TRUE)
+				reset_vertex_usable_and_link(sol->graph, sol->path->contents[path_index], path->vertex);
+		}
+		path = path->next;
+	}
+	if (path_index != 0)
+	{
+		path_removed = darray_remove(sol->path, path_index);
+		clean_lst_path(path_removed);
+	}
+}
+
+/*
+void			check_vertex_used(t_solution *sol)
+{
+	t_graph	*graph;
+	t_path	*path_removed;
+	t_path	*path;
 	size_t	vertex_index;
 	uint8_t	ret;
 
@@ -138,4 +171,4 @@ void			check_vertex_used(t_solution *sol)
 		path_removed = darray_remove(sol->path, path_index);
 		clean_lst_path(path_removed);
 	}
-}
+}*/
