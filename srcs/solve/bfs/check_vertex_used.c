@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 10:16:12 by francis           #+#    #+#             */
-/*   Updated: 2020/05/02 11:00:02 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/02 14:38:50 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,40 @@ void			check_vertex_used(t_solution *sol)
 {
 	t_graph	*graph;
 	t_path	*path_removed;
+	t_path	*path;
 	size_t	path_index;
+	uint8_t	ret;
+
+	path = NULL;
+	if (sol->path->end != 0)
+		path = sol->path->contents[sol->path->end];
+	graph = sol->graph;
+	path_index = 0;
+	ret = FALSE;
+	while (path != NULL)
+	{
+		if (graph->array[path->vertex].usable > 1 && path->vertex != 0 && path->vertex != graph->size)
+		{
+			path_index = sol->path->end;
+			ret = find_path_with_vertex(sol, path->vertex, path_index);
+			if (ret == TRUE)
+				reset_vertex_usable_and_link(sol->graph, sol->path->contents[path_index], path->vertex);
+		}
+		path = path->next;
+	}
+	if (path_index != 0)
+	{
+		path_removed = darray_remove(sol->path, path_index);
+		clean_lst_path(path_removed);
+	}
+}
+
+/*
+void			check_vertex_used(t_solution *sol)
+{
+	t_graph	*graph;
+	t_path	*path_removed;
+	t_path	*path;
 	size_t	vertex_index;
 	uint8_t	ret;
 
@@ -122,7 +155,6 @@ void			check_vertex_used(t_solution *sol)
 	vertex_index = 1;
 	path_index = 0;
 	ret = FALSE;
-	update_links(sol);
 	while (vertex_index < graph->size)
 	{
 		if (graph->array[vertex_index].usable > 1)
@@ -139,60 +171,4 @@ void			check_vertex_used(t_solution *sol)
 		path_removed = darray_remove(sol->path, path_index);
 		clean_lst_path(path_removed);
 	}
-}
-
-
-
-/*
-static void	find_path_with_vertex(t_solution *sol, size_t vertex_index)
-{
-	t_path	*path;
-	t_path	*path_removed;
-	t_path	*begin;
-	size_t	i;
-
-	i = first_path_with_multiple(sol, vertex_index) + 1;
-	while (i <= sol->path->end)
-	{
-		path = sol->path->contents[i];
-		begin = path;
-		while (path != NULL)
-		{
-			if (path->vertex == vertex_index)
-			{
-				check_link_vertex_used_multiple(sol, vertex_index, i);
-				path_removed = darray_remove(sol->path, i);
-				reset_vertex_usable(sol->graph, begin, vertex_index);
-				print_path(path_removed);
-				clean_lst_path(path_removed);
-				break ;
-			}
-			path = path->next;
-		}
-		i++;
-	}
-}
-
-int8_t		check_vertex_used(t_solution *sol)
-{
-	t_graph	*graph;
-	size_t	i;
-	int8_t	ret;
-
-	graph = sol->graph;
-	i = 1;
-	ret = FAILURE;
-	update_links(sol);
-//	print_all_links_to_vertex_used_more(sol->graph);
-	while (i < graph->size)
-	{
-		if (graph->array[i].usable > 1)
-		{
-			ft_printf("i = %d\n", i);
-			find_path_with_vertex(sol, i);
-			ret = SUCCESS;
-		}
-		i++;
-	}
-	return (ret);
 }*/
