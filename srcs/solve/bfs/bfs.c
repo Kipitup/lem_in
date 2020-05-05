@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/04/28 16:43:33 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/04 17:20:35 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int8_t			bfs(t_solution *sol)
 	ret = FAILURE;
 	if (sol != NULL)
 	{
+		// [!] check if queue malloc failed ?
 		queue = init_queue(sol->graph);
 		node = next_vertex(sol->graph, queue);
 		while (queue->array[0].head != NULL && ret != SUCCESS)

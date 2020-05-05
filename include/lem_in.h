@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/02 12:42:56 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/05 11:39:37 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,11 @@ void			add_step(t_adj_list *node, size_t step);
 uint8_t			end_room_visited(t_graph *graph);
 void			update_links(t_solution *sol);
 void			update_links_with_last_path(t_solution *sol, t_path *path);
-void			reset_vertex_usable_and_link(t_graph *graph, t_path *pth, size_t index);
-int8_t			store_valid_path_and_reset(t_solution *sol);
+int8_t			store_valid_path_and_reset(t_solution *sol, size_t *used_multiple);
 void			handle_link_used_both_way(t_lemin *lemin);
 uint8_t			link_used_both_ways(t_graph *graph);
 uint8_t			is_path_valid(t_graph *graph, t_path *path);
-void			check_vertex_used(t_solution *sol);
+void			check_vertex_used(t_solution *sol, size_t *used_multiple);
 size_t			first_path_with_multiple(t_solution *sol, size_t index);
 void			reset_distance(t_graph *graph);
 void			lstadd(t_path **alst, t_path *new);
@@ -152,7 +151,6 @@ void			lstadd(t_path **alst, t_path *new);
 ** ############################################################################
 */
 void			clean_lemin(t_lemin **lemin);
-void			clean_path(void *path);
 void			clean_state_machine(t_st_machine **sm);
 void			clean_network(t_network **net);
 void			clean_all_solution(t_lemin **lemin);
@@ -170,6 +168,7 @@ void			print_path(t_path *path);
 void			print_path_and_vertices_used_more(t_path *path, t_graph* grph);
 void			print_all_links_to_vertex_used_more(t_graph *graph);
 void			print_all_path(t_darray *all_path);
+void			print_all_path_len(t_darray *all_path);
 void			print_all_solution(t_lemin *lemin);
 void			print_final_output(t_lemin *lemin);
 void			print_debug_network(t_network *net);

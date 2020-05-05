@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 10:25:32 by francis           #+#    #+#             */
-/*   Updated: 2020/05/02 12:43:05 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/04 17:53:29 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static void	reset_links(t_graph *graph)
 	}
 }
 
+// [?] pas très efficient de tout reset puis de remettre les liens utilisé à CLOSED
+// idée: faire un DFS (depth first search).
+// mmh finalement DFS pas forcément une bonne solution. 
 void		update_links(t_solution *sol)
 {
 	t_path		*path;
@@ -51,7 +54,8 @@ void		update_links(t_solution *sol)
 			{
 				next = curr->next;
 				link = get_link(sol->graph, curr->vertex, next->vertex);
-				if (link != NULL && link->available < USED_MULTIPLE)
+//[v] && link->available == OPEN. Évite de assigner CLOSED a un lien déjà CLOSED
+				if (link != NULL && link->available == OPEN)
 					link->available = CLOSED;
 				curr = curr->next;
 			}
@@ -72,7 +76,8 @@ void		update_links_with_last_path(t_solution *sol, t_path *path)
 	{
 		next = current->next;
 		link = get_link(sol->graph, current->vertex, next->vertex);
-		if (link != NULL && link->available != USED_MULTIPLE)
+		//[v] pareil que avant. Perturbant d'utiliser '!=' et '<' pour la meme chose
+		if (link != NULL && link->available == OPEN)
 			link->available = CLOSED;
 		current = current->next;
 	}

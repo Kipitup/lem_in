@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/05/02 12:43:08 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/05 11:08:05 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ static t_path	*trace_path(t_solution *sol)
 				index = vertex;
 			else
 			{
-				clean_lst_path(path);
+				clean_lst_path((void*)path);
+				path = NULL;
 				break ;
 			}
 		}
@@ -89,7 +90,7 @@ static t_path	*trace_path(t_solution *sol)
 	return (path);
 }
 
-int8_t			store_valid_path_and_reset(t_solution *sol)
+int8_t			store_valid_path_and_reset(t_solution *sol, size_t *used_multiple)
 {
 	t_darray	*array;
 	t_path		*path_found;
@@ -97,19 +98,19 @@ int8_t			store_valid_path_and_reset(t_solution *sol)
 
 	array = sol->path;
 	ret = FAILURE;
-	if ((path_found = trace_path(sol)) != NULL)// free path if false
+	if ((path_found = trace_path(sol)) != NULL)
 	{
 		update_links_with_last_path(sol, path_found);
 		if (is_path_valid(sol->graph, path_found) == TRUE)
 		{
-			if (array->contents[0] == NULL)
-				ret = darray_set(array, 0, (void*)path_found);
-			else
-				ret = darray_push(array, (void*)path_found);
-			check_vertex_used(sol);
+			ret = darray_push(array, (void*)path_found);
+			check_vertex_used(sol, used_multiple);
 		}
 		else
-			clean_lst_path(path_found);
+		{
+			clean_lst_path((void*)path_found);
+			path_found = NULL;
+		}
 	}
 	reset_distance(sol->graph);
 	return (ret);
