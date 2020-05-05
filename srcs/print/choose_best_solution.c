@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/01 10:04:34 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/05 15:13:39 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@
 **	with 0 < i < last_index
 */
 
-static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff,
-		size_t last_index)
+static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 {
 	size_t		i;
 	uint32_t	rest;
 
 	i = 0;
-	rest = (nb_ants - diff) % (last_index + 1);
-	while (i <= last_index)
+	rest = (nb_ants - diff) % (net->nb_of_usable_flow);
+	while (i < net->nb_of_usable_flow)
 	{
-		net->flow[i].capacity = (nb_ants - diff) / (last_index + 1);
+		net->flow[i].capacity = (nb_ants - diff) / (net->nb_of_usable_flow);
 		if (rest > 0)
 		{
 			net->flow[i].capacity++;
@@ -37,9 +36,9 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff,
 		i++;
 	}
 	i = 0;
-	while (i < last_index)
+	while (i < net->nb_of_usable_flow - 1)
 	{
-		net->flow[i].capacity += net->flow[last_index].len - net->flow[i].len;
+		net->flow[i].capacity += net->flow[net->nb_of_usable_flow - 1].len - net->flow[i].len;
 		i++;
 	}
 }
@@ -53,26 +52,28 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff,
 **
 **	Since the paths are stored in the ascending order, last.len > i.len.
 */
-static size_t		calculate_diff(t_network *net, size_t nb_ants, size_t *last)
+static size_t		calculate_diff(t_network *net, size_t nb_ants)
 {
 	size_t		i;
+	size_t		last;
 	size_t		len_diff;
 
-	*last = net->nb_of_flow - 1;
-	while (*last > 0)
+	last = net->nb_of_flow - 1;
+	while (last > 0)
 	{
 		i = 0;
 		len_diff = 0;
-		while (i < *last)
+		while (i < last)
 		{
-			len_diff += net->flow[*last].len - net->flow[i].len;
+			len_diff += net->flow[last].len - net->flow[i].len;
 			i++;
 		}
 		if (len_diff < nb_ants)
 			break ;
-		(*last)--;
+		last--;
 	}
-	if (*last == 0 && len_diff >= nb_ants)
+	net->nb_of_usable_flow = last + 1;
+	if (last == 0 && len_diff >= nb_ants)
 		len_diff = 0;
 	return (len_diff);
 }
@@ -85,7 +86,6 @@ static size_t		calculate_diff(t_network *net, size_t nb_ants, size_t *last)
 static void			set_network(t_network *net, size_t nb_ants)
 {
 	size_t		i;
-	size_t		last;
 	size_t		len_diff;
 
 	i = 0;
@@ -94,11 +94,11 @@ static void			set_network(t_network *net, size_t nb_ants)
 		net->flow[i].len = ((t_path*)net->all_path->contents[i])->len - 1;
 		i++;
 	}
-	len_diff = calculate_diff(net, nb_ants, &last);
-	set_capacity(net, nb_ants, len_diff, last);
+	len_diff = calculate_diff(net, nb_ants);
+	set_capacity(net, nb_ants, len_diff);
 }
 
-static t_network	*init_and_set_network(t_darray *all_path, size_t nb_ants)
+t_network			*init_and_set_network(t_darray *all_path, size_t nb_ants)
 {
 	t_network	*net;
 
@@ -150,6 +150,5 @@ t_network			*choose_best_solution(t_solution *result, size_t nb_ants)
 		if (nb_line_best > nb_line_tmp)
 			best = tmp;
 	}
-	//print_debug_network(best);
 	return (best);
 }

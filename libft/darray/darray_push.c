@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:41:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 14:40:53 by fkante           ###   ########.fr       */
+/*   Updated: 2020/05/05 12:11:55 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ int8_t	darray_push(t_darray *array, void *element)
 	{
 		if ((array->end + 1) >= array->max)
 			ret = darray_expand(array);
-		array->end++;
 		if (ret == SUCCESS)
+		{
+			if (array->contents[array->end] != NULL || array->end > 0)
+				array->end++;
 			array->contents[array->end] = element;
+		}
 	}
 	else
 		ret = ft_perror_failure(ARRAY_IS_NULL, __FILE__, __LINE__);

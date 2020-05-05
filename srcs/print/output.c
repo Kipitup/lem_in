@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/02 17:16:15 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/05 15:35:16 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,6 @@ static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
 	i = 0;
 	curr_ant = 1;
 	line_total = net->flow[0].len + net->flow[0].capacity;
-	while (i <= net->all_path->end)
-	{
-		if (net->flow[i].capacity > 0)
-			net->nb_of_usable_flow++;
-		i++;
-	}
 	while (line_total > 0)
 	{
 		curr_ant = compute_next_line(net, output, nb_ants, curr_ant);
@@ -109,6 +103,7 @@ void				print_final_output(t_lemin *lemin)
 		net = choose_best_solution(lemin->result, lemin->nb_ants);
 		if (net != NULL)
 		{
+	//		print_debug_network(net);
 			if (VISU == TRUE)
 				init_file_for_visu(lemin->link, net);
 			increase_by = net->flow[0].len + net->flow[0].capacity;

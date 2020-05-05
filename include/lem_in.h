@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/05 11:39:37 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/05 12:53:18 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
 								t_hashnode *dest);
 t_network		*choose_best_solution(t_solution *result, size_t nb_ants);
+t_network		*init_and_set_network(t_darray *all_path, size_t nb_ants);
 
 /*
 ** ############################################################################
