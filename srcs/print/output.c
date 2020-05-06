@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/05 15:35:16 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/06 14:38:51 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static uint8_t	push_next_ant_and_move_other(t_path *room, t_vector *output,
 	room->ant_nb = ant;
 	if (ant > 0)
 	{
-		vct_addchar(output, 'L');
-		vct_addnb(output, room->ant_nb);
-		vct_addchar(output, '-');
-		vct_addstr(output, room->name);
-		vct_addchar(output, ' ');
+		write(1, "L", 1);
+		ft_putnbr(room->ant_nb);
+		write(1, "-", 1);
+		ft_putstr(room->name);
+		write(1, " ", 1);
 		ret = TRUE;
 	}
 	return (ret);
@@ -88,7 +88,7 @@ static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
 	while (line_total > 0)
 	{
 		curr_ant = compute_next_line(net, output, nb_ants, curr_ant);
-		vct_addchar(output, '\n');
+		write(1, "\n", 1);
 		line_total--;
 	}
 }
@@ -96,25 +96,17 @@ static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
 void				print_final_output(t_lemin *lemin)
 {
 	t_network	*net;
-	size_t		increase_by;
 
 	if (lemin != NULL)
 	{
 		net = choose_best_solution(lemin->result, lemin->nb_ants);
+		//print_debug_network(net);
+		vct_print(lemin->output);
 		if (net != NULL)
 		{
-	//		print_debug_network(net);
 			if (VISU == TRUE)
 				init_file_for_visu(lemin->link, net);
-			increase_by = net->flow[0].len + net->flow[0].capacity;
-			increase_by *= net->flow[0].capacity * 10;
-			if (vct_increase_scale(lemin->output, increase_by) == SUCCESS)
-			{
-				apply_solution(net, lemin->output, lemin->nb_ants);
-				vct_print(lemin->output);
-			}
-			else
-				ft_perror(MALLOC_ERR, __FILE__, __LINE__);
+			apply_solution(net, lemin->output, lemin->nb_ants);
 			clean_network(&net);
 		}
 	}

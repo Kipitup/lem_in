@@ -472,6 +472,9 @@ then
 	total_nb_test=$(( $nb_cycle * 3 + $nb_test_big + $nb_test_big))
 
 	legend_generator
+	
+	mkdir ${MAP_DIR} 2>/dev/null
+	mkdir ${MAP_DIR}/${GEN_DIR} 2>/dev/null
 
 	printf "${UNDERLINE}1 ant, map with distinctive path:${END_C}\n"
 	generate_map_and_test "--flow-one" "1" $nb_cycle
@@ -484,7 +487,7 @@ then
 	printf "\n\n${UNDERLINE}~100 ant, map with distinctive path:${END_C}\n"
 	generate_map_and_test "--flow-thousand" "100" $nb_cycle
 	printf "\n\n${RED}time: $time s${END_C}"
-	
+   
 	printf "\n\n${UNDERLINE}Big map (~1000 rooms) and a lot of ants to test time complexity:${END_C}\n"
 	generate_map_and_test "--big" "big" $nb_test_big
 	printf "\n\n${RED}time: $time s${END_C}"

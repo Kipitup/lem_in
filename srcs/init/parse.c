@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/20 11:44:27 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/06 14:38:56 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void		parse(t_st_machine *sm)
 	t_vector				*line;
 	static t_state_func		parser[4] = {ant, room, room_link, command};
 	int8_t					ret;
-	uint8_t					read_next_line;
+	uint8_t					shoud_read_nl;
 
 	line = NULL;
-	read_next_line = TRUE;
+	shoud_read_nl = TRUE;
 	while (sm->state != E_END && sm->state != E_ERROR)
 	{
-		if (read_next_line == TRUE)
+		if (shoud_read_nl == TRUE)
 		{
 			vct_del(&line);
 			ret = vct_read_line(STD_IN, &line);
@@ -33,7 +33,7 @@ void		parse(t_st_machine *sm)
 		else if (ret == FAILURE)
 			sm->state = ft_perror_failure(READ_LINE_ERR, __FILE__, __LINE__);
 		else
-			read_next_line = parser[sm->state](sm, line);
+			shoud_read_nl = parser[sm->state](sm, line);
 	}
 	vct_del(&line);
 	vct_read_line(CLEANUP, &line);

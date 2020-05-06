@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:23:13 by fkante            #+#    #+#             */
-/*   Updated: 2020/04/28 14:58:50 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/06 11:26:09 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_hashmap	*hashmap_create(t_hash_comp compare, t_hash_func hash)
 	if (map != NULL)
 	{
 		map->compare = (compare == NULL) ? &default_compare : compare;
-		map->hash = (hash == NULL) ? &ft_fnv1a_hash : hash;
+		map->hash = (hash == NULL) ? &ft_hash_void_data : hash;
 		map->size = DEFAULT_NB_OF_BUCKETS;
 		map->nb_of_elem = 0;
 		map->nb_collision = 0;
