@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/06 11:04:53 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/06 18:01:13 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ t_lemin				*init(void)
 	if (sm != NULL)
 	{
 		parse(sm);
-		ft_printf("parsing done\n");
 		if (sm->state != E_ERROR)
 			last_quick_check(sm);
 		if (sm->state != E_ERROR)

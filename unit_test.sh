@@ -417,7 +417,30 @@ mesure_time() #
 {
 	./generator $1 > $MAP
 	TIMEFORMAT='%R'
-	time=$( time ( $EXEC < $MAP > $LOG_EXEC 2>&1) 2>&1 )
+	time=$( time ( $EXEC < $MAP > $LOG_EXEC 2>&1) 2>&1)
+}
+
+
+generate_big_map_and_test () #
+{
+	tmp=$3
+	while [[ $tmp -gt 0 ]]
+	do
+		MAP=${MAP_DIR}/${GEN_DIR}/random.map
+		./generator $1 > $MAP
+		if [ "$leak" = true ]
+		then
+			TIMEFORMAT='%R'
+			time=$( time ( $VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1) 2>&1 &)
+			check_leak $MAP
+		else
+			TIMEFORMAT='%R'
+			time=$( time ( $EXEC < $MAP > $LOG_EXEC 2>&1) 2>&1 &)
+		fi
+		check_output_generator_map $2
+		printf "${RED}$time s${END_C} | "
+		tmp=$(( $tmp - 1 ))
+	done
 }
 
 generate_map_and_test () #
@@ -468,7 +491,7 @@ elif [ "$gen" = true ]
 then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
-	nb_test_big=4
+	nb_test_big=20
 	total_nb_test=$(( $nb_cycle * 3 + $nb_test_big + $nb_test_big))
 
 	legend_generator
@@ -489,12 +512,10 @@ then
 	printf "\n\n${RED}time: $time s${END_C}"
    
 	printf "\n\n${UNDERLINE}Big map (~1000 rooms) and a lot of ants to test time complexity:${END_C}\n"
-	generate_map_and_test "--big" "big" $nb_test_big
-	printf "\n\n${RED}time: $time s${END_C}"
+	generate_big_map_and_test "--big" "big" $nb_test_big
 	
 	printf "\n\n${UNDERLINE}Big map with overlapping paths and a lots of ants :${END_C}\n"
-	generate_map_and_test "--big-superposition" "big-superposition" $nb_test_big
-	printf "\n\n${RED}time: $time s${END_C}"
+	generate_big_map_and_test "--big-superposition" "big-superposition" $nb_test_big
 
 	output_result
 else

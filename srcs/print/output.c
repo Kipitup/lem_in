@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/06 14:38:51 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/06 15:51:18 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,9 @@ static size_t	compute_next_line(t_network *net, t_vector *output,
 
 static void		apply_solution(t_network *net, t_vector *output, size_t nb_ants)
 {
-	size_t		i;
 	size_t		curr_ant;
 	size_t		line_total;
 
-	i = 0;
 	curr_ant = 1;
 	line_total = net->flow[0].len + net->flow[0].capacity;
 	while (line_total > 0)
