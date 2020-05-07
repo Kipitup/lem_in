@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/07 15:37:01 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 23:46:33 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,31 @@
 **	another structure. The free will be done there.
 */
 
-static uint8_t		push_next_ant_and_move_other(t_path *room, size_t ant)
+static int8_t		push_next_ant_and_move_other(t_path *room, size_t ant)
 {
-	uint8_t		ret;
+	char		*nb_str;
+	int8_t		ret;
 
-	ret = FALSE;
+	ret = SUCCESS;
 	if (room->next != NULL)
 		ret = push_next_ant_and_move_other(room->next, room->ant_nb);
 	room->ant_nb = ant;
-	if (ant > 0)
+	if (ant > 0 && ret == SUCCESS)
 	{
-		write(1, "L", 1);
-		ft_putnbr(room->ant_nb);
-		write(1, "-", 1);
-		ft_putstr(room->name);
-		write(1, " ", 1);
-		ret = TRUE;
+		add_to_buffer("L", 1, ADD_NO_NEW_LINE);
+		nb_str = ft_itoa(room->ant_nb);
+		if (nb_str == NULL)
+			return (ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__));
+		add_to_buffer(nb_str, ft_strlen(nb_str), ADD_NO_NEW_LINE);
+		add_to_buffer("-", 1, ADD_NO_NEW_LINE);
+		add_to_buffer(room->name, ft_strlen(room->name), ADD_NO_NEW_LINE);
+		add_to_buffer(" ", 1, ADD_NO_NEW_LINE);
 	}
 	return (ret);
 }
 
 static size_t		compute_next_line(t_network *net, size_t nb_ants,
-		size_t curr_ant)
+		size_t curr_ant, int8_t *ret)
 {
 	t_path		*room_after_start;
 	size_t		i;
@@ -49,30 +52,33 @@ static size_t		compute_next_line(t_network *net, size_t nb_ants,
 		room_after_start = ((t_path*)net->all_path->contents[i])->next;
 		if (curr_ant <= nb_ants && net->flow[i].capacity > 0)
 		{
-			push_next_ant_and_move_other(room_after_start, curr_ant);
+			*ret	= push_next_ant_and_move_other(room_after_start, curr_ant);
 			net->flow[i].capacity--;
 			curr_ant++;
 		}
 		else
-			push_next_ant_and_move_other(room_after_start, 0);
+			*ret = push_next_ant_and_move_other(room_after_start, 0);
 		i++;
 	}
 	return (curr_ant);
 }
 
-static void			apply_solution(t_network *net, size_t nb_ants)
+static int8_t		apply_solution(t_network *net, size_t nb_ants)
 {
 	size_t		curr_ant;
 	size_t		line_total;
+	int8_t		ret;
 
+	ret = SUCCESS;
 	curr_ant = 1;
 	line_total = net->flow[0].len + net->flow[0].capacity;
-	while (line_total > 0)
+	while (line_total > 0 && ret == SUCCESS)
 	{
-		curr_ant = compute_next_line(net, nb_ants, curr_ant);
-		write(1, "\n", 1);
+		curr_ant = compute_next_line(net, nb_ants, curr_ant, &ret);
+		add_to_buffer("\n", 1, ADD_NO_NEW_LINE);
 		line_total--;
 	}
+	return (ret);
 }
 
 /*
@@ -101,16 +107,18 @@ static t_network	*choose_best_solution(t_solution *result)
 void				print_final_output(t_lemin *lemin)
 {
 	t_network	*net;
+	int8_t		ret;
 
 	if (lemin != NULL && lemin->result != NULL && lemin->result->net != NULL)
 	{
 		net = choose_best_solution(lemin->result);
 		if (net != NULL)
 		{
-			vct_print(lemin->output);
 			if (VISU == TRUE)
 				init_file_for_visu(lemin->link, net);
-			apply_solution(net, lemin->nb_ants);
+			ret = apply_solution(net, lemin->nb_ants);
+			if (ret == SUCCESS)
+				add_to_buffer("\0", 1, PRINT);
 		}
 	}
 }

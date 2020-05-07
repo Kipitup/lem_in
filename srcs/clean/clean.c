@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 14:57:02 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 20:33:37 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	clean_lemin(t_lemin **lemin)
 {
 	if (lemin != NULL && *lemin != NULL)
 	{
-		vct_del(&((*lemin)->output));
 		del_map(&((*lemin)->room));
 		clean_adj_graph(&((*lemin)->link));
 		clean_all_solution(lemin);

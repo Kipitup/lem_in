@@ -6,12 +6,14 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/01 11:23:49 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/07 23:31:39 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_LEM_IN_H
 # define DEFINE_LEM_IN_H
+
+# define LEMIN_BUFF_SIZE	32768 * 8
 
 # define FALSE				0
 # define TRUE				1
@@ -26,12 +28,9 @@
 # define CLOSED				1
 # define USED_MULTIPLE		2
 
-# define COMMENT			0
-# define COMMAND			1
-# define ANT				2
-# define ROOM				3
-# define ROOM_LINK			4
-# define SPECIAL_ROOM		5
+# define ADD_NEW_LINE		0
+# define ADD_NO_NEW_LINE	1
+# define PRINT				2
 # define NOT_SET			-1
 # define VISU				1
 

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/25 08:38:58 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/07 22:27:16 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void			next_room_is_special(t_st_machine *sm, uint8_t type)
 		sm->state = ft_perror_failure(READ_LINE_ERR, __FILE__, __LINE__);
 	else
 	{
-		add_line_to_output(sm, new_line, SPECIAL_ROOM);
+		add_to_buffer(new_line->str, new_line->len, ADD_NEW_LINE);
 		if (type == START)
 			sm->lemin->start = getspecial_room(sm, sm->lemin->start, new_line);
 		else
@@ -62,7 +62,7 @@ static void			next_room_is_special(t_st_machine *sm, uint8_t type)
 uint8_t				command(t_st_machine *sm, t_vector *line)
 {
 	sm->state = E_ROOM;
-	add_line_to_output(sm, line, COMMAND);
+	add_to_buffer(line->str, line->len, ADD_NEW_LINE);
 	if (vct_strequ(line, "##start") == TRUE)
 		next_room_is_special(sm, START);
 	else if (vct_strequ(line, "##end") == TRUE)

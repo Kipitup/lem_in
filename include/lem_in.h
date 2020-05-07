@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 16:40:29 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 22:50:13 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct	s_solution
 
 typedef struct	s_lemin
 {
-	t_vector			*output;
 	t_hashmap			*room;
 	t_graph				*link;
 	t_solution			*result;
@@ -106,7 +105,6 @@ uint8_t			command(t_st_machine *sm, t_vector *line);
 ** ################################# TOOL #####################################
 ** ############################################################################
 */
-void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);
 uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
@@ -163,6 +161,7 @@ void			clean_lst_path(void *path);
 ** ################################# PRINT ####################################
 ** ############################################################################
 */
+void			add_to_buffer(char *line, size_t len, uint8_t state);
 void			print_all_links(t_graph *graph);
 void			print_link_available(t_adj_list node);
 void			print_queue(t_graph *queue);

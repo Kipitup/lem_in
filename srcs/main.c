@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 17:57:12 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 22:49:19 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(void)
 	{
 		lem_in(lemin);
 		rewind_solution(lemin);
-//		print_final_output(lemin);
+		print_final_output(lemin);
 	}
 	clean_lemin(&lemin);
 	// need to free all of sol list when its over

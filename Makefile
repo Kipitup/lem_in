@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/05/07 16:41:09 by amartinod        ###   ########.fr        #
+#    Updated: 2020/05/07 20:25:07 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -111,6 +111,7 @@ SRCS += check_vertex_used
 
 # print
 SRCS += print_queue 
+SRCS += buffer 
 SRCS += print_path 
 SRCS += print_path_second 
 

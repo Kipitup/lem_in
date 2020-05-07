@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/28 15:02:27 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 22:26:03 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ uint8_t			room(t_st_machine *sm, t_vector *line)
 		ret = check_for_comment_or_command(sm, line);
 	else if (vct_chr_count(line, ' ') == 2)
 	{
-		add_line_to_output(sm, line, ROOM);
+		add_to_buffer(line->str, line->len, ADD_NEW_LINE);
 		get_room(sm, line);
 		if (sm->state == E_ERROR)
 			ret = FALSE;

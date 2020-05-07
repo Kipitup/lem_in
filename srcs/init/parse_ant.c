@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:46:37 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/25 08:39:09 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/07 22:25:16 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ uint8_t			ant(t_st_machine *sm, t_vector *line)
 	{
 		sm->state = E_ROOM;
 		sm->lemin->nb_ants = get_nb_of_ants(sm, line);
-		add_line_to_output(sm, line, ANT);
+		add_to_buffer(line->str, line->len, ADD_NEW_LINE);
 	}
 	return (ret);
 }
