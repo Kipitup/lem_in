@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:28:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/28 09:17:35 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 17:43:51 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,22 @@ uint8_t	is_it_all_digit(t_vector *line)
 
 void	add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type)
 {
-	if (type == COMMENT)
-		vct_addstr(sm->lemin->output, "\033[0m");
-	else if (type == COMMAND)
-		vct_addstr(sm->lemin->output, "\033[4m");
-	else if (type == SPECIAL_ROOM)
-		vct_addstr(sm->lemin->output, "\033[0;32m");
-	else
-		vct_addstr(sm->lemin->output, "\033[0;37m");
-	vct_cat(sm->lemin->output, line);
-	vct_addstr(sm->lemin->output, "\033[0m\n");
-	if (sm->lemin->output == NULL)
-		sm->state = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
+//	if (type == COMMENT)
+//		vct_addstr(sm->lemin->output, "\033[0m");
+//	else if (type == COMMAND)
+//		vct_addstr(sm->lemin->output, "\033[4m");
+//	else if (type == SPECIAL_ROOM)
+//		vct_addstr(sm->lemin->output, "\033[0;32m");
+//	else
+//		vct_addstr(sm->lemin->output, "\033[0;37m");
+//	vct_cat(sm->lemin->output, line);
+//	vct_addstr(sm->lemin->output, "\033[0m\n");
+//	if (sm->lemin->output == NULL)
+//		sm->state = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
+	write(1, line->str, line->len);
+	write(1, "\n", 1);
+	(void)sm;
+	(void)type;
 }
 
 uint8_t	check_for_comment_or_command(t_st_machine *sm, t_vector *line)
