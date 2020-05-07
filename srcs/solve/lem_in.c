@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/06 18:00:30 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 10:29:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void			lem_in(t_lemin *lemin)
 		{
 			sol = lemin->result;
 			count_bfs++;
+//			ft_printf("----------------------NEW SEQUENCE--------------------\n");
+			//print_all_links(sol->graph);
 			ret = bfs(sol);
 			if (ret == SUCCESS)
 			{

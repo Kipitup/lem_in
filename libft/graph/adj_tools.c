@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/06 16:03:39 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 10:32:00 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int8_t	dup_edge_recurse(t_adj_node	*node, t_graph *duplicate,
 		ret = dup_edge_recurse(node->next, duplicate, src);	
 		if (ret == SUCCESS)
 			ret = add_edge_one_way(duplicate, src, node->dest);
+		if (ret == SUCCESS && node->available == 2)
+			duplicate->array[src].head->available = node->available;
 	}
 	return (ret);
 }
