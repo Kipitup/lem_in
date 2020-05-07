@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/05 12:53:18 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 16:40:29 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct	s_solution
 {
 	t_darray			*path;
 	t_graph				*graph;
+	t_network			*net;
 	struct s_solution	*prev;
 	struct s_solution	*next;
 }				t_solution;
@@ -106,13 +107,13 @@ uint8_t			command(t_st_machine *sm, t_vector *line);
 ** ############################################################################
 */
 void			add_line_to_output(t_st_machine *sm, t_vector *line, uint8_t type);
-void			rewind_solution(t_lemin *lemin);
 uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
 uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
 								t_hashnode *dest);
-t_network		*choose_best_solution(t_solution *result, size_t nb_ants);
 t_network		*init_and_set_network(t_darray *all_path, size_t nb_ants);
+void			rewind_solution(t_lemin *lemin);
+uint8_t			smart_ant_management(t_solution *sol, size_t nb_ants);
 
 /*
 ** ############################################################################

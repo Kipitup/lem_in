@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/04 17:49:32 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 14:57:02 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	clean_all_solution(t_lemin **lemin)
 	{
 		clean_adj_graph(&((*lemin)->result->graph));
 		darray_clear_destroy(&((*lemin)->result->path), &clean_lst_path); //protection if init of graph worked but dup didnt
+		clean_network(&((*lemin)->result->net));
 		tmp = (*lemin)->result;
 		(*lemin)->result = (*lemin)->result->next;
 		ft_memdel((void**)&tmp);

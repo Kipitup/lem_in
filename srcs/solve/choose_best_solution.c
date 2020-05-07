@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/05 15:13:39 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 16:14:08 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 **	flow. Then add the diff between flow[last_index].len - flow[i].len
 **	with 0 < i < last_index
 */
-
 static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 {
 	size_t		i;
@@ -82,7 +81,6 @@ static size_t		calculate_diff(t_network *net, size_t nb_ants)
 **	The len of each flow is define by then len of the path - 1;
 **
 */
-
 static void			set_network(t_network *net, size_t nb_ants)
 {
 	size_t		i;
@@ -119,36 +117,4 @@ t_network			*init_and_set_network(t_darray *all_path, size_t nb_ants)
 		}
 	}
 	return (net);
-}
-
-/*
-**	The number of line of the output will be: flow[0].len + flow[0].capacity.
-*/
-
-t_network			*choose_best_solution(t_solution *result, size_t nb_ants)
-{
-	t_network	*best;
-	t_network	*tmp;
-	uint32_t	nb_line_best;
-	uint32_t	nb_line_tmp;
-
-	best = init_and_set_network(result->path, nb_ants);
-	if (best == NULL)
-		return (ft_perror_null(MALLOC_ERR, __FILE__, __LINE__));
-	while (result->next != NULL)
-	{
-		result = result->next;
-		tmp = init_and_set_network(result->path, nb_ants);
-		if (tmp == NULL)
-		{
-			clean_network(&best);
-			return (ft_perror_null(MALLOC_ERR, __FILE__, __LINE__));
-		}
-		nb_line_best = best->flow[0].len + best->flow[0].capacity;
-		nb_line_tmp = tmp->flow[0].len + tmp->flow[0].capacity;
-		nb_line_best > nb_line_tmp ? clean_network(&best) : clean_network(&tmp);
-		if (nb_line_best > nb_line_tmp)
-			best = tmp;
-	}
-	return (best);
 }

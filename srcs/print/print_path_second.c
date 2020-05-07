@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 12:08:06 by francis           #+#    #+#             */
-/*   Updated: 2020/05/01 11:33:42 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/07 15:14:17 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,19 @@ void	vertex_used_more(t_graph *graph)
 		}
 		i++;
 	}
+}
+
+void			print_debug_network(t_network *net)
+{
+	size_t	i;
+
+	i = 0;
+	ft_dprintf(STD_ERR, "---------------------------------------------\n");
+	while (net != NULL && i < net->nb_of_flow)
+	{
+		ft_dprintf(STD_ERR, "flow[%zu]:\n\t- len is    %zu\n\tcapacity is %zu\n",
+				i, net->flow[i].len, net->flow[i].capacity);
+		i++;
+	}
+	ft_dprintf(STD_ERR, "---------------------------------------------\n");
 }

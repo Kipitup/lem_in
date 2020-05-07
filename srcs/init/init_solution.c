@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/25 08:38:14 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/07 14:37:55 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void		init_solution(t_lemin *lemin)
 			sol = lemin->result;
 			sol->path = darray_create(sizeof(t_path*), DEFAULT_ARRAY_SIZE);
 			sol->graph = dup_adj_list(lemin->link);
-			sol->prev = NULL;
-			sol->next = NULL;
 		}
 	}
 }
@@ -42,8 +40,6 @@ t_solution	*init_new_solution(t_lemin *lemin)
 		{
 			new_sol->path = darray_create(sizeof(t_path*), DEFAULT_ARRAY_SIZE);
 			new_sol->graph = dup_adj_list(lemin->result->graph);
-			new_sol->prev = NULL;
-			new_sol->next = NULL;
 		}
 	}
 	return (new_sol);

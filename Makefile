@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/04/29 12:11:08 by francis          ###   ########.fr        #
+#    Updated: 2020/05/07 16:41:09 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -93,6 +93,8 @@ SRCS += parse_tools
 
 # solve
 SRCS += lem_in
+SRCS += choose_best_solution
+SRCS += smart_ant_management
 
 # bfs
 SRCS += bfs
@@ -105,9 +107,7 @@ SRCS += update_links
 SRCS += is_path_valid 
 SRCS += handle_link_used_both_way
 SRCS += output
-SRCS += choose_best_solution
 SRCS += check_vertex_used
-SRCS += rewind_solution
 
 # print
 SRCS += print_queue 

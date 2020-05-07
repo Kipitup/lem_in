@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/05/05 11:39:23 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/07 11:43:42 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 void	print_link_available(t_adj_list node)
 {
-	ft_printf("{c_yellow}------------ Link available ------------{c_end}\n");
+	size_t		count;
+
+	count = 0;
 	while (node.head != NULL)
 	{
-		ft_printf("dest = %d\t", node.head->dest);
-		ft_printf("available = %d\n", node.head->available);
+	//	ft_printf("dest = %d\t", node.head->dest);
+	//	ft_printf("available = %d\n", node.head->available);
+		count++;
 		node.head = node.head->next;
 	}
+	ft_printf("{c_yellow} %zu possible link{c_end}\n", count);
 }
 
 void	print_all_links(t_graph *graph)
