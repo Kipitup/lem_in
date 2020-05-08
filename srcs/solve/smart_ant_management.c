@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:39:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/07 18:03:14 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/08 10:12:11 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static uint8_t	should_it_be_interupted(t_solution *sol)
 	uint8_t		ret;
 
 	ret = FALSE;
-	limit = 8;
+	limit = 4;
 	while (limit > 0 && sol->prev != NULL)
 	{
 		prev = sol->prev;

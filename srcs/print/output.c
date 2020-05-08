@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/07 23:46:33 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/08 10:19:38 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int8_t		push_next_ant_and_move_other(t_path *room, size_t ant)
 		if (nb_str == NULL)
 			return (ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__));
 		add_to_buffer(nb_str, ft_strlen(nb_str), ADD_NO_NEW_LINE);
+		ft_strdel(&nb_str);
 		add_to_buffer("-", 1, ADD_NO_NEW_LINE);
 		add_to_buffer(room->name, ft_strlen(room->name), ADD_NO_NEW_LINE);
 		add_to_buffer(" ", 1, ADD_NO_NEW_LINE);
