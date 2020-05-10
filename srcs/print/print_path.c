@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/05/10 11:42:53 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/10 15:00:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ void	print_path(t_path *path)
 	{
 		ft_printf("BFS path found:\n");
 		tmp = path;
-		ft_printf("path: ");
+		ft_printf("Path: ");
 		while (tmp != NULL)
 		{
 			if (tmp->vertex == 0)
+			{
+				ft_printf("len = %d\t", tmp->len);
 				ft_printf("%d", tmp->vertex);
+			}
 			else
 				ft_printf(" -> %d", tmp->vertex);
 			tmp = tmp->next;

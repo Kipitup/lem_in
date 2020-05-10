@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 11:37:31 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/10 15:19:52 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,19 @@ void	clean_lst_path(void *path)
 
 	while (path != NULL)
 	{
+		tmp = path;
+		path = ((t_path*)path)->next;
+		tmp->next = NULL;
+		free(tmp);
+		tmp = NULL;
+	}
+	path = NULL;
+/*	while (path != NULL)
+	{
 		tmp = ((t_path*)path)->next;
 		free(path);
 		path = (tmp != NULL) ? tmp->next : tmp;
-	}
+	}*/
 }
 
 void	clean_all_solution(t_lemin **lemin)
