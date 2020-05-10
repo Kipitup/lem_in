@@ -6,13 +6,13 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:39:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/10 12:15:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 12:28:15 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		rewind_solution(t_lemin *lemin)
+void			rewind_solution(t_lemin *lemin)
 {
 	if (lemin != NULL && lemin->result != NULL)
 	{
@@ -44,9 +44,9 @@ static uint8_t	should_it_be_interupted(t_solution *sol)
 }
 
 /*
-** The program returning TRUE if malloc fail is an expected behaviour. Since
-** it will break out of the bfs phase and go to the printing part.A NULL network
-** prevent the next function, print_final_output, to operate.
+**	The program returning TRUE if malloc fail is an expected behaviour. Since
+**	it will break out of the bfs phase and go to the printing part.A NULL
+**	network prevent the next function, print_final_output, to operate.
 */
 uint8_t			smart_ant_management(t_solution *sol, size_t nb_ants)
 {

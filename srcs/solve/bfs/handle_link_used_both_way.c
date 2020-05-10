@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 10:34:48 by francis           #+#    #+#             */
-/*   Updated: 2020/05/02 13:38:01 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/10 12:20:43 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ static void	remove_link_used_both_way(t_graph *prev, t_graph *curr)
 			if (src <= node->dest)
 			{
 				if (is_link_used_both_way(prev, src, node->dest) == TRUE)
-				{
-				//	ft_printf("link removed between [%d] -- [%d]\n", src, node->dest);
 					remove_edge(curr, src, node->dest);
-				}
 			}
 			node = node->next;
 		}

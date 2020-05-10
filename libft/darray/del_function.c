@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:14:10 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 19:18:17 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/10 15:22:47 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	del_hashmap_node(void *content)
 		node->key = NULL;
 		node->data = NULL;
 		free(node);
+		node = NULL;
 	}
 }
 

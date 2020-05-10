@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/05/07 10:09:47 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/10 15:12:26 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ static size_t	find_next_vertex(t_graph *graph, size_t index)
 **	Becareful, the name of the path is not malloc. So do no free it from here.
 **	just put it to NULL
 */
+
 static uint8_t	create_and_add_step(t_solution *sol, t_path **path,
 		size_t vertex, size_t len)
 {
 	t_path	*new_step;
 	uint8_t	ret;
-	
+
 	ret = FALSE;
-	if ((new_step = ft_memalloc(sizeof(t_path))) != NULL)//what if malloc fail
+	if ((new_step = ft_memalloc(sizeof(t_path))) != NULL)
 	{
 		new_step->vertex = vertex;
 		new_step->name = sol->graph->array[vertex].name;
@@ -69,8 +70,7 @@ static t_path	*trace_path(t_solution *sol)
 
 	index = sol->graph->size - 1;
 	len = 0;
-	path = ft_memalloc(sizeof(t_path));
-	if (path != NULL)
+	if ((path = ft_memalloc(sizeof(t_path))) != NULL)
 	{
 		path->vertex = index;
 		path->name = sol->graph->array[index].name;
@@ -90,7 +90,8 @@ static t_path	*trace_path(t_solution *sol)
 	return (path);
 }
 
-int8_t			store_valid_path_and_reset(t_solution *sol, size_t *used_multiple)
+int8_t			store_valid_path_and_reset(t_solution *sol,
+		size_t *used_multiple)
 {
 	t_darray	*array;
 	t_path		*path_found;
@@ -98,7 +99,7 @@ int8_t			store_valid_path_and_reset(t_solution *sol, size_t *used_multiple)
 
 	array = sol->path;
 	ret = FAILURE;
-	if ((path_found = trace_path(sol)) != NULL)
+	if ((path_found = trace_path(sol)) != NULL)//what if path is null
 	{
 		update_links_with_last_path(sol, path_found);
 		if (is_path_valid(sol->graph, path_found) == TRUE)

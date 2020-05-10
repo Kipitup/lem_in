@@ -6,34 +6,11 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 13:11:47 by francis           #+#    #+#             */
-/*   Updated: 2020/05/04 17:20:35 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 12:09:08 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static uint8_t	is_vertex_visited_queue(t_graph *queue, t_adj_list node)
-{
-	t_adj_list	visited;
-	t_adj_node	*tmp;
-	size_t		next_node;
-	uint8_t		ret;
-
-	ret = FALSE;
-	next_node = node.head->dest;
-	visited = queue->array[1];
-	if (visited.head != NULL)
-	{
-		tmp = visited.head;
-		while (tmp->next != NULL && ret == FALSE)
-		{
-			if (tmp->dest == next_node)
-				ret = TRUE;
-			tmp = tmp->next;
-		}
-	}
-	return (ret);
-}
 
 static void		remove_from_queue(t_graph *queue)
 {
@@ -88,6 +65,18 @@ static uint8_t	set_distance(t_adj_list node, t_graph *graph)
 	return (ret);
 }
 
+static void		queue_management(t_adj_list nde, t_graph *que, t_solution *sol)
+{
+	while (nde.head != NULL)
+	{
+		if (set_distance(nde, sol->graph) == TRUE)
+			add_to_queue(que, nde);
+		else
+			nde.head = nde.head->next;
+	}
+	remove_from_queue(que);
+}
+
 int8_t			bfs(t_solution *sol)
 {
 	t_adj_list	node;
@@ -97,23 +86,20 @@ int8_t			bfs(t_solution *sol)
 	ret = FAILURE;
 	if (sol != NULL)
 	{
-		// [!] check if queue malloc failed ?
 		queue = init_queue(sol->graph);
-		node = next_vertex(sol->graph, queue);
-		while (queue->array[0].head != NULL && ret != SUCCESS)
+		if (queue != NULL)
 		{
-			while (node.head != NULL)
-			{
-				if (set_distance(node, sol->graph) == TRUE)
-					add_to_queue(queue, node);
-				else
-					node.head = node.head->next;
-			}
-			remove_from_queue(queue);
 			node = next_vertex(sol->graph, queue);
-			if (end_room_visited(sol->graph) == TRUE)
-				ret = SUCCESS;
+			while (queue->array[0].head != NULL && ret != SUCCESS)
+			{
+				queue_management(node, queue, sol);
+				node = next_vertex(sol->graph, queue);
+				if (end_room_visited(sol->graph) == TRUE)
+					ret = SUCCESS;
+			}
 		}
+		else
+			ret = FAILED_INIT_QUEUE;
 	}
 	clean_adj_graph(&queue);
 	return (ret);

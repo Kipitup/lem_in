@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 12:08:06 by francis           #+#    #+#             */
-/*   Updated: 2020/05/07 15:14:17 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 11:45:08 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	print_path_and_vertices_used_more(t_path *path, t_graph *graph)
 {
-	t_path *tmp;
+	t_path	*tmp;
+	uint8_t	usable;
 
 	if (path != NULL && graph != NULL)
 	{
@@ -24,7 +25,10 @@ void	print_path_and_vertices_used_more(t_path *path, t_graph *graph)
 		while (tmp != NULL)
 		{
 			if (graph->array[tmp->vertex].usable > 1 && tmp->vertex != 0)
-				ft_printf("vertex[%d] used %d\n", tmp->vertex, graph->array[tmp->vertex].usable);
+			{
+				usable = graph->array[tmp->vertex].usable;
+				ft_printf("vertex[%d] used %d\n", tmp->vertex, usable);
+			}
 			tmp = tmp->next;
 		}
 		ft_printf("{c_cyan}-----------------------------{c_end}\n");
@@ -63,7 +67,7 @@ void	vertex_used_more(t_graph *graph)
 	}
 }
 
-void			print_debug_network(t_network *net)
+void	print_debug_network(t_network *net)
 {
 	size_t	i;
 
@@ -71,9 +75,24 @@ void			print_debug_network(t_network *net)
 	ft_dprintf(STD_ERR, "---------------------------------------------\n");
 	while (net != NULL && i < net->nb_of_flow)
 	{
-		ft_dprintf(STD_ERR, "flow[%zu]:\n\t- len is    %zu\n\tcapacity is %zu\n",
+		ft_dprintf(STD_ERR, "flow[%zu]:\n\t- len is  %zu\n\tcapacity is %zu\n",
 				i, net->flow[i].len, net->flow[i].capacity);
 		i++;
 	}
 	ft_dprintf(STD_ERR, "---------------------------------------------\n");
+}
+
+void	print_link_available(t_adj_list node)
+{
+	size_t		count;
+
+	count = 0;
+	while (node.head != NULL)
+	{
+		ft_printf("dest = %d\t", node.head->dest);
+		ft_printf("available = %d\n", node.head->available);
+		count++;
+		node.head = node.head->next;
+	}
+	ft_printf("{c_yellow} %zu possible link{c_end}\n", count);
 }

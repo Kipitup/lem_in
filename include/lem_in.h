@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 18:32:53 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 12:07:16 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ t_graph			*init_queue(t_graph *graph_orig);
 t_adj_list		next_vertex(t_graph *graph, t_graph *queue);
 void			add_step(t_adj_list *node, size_t step);
 uint8_t			end_room_visited(t_graph *graph);
+uint8_t			is_vertex_visited_queue(t_graph *queue, t_adj_list node);
 void			update_links(t_solution *sol);
 void			update_links_with_last_path(t_solution *sol, t_path *path);
 int8_t			store_valid_path_and_reset(t_solution *sol, size_t *used_multiple);

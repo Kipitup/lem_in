@@ -6,26 +6,12 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/05/09 12:24:05 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 15:00:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	print_link_available(t_adj_list node)
-{
-	size_t		count;
-
-	count = 0;
-	while (node.head != NULL)
-	{
-	//	ft_printf("dest = %d\t", node.head->dest);
-	//	ft_printf("available = %d\n", node.head->available);
-		count++;
-		node.head = node.head->next;
-	}
-	ft_printf("{c_yellow} %zu possible link{c_end}\n", count);
-}
 
 void	print_all_links(t_graph *graph)
 {
@@ -48,11 +34,14 @@ void	print_path(t_path *path)
 	{
 		ft_printf("BFS path found:\n");
 		tmp = path;
-		ft_printf("path: ");
+		ft_printf("Path: ");
 		while (tmp != NULL)
 		{
 			if (tmp->vertex == 0)
+			{
+				ft_printf("len = %d\t", tmp->len);
 				ft_printf("%d", tmp->vertex);
+			}
 			else
 				ft_printf(" -> %d", tmp->vertex);
 			tmp = tmp->next;
@@ -100,7 +89,6 @@ void	print_all_path_len(t_darray *all_path)
 	}
 	ft_printf("\n");
 }
-
 
 void	print_all_solution(t_lemin *lemin)
 {

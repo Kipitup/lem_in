@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/10 21:43:05 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 11:40:25 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static size_t		compute_next_line(t_network *net, size_t nb_ants,
 		room_after_start = ((t_path*)net->all_path->contents[i])->next;
 		if (curr_ant <= nb_ants && net->flow[i].capacity > 0)
 		{
-			*ret	= push_next_ant_and_move_other(room_after_start, curr_ant);
+			*ret = push_next_ant_and_move_other(room_after_start, curr_ant);
 			net->flow[i].capacity--;
 			curr_ant++;
 		}
