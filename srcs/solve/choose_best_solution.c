@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/10 12:24:59 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/10 12:27:06 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 **	Diff is the sum of the difference between the biggest usable flow's and
 **	each other flow's len. All the flow won't necessarily be usable. If the
 **	number of ant is to small, only the fastest flow will be used.
-**	
+**
 **	diff = flow[last].len - flow[0].len + ... + flow[last].len - flow[i].len;
 **	with 0 < i < last
 **

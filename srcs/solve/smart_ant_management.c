@@ -6,13 +6,13 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:39:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/08 10:12:11 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 12:28:15 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		rewind_solution(t_lemin *lemin)
+void			rewind_solution(t_lemin *lemin)
 {
 	if (lemin != NULL && lemin->result != NULL)
 	{
@@ -44,10 +44,11 @@ static uint8_t	should_it_be_interupted(t_solution *sol)
 }
 
 /*
-** The program returning TRUE if malloc fail is an expected behaviour. Since
-** it will break out of the bfs phase and go to the printing part.A NULL network
-** prevent the next function, print_final_output, to operate.
+**	The program returning TRUE if malloc fail is an expected behaviour. Since
+**	it will break out of the bfs phase and go to the printing part.A NULL
+**	network prevent the next function, print_final_output, to operate.
 */
+
 uint8_t			smart_ant_management(t_solution *sol, size_t nb_ants)
 {
 	uint8_t		ret;
@@ -56,7 +57,6 @@ uint8_t			smart_ant_management(t_solution *sol, size_t nb_ants)
 	if (sol != NULL && sol->net == NULL)
 	{
 		sol->net = init_and_set_network(sol->path, nb_ants);
-//		print_debug_network(sol->net);
 		if (sol->net != NULL)
 		{
 			if (sol->net->nb_of_flow > sol->net->nb_of_usable_flow)
