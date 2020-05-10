@@ -527,7 +527,7 @@ elif [ "$gen" = true ]
 then
 	printf "\n      ${UNDERLINE}${YELLOW}generate a random map:${END_C}\n\n"
 
-	nb_test_big=20
+	nb_test_big=$(( $nb_cycle / 2 ))
 	total_nb_test=$(( $nb_cycle * 3 + $nb_test_big + $nb_test_big))
 
 	legend_generator
