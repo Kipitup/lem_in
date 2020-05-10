@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 20:27:33 by francis           #+#    #+#             */
-/*   Updated: 2020/05/10 12:06:05 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/10 12:16:54 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ t_graph		*init_queue(t_graph *graph_orig)
 		}
 	}
 	return (queue);
-
 }
+
 uint8_t		is_vertex_visited_queue(t_graph *queue, t_adj_list node)
 {
 	t_adj_list	visited;

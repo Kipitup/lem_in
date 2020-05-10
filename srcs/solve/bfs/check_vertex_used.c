@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 10:16:12 by francis           #+#    #+#             */
-/*   Updated: 2020/05/07 10:09:01 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/10 12:19:11 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,20 @@ void			check_vertex_used(t_solution *sol, size_t *used_multiple)
 {
 	t_path		*path_removed;
 	t_path		*path;
+	t_path		*begin_of_path;
 	size_t		i_last;
 	uint8_t		ret;
 
 	if (sol->path->end != 0)
 	{
 		i_last = sol->path->end;
-		path = ((t_path*)sol->path->contents[i_last])->next;
+		begin_of_path = ((t_path*)sol->path->contents[i_last]);
+		path = begin_of_path->next;
 		ret = is_vertex_used_multiple(path, sol->graph);
 		if (ret == TRUE)
 		{
 			(*used_multiple)++;
-			reset_vertex_usable_and_link(sol->graph, (t_path*)sol->path->contents[i_last]);
+			reset_vertex_usable_and_link(sol->graph, begin_of_path);
 			path_removed = darray_remove(sol->path, i_last);
 			clean_lst_path((void*)path_removed);
 			path_removed = NULL;
