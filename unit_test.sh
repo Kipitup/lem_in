@@ -9,22 +9,37 @@ path_to_map=false
 continue=false
 verbose=false
 sanitize=false
-leak=false
+
+#======COLORS======#
+EOC="\e[0m";
+RED="\e[31m";
+GREEN="\e[32m";
+LIGHT_GREEN="\e[92m";
+YELLOW="\e[33m"
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+CYAN="\e[36m"
+WHITE="\e[37m"
+HIGH="\e[1m";
+UNDERLINE="\e[4m";
+END_C="\e[0m";
+
+#eak=false
 
 usage () #
 {
-	printf "Usage: ./unit_test [-c | v | l] [parsing | path_to_map | gen [generator option]]\n\n"
+	printf "Usage: ./unit_test [-c | v | l | s] [parsing | path_to_map | gen nb_of_test]\n\n"
 	printf "You must specify the type of test you want to do:\n"
-	printf "\tparsing : test all incorrect map\n"
-	printf "\tpath_to_map : launch the program with a specific map to test\n"
-	printf "\tgen : launch the generator.\n\n"
+	printf "\t${MAGENTA}parsing     ${END_C}: test all incorrect or incomplete map\n"
+	printf "\t${MAGENTA}path_to_map ${END_C}: launch the program with a specific map to test\n"
+	printf "\t${MAGENTA}gen         ${END_C}: launch the generator.\n\n"
 	printf "optional flag:\n"
 	printf "\t-c: if error, continue\n"
 	printf "\t-v: verbose\n"
 	printf "\t-s: compile with fsanitize\n"
 	printf "\t-l: check leaks\n"
 	printf "\t-f: for full check on the generator\n"
-	printf "\t--help: show this help message and exit\n"
+	printf "\t--help: show this help message and exit\n\n"
 	printf "For multiple flags, put everything in the same argument:\n"
 	printf "\texample :-cvl\n\n"
 	exit
@@ -106,22 +121,6 @@ LOG_EXEC=/tmp/log_exec.txt
 LOG_LEAK="/tmp/leaks.txt"
 VALGRIND="valgrind --log-file=${LOG_LEAK} --quiet "
 SHOW_LEAK="--track-origins=yes --leak-check=full --show-leak-kinds=definite,indirect"
-
-
-#======COLORS======#
-EOC="\e[0m";
-RED="\e[31m";
-GREEN="\e[32m";
-LIGHT_GREEN="\e[92m";
-YELLOW="\e[33m"
-BLUE="\e[34m"
-MAGENTA="\e[35m"
-CYAN="\e[36m"
-WHITE="\e[37m"
-HIGH="\e[1m";
-UNDERLINE="\e[4m";
-END_C="\e[0m";
-
 
 #======START TEST======#
 best=0
