@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 22:27:16 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 17:58:58 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,20 @@ static t_vector		*getspecial_room(t_st_machine *sm, t_vector *room,
 	size_t	index;
 
 	if (room != NULL)
-		sm->state = ft_perror_failure(MANY_START_OR_END, __FILE__, __LINE__);
+		sm->state = MANY_START_OR_END;
 	else if (vct_chr_count(line, ' ') == 2 && vct_getchar_at(line, 0) != '#')
 	{
-		if (get_room(sm, line) != FAILURE)
+		get_room(sm, line);
+		if (sm->state > E_ERROR)
 		{
 			index = vct_chr(line, ' ');
 			room = vct_ndup(line, index);
 			if (room == NULL)
-				sm->state = ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__);
+				sm->state = MALLOC_ERR;
 		}
 	}
 	else
-		sm->state = ft_perror_failure(NO_ROOM_AFTER_CMD, __FILE__, __LINE__);
+		sm->state = NO_ROOM_AFTER_CMD;
 	return (room);
 }
 
@@ -42,7 +43,7 @@ static void			next_room_is_special(t_st_machine *sm, uint8_t type)
 	new_line = NULL;
 	ret = vct_read_line(STD_IN, &new_line);
 	if (ret < 0)
-		sm->state = ft_perror_failure(READ_LINE_ERR, __FILE__, __LINE__);
+		sm->state = READ_LINE_ERR;
 	else
 	{
 		add_to_buffer(new_line->str, new_line->len, ADD_NEW_LINE);

@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 11:27:35 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 13:57:10 by fkante           ###   ########.fr       */
+/*   Updated: 2020/05/10 19:06:31 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static void	*get_node(t_hashmap *map, void *key, uint32_t hash)
 	size_t		index_bucket;
 	size_t		i;
 
-	index_bucket = hash % map->size;
-	array = map->bucket[index_bucket];
 	i = 0;
 	node = NULL;
+	index_bucket = hash % map->size;
+	array = map->bucket[index_bucket];
 	if (array != NULL && key != NULL)
 	{
 		while (i <= array->end)
@@ -35,14 +35,17 @@ static void	*get_node(t_hashmap *map, void *key, uint32_t hash)
 				if (node->hash == hash && map->compare(node->key, key) == TRUE)
 					break ;
 			}
+			node = NULL;
 			i++;
 		}
 	}
-	else
-		ft_perror(ARRAY_KEY_NULL, __FILE__, __LINE__);
 	return (node);
 }
 
+/*
+**		if (node == NULL)
+**			ft_perror_failure(NODE_SEARCH_NULL, __FILE__, __LINE__);
+*/
 void		*hashmap_get(t_hashmap *map, void *key)
 {
 	t_hashnode	*node;
@@ -53,8 +56,6 @@ void		*hashmap_get(t_hashmap *map, void *key)
 	{
 		hash = map->hash(key, ft_strlen((char*)key));
 		node = get_node(map, key, hash);
-		if (node == NULL)
-			ft_perror_failure(NODE_SEARCH_NULL, __FILE__, __LINE__);
 	}
 	else
 		ft_perror(MAP_NULL, __FILE__, __LINE__);

@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/05/07 20:25:07 by amartinod        ###   ########.fr        #
+#    Updated: 2020/05/09 12:41:09 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -90,10 +90,11 @@ SRCS += parse_room
 SRCS += parse_room_link
 SRCS += parse_command
 SRCS += parse_tools
+SRCS += error_management
 
 # solve
 SRCS += lem_in
-SRCS += choose_best_solution
+SRCS += init_and_set_network
 SRCS += smart_ant_management
 
 # bfs

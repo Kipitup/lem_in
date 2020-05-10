@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:46:37 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 22:25:16 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 12:37:39 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static size_t	get_nb_of_ants(t_st_machine *sm, t_vector *line)
 		if (tmp <= INT_MAX && tmp >= 0 && ft_check_int_len(str) == SUCCESS)
 			size = (size_t)tmp;
 		else
-			sm->state = ft_perror_failure(ANT_NOT_INT, __FILE__, __LINE__);
+			sm->state = ANT_NOT_INT;
 	}
 	else
-		sm->state = ft_perror_failure(ANT_NOT_INT, __FILE__, __LINE__);
+		sm->state = ANT_NOT_INT;
 	return (size);
 }
 
@@ -37,14 +37,17 @@ static size_t	get_nb_of_ants(t_st_machine *sm, t_vector *line)
 ** The return (TRUE or FALSE) will determine whether or not the parser should
 ** read the next line.
 */
-
 uint8_t			ant(t_st_machine *sm, t_vector *line)
 {
 	uint8_t			ret;
 
 	ret = TRUE;
 	if (vct_getchar_at(line, START) == '#')
+	{
 		ret = check_for_comment_or_command(sm, line);
+		if (ret == FALSE)
+			sm->state = ANT_NOT_INT;
+	}
 	else
 	{
 		sm->state = E_ROOM;

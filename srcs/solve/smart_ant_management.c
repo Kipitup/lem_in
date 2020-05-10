@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:39:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/08 10:12:11 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 12:15:10 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ uint8_t			smart_ant_management(t_solution *sol, size_t nb_ants)
 	uint8_t		ret;
 
 	ret = FALSE;
-	if (sol != NULL && sol->net == NULL)
+	if (sol != NULL && sol->net == NULL && sol->path->contents[0] != NULL)
 	{
 		sol->net = init_and_set_network(sol->path, nb_ants);
-//		print_debug_network(sol->net);
 		if (sol->net != NULL)
 		{
 			if (sol->net->nb_of_flow > sol->net->nb_of_usable_flow)
@@ -69,7 +68,7 @@ uint8_t			smart_ant_management(t_solution *sol, size_t nb_ants)
 		else
 		{
 			ret = TRUE;
-			ft_perror(MALLOC_ERR, __FILE__, __LINE__);
+			error_management(MALLOC_ERR);
 		}
 	}
 	return (ret);

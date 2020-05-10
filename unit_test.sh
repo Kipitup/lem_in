@@ -1,8 +1,6 @@
 #!/bin/bash
 
 #====ARGV=====#
-# '-z' : true if the lenght of the string is 0
-# '-n' : true if the lenght of the string is nonzero
 parsing=false
 gen=false
 full_check=false
@@ -32,6 +30,8 @@ usage () #
 	exit
 }
 
+# '-z' : true if the lenght of the string is 0
+# '-n' : true if the lenght of the string is nonzero
 if [ -n "$1" ]
 then
 	if [[ $1 == "--help" ]]
@@ -97,7 +97,9 @@ fi
 #====EDIT PATH=====#
 EXEC=./lem-in
 MAP_DIR=maps
+PARSING_DIR=parsing
 INCORRECT_MAP_DIR=incorrect_map
+INCOMPLETE_MAP_DIR=incomplete_map
 GEN_DIR=generator
 LOG_MAKE=/tmp/log_makefile.txt
 LOG_EXEC=/tmp/log_exec.txt
@@ -181,9 +183,28 @@ check_leak () # $1 is the test file
 
 check_output_parsing_map () # $1 is the test file
 {
-	OUTPUT="$(printf $1 | cut -d '/' -f 3 | cut -d '.' -f1):"
+	OUTPUT="$(printf $1 | cut -d '/' -f 4 | cut -d '.' -f1):"
 	printf "      ${WHITE}%-35s ${END_C}" $OUTPUT
-	if grep -q "Error" "$LOG_EXEC"
+	incorrect=false
+	incomplete=false
+	if [ $2 == "false" ]
+	then
+		if grep -q "Error" "$LOG_EXEC"
+		then
+			incorrect=true
+		else
+			incorrect=false
+		fi
+	elif [ $2 == "true" ]
+	then
+		if grep -q "Error" "$LOG_EXEC"
+		then
+			incomplete=false
+		else
+			incomplete=true
+		fi
+	fi
+	if [[ $incorrect == "true" || $incomplete == "true" ]]
 	then
 		printf "${LIGHT_GREEN}✓${END_C}\n"
 		if [ "$verbose" = true ]
@@ -473,7 +494,7 @@ if [ "$parsing" = true ]
 then
 	printf "      ${UNDERLINE}${YELLOW}incorrect map:${END_C}\n\n"
 	
-	for MAP in ${MAP_DIR}/${INCORRECT_MAP_DIR}/*.map
+	for MAP in ${MAP_DIR}/${PARSING_DIR}/${INCORRECT_MAP_DIR}/*.map
 	do
 		if test -f $MAP
 		then
@@ -484,7 +505,23 @@ then
 			else
 				$EXEC < $MAP > $LOG_EXEC 2>&1
 			fi
-			check_output_parsing_map $MAP
+			check_output_parsing_map $MAP false
+		fi
+	done
+	printf "\n      ${UNDERLINE}${YELLOW}incomplete map, should still work:${END_C}\n\n"
+	
+	for MAP in ${MAP_DIR}/${PARSING_DIR}/${INCOMPLETE_MAP_DIR}/*.map
+	do
+		if test -f $MAP
+		then
+			if [ "$leak" = true ]
+			then
+				$VALGRIND $SHOW_LEAK $EXEC < $MAP > $LOG_EXEC 2>&1
+				check_leak $MAP
+			else
+				$EXEC < $MAP > $LOG_EXEC 2>&1
+			fi
+			check_output_parsing_map $MAP true
 		fi
 	done
 elif [ "$gen" = true ]

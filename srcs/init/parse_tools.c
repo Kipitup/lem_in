@@ -6,20 +6,18 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:28:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 22:26:50 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 12:37:03 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-uint8_t	is_it_special_room(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
+void	is_it_special_room(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 {
 	t_graph		*graph;
 	char		*start;
 	char		*end;
-	uint8_t		ret;
 
-	ret = TRUE;
 	graph = sm->lemin->link;
 	start = vct_getstr(sm->lemin->start);
 	end = vct_getstr(sm->lemin->end);
@@ -27,13 +25,10 @@ uint8_t	is_it_special_room(t_st_machine *sm, t_hashnode *src, t_hashnode *dest)
 		src->opt_index = 0;
 	else if (ft_strequ(src->key, end) == TRUE)
 		src->opt_index = graph->size - 1;
-	else if (ft_strequ(dest->key, start) == TRUE)
+	if (ft_strequ(dest->key, start) == TRUE)
 		dest->opt_index = 0;
 	else if (ft_strequ(dest->key, end) == TRUE)
 		dest->opt_index = graph->size - 1;
-	else
-		ret = FALSE;
-	return (ret);
 }
 
 uint8_t	is_it_all_digit(t_vector *line)
@@ -44,6 +39,8 @@ uint8_t	is_it_all_digit(t_vector *line)
 
 	i = (vct_getchar_at(line, 0) == '-') ? 1 : 0;
 	len = vct_len(line);
+	if (len == 0)
+		return (FALSE);
 	while (i < len)
 	{
 		ret = ft_isdigit(vct_getchar_at(line, i));

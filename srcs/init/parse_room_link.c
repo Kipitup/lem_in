@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 22:26:29 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/08 19:07:14 by amartinod        ###   ########.fr       */
 /*											                                  */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	add_edge_and_nam(t_st_machine *sm, t_hashnode *src, t_hashnode *dst)
 	if (ret == SUCCESS)
 		ret = add_vertex_name(sm->lemin->link, dst->opt_index, (char*)dst->key);
 	if (ret == FAILURE)
-		sm->state = ft_perror_failure(ADD_EDGE_FAILED, __FILE__, __LINE__);
+		sm->state = ADD_EDGE_FAILED;
 }
 
 static void	add_link_adj_list(t_st_machine *sm, t_vector *nsrc, t_vector *ndest)
@@ -57,10 +57,7 @@ static void	add_link_adj_list(t_st_machine *sm, t_vector *nsrc, t_vector *ndest)
 	src = hashmap_get(sm->lemin->room, vct_getstr(nsrc));
 	dest = hashmap_get(sm->lemin->room, vct_getstr(ndest));
 	if (src == NULL || dest == NULL)
-	{
-		ft_printf("src->name %s and adresse src %p\nsrc->name %s and adresse src %p\n", nsrc->str, src, ndest->str, dest);
-		sm->state = ft_perror_failure(ROOM_DONT_EXIST, __FILE__, __LINE__);
-	}
+		sm->state = ROOM_DONT_EXIST;
 	else
 	{
 		get_node_index(sm, src, dest);
@@ -81,10 +78,7 @@ static void	add_link(t_st_machine *sm, t_vector *line)
 	if (src != NULL && dest != NULL)
 		add_link_adj_list(sm, src, dest);
 	else
-	{
-		ft_perror(VECTOR_FAIL, __FILE__, __LINE__);
-		sm->state = E_ERROR;
-	}
+		sm->state = VECTOR_FAIL;
 	vct_del(&src);
 	vct_del(&dest);
 }
@@ -107,13 +101,10 @@ uint8_t		room_link(t_st_machine *sm, t_vector *line)
 		add_to_buffer(line->str, line->len, ADD_NEW_LINE);
 		if (sm->lemin->link == NULL)
 			init_adjacency_list(sm);
-		if (sm->state != E_ERROR)
+		if (sm->state > E_ERROR)
 			add_link(sm, line);
 	}
 	else
-	{
-		ft_perror(WRONG_LINK_FORMAT, __FILE__, __LINE__);
-		sm->state = E_ERROR;
-	}
+		sm->state = WRONG_LINK_FORMAT;
 	return (ret);
 }

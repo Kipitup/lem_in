@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 22:50:13 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 18:32:53 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,10 @@ void			init_adjacency_list(t_st_machine *sm);
 void			parse(t_st_machine *sm);
 uint8_t			ant(t_st_machine *sm, t_vector *line);
 uint8_t			room(t_st_machine *sm, t_vector *line);
-int8_t			get_room(t_st_machine *sm, t_vector *line);
+void			get_room(t_st_machine *sm, t_vector *line);
 uint8_t			room_link(t_st_machine *sm, t_vector *line);
 uint8_t			command(t_st_machine *sm, t_vector *line);
+int8_t			error_management(int8_t error);
 
 /*
 ** ############################################################################
@@ -107,7 +108,7 @@ uint8_t			command(t_st_machine *sm, t_vector *line);
 */
 uint8_t			is_it_all_digit(t_vector *line);
 uint8_t			check_for_comment_or_command(t_st_machine *sm, t_vector *line);
-uint8_t			is_it_special_room(t_st_machine *sm, t_hashnode *src,
+void			is_it_special_room(t_st_machine *sm, t_hashnode *src,
 								t_hashnode *dest);
 t_network		*init_and_set_network(t_darray *all_path, size_t nb_ants);
 void			rewind_solution(t_lemin *lemin);
@@ -161,7 +162,7 @@ void			clean_lst_path(void *path);
 ** ################################# PRINT ####################################
 ** ############################################################################
 */
-void			add_to_buffer(char *line, size_t len, uint8_t state);
+size_t			add_to_buffer(char *line, size_t len, uint8_t state);
 void			print_all_links(t_graph *graph);
 void			print_link_available(t_adj_list node);
 void			print_queue(t_graph *queue);

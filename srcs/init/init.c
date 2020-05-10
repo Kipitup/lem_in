@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 22:24:08 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 20:05:43 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,27 @@ void				init_adjacency_list(t_st_machine *sm)
 	size = sm->lemin->room->nb_of_elem;
 	sm->lemin->link = init_graph(size);
 	if (sm->lemin->link == NULL && sm->lemin->result->graph)
-	{
-		ft_perror(ADJ_LIST_MALLOC, __FILE__, __LINE__);
-		sm->state = E_ERROR;
-	}
+		sm->state = ADJ_LIST_MALLOC;
 }
 
 static void			last_quick_check(t_st_machine *sm)
 {
 //	[?] need a way to protect this without the output and write a \n if it succeed
 //	if (sm->lemin->output->len == 0)
-//		sm->state = ft_perror_failure(EMPTY_FILE, __FILE__, __LINE__);
-	add_to_buffer("\n", 1, ADD_NEW_LINE);
+//		sm->state = EMPTY_FILE;
 	if (sm->lemin->start == NULL)
-		sm->state = ft_perror_failure(NO_START, __FILE__, __LINE__);
-	if (sm->lemin->end == NULL)
-		sm->state = ft_perror_failure(NO_END, __FILE__, __LINE__);
-	if (sm->lemin->link != NULL)
+		sm->state = NO_START;
+	else if (sm->lemin->end == NULL)
+		sm->state = NO_END;
+	else if (sm->lemin->link != NULL)
 	{
 		if (sm->lemin->link->array[0].head == NULL)
-			sm->state = ft_perror_failure(NO_LINK_TO_START, __FILE__, __LINE__);
-		if (sm->lemin->link->array[sm->lemin->link->size - 1].head == NULL)
-			sm->state = ft_perror_failure(NO_LINK_TO_END, __FILE__, __LINE__);
+			sm->state = NO_LINK_TO_START;
+		else if (sm->lemin->link->array[sm->lemin->link->size - 1].head == NULL)
+			sm->state = NO_LINK_TO_END;
 	}
+	else
+		sm->state = NO_VALID_LINK; 
 }
 
 static t_lemin		*init_struct_lemin(void)
@@ -83,18 +81,24 @@ t_lemin				*init(void)
 	if (sm != NULL)
 	{
 		parse(sm);
-		if (sm->state != E_ERROR)
+		if (sm->state > E_ERROR || sm->state < ERR_STOP_LEMIN)
 			last_quick_check(sm);
-		if (sm->state != E_ERROR)
+		if (sm->state > E_ERROR || sm->state < ERR_STOP_LEMIN)
 		{
 			lemin = sm->lemin;
+			init_solution(lemin); //[?] need to check if SUCCESS
 			if (VISU == TRUE)
 				init_file_for_visu(lemin->link, NULL);
+			add_to_buffer("\n", 1, ADD_NO_NEW_LINE);
 		}
 		else
+		{
+			error_management(sm->state);
 			clean_lemin(&(sm->lemin));
-		init_solution(lemin);
+		}
 		clean_state_machine(&sm);
 	}
+	else
+		error_management(LEMIN_UNITIALIZED);
 	return (lemin);
 }

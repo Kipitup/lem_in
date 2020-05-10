@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/08 10:19:38 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 21:43:05 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int8_t		push_next_ant_and_move_other(t_path *room, size_t ant)
 		add_to_buffer("L", 1, ADD_NO_NEW_LINE);
 		nb_str = ft_itoa(room->ant_nb);
 		if (nb_str == NULL)
-			return (ft_perror_failure(MALLOC_ERR, __FILE__, __LINE__));
+			return (error_management(MALLOC_ERR));
 		add_to_buffer(nb_str, ft_strlen(nb_str), ADD_NO_NEW_LINE);
 		ft_strdel(&nb_str);
 		add_to_buffer("-", 1, ADD_NO_NEW_LINE);
@@ -97,10 +97,13 @@ static t_network	*choose_best_solution(t_solution *result)
 	{
 		result = result->next;
 		tmp = result->net;
-		nb_line_best = best->flow[0].len + best->flow[0].capacity;
-		nb_line_tmp = tmp->flow[0].len + tmp->flow[0].capacity;
-		if (nb_line_best > nb_line_tmp)
-			best = tmp;
+		if (best != NULL && tmp != NULL)
+		{
+			nb_line_best = best->flow[0].len + best->flow[0].capacity;
+			nb_line_tmp = tmp->flow[0].len + tmp->flow[0].capacity;
+			if (nb_line_best > nb_line_tmp)
+				best = tmp;
+		}
 	}
 	return (best);
 }
@@ -110,7 +113,7 @@ void				print_final_output(t_lemin *lemin)
 	t_network	*net;
 	int8_t		ret;
 
-	if (lemin != NULL && lemin->result != NULL && lemin->result->net != NULL)
+	if (lemin != NULL && lemin->result != NULL)
 	{
 		net = choose_best_solution(lemin->result);
 		if (net != NULL)
@@ -119,7 +122,9 @@ void				print_final_output(t_lemin *lemin)
 				init_file_for_visu(lemin->link, net);
 			ret = apply_solution(net, lemin->nb_ants);
 			if (ret == SUCCESS)
-				add_to_buffer("\0", 1, PRINT);
+				add_to_buffer(NULL, 0, PRINT);
 		}
+		else
+			ft_perror("No path between start and end", __FILE__, __LINE__);
 	}
 }

@@ -6,46 +6,58 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 20:16:35 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/08 10:21:06 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 19:44:46 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	ft_small_buff(char *buffer, char *line, size_t len)
+static ssize_t	print_and_reset(char *buffer, size_t *buffer_index, char *line,
+		size_t len)
 {
+	ssize_t			ret;
+
+	ret = write(1, buffer, *buffer_index);
 	ft_strclr(buffer);
-	ft_memcpy(buffer, (char*)line, (size_t)len);
+	if (len < LEMIN_BUFF_SIZE - 1)
+	{
+		*buffer_index = len;
+		ft_memcpy(buffer, (void*)line, len);
+	}
+	else
+	{
+		ret = write(1, line, len);
+		*buffer_index = 0;
+	}
+	return (ret);
 }
 
 /*
 **	The check (LEMIN_BUFF_SIZE - 2) make sure we have the space for the line +
 **	a new line.
 */
-void		add_to_buffer(char *line, size_t len, uint8_t state)
+size_t		add_to_buffer(char *line, size_t len, uint8_t state)
 {
-	static char buffer[LEMIN_BUFF_SIZE];
-	static int	buffer_index = 0;
+	static char 	buffer[LEMIN_BUFF_SIZE];
+	static size_t	buffer_index = 0;
+	ssize_t			ret;
 
-	if (state == PRINT)
-		write(1, buffer, buffer_index);
-	else if (line != NULL)
+	ret = SUCCESS;
+	if (buffer_index + len > LEMIN_BUFF_SIZE - 2)
+		ret = print_and_reset(buffer, &buffer_index, line, len);
+	else
 	{
-		if (buffer_index + len > LEMIN_BUFF_SIZE - 2)
-		{
-			write(1, buffer, buffer_index);
-			buffer_index = len;
-			ft_small_buff(buffer, line, len);
-		}
-		else
-		{
-			ft_memcpy(&buffer[buffer_index], line, len);
-			buffer_index += len;
-		}
-		if (state == ADD_NEW_LINE)
-		{
-			buffer[buffer_index] = '\n';
-			buffer_index++;
-		}
+		ft_memcpy(&buffer[buffer_index], line, len);
+		buffer_index += len;
 	}
+	if (state == ADD_NEW_LINE)
+	{
+		buffer[buffer_index] = '\n';
+		buffer_index++;
+	}
+	else if (state == PRINT)
+		ret = write(1, buffer, buffer_index);
+	if (ret <= FAILURE)
+		error_management(STD_OUT_CLOSE);
+	return (buffer_index);
 }

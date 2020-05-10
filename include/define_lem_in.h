@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/08 10:21:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 19:48:26 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,41 @@
 # define NOT_SET			-1
 # define VISU				1
 
-# define MALLOC_ERR			"memory allocation failed"
-# define LEMIN_UNITIALIZED	"Lemin struct was not initialized properly"
-# define ROOM_DONT_EXIST	"You're trying to link a room that doesn't exist"
-# define WRONG_LINK_FORMAT	"Wrong input format"
-# define ADJ_LIST_MALLOC	"Fail to init the adjacency list"
-# define VECTOR_FAIL		"Vector allocation failed"
-# define EMPTY_FILE			"Empty file"
-# define NO_START			"Room start is missing"
-# define NO_END				"Room end is missing"
-# define NO_LINK_TO_START	"Missing a link to the start room"
-# define NO_LINK_TO_END		"Missing a link to the end room"
-# define DASH_IN_ROOM_NAME	"Room name cannot contain '-'"
-# define ROOM_START_WITH_L	"Room name cannot start with an 'L'"
-# define MANY_START_OR_END	"There is more than one room start or/and room end"
-# define COORD_NOT_INT		"Coordinates should be a positive integer"
-# define ANT_NOT_INT		"Ant should be a positive integer"
-# define NO_ROOM_AFTER_CMD	"No room specified after the command start or end"
-# define READ_LINE_ERR		"Reading the the standard input failed"
-# define ADD_EDGE_FAILED	"Adding an edge to the adjacency list failed"
-# define QUEUE_FULL	        "Queue Overflow, too many elements"
-# define QUEUE_EMPTY        "Queue is empty"
-# define GRAPH_NULL        	"Graph is NULL"
+/*
+**	lem-in won't necessarily stop if an error is found. It'll try to work with
+**	what he has. This mean that the error can't be output directly. The error
+**	code will be store in the state. If state <= FAILURE ; an error was found
+*/
+# define MALLOC_ERR			-2
+# define VECTOR_FAIL		-3
+# define ADJ_LIST_MALLOC	-4
+# define LEMIN_UNITIALIZED	-5
+# define ADD_EDGE_FAILED	-6
+# define GRAPH_NULL        	-7
 
+# define ERR_FROM_MALLOC	-7
+
+# define NO_START			-8
+# define NO_END				-9
+# define NO_LINK_TO_START	-10
+# define NO_LINK_TO_END		-11
+# define EMPTY_FILE			-12
+# define MANY_START_OR_END	-13
+# define COORD_NOT_INT		-14
+# define ANT_NOT_INT		-15
+# define NO_ROOM_AFTER_CMD	-16
+# define DASH_IN_ROOM_NAME	-17
+# define ROOM_START_WITH_L	-18
+# define NO_VALID_LINK		-19
+# define ROOM_DUPLICATE		-20
+
+# define ERR_STOP_LEMIN 	-20
+
+# define WRONG_LINK_FORMAT	-21
+# define READ_LINE_ERR		-22
+# define ROOM_DONT_EXIST	-23
+# define STD_OUT_CLOSE		-24
+
+//# define QUEUE_FULL	        "Queue Overflow, too many elements"
+//# define QUEUE_EMPTY        "Queue is empty"
 #endif

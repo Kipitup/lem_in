@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 11:57:52 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/25 08:39:57 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/08 11:42:41 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void			init_file_for_visu(t_graph *graph, t_network *net)
 			add_link_to_file(graph, fd);
 		if (net != NULL)
 			add_path_to_file(net, fd);
+		close(fd);
 	}
 }

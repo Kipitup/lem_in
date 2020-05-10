@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 20:15:08 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/10 18:22:10 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void		parse(t_st_machine *sm)
 	static t_state_func		parser[4] = {ant, room, room_link, command};
 	int8_t					ret;
 	uint8_t					shoud_read_nl;
-
+	
 	line = NULL;
 	shoud_read_nl = TRUE;
-	while (sm->state != E_END && sm->state != E_ERROR)
+	while (sm->state != E_END && sm->state > E_ERROR)
 	{
 		if (shoud_read_nl == TRUE)
 		{
@@ -31,7 +31,7 @@ void		parse(t_st_machine *sm)
 		if (ret == SUCCESS)
 			sm->state = E_END;
 		else if (ret == FAILURE)
-			sm->state = ft_perror_failure(READ_LINE_ERR, __FILE__, __LINE__);
+			sm->state = READ_LINE_ERR;
 		else
 			shoud_read_nl = parser[sm->state](sm, line);
 	}

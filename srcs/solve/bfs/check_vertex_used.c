@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 10:16:12 by francis           #+#    #+#             */
-/*   Updated: 2020/05/07 10:09:01 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/08 17:47:14 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		reset_vertex_usable_and_link(t_graph *graph, t_path *path)
 		}
 	}
 	else
-		ft_perror(GRAPH_NULL, __FILE__, __LINE__);
+		error_management(GRAPH_NULL);
 }
 
 static uint8_t	block_vertex_link(t_graph *graph, size_t from_vertex,

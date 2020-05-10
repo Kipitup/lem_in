@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:47:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/07 18:33:41 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/09 12:41:35 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void			lem_in(t_lemin *lemin)
 				smart_ant_management(sol, lemin->nb_ants);
 		}
 	//	print_all_path_len(sol->path);
-	//	ft_dprintf(STD_ERR, "\n\nBFS exploration: {c_red}%zu{c_end}\n", count_bfs);
-	//	ft_dprintf(STD_ERR, "New sequence:    {c_red}%zu{c_end}\n", new_sequence);
-	//	ft_dprintf(STD_ERR, "Used multiple:   {c_red}%zu{c_end}\n\n\n", used_multiple);
+//		ft_dprintf(STD_ERR, "\n\nBFS exploration: {c_red}%zu{c_end}\n", count_bfs);
+//		ft_dprintf(STD_ERR, "New sequence:    {c_red}%zu{c_end}\n", new_sequence);
+//		ft_dprintf(STD_ERR, "Used multiple:   {c_red}%zu{c_end}\n\n\n", used_multiple);
 	}
 	else
-		ft_perror(LEMIN_UNITIALIZED, __FILE__, __LINE__);
+		error_management(LEMIN_UNITIALIZED);
 }
