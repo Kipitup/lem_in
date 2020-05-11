@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 10:35:38 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/10 18:47:12 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/11 10:40:46 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	darray_clear_content(t_darray **array_to_del, t_del_func del_func)
 {
-	size_t 		i;
+	size_t		i;
 	t_darray	*array;
 
 	i = 0;

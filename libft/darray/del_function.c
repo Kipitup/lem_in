@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 12:14:10 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 15:22:47 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:41:31 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	del_hashmap_node(void *content)
 {
 	t_hashnode *node;
-	
+
 	node = (t_hashnode*)content;
 	if (content != NULL)
 	{
@@ -37,7 +37,7 @@ void	del_vector(void *content)
 
 	vector = (t_vector*)content;
 	if (vector != NULL && vector->str != NULL)
-	{		
+	{
 		ft_strdel(&vector->str);
 		free(vector);
 	}

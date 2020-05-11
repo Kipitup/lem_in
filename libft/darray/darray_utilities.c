@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 13:36:23 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/09 12:30:25 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 10:41:01 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	*darray_get(t_darray *array, size_t i)
 	}
 	else
 		return (ft_perror_null(ARRAY_IS_NULL, __FILE__, __LINE__));
-
 }
 
 void	darray_remap_index(t_darray *array)
