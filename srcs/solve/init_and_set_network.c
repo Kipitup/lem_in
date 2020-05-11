@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/11 10:20:25 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 22:38:24 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static size_t		calculate_diff(t_network *net, size_t nb_ants)
 	size_t		len_diff;
 
 	last = net->nb_of_flow - 1;
+	len_diff = 0;
 	while (last > 0)
 	{
 		i = 0;

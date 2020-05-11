@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 10:37:12 by francis           #+#    #+#             */
-/*   Updated: 2020/05/02 11:26:18 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 22:36:17 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 uint8_t			is_path_valid(t_graph *graph, t_path *path)
 {
-	t_path		*begin;
 	t_path		*nx;
 	size_t		end;
 	uint8_t		ret;
 
-	begin = path;
 	ret = TRUE;
 	end = graph->size - 1;
 	if (path->vertex == 0)
@@ -34,6 +32,5 @@ uint8_t			is_path_valid(t_graph *graph, t_path *path)
 		if (path->vertex != end)
 			ret = FALSE;
 	}
-	path = begin;
 	return (ret);
 }

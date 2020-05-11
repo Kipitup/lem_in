@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/05/09 12:41:09 by amartinod        ###   ########.fr        #
+#    Updated: 2020/05/11 12:51:57 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -17,7 +17,7 @@
 NAME = lem-in
 LIB_DIR = ./libft
 LIB = libft.a
-CC = gcc
+CC = clang
 CFLAGS += -Wall -Wextra -Werror
 INCLUDES += -I./include
 INCLUDES += -I./libft/includes

@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/04/24 10:06:30 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 22:45:43 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void		del_vector(void *content);
 # define INITIAL_MAX_ZERO		"You must set an initial_max > 0"
 # define NEWSIZE_ZERO			"To resize Darray, the newsize must be > 0"
 # define FAILED_TO_EXPAND		"Failed to expand array to new size"
+# define FAILED_TO_PUSH			"Failed to push into the array"
 # define FAILED_TO_POP			"Attempt to pop from empty array"
 # define CONTENT_FAIL			"Failed to allocated memory for content"
 # define REALLOC_FAIL			"Reallocation failed"

@@ -6,13 +6,13 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/05/11 10:19:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 22:11:10 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static size_t	find_next_vertex(t_graph *graph, size_t index)
+static ssize_t	find_next_vertex(t_graph *graph, size_t index)
 {
 	t_adj_list	current;
 	t_adj_node	*link;
@@ -21,6 +21,7 @@ static size_t	find_next_vertex(t_graph *graph, size_t index)
 
 	current = graph->array[index];
 	distance_orig = current.distance;
+	next = -1;
 	while (current.head != NULL)
 	{
 		next = current.head->dest;
@@ -35,7 +36,7 @@ static size_t	find_next_vertex(t_graph *graph, size_t index)
 		}
 		current.head = current.head->next;
 	}
-	return ((size_t)next);
+	return (next);
 }
 
 /*
@@ -44,15 +45,15 @@ static size_t	find_next_vertex(t_graph *graph, size_t index)
 */
 
 static uint8_t	create_and_add_step(t_solution *sol, t_path **path,
-		size_t vertex, size_t len)
+		ssize_t vertex, size_t len)
 {
 	t_path	*new_step;
 	uint8_t	ret;
 
 	ret = FALSE;
-	if ((new_step = ft_memalloc(sizeof(t_path))) != NULL)
+	if ((new_step = ft_memalloc(sizeof(t_path))) != NULL && vertex > -1)
 	{
-		new_step->vertex = vertex;
+		new_step->vertex = (size_t)vertex;
 		new_step->name = sol->graph->array[vertex].name;
 		new_step->len = len;
 		lstadd(path, new_step);
@@ -65,7 +66,7 @@ static t_path	*trace_path(t_solution *sol)
 {
 	t_path	*path;
 	size_t	index;
-	size_t	vertex;
+	ssize_t	vertex;
 	size_t	len;
 
 	index = sol->graph->size - 1;
@@ -78,7 +79,7 @@ static t_path	*trace_path(t_solution *sol)
 		{
 			vertex = find_next_vertex(sol->graph, index);
 			if (create_and_add_step(sol, &path, vertex, ++len) == TRUE)
-				index = vertex;
+				index = (size_t)vertex;
 			else
 			{
 				clean_lst_path((void*)path);

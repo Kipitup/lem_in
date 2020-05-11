@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:26:09 by fkante            #+#    #+#             */
-/*   Updated: 2020/04/09 10:31:53 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 22:25:42 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,9 @@ static void		fill(t_vector *vct_input, t_vector **vct_tab, char c,
 {
 	t_vector	*dup;
 	char		*str;
-	size_t		len;
 	size_t		index;
 
 	dup = NULL;
-	len = vct_len(vct_input);
 	str = vct_getstr(vct_input);
 	while (str[0] == c)
 		vct_pop_from(vct_input, 1, 0);
