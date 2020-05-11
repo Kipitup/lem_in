@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/10 11:40:25 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 09:58:20 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static int8_t		apply_solution(t_network *net, size_t nb_ants)
 /*
 **	The number of line of the output will be: flow[0].len + flow[0].capacity.
 */
+
 static t_network	*choose_best_solution(t_solution *result)
 {
 	t_network	*best;

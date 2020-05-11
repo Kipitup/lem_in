@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 20:05:43 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 09:49:20 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void			last_quick_check(t_st_machine *sm)
 			sm->state = NO_LINK_TO_END;
 	}
 	else
-		sm->state = NO_VALID_LINK; 
+		sm->state = NO_VALID_LINK;
 }
 
 static t_lemin		*init_struct_lemin(void)

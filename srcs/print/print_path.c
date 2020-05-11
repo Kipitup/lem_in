@@ -6,12 +6,11 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 16:49:52 by francis           #+#    #+#             */
-/*   Updated: 2020/05/10 15:00:14 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 09:58:46 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
 
 void	print_all_links(t_graph *graph)
 {
@@ -75,7 +74,7 @@ void	print_all_path_len(t_darray *all_path)
 	size_t	i;
 
 	i = 0;
-	ft_printf("{c_green}------------ Path sequence ------------------------------------------------------------------------------------{c_end}\n");
+	ft_printf("{c_green}------------ Path sequence ----------------{c_end}\n");
 	while (i <= all_path->end)
 	{
 		path = all_path->contents[i];

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:13:27 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 14:43:50 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 09:54:19 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ int		main(void)
 		print_final_output(lemin);
 	}
 	clean_lemin(&lemin);
-	// need to free all of sol list when its over
 	return (SUCCESS);
 }
 
-// __attribute__((destructor))void	dest_end()
-// {
-// 	ft_printf("coucou\n");
-// 	while(1);
-// }
+/*
+** __attribute__((destructor))void	dest_end()
+** {
+** 	ft_printf("coucou\n");
+** 	while(1);
+** }
+*/

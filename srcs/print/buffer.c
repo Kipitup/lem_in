@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 20:16:35 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/10 11:39:59 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 09:58:06 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static ssize_t	print_and_reset(char *buffer, size_t *buffer_index, char *line,
 **	The check (LEMIN_BUFF_SIZE - 2) make sure we have the space for the line +
 **	a new line.
 */
-size_t		add_to_buffer(char *line, size_t len, uint8_t state)
+
+size_t			add_to_buffer(char *line, size_t len, uint8_t state)
 {
 	static char 	buffer[LEMIN_BUFF_SIZE];
 	static size_t	buffer_index = 0;

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 15:19:52 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:00:28 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ void	clean_lst_path(void *path)
 		tmp = NULL;
 	}
 	path = NULL;
-/*	while (path != NULL)
-	{
-		tmp = ((t_path*)path)->next;
-		free(path);
-		path = (tmp != NULL) ? tmp->next : tmp;
-	}*/
 }
 
 void	clean_all_solution(t_lemin **lemin)
@@ -40,7 +34,7 @@ void	clean_all_solution(t_lemin **lemin)
 	while ((*lemin)->result != NULL)
 	{
 		clean_adj_graph(&((*lemin)->result->graph));
-		darray_clear_destroy(&((*lemin)->result->path), &clean_lst_path); //protection if init of graph worked but dup didnt
+		darray_clear_destroy(&((*lemin)->result->path), &clean_lst_path); 
 		clean_network(&((*lemin)->result->net));
 		tmp = (*lemin)->result;
 		(*lemin)->result = (*lemin)->result->next;

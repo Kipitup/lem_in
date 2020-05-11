@@ -6,12 +6,11 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 14:59:02 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/10 17:28:51 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 09:57:22 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
 
 static int8_t	err_wont_stop_lemin(int8_t error)
 {
@@ -91,6 +90,6 @@ int8_t		error_management(int8_t error)
 	else if (error >= ERR_STOP_LEMIN)
 		ret = err_will_stop_lemin(error);
 	else
-		ret	= err_wont_stop_lemin(error);
+		ret = err_wont_stop_lemin(error);
 	return (ret);
 }

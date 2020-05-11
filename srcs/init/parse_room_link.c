@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/10 12:29:29 by francis           #+#    #+#             */
-/*   Updated: 2020/05/10 12:29:57 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 09:49:48 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void	add_link_adj_list(t_st_machine *sm, t_vector *nsrc, t_vector *ndest)
 
 	src = hashmap_get(sm->lemin->room, vct_getstr(nsrc));
 	dest = hashmap_get(sm->lemin->room, vct_getstr(ndest));
-    //ft_printf("src->name %s and adresse src %p\nsrc->name %s and adresse src %p\n", nsrc->str, src, ndest->str, dest);
 	if (src == NULL || dest == NULL)
 		sm->state = ROOM_DONT_EXIST;
 	else
@@ -94,7 +93,6 @@ uint8_t		room_link(t_st_machine *sm, t_vector *line)
 	uint8_t		ret;
 
 	ret = TRUE;
-
 	if (vct_getchar_at(line, START) == '#')
 		ret = check_for_comment_or_command(sm, line);
 	else if (vct_chr_count(line, '-') == 1)
