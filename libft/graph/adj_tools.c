@@ -6,14 +6,14 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/07 11:35:45 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 11:19:19 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graph.h"
 #include "libft.h"
 
-static int8_t	dup_edge_recurse(t_adj_node	*node, t_graph *duplicate,
+static int8_t	dup_edge_recurse(t_adj_node *node, t_graph *duplicate,
 		size_t src)
 {
 	int8_t	ret;
@@ -21,11 +21,9 @@ static int8_t	dup_edge_recurse(t_adj_node	*node, t_graph *duplicate,
 	ret = SUCCESS;
 	if (node != NULL)
 	{
-		ret = dup_edge_recurse(node->next, duplicate, src);	
+		ret = dup_edge_recurse(node->next, duplicate, src);
 		if (ret == SUCCESS)
 			ret = add_edge_one_way(duplicate, src, node->dest);
-//		if (ret == SUCCESS && node->available == 2)
-//			duplicate->array[src].head->available = node->available;
 	}
 	return (ret);
 }
@@ -34,6 +32,7 @@ static int8_t	dup_edge_recurse(t_adj_node	*node, t_graph *duplicate,
 **	Create a duplicate of a given graph, with all his vertices and edges in the
 **	exact order.
 */
+
 t_graph			*dup_adj_list(t_graph *graph)
 {
 	t_graph		*duplicate;
@@ -95,6 +94,7 @@ t_adj_list		get_vertex(t_graph *graph, size_t src)
 **	Get the link (edge) between vertices src and dest. If the link does not
 **	exist, NULL is return.
 */
+
 t_adj_node		*get_link(t_graph *graph, size_t src, size_t dest)
 {
 	t_adj_node	*node;
@@ -106,7 +106,7 @@ t_adj_node		*get_link(t_graph *graph, size_t src, size_t dest)
 		while (node != NULL)
 		{
 			if (node->dest == dest)
-				break;
+				break ;
 			node = node->next;
 		}
 	}

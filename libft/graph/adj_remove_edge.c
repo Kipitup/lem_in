@@ -6,10 +6,9 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 11:14:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/04/02 15:03:01 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 11:17:56 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "graph.h"
 #include "libft.h"
@@ -18,6 +17,7 @@
 **	Return the adresse of the link just before dest. If there is no previous
 **	link (when dest is the fisrt link of the chain), it return the dest link
 */
+
 static t_adj_node	*get_previous_link(t_graph *graph, size_t src, size_t dest)
 {
 	t_adj_node		*prev;
@@ -36,6 +36,7 @@ static t_adj_node	*get_previous_link(t_graph *graph, size_t src, size_t dest)
 **	Remove only the link from src to dest but not from dest to src. Use
 **	remove_edge beloz for this.
 */
+
 void				remove_edge_one_way(t_graph *graph, size_t src, size_t dest)
 {
 	t_adj_node		*prev;
@@ -64,6 +65,7 @@ void				remove_edge_one_way(t_graph *graph, size_t src, size_t dest)
 /*
 **	Remove the link from src to dest AND from dest to src.
 */
+
 void				remove_edge(t_graph *graph, size_t src, size_t dest)
 {
 	remove_edge_one_way(graph, src, dest);

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:25:39 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/09 21:26:27 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/11 11:05:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 **	second. Since most of my program take less than a second, needed to add some
 **I randomness with : res = (r * (int)ptr * (size / line)) % 5;
 */
+
 void		*ft_malloc_debug(size_t size, const char *file, int line, const char *function)
 {
 	void	*ptr;
