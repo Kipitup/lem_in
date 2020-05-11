@@ -6,29 +6,29 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:55:35 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/01 18:48:54 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 10:32:28 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "btree.h"
 
-void		delete_case_6(t_rb_tree *node)
+void			delete_case_6(t_rb_tree *node)
 {
 	t_rb_tree	*sibling;
 
 	ft_printf("delete case 6\n");
 	sibling = get_sibling(node);
-    sibling->color = node->parent->color;
-    node->parent->color = BLACK;
-    if (node == node->parent->left)
+	sibling->color = node->parent->color;
+	node->parent->color = BLACK;
+	if (node == node->parent->left)
 	{
-      sibling->right->color = BLACK;
-      left_rotate(node->parent);
+		sibling->right->color = BLACK;
+		left_rotate(node->parent);
     }
 	else
 	{
-      sibling->left->color = BLACK;
-      right_rotate(node->parent);
+		sibling->left->color = BLACK;
+		right_rotate(node->parent);
     }
 }
 
@@ -118,7 +118,8 @@ static void		delete_case_2(t_rb_tree *node, t_rb_tree *sibling)
 /*
 ** The node is the new root, we are done
 */
-void		delete_case_1(t_rb_tree *node)
+
+void			delete_case_1(t_rb_tree *node)
 {
 	t_rb_tree	*sibling;
 
@@ -126,7 +127,7 @@ void		delete_case_1(t_rb_tree *node)
 	{
 		ft_printf("delete case 1\n");
 		sibling = get_sibling(node);
-		if (sibling !=  NULL)
+		if (sibling != NULL)
 			delete_case_2(node, sibling);
 	}
 }

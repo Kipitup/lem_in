@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 23:20:46 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/23 18:55:18 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 10:27:07 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		uncle_is_black(t_rb_tree *node)
 	grand_parent->color = RED;
 }
 
-void	repair_tree(t_rb_tree *node)
+void		repair_tree(t_rb_tree *node)
 {
 	t_rb_tree	*parent;
 	t_rb_tree	*uncle;

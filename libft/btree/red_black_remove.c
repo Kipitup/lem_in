@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 15:40:53 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/01 19:37:01 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 10:30:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void			replace_node(t_rb_tree *node, t_rb_tree *child)
 ** I first replace node with child. So in the second if, node's key is
 ** child's key. Note that the color did not changed.
 */
+
 static void			delete_child(t_rb_tree *node)
 {
 	t_rb_tree	*child;
@@ -42,14 +43,20 @@ static void			delete_child(t_rb_tree *node)
 			delete_case_1(child);
 	}
 	print_rb_tree(get_root(node), 0);
-	ft_printf("node->key %d\tnode color %d\nchild %d\t child color %d\n", node->key, node->color, child->key, child->color);
 	free(node);
 	node = NULL;
-	// if (node == get_parent(node)->left)
-	// 	ft_memdel((void**)&(get_parent(node)->left));
-	// else
-	// 	ft_memdel((void**)&(get_parent(node)->right));
 }
+
+/*
+**	if (node == get_parent(node)->left)
+**		ft_memdel((void**)&(get_parent(node)->left));
+**	else
+**		ft_memdel((void**)&(get_parent(node)->right));
+**	
+**	ft_printf("node->key %d\tnode color %d\nchild %d\t child color %d\n",
+**	node->key, node->color, child->key, child->color);
+**
+*/
 
 static t_rb_tree	*swap_key_with_successor(t_rb_tree *node, int32_t key)
 {

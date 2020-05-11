@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 11:03:55 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 14:22:32 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/11 10:24:22 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	swap(t_heap *heap, size_t parent, size_t child)
 	heap->array[child] = tmp;
 }
 
-void 	is_parent_valid(t_heap *heap, size_t child)
+void	is_parent_valid(t_heap *heap, size_t child)
 {
 	size_t		p;
 
 	p = get_heap_parent(child);
 	if ((heap->type == MIN_HEAP && heap->array[p] > heap->array[child]) == TRUE
-	 || (heap->type == MAX_HEAP && heap->array[p] < heap->array[child]) == TRUE)
+	|| (heap->type == MAX_HEAP && heap->array[p] < heap->array[child]) == TRUE)
 	{
 		swap(heap, p, child);
 		is_parent_valid(heap, p);

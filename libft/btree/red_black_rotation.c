@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:33:33 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/21 23:18:33 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 10:32:52 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	left_rotate(t_rb_tree *old_root)
 	old_root->right = new_root->left;
 	new_root->left = old_root;
 	old_root->parent = new_root;
-
 	if (old_root->right != NULL)
 		old_root->right->parent = old_root;
-
 	if (parent != NULL)
 	{
 		if (parent->right == old_root)
@@ -52,10 +50,8 @@ void	right_rotate(t_rb_tree *old_root)
 	old_root->left = new_root->right;
 	new_root->right = old_root;
 	old_root->parent = new_root;
-
 	if (old_root->left != NULL)
 		old_root->left->parent = old_root;
-
 	if (parent != NULL)
 	{
 		if (parent->left == old_root)
