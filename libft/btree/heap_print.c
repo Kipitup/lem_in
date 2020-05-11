@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 11:17:18 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/11 10:26:21 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:34:08 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	Recursively print the tree.
 **
 **	Index will usually start at 1, since index 0 is reserved for the HEAP SIZE.
-**	deep variable start at 0. 
+**	deep variable start at 0.
 */
 
 void	print_heap_tree(t_heap *heap, size_t index, size_t deep)
