@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 15:40:53 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/11 10:37:45 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:38:49 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ static void			delete_child(t_rb_tree *node)
 
 /*
 **	if (node == get_parent(node)->left)
-**		ft_memdel((void**)&(get_parent(node)->left));
+**	ft_memdel((void**)&(get_parent(node)->left));
 **	else
-**		ft_memdel((void**)&(get_parent(node)->right));
+**	ft_memdel((void**)&(get_parent(node)->right));
 **
 **	ft_printf("node->key %d\tnode color %d\nchild %d\t child color %d\n",
 **	node->key, node->color, child->key, child->color);
-**
 */
 
 static t_rb_tree	*swap_key_with_successor(t_rb_tree *node, int32_t key)
