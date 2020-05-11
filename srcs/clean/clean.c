@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/11 10:17:39 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:21:04 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	clean_all_solution(t_lemin **lemin)
 	while ((*lemin)->result != NULL)
 	{
 		clean_adj_graph(&((*lemin)->result->graph));
-		darray_clear_destroy(&((*lemin)->result->path), &clean_lst_path); 
+		darray_clear_destroy(&((*lemin)->result->path), &clean_lst_path);
 		clean_network(&((*lemin)->result->net));
 		tmp = (*lemin)->result;
 		(*lemin)->result = (*lemin)->result->next;
