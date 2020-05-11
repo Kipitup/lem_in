@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 18:22:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/11 10:18:22 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		parse(t_st_machine *sm)
 	static t_state_func		parser[4] = {ant, room, room_link, command};
 	int8_t					ret;
 	uint8_t					shoud_read_nl;
-	
+
 	line = NULL;
 	shoud_read_nl = TRUE;
 	while (sm->state != E_END && sm->state > E_ERROR)

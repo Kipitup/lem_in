@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 20:16:35 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/11 09:58:06 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:19:12 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static ssize_t	print_and_reset(char *buffer, size_t *buffer_index, char *line,
 
 size_t			add_to_buffer(char *line, size_t len, uint8_t state)
 {
-	static char 	buffer[LEMIN_BUFF_SIZE];
+	static char		buffer[LEMIN_BUFF_SIZE];
 	static size_t	buffer_index = 0;
 	ssize_t			ret;
 

@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 14:59:02 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/11 09:57:22 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:18:04 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int8_t	err_will_stop_lemin(int8_t error)
 	return (FAILURE);
 }
 
-int8_t		error_management(int8_t error)
+int8_t			error_management(int8_t error)
 {
 	int8_t		ret;
 

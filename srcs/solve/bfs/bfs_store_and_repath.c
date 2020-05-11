@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 14:47:29 by francis           #+#    #+#             */
-/*   Updated: 2020/05/10 15:12:26 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:19:35 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int8_t			store_valid_path_and_reset(t_solution *sol,
 
 	array = sol->path;
 	ret = FAILURE;
-	if ((path_found = trace_path(sol)) != NULL)//what if path is null
+	if ((path_found = trace_path(sol)) != NULL)
 	{
 		update_links_with_last_path(sol, path_found);
 		if (is_path_valid(sol->graph, path_found) == TRUE)

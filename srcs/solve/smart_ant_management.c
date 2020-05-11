@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 16:39:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/10 12:28:15 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:19:57 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static uint8_t	should_it_be_interupted(t_solution *sol)
 **	it will break out of the bfs phase and go to the printing part.A NULL
 **	network prevent the next function, print_final_output, to operate.
 */
+
 uint8_t			smart_ant_management(t_solution *sol, size_t nb_ants)
 {
 	uint8_t		ret;

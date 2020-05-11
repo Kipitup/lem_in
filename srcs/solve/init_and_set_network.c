@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_best_solution.c                             :+:      :+:    :+:   */
+/*   init_and_set_network.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/10 12:27:06 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:20:25 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 **	flow. Then add the diff between flow[last_index].len - flow[i].len
 **	with 0 < i < last_index
 */
+
 static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 {
 	size_t		i;
@@ -52,6 +53,7 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 **
 **	Since the paths are stored in the ascending order, last.len > i.len.
 */
+
 static size_t		calculate_diff(t_network *net, size_t nb_ants)
 {
 	size_t		i;
@@ -81,6 +83,7 @@ static size_t		calculate_diff(t_network *net, size_t nb_ants)
 /*
 **	The len of each flow is define by then len of the path - 1;
 */
+
 static void			set_network(t_network *net, size_t nb_ants)
 {
 	size_t		i;

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:45:44 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/11 10:00:28 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/11 10:17:39 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	clean_state_machine(t_st_machine **sm)
 **	structure (t_solution). So no need to free it.
 */
 
-void		clean_network(t_network **net)
+void	clean_network(t_network **net)
 {
 	if (net != NULL && *net != NULL)
 	{
