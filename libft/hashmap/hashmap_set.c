@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/11 22:46:16 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/13 10:24:46 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,9 @@ int8_t				hashmap_set(t_hashmap *map, void *key, void *data)
 		node = hash_node_create(key, data, hash);
 		if (node != NULL)
 		{
-			if (push_node(map, node, hash) == FAILURE)
-			{
-				map->nb_of_elem++;
-				ret = should_map_resize(map);
-			}
-			else
-				ret = ft_perror_failure(FAILED_TO_PUSH, __FILE__, __LINE__);
+			push_node(map, node, hash);
+			map->nb_of_elem++;
+			ret = should_map_resize(map);
 		}
 		else
 			ret = ft_perror_failure(NODE_NULL, __FILE__, __LINE__);
