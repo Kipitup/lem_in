@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/11 09:49:20 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/14 17:10:49 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,18 @@ void				init_adjacency_list(t_st_machine *sm)
 	size_t	size;
 
 	size = sm->lemin->room->nb_of_elem;
-	sm->lemin->link = init_graph(size);
-	if (sm->lemin->link == NULL && sm->lemin->result->graph)
-		sm->state = ADJ_LIST_MALLOC;
+	if (size == 0)
+		sm->state = NO_ROOM;
+	else if (sm->lemin->start == NULL)
+		sm->state = NO_START;
+	else if (sm->lemin->end == NULL)
+		sm->state = NO_END;
+	else
+	{
+		sm->lemin->link = init_graph(size);
+		if (sm->lemin->link == NULL && sm->lemin->result->graph)
+			sm->state = ADJ_LIST_MALLOC;
+	}
 }
 
 static void			last_quick_check(t_st_machine *sm)
@@ -27,11 +36,7 @@ static void			last_quick_check(t_st_machine *sm)
 //	[?] need a way to protect this without the output and write a \n if it succeed
 //	if (sm->lemin->output->len == 0)
 //		sm->state = EMPTY_FILE;
-	if (sm->lemin->start == NULL)
-		sm->state = NO_START;
-	else if (sm->lemin->end == NULL)
-		sm->state = NO_END;
-	else if (sm->lemin->link != NULL)
+	if (sm->lemin->link != NULL)
 	{
 		if (sm->lemin->link->array[0].head == NULL)
 			sm->state = NO_LINK_TO_START;

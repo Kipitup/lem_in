@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 14:59:02 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/14 15:25:29 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/14 16:22:40 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static void		err_will_stop_lemin_next(int8_t error)
 		ft_perror("There can’t be two rooms with the same name", NULL, 0);
 	else if (error == NO_PRINTABLE_CHAR)
 		ft_perror("Only printable character for the room name", NULL, 0);
+	else if (error == NO_ROOM)
+		ft_perror("No room given", NULL, 0);
 }
 
 static int8_t	err_will_stop_lemin(int8_t error)
