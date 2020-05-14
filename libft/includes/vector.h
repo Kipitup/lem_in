@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 15:25:09 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 20:58:13 by fkante           ###   ########.fr       */
+/*   Updated: 2020/05/14 15:21:52 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define SECOND					2
 # define BOTH					3
 # define NB_OF_APPLY_FUNC		3
-# define NB_OF_TEST_FUNC		4
-# define NB_TOTAL_OF_FUNC		7
+# define NB_OF_TEST_FUNC		5
+# define NB_TOTAL_OF_FUNC		8
 # define START					0
 
 /*
@@ -62,6 +62,7 @@ enum	e_apply
 	IS_LOWCASE,
 	IS_BLANK,
 	IS_ZERO,
+	IS_PRINT,
 	EMPTY
 };
 

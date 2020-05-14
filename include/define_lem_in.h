@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 12:09:22 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/14 15:23:57 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,14 @@
 # define ROOM_START_WITH_L	-18
 # define NO_VALID_LINK		-19
 # define ROOM_DUPLICATE		-20
+# define NO_PRINTABLE_CHAR	-21
 
-# define ERR_STOP_LEMIN 	-20
+# define ERR_STOP_LEMIN 	-21
 
-# define WRONG_LINK_FORMAT	-21
-# define READ_LINE_ERR		-22
-# define ROOM_DONT_EXIST	-23
-# define STD_OUT_CLOSE		-24
+# define WRONG_LINK_FORMAT	-22
+# define READ_LINE_ERR		-23
+# define ROOM_DONT_EXIST	-24
+# define STD_OUT_CLOSE		-25
 
 //# define QUEUE_FULL	        "Queue Overflow, too many elements"
 //# define QUEUE_EMPTY        "Queue is empty"

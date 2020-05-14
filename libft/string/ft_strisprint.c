@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strisprint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 17:27:19 by fkante            #+#    #+#             */
-/*   Updated: 2019/04/20 13:31:38 by fkante           ###   ########.fr       */
+/*   Created: 2020/05/14 15:17:21 by amartinod         #+#    #+#             */
+/*   Updated: 2020/05/14 15:34:07 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isalnum(int c)
+int		ft_strisprint(char *str)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	size_t		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_isprint((int)str[i]) == TRUE)
+			i++;
+		else
+			return (FALSE);
+	}
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/04/21 15:57:23 by francis          ###   ########.fr        #
+#    Updated: 2020/05/14 15:19:30 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,11 +64,6 @@ SRCS += ft_memalloc.c
 # SRCS += ft_malloc_debug.c
 SRCS += ft_atoi.c
 SRCS += ft_bzero.c
-SRCS += ft_isalnum.c
-SRCS += ft_isalpha.c
-SRCS += ft_isascii.c
-SRCS += ft_isdigit.c
-SRCS += ft_isprint.c
 SRCS += ft_itoa.c
 SRCS += ft_itoa_base.c
 SRCS += ft_lstadd.c
@@ -123,8 +118,6 @@ SRCS += ft_strsplit.c
 SRCS += ft_strstr.c
 SRCS += ft_strsub.c
 SRCS += ft_strtrim.c
-SRCS += ft_tolower.c
-SRCS += ft_toupper.c
 SRCS += ft_swap.c
 SRCS += ft_nb_unitlen.c
 SRCS += ft_absolute.c
@@ -138,6 +131,7 @@ SRCS += ft_strcapitalize.c
 SRCS += ft_strupcase.c
 SRCS += ft_strlowcase.c
 SRCS += ft_strisupcase.c
+SRCS += ft_strisprint.c
 SRCS += ft_strislowcase.c
 SRCS += ft_strchr_str.c
 SRCS += ft_strisblank.c
@@ -151,6 +145,17 @@ SRCS += ft_log2_n.c
 SRCS += ft_check_int_len.c
 SRCS += ft_is_prime.c
 SRCS += ft_find_next_prime.c
+
+#------------------------------------ CHAR ------------------------------------#
+SRCS += ft_isprint.c
+SRCS += ft_isalnum.c
+SRCS += ft_isalpha.c
+SRCS += ft_isascii.c
+SRCS += ft_isdigit.c
+SRCS += ft_islower.c
+SRCS += ft_isupper.c
+SRCS += ft_tolower.c
+SRCS += ft_toupper.c
 
 #------------------------------------ STAT ------------------------------------#
 SRCS += ft_get_high.c
@@ -302,6 +307,7 @@ PATH_SRCS += ./error
 PATH_SRCS += ./linked_list
 PATH_SRCS += ./number
 PATH_SRCS += ./string
+PATH_SRCS += ./char
 PATH_SRCS += ./memory
 PATH_SRCS += ./print
 PATH_SRCS += ./math

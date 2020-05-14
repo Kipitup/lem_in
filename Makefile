@@ -6,7 +6,7 @@
 #    By: amartino <amartino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/26 11:56:39 by amartino          #+#    #+#              #
-#    Updated: 2020/05/11 12:51:57 by francis          ###   ########.fr        #
+#    Updated: 2020/05/13 16:01:38 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
                      ####################################
@@ -108,6 +108,7 @@ SRCS += update_links
 SRCS += is_path_valid 
 SRCS += handle_link_used_both_way
 SRCS += output
+SRCS += output_special_case
 SRCS += check_vertex_used
 
 # print

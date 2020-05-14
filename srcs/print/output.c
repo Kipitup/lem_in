@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/11 09:58:20 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/13 16:10:50 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,16 @@ static int8_t		apply_solution(t_network *net, size_t nb_ants)
 	ret = SUCCESS;
 	curr_ant = 1;
 	line_total = net->flow[0].len + net->flow[0].capacity;
-	while (line_total > 0 && ret == SUCCESS)
+	if (line_total == 0)
+		ret = start_is_connected_to_end(net, nb_ants);
+	else
 	{
-		curr_ant = compute_next_line(net, nb_ants, curr_ant, &ret);
-		add_to_buffer("\n", 1, ADD_NO_NEW_LINE);
-		line_total--;
+		while (line_total > 0 && ret == SUCCESS)
+		{
+			curr_ant = compute_next_line(net, nb_ants, curr_ant, &ret);
+			add_to_buffer("\n", 1, ADD_NO_NEW_LINE);
+			line_total--;
+		}
 	}
 	return (ret);
 }

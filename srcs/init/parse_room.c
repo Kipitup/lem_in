@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:50:12 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/11 09:53:17 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/14 15:45:21 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ static void		add_room_to_hashmap(t_st_machine *sm, char *key, char *coord)
 				sm->state = MALLOC_ERR;
 		}
 		else
+		{
+			ft_strdel(&key);
+			ft_strdel(&coord);
 			sm->state = ROOM_DUPLICATE;
+		}
 	}
 	else
 		sm->state = MALLOC_ERR;
@@ -97,18 +101,21 @@ uint8_t			room(t_st_machine *sm, t_vector *line)
 {
 	uint8_t		ret;
 
-	ret = TRUE;
+	ret = FALSE;
 	if (vct_getchar_at(line, START) == '#')
 		ret = check_for_comment_or_command(sm, line);
 	else if (vct_chr_count(line, ' ') == 2)
 	{
-		add_to_buffer(line->str, line->len, ADD_NEW_LINE);
-		get_room(sm, line);
+		if (vct_apply(line, IS_PRINT) == FALSE)
+			sm->state = NO_PRINTABLE_CHAR;
+		else
+		{
+			add_to_buffer(line->str, line->len, ADD_NEW_LINE);
+			get_room(sm, line);
+			ret = TRUE;
+		}
 	}
 	else
-	{
 		sm->state = E_LINK;
-		ret = FALSE;
-	}
 	return (ret);
 }

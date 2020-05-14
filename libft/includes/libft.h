@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/10 12:16:10 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/14 15:34:21 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,26 +130,35 @@ char				*ft_strnstr(const char *pil, const char *need, size_t len);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 char				*ft_strcapitalize(char *str);
-int					ft_tolower(int c);
-int					ft_toupper(int c);
 void				ft_bzero(void *s, size_t n);
 void				ft_swap(void **one, void **two);
 int					get_next_line(const int fd, char **line);
-int					ft_isalnum(int c);
-int					ft_isalpha(int c);
-int					ft_isascii(int c);
-int					ft_isdigit(int c);
-int					ft_isprint(int c);
 int					ft_strisupcase(char *str);
 int					ft_strislowcase(char *str);
 int					ft_strisblank(char *str);
 int					ft_striszero(char *str);
+int					ft_strisprint(char *str);
 char				*ft_strupcase(char *str);
 char				*ft_strlowcase(char *str);
 char				*ft_strchr_str(const char *str, char *find);
 char				*ft_strndup(const char *src, size_t size);
 int					get_next_line(const int fd, char **line);
 int8_t				ft_check_int_len(char *str);
+
+/*
+** ############################################################################
+** ########################### CHAR MANIPULATION ##############################
+** ############################################################################
+*/
+int					ft_isalnum(int c);
+int					ft_isalpha(int c);
+int					ft_isascii(int c);
+int					ft_isdigit(int c);
+int					ft_isprint(int c);
+int					ft_islower(int c);
+int					ft_isupper(int c);
+int					ft_tolower(int c);
+int					ft_toupper(int c);
 
 /*
 ** ############################################################################

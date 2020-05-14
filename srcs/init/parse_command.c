@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/10 17:58:58 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/13 18:11:50 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,12 @@ static void			next_room_is_special(t_st_machine *sm, uint8_t type)
 	else
 	{
 		add_to_buffer(new_line->str, new_line->len, ADD_NEW_LINE);
-		if (type == START)
+		if (vct_getchar_at(new_line, START) == '#'
+				&& vct_getchar_at(new_line, 1) != '#')
+		{
+			next_room_is_special(sm, type);
+		}
+		else if (type == START)
 			sm->lemin->start = getspecial_room(sm, sm->lemin->start, new_line);
 		else
 			sm->lemin->end = getspecial_room(sm, sm->lemin->end, new_line);
@@ -59,7 +64,6 @@ static void			next_room_is_special(t_st_machine *sm, uint8_t type)
 ** The return (TRUE or FALSE) will determine whether or not the parser should
 ** read the next line.
 */
-
 uint8_t				command(t_st_machine *sm, t_vector *line)
 {
 	sm->state = E_ROOM;

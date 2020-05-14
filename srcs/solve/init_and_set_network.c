@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/11 22:38:24 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/13 15:51:18 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ static size_t		calculate_diff(t_network *net, size_t nb_ants)
 
 /*
 **	The len of each flow is define by then len of the path - 1;
+**	If flow[0]->len == 0, then room start is connected to the room end. Special
+**	case that need it own management.
 */
-
 static void			set_network(t_network *net, size_t nb_ants)
 {
 	size_t		i;
@@ -96,8 +97,13 @@ static void			set_network(t_network *net, size_t nb_ants)
 		net->flow[i].len = ((t_path*)net->all_path->contents[i])->len - 1;
 		i++;
 	}
-	len_diff = calculate_diff(net, nb_ants);
-	set_capacity(net, nb_ants, len_diff);
+	if  (net->flow[0].len == 0)
+		net->flow[0].capacity = 0;
+	else
+	{
+		len_diff = calculate_diff(net, nb_ants);
+		set_capacity(net, nb_ants, len_diff);
+	}
 }
 
 t_network			*init_and_set_network(t_darray *all_path, size_t nb_ants)
