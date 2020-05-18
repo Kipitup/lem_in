@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 11:27:35 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/10 19:06:31 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:07:19 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	*get_node(t_hashmap *map, void *key, uint32_t hash)
 **		if (node == NULL)
 **			ft_perror_failure(NODE_SEARCH_NULL, __FILE__, __LINE__);
 */
+
 void		*hashmap_get(t_hashmap *map, void *key)
 {
 	t_hashnode	*node;

@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/05/14 15:19:30 by amartinod        ###   ########.fr        #
+#    Updated: 2020/05/18 23:00:32 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -224,9 +224,11 @@ SRCS += heap_order.c
 SRCS += heap_print.c
 SRCS += heap_tool.c
 SRCS += red_black_build.c
+SRCS += red_black_clean.c
 SRCS += red_black_insert_order.c
-SRCS += red_black_remove_order.c
-SRCS += red_black_remove.c
+#SRCS += red_black_remove_order.c
+#SRCS += red_black_remove_order_bis.c
+#SRCS += red_black_remove.c
 SRCS += red_black_print.c
 SRCS += red_black_tool.c
 SRCS += red_black_rotation.c

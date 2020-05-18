@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 11:24:03 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/11 11:19:19 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/18 23:04:52 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,19 @@ int8_t			add_vertex_name(t_graph *graph, size_t i, char *name)
 			}
 		}
 		else
-				return (SUCCESS);
+			return (SUCCESS);
 	}
 	return (FAILURE);
 }
 
-//[?] this need protection
+/*
+** [!] Always verify the return of get_vertex before using it
+*/
+
 t_adj_list		get_vertex(t_graph *graph, size_t src)
 {
 	t_adj_list	vertex;
 
-	//if (graph != NULL)
 	vertex = graph->array[src];
 	return (vertex);
 }

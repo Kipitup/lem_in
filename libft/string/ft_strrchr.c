@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 10:09:31 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/12 16:21:25 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/18 23:39:52 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Locate the last occurence of c
 */
+
 char	*ft_strrchr(const char *s, int c)
 {
 	ssize_t	i;

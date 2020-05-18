@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpop_first.c                                  :+:      :+:    :+:   */
+/*   init_adjacency_list.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/04 15:46:39 by francis           #+#    #+#             */
-/*   Updated: 2020/05/18 23:28:25 by francis          ###   ########.fr       */
+/*   Created: 2020/05/18 23:48:39 by francis           #+#    #+#             */
+/*   Updated: 2020/05/18 23:48:57 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-void	ft_lstpop_first(t_list **alst)
+void				init_adjacency_list(t_st_machine *sm)
 {
-	t_list	*new_first;
+	size_t	size;
 
-	if (alst != NULL && *alst != NULL)
+	size = sm->lemin->room->nb_of_elem;
+	if (size == 0)
+		sm->state = NO_ROOM;
+	else if (sm->lemin->start == NULL)
+		sm->state = NO_START;
+	else if (sm->lemin->end == NULL)
+		sm->state = NO_END;
+	else
 	{
-		new_first = (*alst)->next;
-		free(*alst);
-		*alst = new_first;
+		sm->lemin->link = init_graph(size);
+		if (sm->lemin->link == NULL && sm->lemin->result->graph)
+			sm->state = ADJ_LIST_MALLOC;
 	}
 }

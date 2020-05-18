@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 11:27:50 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/11 10:33:20 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/18 22:59:34 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,4 @@ t_rb_tree	*get_root(t_rb_tree *node)
 	while (get_parent(node) != NULL)
 		node = get_parent(node);
 	return (node);
-}
-
-void		clean_rb_tree(t_rb_tree **root)
-{
-	if (*root == NULL)
-		return ;
-	clean_rb_tree(&((*root)->right));
-	clean_rb_tree(&((*root)->left));
-	ft_memdel((void**)root);
 }

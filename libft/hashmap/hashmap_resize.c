@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 18:31:14 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/06 11:41:37 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:07:31 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ static int8_t	handle_collision(t_darray *array, void **content, size_t n_size,
 		node = darray_remove(array, i);
 		if (node != NULL)
 			ret = push_node(content, n_size, nb_collision, node);
-	//	else
-	//		ft_perror(NODE_SEARCH_NULL, __FILE__, __LINE__);
 		i++;
 	}
 	return (ret);
@@ -104,7 +102,7 @@ int8_t			hashmap_resize(t_hashmap *map)
 	i = 0;
 	ret = SUCCESS;
 	new_size = (size_t)ft_find_next_prime(map->size * 3);
-//[?]ft_dprintf(STD_ERR, "Before resize from %zu to %zu. nb of element: %zu nb of collision: %zu\n", map->size, new_size, map->nb_of_elem, map->nb_collision);
+ft_dprintf(STD_ERR, "Before resize from %zu to %zu. nb of element: %zu nb of collision: %zu\n", map->size, new_size, map->nb_of_elem, map->nb_collision);
 	content = ft_memalloc(new_size * (sizeof(t_darray*)));
 	if (content != NULL)
 	{
@@ -120,6 +118,6 @@ int8_t			hashmap_resize(t_hashmap *map)
 	}
 	else
 		ret = ft_perror_failure(RESIZE_FAIL, __FILE__, __LINE__);
-//[?]ft_dprintf(STD_ERR, "After resize from %zu to %zu. nb of element: %zu nb of collision: %zu\n", map->size, new_size, map->nb_of_elem, map->nb_collision);
+ft_dprintf(STD_ERR, "After resize from %zu to %zu. nb of element: %zu nb of collision: %zu\n", map->size, new_size, map->nb_of_elem, map->nb_collision);
 	return (ret);
 }

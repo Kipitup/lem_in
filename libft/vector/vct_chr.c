@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 11:55:59 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/29 16:29:40 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:40:13 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 **	Search a character in the string and return the index of the first match
 **	it find.
 */
+
 ssize_t	vct_chr(t_vector *vector, char c)
 {
 	size_t	index;

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 10:42:35 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 13:39:02 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/18 23:32:56 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int8_t		check_for_rounding_up(t_vector *vector, double value)
 	return (vector == NULL ? FAILURE : SUCCESS);
 }
 
-static int8_t		nb_to_string(t_vector *vector, double value, uint64_t accuracy)
+static int8_t		nb_to_string(t_vector *vector, double value,
+		uint64_t accuracy)
 {
 	const char	*base_str;
 	uint64_t	i;

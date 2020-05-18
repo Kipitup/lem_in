@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/13 16:11:09 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 22:56:44 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_network
 
 typedef struct	s_path
 {
-	char			*name;	
+	char			*name;
 	size_t			vertex;
 	size_t			len;
 	size_t			ant_nb;
@@ -72,7 +72,7 @@ typedef struct	s_st_machine
 {
 	t_lemin				*lemin;
 	enum e_states		state;
-	char				padding[4];			
+	char				padding[4];
 }				t_st_machine;
 
 typedef uint8_t		(*t_state_func)(t_st_machine *sm, t_vector *line);
@@ -138,7 +138,7 @@ uint8_t			end_room_visited(t_graph *graph);
 uint8_t			is_vertex_visited_queue(t_graph *queue, t_adj_list node);
 void			update_links(t_solution *sol);
 void			update_links_with_last_path(t_solution *sol, t_path *path);
-int8_t			store_valid_path_and_reset(t_solution *sol, size_t *used_multiple);
+int8_t			store_valid_path_and_reset(t_solution *sol, size_t *used_mult);
 void			handle_link_used_both_way(t_lemin *lemin);
 uint8_t			link_used_both_ways(t_graph *graph);
 uint8_t			is_path_valid(t_graph *graph, t_path *path);
@@ -168,7 +168,7 @@ void			print_all_links(t_graph *graph);
 void			print_link_available(t_adj_list node);
 void			print_queue(t_graph *queue);
 void			print_path(t_path *path);
-void			print_path_and_vertices_used_more(t_path *path, t_graph* grph);
+void			print_path_and_vertices_used_more(t_path *path, t_graph *grph);
 void			print_all_links_to_vertex_used_more(t_graph *graph);
 void			print_all_path(t_darray *all_path);
 void			print_all_path_len(t_darray *all_path);
@@ -176,6 +176,6 @@ void			print_all_solution(t_lemin *lemin);
 void			print_final_output(t_lemin *lemin);
 void			print_debug_network(t_network *net);
 void			vertex_used_more(t_graph *graph);
-int8_t 			start_is_connected_to_end(t_network *net, size_t nb_ants);
+int8_t			start_is_connected_to_end(t_network *net, size_t nb_ants);
 
 #endif

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpop_first.c                                  :+:      :+:    :+:   */
+/*   red_black_tool_bis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/04 15:46:39 by francis           #+#    #+#             */
-/*   Updated: 2020/05/18 23:28:25 by francis          ###   ########.fr       */
+/*   Created: 2020/05/18 22:59:04 by francis           #+#    #+#             */
+/*   Updated: 2020/05/18 22:59:41 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "btree.h"
 
-void	ft_lstpop_first(t_list **alst)
+void		clean_rb_tree(t_rb_tree **root)
 {
-	t_list	*new_first;
-
-	if (alst != NULL && *alst != NULL)
-	{
-		new_first = (*alst)->next;
-		free(*alst);
-		*alst = new_first;
-	}
+	if (*root == NULL)
+		return ;
+	clean_rb_tree(&((*root)->right));
+	clean_rb_tree(&((*root)->left));
+	ft_memdel((void**)root);
 }

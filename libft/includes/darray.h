@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/11 22:45:43 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/18 23:12:06 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # define DEFAULT_EXPAND_RATE	20
 # define DEFAULT_ARRAY_SIZE		10
+
 /*
 **	WARNING: the dynamic array is agnostic of what is in content. However you'll
 **	need to give it the appropriate clean function. NO LEAKS MAY BE TOLERATED.
@@ -30,7 +31,7 @@
 **	'expand_rate' when end >= max, then we expand the array by the expand_rate
 */
 
-typedef	void (*t_del_func)(void *);
+typedef	void	(*t_del_func)(void *);
 
 typedef struct	s_darray {
 	size_t		end;
@@ -39,7 +40,6 @@ typedef struct	s_darray {
 	size_t		expand_rate;
 	void		**contents;
 }				t_darray;
-
 
 int8_t		darray_set(t_darray *array, size_t i, void *element);
 void		*darray_get(t_darray *array, size_t i);
@@ -56,7 +56,10 @@ void		darray_clear_content(t_darray **array, t_del_func del_func);
 void		darray_clear_destroy(t_darray **array, t_del_func del_func);
 void		**ft_realloc(t_darray *array, size_t size, size_t old_size);
 
-//Clean function
+/*
+**	Clean function
+*/
+
 void		del_hashmap_node(void *content);
 void		del_vector(void *content);
 

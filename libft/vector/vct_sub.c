@@ -6,13 +6,13 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:57:53 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/10 20:38:02 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:41:55 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
-t_vector 	*vct_sub(t_vector *vector, size_t start, size_t len)
+t_vector	*vct_sub(t_vector *vector, size_t start, size_t len)
 {
 	t_vector	*new_vector;
 

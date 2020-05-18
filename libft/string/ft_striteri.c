@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:03:27 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/12 12:22:53 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/18 23:37:41 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_striteri(char *s, void (*f)(uint32_t, char *))
 	l = (uint32_t)ft_strlen(s);
 	while (i < l)
 	{
-		f(i, &s[i]);
+		f(i, s + i);
 		i++;
 	}
 }

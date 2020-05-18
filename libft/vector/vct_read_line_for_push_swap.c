@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:08:41 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 14:33:01 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/18 23:41:15 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int8_t	parse_line_ps(t_vector *vector, t_vector **line, uint8_t end)
 	int8_t	ret;
 
 	ret = FALSE;
- 	index = vct_chr(vector, '\n');
+	index = vct_chr(vector, '\n');
 	if (index >= 0)
 	{
 		ret = TRUE;

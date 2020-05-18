@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 12:58:24 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/14 15:34:21 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:19:23 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@
 # include <time.h>
 
 /*
-** void		*ft_malloc_debug(size_t size, const char *file, int line, const char *function);
+** void		*ft_malloc_debug(size_t size, const char *file, int line,
+**														const char *function);
 */
 /*
 ** ############################################################################
@@ -72,11 +73,11 @@ typedef struct		s_list
 */
 
 void				ft_lstadd(t_list **alst, t_list *new);
-void	            ft_lstadd_rear(t_list **alst, t_list *new);
+void				ft_lstadd_rear(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstfree(void *content);
-void	            ft_lstpop_first(t_list **alst);
+void				ft_lstpop_first(t_list **alst);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));

@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:06:02 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/19 11:58:54 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/18 23:05:18 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_adj_list(t_graph *graph)
 
 void	print_adj_node(t_adj_list node)
 {
-	t_adj_node  *tmp;
+	t_adj_node	*tmp;
 
 	ft_printf("\n------------------------------------------------\n");
 	tmp = node.head;

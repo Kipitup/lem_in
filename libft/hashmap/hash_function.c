@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:25:03 by fkante            #+#    #+#             */
-/*   Updated: 2020/04/28 15:00:44 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:06:40 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 /*
 ** http://www.isthe.com/chongo/tech/comp/fnv/index.html#FNV-param
 */
+
 uint32_t		ft_fnv1a_hash(const void *data, size_t len)
 {
 	size_t					i;
@@ -61,19 +62,19 @@ uint32_t		ft_hash_void_data(const void *data, size_t len)
 uint32_t		ft_hash_str(const void *data, size_t len)
 {
 	size_t		i;
-    uint32_t	hash;
+	uint32_t	hash;
 
 	i = 0;
 	hash = 0;
 	while (i < len)
 	{
-        hash += ((char *)data)[i];
-        hash += (hash << 10);
-        hash ^= (hash >> 6);
+		hash += ((char *)data)[i];
+		hash += (hash << 10);
+		hash ^= (hash >> 6);
 		i++;
     }
-    hash += (hash << 3);
-    hash ^= (hash >> 11);
-    hash += (hash << 15);
+	hash += (hash << 3);
+	hash ^= (hash >> 11);
+	hash += (hash << 15);
     return (hash);
 }

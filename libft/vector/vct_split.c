@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:26:09 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/11 22:25:42 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/18 23:41:30 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	Pointers to the vectors are stored in successive elements in the array
 **	pointed to by vct_tab.
 **
-**	One would of course keep track of the table created. The content and 
+**	One would of course keep track of the table created. The content and
 **	the table should be deleted, when its use is done.
 */
 

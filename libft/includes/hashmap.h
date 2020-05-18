@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/06 11:50:03 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:18:16 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 # include <unistd.h>
 
 # define DJB_HASH_CONSTANT		5381
-# define DEFAULT_NB_OF_BUCKETS	4999	
+# define DEFAULT_NB_OF_BUCKETS	4999
 
-typedef uint8_t 		(*t_hash_comp)(void *, void *);
-typedef uint32_t 		(*t_hash_func)(const void *, size_t);
+typedef uint8_t		(*t_hash_comp)(void *, void *);
+typedef uint32_t	(*t_hash_func)(const void *, size_t);
 
 /*
 ** If no compare and hash functions are given, we'll use the default one.
 */
-typedef struct	s_hashmap
+typedef struct		s_hashmap
 {
 	void			**bucket;
 	t_hash_comp		compare;
@@ -34,23 +34,23 @@ typedef struct	s_hashmap
 	size_t			size;
 	size_t			nb_of_elem;
 	size_t			nb_collision;
-}				t_hashmap;
+}					t_hashmap;
 
 /*
 **	Work like a dictionnary. You can associate a key with a data.
 **	For exemple,'name' could be the key, and '42' the value. 'name' will be hash
 **	and the node will be placed in the array at index: (hash % NB_OF_BUCKETS).
-**	Each node has a optionnal index that can bu used in another data 
+**	Each node has a optionnal index that can bu used in another data
 **	structure (ex: adjacency list).
 */
-typedef struct	s_hashnode
+typedef struct		s_hashnode
 {
 	void			*key;
 	void			*data;
 	ssize_t			opt_index;
 	uint32_t		hash;
 	char			padding[4];
-}				t_hashnode;
+}					t_hashnode;
 
 /*
 ** ############################################################################

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 10:49:04 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/12 14:19:32 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/18 23:10:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #ifndef BTREE_H
 # define BTREE_H
 
-#include "libft.h"
-#include <stdio.h>
+# include "libft.h"
 
 # define NB_OF_SPACE	10
 
@@ -33,7 +32,7 @@
 **	Every Red Black Tree with n nodes has height <= 2Log2(n+1)
 *****************************************************************************
 */
-typedef struct					s_rb_tree
+typedef struct				s_rb_tree
 {
 	struct s_rb_tree	*parent;
 	struct s_rb_tree	*left;
@@ -41,7 +40,7 @@ typedef struct					s_rb_tree
 	int32_t				key;
 	uint8_t				color;
 	char				padding[3];
-}								t_rb_tree;
+}							t_rb_tree;
 
 # define RED			0
 # define BLACK			1
@@ -104,7 +103,7 @@ void		print_rb_tree(t_rb_tree *node, size_t deep);
 t_heap		*heap_tree(int32_t *tab, size_t size, uint8_t type);
 void		delete_root(t_heap *heap);
 void		clean_heap_tree(t_heap **heap);
-void 		is_parent_valid(t_heap *heap, size_t child);
+void		is_parent_valid(t_heap *heap, size_t child);
 void		heapify(t_heap *heap, size_t parent);
 size_t		get_heap_parent(size_t index);
 size_t		get_left_child(size_t index);

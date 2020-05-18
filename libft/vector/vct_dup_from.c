@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 10:56:01 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 13:40:54 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/18 23:40:34 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_vector	*vct_dup_from(t_vector *vector, size_t index)
 				if (vct_pushstr(dup, (vector->str + index)) == FAILURE)
 					vct_del(&dup);
 			}
-
 		}
 	}
 	return (dup);

@@ -6,36 +6,17 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/14 17:10:49 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/19 00:03:29 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void				init_adjacency_list(t_st_machine *sm)
-{
-	size_t	size;
-
-	size = sm->lemin->room->nb_of_elem;
-	if (size == 0)
-		sm->state = NO_ROOM;
-	else if (sm->lemin->start == NULL)
-		sm->state = NO_START;
-	else if (sm->lemin->end == NULL)
-		sm->state = NO_END;
-	else
-	{
-		sm->lemin->link = init_graph(size);
-		if (sm->lemin->link == NULL && sm->lemin->result->graph)
-			sm->state = ADJ_LIST_MALLOC;
-	}
-}
-
 static void			last_quick_check(t_st_machine *sm)
 {
-//	[?] need a way to protect this without the output and write a \n if it succeed
-//	if (sm->lemin->output->len == 0)
-//		sm->state = EMPTY_FILE;
+	//	[?] need a way to protect this without the output and write a \n if it succeed
+	//	if (sm->lemin->output->len == 0)
+	//		sm->state = EMPTY_FILE;
 	if (sm->lemin->link != NULL)
 	{
 		if (sm->lemin->link->array[0].head == NULL)
@@ -76,6 +57,18 @@ static t_st_machine	*init_struct(void)
 	return (sm);
 }
 
+static void			assign_sm_to_lemin_and_sol(t_lemin **lemin,
+		t_st_machine **sm)
+{
+	*lemin = (*sm)->lemin;
+	init_solution(*lemin);
+	if ((*lemin)->result == NULL)
+		(*sm)->state = E_ERROR;
+	if (VISU == TRUE)
+		init_file_for_visu((*lemin)->link, NULL);
+	add_to_buffer("\n", 1, ADD_NO_NEW_LINE);
+}
+
 t_lemin				*init(void)
 {
 	t_lemin			*lemin;
@@ -89,14 +82,8 @@ t_lemin				*init(void)
 		if (sm->state > E_ERROR || sm->state < ERR_STOP_LEMIN)
 			last_quick_check(sm);
 		if (sm->state > E_ERROR || sm->state < ERR_STOP_LEMIN)
-		{
-			lemin = sm->lemin;
-			init_solution(lemin); //[?] need to check if SUCCESS
-			if (VISU == TRUE)
-				init_file_for_visu(lemin->link, NULL);
-			add_to_buffer("\n", 1, ADD_NO_NEW_LINE);
-		}
-		else
+			 assign_sm_to_lemin_and_sol(&lemin, &sm);
+		if (sm->state <= E_ERROR && sm->state >= ERR_STOP_LEMIN)
 		{
 			error_management(sm->state);
 			clean_lemin(&(sm->lemin));

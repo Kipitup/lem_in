@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 11:17:18 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/11 10:28:42 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/18 23:22:35 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "btree.h"
+#include <stdio.h>
 
 /*
 **	Recursively print the tree.

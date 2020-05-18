@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:54:11 by amartino          #+#    #+#             */
-/*   Updated: 2020/04/10 18:08:54 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:16:03 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,28 @@
 ** ############################## STRUCTURES ##################################
 ** ############################################################################
 */
-typedef struct	                        s_adj_node
+typedef struct			s_adj_node
 {
 	size_t				dest;
 	struct s_adj_node	*next;
 	uint8_t				available;
 	char				padding[7];
-}		                        t_adj_node;
+}						t_adj_node;
 
-typedef struct	                        s_adj_list
+typedef struct			s_adj_list
 {
 	t_adj_node			*head;
 	char				*name;
 	ssize_t				distance;
 	uint8_t				usable;
 	char				padding[7];
-}		                        t_adj_list;
+}						t_adj_list;
 
-typedef struct	                        s_graph
+typedef struct			s_graph
 {
 	t_adj_list			*array;
 	size_t				size;
-}		                        t_graph;
+}						t_graph;
 
 /*
 ** ############################################################################

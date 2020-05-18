@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 18:48:36 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/13 18:11:50 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:47:13 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void			next_room_is_special(t_st_machine *sm, uint8_t type)
 ** The return (TRUE or FALSE) will determine whether or not the parser should
 ** read the next line.
 */
+
 uint8_t				command(t_st_machine *sm, t_vector *line)
 {
 	sm->state = E_ROOM;

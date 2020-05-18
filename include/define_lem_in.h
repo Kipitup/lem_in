@@ -6,14 +6,14 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/14 16:21:41 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 22:55:33 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_LEM_IN_H
 # define DEFINE_LEM_IN_H
 
-# define LEMIN_BUFF_SIZE	32768 * 8
+# define LEMIN_BUFF_SIZE	262144	
 
 # define FALSE				0
 # define TRUE				1
@@ -72,6 +72,4 @@
 # define ROOM_DONT_EXIST	-25
 # define STD_OUT_CLOSE		-26
 
-//# define QUEUE_FULL	        "Queue Overflow, too many elements"
-//# define QUEUE_EMPTY        "Queue is empty"
 #endif

@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 17:54:12 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/13 15:51:18 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:44:55 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 {
 	size_t		i;
+	size_t		usbl_flow;
 	uint32_t	rest;
 
 	i = 0;
@@ -38,7 +39,8 @@ static void			set_capacity(t_network *net, size_t nb_ants, int64_t diff)
 	i = 0;
 	while (i < net->nb_of_usable_flow - 1)
 	{
-		net->flow[i].capacity += net->flow[net->nb_of_usable_flow - 1].len - net->flow[i].len;
+		usbl_flow = net->nb_of_usable_flow - 1;
+		net->flow[i].capacity += net->flow[usbl_flow].len - net->flow[i].len;
 		i++;
 	}
 }
@@ -86,6 +88,7 @@ static size_t		calculate_diff(t_network *net, size_t nb_ants)
 **	If flow[0]->len == 0, then room start is connected to the room end. Special
 **	case that need it own management.
 */
+
 static void			set_network(t_network *net, size_t nb_ants)
 {
 	size_t		i;
@@ -97,7 +100,7 @@ static void			set_network(t_network *net, size_t nb_ants)
 		net->flow[i].len = ((t_path*)net->all_path->contents[i])->len - 1;
 		i++;
 	}
-	if  (net->flow[0].len == 0)
+	if (net->flow[0].len == 0)
 		net->flow[0].capacity = 0;
 	else
 	{

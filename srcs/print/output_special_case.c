@@ -6,13 +6,13 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 15:54:42 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/13 16:11:48 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/18 23:46:16 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int8_t 		start_is_connected_to_end(t_network *net, size_t nb_ants)
+int8_t	start_is_connected_to_end(t_network *net, size_t nb_ants)
 {
 	char		*nb_str;
 	t_path		*end;
