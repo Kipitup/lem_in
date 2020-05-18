@@ -1,0 +1,482 @@
+Norme: ./auteur
+Warning: Not a valid file
+Norme: ./generator
+Warning: Not a valid file
+Norme: ./libft/03.sh
+Warning: Not a valid file
+Norme: ./libft/compile_hashmap_test.sh
+Warning: Not a valid file
+Norme: ./libft/compile_valgrind_hashmap_test.sh
+Warning: Not a valid file
+Norme: ./libft/Makefile
+Warning: Not a valid file
+Norme: ./Makefile
+Warning: Not a valid file
+Norme: ./maps/correct_map/basic.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/classic_3_lanes.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/classic_s.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/classic_square.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/deya.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/for_parsing.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/multiple_same_link.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/reference_big.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/reference_big_47move.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/reference_big_superpos.map
+Warning: Not a valid file
+Norme: ./maps/correct_map/subject3.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incomplete_map/empty_line_at_the_end.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incomplete_map/wrong_link.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incomplete_map/wrong_link_format.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/2_end-room.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/2_start_room.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/coord_not_int.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/empty.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/empty_line_in_the_middle.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/link_dont_exist.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/missing_one_coord.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/nb_ant_after_rooms.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/nb_ant_contain_letter.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/nb_ant_neg.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/nb_ant_not_int.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/no_end.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/no_link_to_end.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/no_link_to_start.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/no_nb_of_ant.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/no_path_btwn_start_end.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/no_room_after_end_command.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/no_special_room.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/no_start.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/not_room_after_command.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/room_duplicate.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/room_in_room_link.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/room_name_contain_dash.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/room_name_contain_dash2.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/room_name_start_with_L.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/too_much_space_in_room_format.map
+Warning: Not a valid file
+Norme: ./maps/parsing/incorrect_map/unknow_command_before_ant_nb.map
+Warning: Not a valid file
+Norme: ./norme.txt
+Warning: Not a valid file
+Norme: ./srcs/solve/set_of_rules.txt
+Warning: Not a valid file
+Norme: ./unit_test.sh
+Warning: Not a valid file
+Norme: ./visu/install_visu_dependency.sh
+Warning: Not a valid file
+Norme: ./visu/visu.py
+Warning: Not a valid file
+Norme: ./include/define_lem_in.h
+Error (line 16): spaces at the end of line
+Norme: ./include/lem_in.h
+Norme: ./libft/btree/heap_build.c
+Norme: ./libft/btree/heap_order.c
+Norme: ./libft/btree/heap_print.c
+Norme: ./libft/btree/heap_tool.c
+Norme: ./libft/btree/red_black_build.c
+Norme: ./libft/btree/red_black_clean.c
+Norme: ./libft/btree/red_black_insert_order.c
+Norme: ./libft/btree/red_black_print.c
+Norme: ./libft/btree/red_black_remove.c
+Norme: ./libft/btree/red_black_remove_order.c
+Error (line 15): multiple empty lines
+Error (line 16): function delete_case_5 has 28 lines
+Error (line 16): bad spacing before delete_case_5
+Norme: ./libft/btree/red_black_remove_order_bis.c
+Norme: ./libft/btree/red_black_rotation.c
+Norme: ./libft/btree/red_black_tool.c
+Norme: ./libft/char/ft_isalnum.c
+Norme: ./libft/char/ft_isalpha.c
+Norme: ./libft/char/ft_isascii.c
+Norme: ./libft/char/ft_isdigit.c
+Norme: ./libft/char/ft_islower.c
+Norme: ./libft/char/ft_isprint.c
+Norme: ./libft/char/ft_isupper.c
+Norme: ./libft/char/ft_tolower.c
+Norme: ./libft/char/ft_toupper.c
+Norme: ./libft/darray/darray_clear.c
+Norme: ./libft/darray/darray_create.c
+Norme: ./libft/darray/darray_destroy.c
+Norme: ./libft/darray/darray_modify_size.c
+Norme: ./libft/darray/darray_pop.c
+Norme: ./libft/darray/darray_push.c
+Norme: ./libft/darray/darray_utilities.c
+Norme: ./libft/darray/del_function.c
+Norme: ./libft/darray/ft_realloc.c
+Norme: ./libft/error/ft_malloc_debug.c
+Norme: ./libft/error/ft_perror.c
+Norme: ./libft/error/ft_perror_failure.c
+Norme: ./libft/error/ft_perror_false.c
+Norme: ./libft/error/ft_perror_null.c
+Norme: ./libft/ft_printf/bonus/ft_asprintf.c
+Norme: ./libft/ft_printf/bonus/ft_dprintf.c
+Norme: ./libft/ft_printf/bonus/search_color.c
+Norme: ./libft/ft_printf/conversion/apply_hash_flag.c
+Norme: ./libft/ft_printf/conversion/apply_modifier.c
+Norme: ./libft/ft_printf/conversion/apply_modifier_f.c
+Norme: ./libft/ft_printf/conversion/apply_modifier_zj.c
+Norme: ./libft/ft_printf/conversion/apply_padding_flag.c
+Norme: ./libft/ft_printf/conversion/check_flag.c
+Norme: ./libft/ft_printf/conversion/conv_to_b.c
+Norme: ./libft/ft_printf/conversion/conv_to_c.c
+Norme: ./libft/ft_printf/conversion/conv_to_di.c
+Norme: ./libft/ft_printf/conversion/conv_to_f.c
+Norme: ./libft/ft_printf/conversion/conv_to_hexa_maj.c
+Norme: ./libft/ft_printf/conversion/conv_to_none.c
+Norme: ./libft/ft_printf/conversion/conv_to_ox.c
+Norme: ./libft/ft_printf/conversion/conv_to_ptr.c
+Norme: ./libft/ft_printf/conversion/conv_to_str.c
+Norme: ./libft/ft_printf/conversion/conv_to_u.c
+Norme: ./libft/ft_printf/conversion/convert.c
+Norme: ./libft/ft_printf/ft_printf.c
+Norme: ./libft/ft_printf/init/init_printf.c
+Norme: ./libft/ft_printf/statemachine/statemachine.c
+Norme: ./libft/ft_printf/statemachine/statemachine_asprintf.c
+Norme: ./libft/ft_printf/statemachine/states.c
+Norme: ./libft/ft_printf/statemachine/width_and_precision.c
+Norme: ./libft/get_next_line.c
+Norme: ./libft/graph/adj_check.c
+Norme: ./libft/graph/adj_remove_edge.c
+Norme: ./libft/graph/adj_tools.c
+Norme: ./libft/graph/adjacency_list.c
+Norme: ./libft/graph/graph_clean.c
+Norme: ./libft/graph/graph_print.c
+Norme: ./libft/hashmap/compare_function.c
+Norme: ./libft/hashmap/hash_function.c
+Error (line 75): bad indentation
+Error (line 75): must begin only by tabulations
+Error (line 79): bad indentation
+Error (line 79): must begin only by tabulations
+Norme: ./libft/hashmap/hashmap_clean.c
+Norme: ./libft/hashmap/hashmap_create.c
+Norme: ./libft/hashmap/hashmap_get.c
+Norme: ./libft/hashmap/hashmap_print.c
+Norme: ./libft/hashmap/hashmap_resize.c
+Error (line 95): function hashmap_resize has 26 lines
+Error (line 105): bad indentation
+Error (line 105): line has 154 characters
+Error (line 121): bad indentation
+Error (line 121): line has 153 characters
+Norme: ./libft/hashmap/hashmap_set.c
+Norme: ./libft/includes/btree.h
+Error: global scope bad aligned
+Error (line 13): multiple empty lines
+Norme: ./libft/includes/darray.h
+Error: global scope bad aligned
+Norme: ./libft/includes/define_pf.h
+Error: has double inclusion protection but not with the good define name
+Error (line 104): define must be a constant value
+Error (line 105): define must be a constant value
+Error (line 106): define must be a constant value
+Error (line 107): define must be a constant value
+Error (line 108): define must be a constant value
+Error (line 109): define must be a constant value
+Error (line 110): define must be a constant value
+Norme: ./libft/includes/ft_printf.h
+Norme: ./libft/includes/graph.h
+Error: global scope bad aligned
+Error (line 13): wrong number of spaces in preprocessor line
+Norme: ./libft/includes/hashmap.h
+Error (line 13): wrong number of spaces in preprocessor line
+Norme: ./libft/includes/libft.h
+Norme: ./libft/includes/vector.h
+Error (line 171): # include "libft.h" should be before line 45
+Norme: ./libft/linked_list/ft_lstadd.c
+Norme: ./libft/linked_list/ft_lstadd_rear.c
+Norme: ./libft/linked_list/ft_lstdel.c
+Norme: ./libft/linked_list/ft_lstdelone.c
+Norme: ./libft/linked_list/ft_lstfindone.c
+Norme: ./libft/linked_list/ft_lstfree.c
+Norme: ./libft/linked_list/ft_lstiter.c
+Norme: ./libft/linked_list/ft_lstmap.c
+Norme: ./libft/linked_list/ft_lstnew.c
+Norme: ./libft/linked_list/ft_lstpop_first.c
+Norme: ./libft/main_test/main_darray.c
+Error: global scope bad aligned
+Error: 7 functions in the file
+Error (line 16): function test_push_pop has 26 lines
+Error (line 18): bad indentation
+Error (line 18): must begin only by tabulations
+Error (line 30): 2 instructions
+Error (line 30): for detected
+Error (line 31): bad indentation
+Error (line 36): bad indentation
+Error (line 36): must begin only by tabulations
+Error (line 39): line has 85 characters
+Error (line 40): bad indentation
+Error (line 40): must begin only by tabulations
+Error (line 42): bad indentation
+Error (line 42): must begin only by tabulations
+Error (line 43): bad indentation
+Error (line 43): must begin only by tabulations
+Error (line 46): declarations in test_expand_contract must be at the top of the function
+Error (line 46): declarations must be followed by one empty line in test_expand_contract
+Error (line 48): bad indentation
+Error (line 48): must begin only by tabulations
+Error (line 49): 2 instructions
+Error (line 49): for detected
+Error (line 49, col 10): i is instanciated during declaration
+Error (line 50): bad indentation
+Error (line 51): bad indentation
+Error (line 51): must begin only by tabulations
+Error (line 52): must begin only by tabulations
+Error (line 53): bad indentation
+Error (line 53): must begin only by tabulations
+Error (line 54): must begin only by tabulations
+Error (line 56): Empty line
+Error (line 57, col 0): no empty line before block
+Error (line 61): bad indentation
+Error (line 61): must begin only by tabulations
+Error (line 61, col 9): val_removed is instanciated during declaration
+Error (line 64): line has 86 characters
+Error (line 65): bad indentation
+Error (line 65): must begin only by tabulations
+Error (line 66): line has 92 characters
+Error (line 68): line has 92 characters
+Error (line 70): Empty line
+Error (line 73): line has 86 characters
+Error (line 74): bad indentation
+Error (line 74): must begin only by tabulations
+Error (line 75): line has 92 characters
+Error (line 77): line has 92 characters
+Error (line 104): C++ comment
+Error (line 106): Empty line
+Error (line 110): declarations in test_create are bad aligned
+Error (line 110): declarations must be followed by one empty line in test_create
+Error (line 112, col 11): array is instanciated during declaration
+Error (line 113, col 6): val1 is instanciated during declaration
+Error (line 114, col 6): val2 is instanciated during declaration
+Error (line 116): Empty line
+Error (line 119): Empty line
+Error (line 121): Empty line
+Norme: ./libft/main_test/main_hash.c
+Error (line 17): bad spacing after allocate_elem
+Error (line 23): bad spacing before test_set_elem
+Error (line 23, col 7): test_set_elem has 7 variables
+Error (line 25): multiple declarations
+Error (line 26): multiple declarations
+Error (line 41): function main has 29 lines
+Error (line 51): C++ comment
+Error (line 53): comment not well formatted
+Error (line 53): comment not well placed
+Norme: ./libft/main_test/main_rb_tree.c
+Error (line 15): missing void in function main
+Error (line 17): line has 113 characters
+Error (line 17, col 10): array is instanciated during declaration
+Norme: ./libft/main_test/main_realloc.c
+Error (line 15, col 0): main has 6 variables
+Error (line 17, col 6): test is instanciated during declaration
+Error (line 21, col 6): new_size is instanciated during declaration
+Error (line 27): Empty line
+Error (line 32): spaces at the end of line
+Norme: ./libft/main_test/main_split.c
+Norme: ./libft/math/ft_absolute.c
+Norme: ./libft/math/ft_fibonacci.c
+Norme: ./libft/math/ft_log2_n.c
+Norme: ./libft/math/ft_pow.c
+Norme: ./libft/math/ft_pow_positive.c
+Norme: ./libft/math/ft_sqrt.c
+Norme: ./libft/memory/ft_memalloc.c
+Norme: ./libft/memory/ft_memccpy.c
+Norme: ./libft/memory/ft_memchr.c
+Norme: ./libft/memory/ft_memcmp.c
+Norme: ./libft/memory/ft_memcpy.c
+Norme: ./libft/memory/ft_memdel.c
+Norme: ./libft/memory/ft_memmove.c
+Norme: ./libft/memory/ft_memset.c
+Norme: ./libft/number/ft_atoi.c
+Norme: ./libft/number/ft_atol.c
+Norme: ./libft/number/ft_bzero.c
+Norme: ./libft/number/ft_find_next_prime.c
+Norme: ./libft/number/ft_fldtoa.c
+Norme: ./libft/number/ft_ftoa.c
+Norme: ./libft/number/ft_int64_t_len.c
+Norme: ./libft/number/ft_is_prime.c
+Norme: ./libft/number/ft_itoa.c
+Norme: ./libft/number/ft_itoa_base.c
+Norme: ./libft/number/ft_len_printf.c
+Norme: ./libft/number/ft_nb_unitlen.c
+Norme: ./libft/number/ft_swap.c
+Norme: ./libft/number/ft_uint64_t_len.c
+Norme: ./libft/print/ft_putchar.c
+Norme: ./libft/print/ft_putchar_fd.c
+Norme: ./libft/print/ft_putendl.c
+Norme: ./libft/print/ft_putendl_fd.c
+Norme: ./libft/print/ft_putnbr.c
+Norme: ./libft/print/ft_putnbr_fd.c
+Norme: ./libft/print/ft_putstr.c
+Norme: ./libft/print/ft_putstr_fd.c
+Norme: ./libft/stats/ft_get_high.c
+Norme: ./libft/stats/ft_get_high_in_range.c
+Norme: ./libft/stats/ft_get_low.c
+Norme: ./libft/stats/ft_get_low_in_range.c
+Norme: ./libft/stats/ft_get_median.c
+Norme: ./libft/stats/ft_get_n_highest.c
+Norme: ./libft/stats/ft_get_n_smallest.c
+Norme: ./libft/stats/ft_high.c
+Norme: ./libft/stats/ft_low.c
+Norme: ./libft/stats/ft_mean.c
+Norme: ./libft/stats/ft_median.c
+Norme: ./libft/stats/ft_range.c
+Norme: ./libft/stats/ft_sort.c
+Norme: ./libft/string/ft_check_int_len.c
+Norme: ./libft/string/ft_strcapitalize.c
+Norme: ./libft/string/ft_strcat.c
+Norme: ./libft/string/ft_strchr.c
+Norme: ./libft/string/ft_strchr_str.c
+Norme: ./libft/string/ft_strclr.c
+Norme: ./libft/string/ft_strcmp.c
+Norme: ./libft/string/ft_strcpy.c
+Norme: ./libft/string/ft_strdel.c
+Norme: ./libft/string/ft_strdup.c
+Norme: ./libft/string/ft_strequ.c
+Norme: ./libft/string/ft_strisblank.c
+Norme: ./libft/string/ft_strislowcase.c
+Norme: ./libft/string/ft_strisprint.c
+Norme: ./libft/string/ft_strisupcase.c
+Norme: ./libft/string/ft_striszero.c
+Norme: ./libft/string/ft_striter.c
+Norme: ./libft/string/ft_striteri.c
+Warning: /Users/fkante/Documents/MonGit42/lem_in/libft/string/ft_striteri.c may not compile or is invalid for some reasons.
+Norme: ./libft/string/ft_strjoin.c
+Norme: ./libft/string/ft_strlcat.c
+Norme: ./libft/string/ft_strlen.c
+Norme: ./libft/string/ft_strlowcase.c
+Norme: ./libft/string/ft_strmap.c
+Norme: ./libft/string/ft_strmapi.c
+Warning: /Users/fkante/Documents/MonGit42/lem_in/libft/string/ft_strmapi.c may not compile or is invalid for some reasons.
+Norme: ./libft/string/ft_strncat.c
+Norme: ./libft/string/ft_strncmp.c
+Norme: ./libft/string/ft_strncpy.c
+Norme: ./libft/string/ft_strndup.c
+Norme: ./libft/string/ft_strnequ.c
+Norme: ./libft/string/ft_strnew.c
+Norme: ./libft/string/ft_strnstr.c
+Norme: ./libft/string/ft_strrchr.c
+Norme: ./libft/string/ft_strsplit.c
+Norme: ./libft/string/ft_strstr.c
+Norme: ./libft/string/ft_strsub.c
+Norme: ./libft/string/ft_strtrim.c
+Norme: ./libft/string/ft_strupcase.c
+Norme: ./libft/vector/vct_addchar.c
+Norme: ./libft/vector/vct_addchar_at.c
+Norme: ./libft/vector/vct_addnb.c
+Norme: ./libft/vector/vct_addnstr.c
+Norme: ./libft/vector/vct_addstr.c
+Norme: ./libft/vector/vct_addstr_at.c
+Norme: ./libft/vector/vct_apply.c
+Norme: ./libft/vector/vct_bzero.c
+Norme: ./libft/vector/vct_cat.c
+Norme: ./libft/vector/vct_chr.c
+Norme: ./libft/vector/vct_chr_count.c
+Norme: ./libft/vector/vct_chr_str.c
+Norme: ./libft/vector/vct_chr_str_count.c
+Norme: ./libft/vector/vct_del.c
+Norme: ./libft/vector/vct_del_tab.c
+Norme: ./libft/vector/vct_dup.c
+Norme: ./libft/vector/vct_dup_from.c
+Norme: ./libft/vector/vct_fill_after.c
+Norme: ./libft/vector/vct_fill_before.c
+Norme: ./libft/vector/vct_getchar_at.c
+Norme: ./libft/vector/vct_getstr.c
+Norme: ./libft/vector/vct_increase_scale.c
+Norme: ./libft/vector/vct_join.c
+Norme: ./libft/vector/vct_joinfree.c
+Norme: ./libft/vector/vct_len.c
+Norme: ./libft/vector/vct_ndup.c
+Norme: ./libft/vector/vct_ndup_from.c
+Norme: ./libft/vector/vct_new.c
+Norme: ./libft/vector/vct_newstr.c
+Norme: ./libft/vector/vct_pop.c
+Norme: ./libft/vector/vct_pop_from.c
+Norme: ./libft/vector/vct_print.c
+Norme: ./libft/vector/vct_print_nl.c
+Norme: ./libft/vector/vct_print_tab.c
+Norme: ./libft/vector/vct_pushstr.c
+Norme: ./libft/vector/vct_read_line.c
+Norme: ./libft/vector/vct_read_line_for_push_swap.c
+Norme: ./libft/vector/vct_replace_char.c
+Norme: ./libft/vector/vct_replace_char_at.c
+Norme: ./libft/vector/vct_replace_str.c
+Norme: ./libft/vector/vct_split.c
+Norme: ./libft/vector/vct_strequ.c
+Norme: ./libft/vector/vct_strnequ.c
+Norme: ./libft/vector/vct_sub.c
+Norme: ./srcs/clean/clean.c
+Norme: ./srcs/init/error_management.c
+Norme: ./srcs/init/init.c
+Error (line 17): bad indentation
+Error (line 17): C++ comment
+Error (line 17): line has 87 characters
+Error (line 18): bad indentation
+Error (line 18): C++ comment
+Error (line 19): bad indentation
+Error (line 19): C++ comment
+Error (line 85): must begin only by tabulations
+Norme: ./srcs/init/init_adjacency_list.c
+Norme: ./srcs/init/init_file_for_visu.c
+Norme: ./srcs/init/init_solution.c
+Norme: ./srcs/init/main_list.c
+Norme: ./srcs/init/parse.c
+Norme: ./srcs/init/parse_ant.c
+Norme: ./srcs/init/parse_command.c
+Norme: ./srcs/init/parse_room.c
+Norme: ./srcs/init/parse_room_link.c
+Norme: ./srcs/init/parse_tools.c
+Norme: ./srcs/main.c
+Error (line 27): C++ comment
+Norme: ./srcs/print/buffer.c
+Norme: ./srcs/print/output.c
+Norme: ./srcs/print/output_special_case.c
+Norme: ./srcs/print/print_path.c
+Norme: ./srcs/print/print_path_second.c
+Norme: ./srcs/print/print_queue.c
+Norme: ./srcs/solve/bfs/bfs.c
+Norme: ./srcs/solve/bfs/bfs_second_tools.c
+Norme: ./srcs/solve/bfs/bfs_store_and_repath.c
+Norme: ./srcs/solve/bfs/bfs_tools.c
+Norme: ./srcs/solve/bfs/check_vertex_used.c
+Norme: ./srcs/solve/bfs/handle_link_used_both_way.c
+Norme: ./srcs/solve/bfs/is_path_valid.c
+Norme: ./srcs/solve/bfs/update_links.c
+Norme: ./srcs/solve/init_and_set_network.c
+Norme: ./srcs/solve/lem_in.c
+Norme: ./srcs/solve/smart_ant_management.c
