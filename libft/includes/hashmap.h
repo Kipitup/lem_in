@@ -6,11 +6,11 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:19:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/18 23:18:16 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 00:18:58 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	HASHMAP_H
+#ifndef HASHMAP_H
 # define HASHMAP_H
 
 # include <stdlib.h>

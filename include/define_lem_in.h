@@ -6,14 +6,14 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/18 22:55:33 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 00:12:02 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_LEM_IN_H
 # define DEFINE_LEM_IN_H
 
-# define LEMIN_BUFF_SIZE	262144	
+# define LEMIN_BUFF_SIZE	262144
 
 # define FALSE				0
 # define TRUE				1

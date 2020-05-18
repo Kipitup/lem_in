@@ -6,12 +6,11 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:55:35 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/18 22:58:26 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 00:12:57 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "btree.h"
-
 
 static void		delete_case_5(t_rb_tree *node, t_rb_tree *sibling)
 {

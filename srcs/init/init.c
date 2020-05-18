@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/19 00:03:29 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 00:14:51 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void			last_quick_check(t_st_machine *sm)
 {
-	//	[?] need a way to protect this without the output and write a \n if it succeed
-	//	if (sm->lemin->output->len == 0)
-	//		sm->state = EMPTY_FILE;
 	if (sm->lemin->link != NULL)
 	{
 		if (sm->lemin->link->array[0].head == NULL)

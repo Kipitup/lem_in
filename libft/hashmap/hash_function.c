@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:25:03 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/18 23:06:40 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 00:13:49 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ uint32_t		ft_hash_str(const void *data, size_t len)
 		hash += (hash << 10);
 		hash ^= (hash >> 6);
 		i++;
-    }
+	}
 	hash += (hash << 3);
 	hash ^= (hash >> 11);
 	hash += (hash << 15);
-    return (hash);
+	return (hash);
 }
