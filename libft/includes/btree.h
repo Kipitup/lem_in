@@ -6,10 +6,9 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 10:49:04 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/18 23:10:27 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 09:43:57 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef BTREE_H
 # define BTREE_H
@@ -32,7 +31,7 @@
 **	Every Red Black Tree with n nodes has height <= 2Log2(n+1)
 *****************************************************************************
 */
-typedef struct				s_rb_tree
+typedef struct	s_rb_tree
 {
 	struct s_rb_tree	*parent;
 	struct s_rb_tree	*left;
@@ -40,7 +39,7 @@ typedef struct				s_rb_tree
 	int32_t				key;
 	uint8_t				color;
 	char				padding[3];
-}							t_rb_tree;
+}				t_rb_tree;
 
 # define RED			0
 # define BLACK			1
@@ -62,12 +61,12 @@ typedef struct				s_rb_tree
 **	Doc : https://s.42l.fr/heap_tree
 *****************************************************************************
 */
-typedef struct				s_heap
+typedef struct	s_heap
 {
 	int32_t				*array;
 	uint8_t				type;
 	char				padding[7];
-}							t_heap;
+}				t_heap;
 
 # define HEAP_SIZE		0
 # define ROOT			1
@@ -79,36 +78,36 @@ typedef struct				s_heap
 ** ############################### RED-BLACK ##################################
 ** ############################################################################
 */
-t_rb_tree	*red_black_tree(int32_t *array, size_t size);
-t_rb_tree	*insert(t_rb_tree *root, int32_t key);
-t_rb_tree	*init_node(int32_t key);
-void		repair_tree(t_rb_tree *node);
-void		left_rotate(t_rb_tree *old_root);
-void		right_rotate(t_rb_tree *old_root);
-t_rb_tree	*delete(t_rb_tree *node, int32_t key);
-void		delete_case_1(t_rb_tree *node);
-t_rb_tree	*get_root(t_rb_tree *node);
-t_rb_tree	*get_parent(t_rb_tree *self);
-t_rb_tree	*get_grand_parent(t_rb_tree *self);
-t_rb_tree	*get_sibling(t_rb_tree *self);
-t_rb_tree	*get_uncle(t_rb_tree *self);
-void		clean_rb_tree(t_rb_tree **root);
-void		print_rb_tree(t_rb_tree *node, size_t deep);
+t_rb_tree		*red_black_tree(int32_t *array, size_t size);
+t_rb_tree		*insert(t_rb_tree *root, int32_t key);
+t_rb_tree		*init_node(int32_t key);
+void			repair_tree(t_rb_tree *node);
+void			left_rotate(t_rb_tree *old_root);
+void			right_rotate(t_rb_tree *old_root);
+t_rb_tree		*delete(t_rb_tree *node, int32_t key);
+void			delete_case_1(t_rb_tree *node);
+t_rb_tree		*get_root(t_rb_tree *node);
+t_rb_tree		*get_parent(t_rb_tree *self);
+t_rb_tree		*get_grand_parent(t_rb_tree *self);
+t_rb_tree		*get_sibling(t_rb_tree *self);
+t_rb_tree		*get_uncle(t_rb_tree *self);
+void			clean_rb_tree(t_rb_tree **root);
+void			print_rb_tree(t_rb_tree *node, size_t deep);
 
 /*
 ** ############################################################################
 ** ################################# HEAP #####################################
 ** ############################################################################
 */
-t_heap		*heap_tree(int32_t *tab, size_t size, uint8_t type);
-void		delete_root(t_heap *heap);
-void		clean_heap_tree(t_heap **heap);
-void		is_parent_valid(t_heap *heap, size_t child);
-void		heapify(t_heap *heap, size_t parent);
-size_t		get_heap_parent(size_t index);
-size_t		get_left_child(size_t index);
-size_t		get_right_child(size_t index);
-size_t		deepness(size_t max);
-void		print_heap_tree(t_heap *heap, size_t index, size_t deep);
+t_heap			*heap_tree(int32_t *tab, size_t size, uint8_t type);
+void			delete_root(t_heap *heap);
+void			clean_heap_tree(t_heap **heap);
+void			is_parent_valid(t_heap *heap, size_t child);
+void			heapify(t_heap *heap, size_t parent);
+size_t			get_heap_parent(size_t index);
+size_t			get_left_child(size_t index);
+size_t			get_right_child(size_t index);
+size_t			deepness(size_t max);
+void			print_heap_tree(t_heap *heap, size_t index, size_t deep);
 
 #endif

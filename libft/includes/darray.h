@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/18 23:12:06 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 09:44:54 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 
 typedef	void	(*t_del_func)(void *);
 
-typedef struct	s_darray {
+typedef struct	s_darray
+{
 	size_t		end;
 	size_t		max;
 	size_t		sizeof_elem;
@@ -41,27 +42,27 @@ typedef struct	s_darray {
 	void		**contents;
 }				t_darray;
 
-int8_t		darray_set(t_darray *array, size_t i, void *element);
-void		*darray_get(t_darray *array, size_t i);
-void		*darray_remove(t_darray *array, size_t i);
-void		darray_remap_index(t_darray *array);
-void		*darray_new(t_darray *array);
-t_darray	*darray_create(size_t sizeof_elem, size_t initial_max);
-int8_t		darray_expand(t_darray *array);
-int8_t		darray_contract(t_darray *array);
-int8_t		darray_push(t_darray *array, void *element);
-void		*darray_pop(t_darray *array);
-void		darray_destroy(t_darray **array);
-void		darray_clear_content(t_darray **array, t_del_func del_func);
-void		darray_clear_destroy(t_darray **array, t_del_func del_func);
-void		**ft_realloc(t_darray *array, size_t size, size_t old_size);
+int8_t			darray_set(t_darray *array, size_t i, void *element);
+void			*darray_get(t_darray *array, size_t i);
+void			*darray_remove(t_darray *array, size_t i);
+void			darray_remap_index(t_darray *array);
+void			*darray_new(t_darray *array);
+t_darray		*darray_create(size_t sizeof_elem, size_t initial_max);
+int8_t			darray_expand(t_darray *array);
+int8_t			darray_contract(t_darray *array);
+int8_t			darray_push(t_darray *array, void *element);
+void			*darray_pop(t_darray *array);
+void			darray_destroy(t_darray **array);
+void			darray_clear_content(t_darray **array, t_del_func del_func);
+void			darray_clear_destroy(t_darray **array, t_del_func del_func);
+void			**ft_realloc(t_darray *array, size_t size, size_t old_size);
 
 /*
 **	Clean function
 */
 
-void		del_hashmap_node(void *content);
-void		del_vector(void *content);
+void			del_hashmap_node(void *content);
+void			del_vector(void *content);
 
 /*
 ** ********************************  ERRORS ************************************

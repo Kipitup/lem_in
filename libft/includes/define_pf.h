@@ -6,12 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 14:13:45 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/18 23:12:30 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 09:34:27 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_PH
-# define DEFINE_PH
+#ifndef DEFINE_PF_H
+# define DEFINE_PF_H
 
 # include <stdlib.h>
 # include <unistd.h>
