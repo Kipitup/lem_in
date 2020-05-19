@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:46:24 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/19 00:14:51 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 09:55:46 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_lemin				*init(void)
 		if (sm->state > E_ERROR || sm->state < ERR_STOP_LEMIN)
 			last_quick_check(sm);
 		if (sm->state > E_ERROR || sm->state < ERR_STOP_LEMIN)
-			 assign_sm_to_lemin_and_sol(&lemin, &sm);
+			assign_sm_to_lemin_and_sol(&lemin, &sm);
 		if (sm->state <= E_ERROR && sm->state >= ERR_STOP_LEMIN)
 		{
 			error_management(sm->state);
