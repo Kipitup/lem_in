@@ -202,7 +202,6 @@ Norme: ./libft/includes/graph.h
 Norme: ./libft/includes/hashmap.h
 Norme: ./libft/includes/libft.h
 Norme: ./libft/includes/vector.h
-Error (line 171): # include "libft.h" should be before line 45
 Norme: ./libft/linked_list/ft_lstadd.c
 Norme: ./libft/linked_list/ft_lstadd_rear.c
 Norme: ./libft/linked_list/ft_lstdel.c
@@ -427,7 +426,6 @@ Norme: ./libft/vector/vct_sub.c
 Norme: ./srcs/clean/clean.c
 Norme: ./srcs/init/error_management.c
 Norme: ./srcs/init/init.c
-Error (line 82): must begin only by tabulations
 Norme: ./srcs/init/init_adjacency_list.c
 Norme: ./srcs/init/init_file_for_visu.c
 Norme: ./srcs/init/init_solution.c
@@ -439,7 +437,6 @@ Norme: ./srcs/init/parse_room.c
 Norme: ./srcs/init/parse_room_link.c
 Norme: ./srcs/init/parse_tools.c
 Norme: ./srcs/main.c
-Error (line 27): C++ comment
 Norme: ./srcs/print/buffer.c
 Norme: ./srcs/print/output.c
 Norme: ./srcs/print/output_special_case.c
