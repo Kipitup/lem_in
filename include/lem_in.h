@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/18 22:56:44 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 10:12:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void			print_all_links_to_vertex_used_more(t_graph *graph);
 void			print_all_path(t_darray *all_path);
 void			print_all_path_len(t_darray *all_path);
 void			print_all_solution(t_lemin *lemin);
-void			print_final_output(t_lemin *lemin);
+int8_t			print_final_output(t_lemin *lemin);
 void			print_debug_network(t_network *net);
 void			vertex_used_more(t_graph *graph);
 int8_t			start_is_connected_to_end(t_network *net, size_t nb_ants);

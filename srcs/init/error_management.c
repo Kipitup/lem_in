@@ -6,7 +6,7 @@
 /*   By: amartinod <amartino@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 14:59:02 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/14 16:22:40 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/19 10:19:24 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int8_t	err_wont_stop_lemin(int8_t error)
 	else if (error == ROOM_DONT_EXIST)
 		ft_perror("You're trying to link a room that doesn't exist", NULL, 0);
 	else if (error == STD_OUT_CLOSE)
-		ft_perror("STD OUT is close. THe output cannot be print", NULL, 0);
+		ft_perror("STD OUT is close. The output cannot be print", NULL, 0);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: amartinod <a.martino@sutdent.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 11:05:11 by amartinod         #+#    #+#             */
-/*   Updated: 2020/05/13 16:10:50 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/19 10:12:54 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,12 @@ static t_network	*choose_best_solution(t_solution *result)
 	return (best);
 }
 
-void				print_final_output(t_lemin *lemin)
+int8_t				print_final_output(t_lemin *lemin)
 {
 	t_network	*net;
 	int8_t		ret;
 
+	ret = FAILURE;
 	if (lemin != NULL && lemin->result != NULL)
 	{
 		net = choose_best_solution(lemin->result);
@@ -133,4 +134,5 @@ void				print_final_output(t_lemin *lemin)
 		else
 			ft_perror("No path between start and end", __FILE__, __LINE__);
 	}
+	return (ret);
 }
