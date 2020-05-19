@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 15:28:28 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/11 19:24:20 by fkante           ###   ########.fr       */
+/*   Updated: 2020/05/19 11:02:08 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Remove a certain number of characters from the index of the string

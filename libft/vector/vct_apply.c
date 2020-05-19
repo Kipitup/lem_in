@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 11:43:23 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/14 15:29:25 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/05/19 11:07:44 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Apply the function that you give as parameter to the vector.

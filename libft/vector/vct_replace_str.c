@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:58:09 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/27 17:43:28 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 11:04:16 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Search the vector to find if a given 'str' string exist in the vector.

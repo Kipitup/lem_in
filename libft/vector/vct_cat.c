@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 14:57:15 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/18 19:33:49 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 10:58:56 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Concat 2 vector string.

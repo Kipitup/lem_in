@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 14:05:07 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/05 14:56:46 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 11:00:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Join 2 vector string together. Return the new joined vector. If one of the

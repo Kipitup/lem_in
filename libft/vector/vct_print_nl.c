@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 15:00:45 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/25 20:47:23 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 11:02:27 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Print the vector and a new line

@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 15:25:09 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/18 23:26:31 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 11:07:14 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # define ON						1
 # define OFF					0
+# define FAILURE				-1
+# define SUCCESS				0
 
 # define DEFAULT_VCT_SIZE 		64
 # define DEFAULT_VCT_SCALE 		16
@@ -41,7 +43,6 @@
 **				appropriate function or create it.
 *****************************************************************************
 */
-
 typedef struct	s_vector
 {
 	char		*str;
@@ -168,6 +169,4 @@ t_vector		*ft_fldtoa(long double val, uint64_t preci, uint32_t opt);
 ** vct_splitchr
 ** vct_read_line
 */
-# include "libft.h"
-
 #endif

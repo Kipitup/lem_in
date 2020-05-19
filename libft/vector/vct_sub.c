@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:57:53 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/18 23:41:55 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 11:04:59 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 t_vector	*vct_sub(t_vector *vector, size_t start, size_t len)
 {

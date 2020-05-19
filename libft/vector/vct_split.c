@@ -6,11 +6,12 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:26:09 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/18 23:41:30 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 11:04:39 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 ** 	Splits the input vector into multiple vectors separated by one or more

@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:50:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/26 16:48:56 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 11:09:39 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 uint8_t		vct_strnequ(t_vector const *vector, char const *str, size_t n)
 {

@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:31:03 by amartino          #+#    #+#             */
-/*   Updated: 2020/02/06 13:32:22 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 10:58:23 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Add a nb of characters (len) of a string (str) to the end of the vector str.

@@ -6,11 +6,13 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 20:27:37 by fkante            #+#    #+#             */
-/*   Updated: 2020/03/11 20:28:27 by fkante           ###   ########.fr       */
+/*   Updated: 2020/05/19 11:02:44 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
+#include "ft_printf.h"
 
 /*
 **	Print the table of vectors with there respective index and a new line.

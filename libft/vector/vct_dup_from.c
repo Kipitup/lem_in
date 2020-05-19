@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 10:56:01 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/18 23:40:34 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/19 11:06:02 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Return a duplicate of the given vector from index n

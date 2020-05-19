@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 17:17:56 by amartino          #+#    #+#             */
-/*   Updated: 2020/01/20 11:40:38 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 10:58:32 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Add a str to the end of the vector string.

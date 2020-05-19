@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:44:22 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/05 14:19:01 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 11:00:18 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Increase the size of allocated bloc by a certain scale.

@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:30:22 by amartino          #+#    #+#             */
-/*   Updated: 2020/03/10 17:51:23 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 10:59:25 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Free the vector and set it to NULL

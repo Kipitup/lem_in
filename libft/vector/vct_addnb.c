@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 11:35:21 by amartino          #+#    #+#             */
-/*   Updated: 2020/01/20 11:48:05 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 10:58:15 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Convert tuhe number into a string and add it to the end of the string

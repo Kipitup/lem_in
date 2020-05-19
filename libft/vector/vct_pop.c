@@ -6,11 +6,12 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 17:04:17 by amartino          #+#    #+#             */
-/*   Updated: 2019/09/04 17:44:44 by amartino         ###   ########.fr       */
+/*   Updated: 2020/05/19 11:02:00 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "libft.h"
 
 /*
 **	Remove a certain number of characters from the end of the string
