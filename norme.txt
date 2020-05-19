@@ -105,7 +105,6 @@ Warning: Not a valid file
 Norme: ./visu/visu.py
 Warning: Not a valid file
 Norme: ./include/define_lem_in.h
-Error (line 16): spaces at the end of line
 Norme: ./include/lem_in.h
 Norme: ./libft/btree/heap_build.c
 Norme: ./libft/btree/heap_order.c
@@ -117,9 +116,7 @@ Norme: ./libft/btree/red_black_insert_order.c
 Norme: ./libft/btree/red_black_print.c
 Norme: ./libft/btree/red_black_remove.c
 Norme: ./libft/btree/red_black_remove_order.c
-Error (line 15): multiple empty lines
-Error (line 16): function delete_case_5 has 28 lines
-Error (line 16): bad spacing before delete_case_5
+Error (line 15): function delete_case_5 has 28 lines
 Norme: ./libft/btree/red_black_remove_order_bis.c
 Norme: ./libft/btree/red_black_rotation.c
 Norme: ./libft/btree/red_black_tool.c
@@ -181,28 +178,18 @@ Norme: ./libft/graph/graph_clean.c
 Norme: ./libft/graph/graph_print.c
 Norme: ./libft/hashmap/compare_function.c
 Norme: ./libft/hashmap/hash_function.c
-Error (line 75): bad indentation
-Error (line 75): must begin only by tabulations
-Error (line 79): bad indentation
-Error (line 79): must begin only by tabulations
 Norme: ./libft/hashmap/hashmap_clean.c
 Norme: ./libft/hashmap/hashmap_create.c
 Norme: ./libft/hashmap/hashmap_get.c
 Norme: ./libft/hashmap/hashmap_print.c
 Norme: ./libft/hashmap/hashmap_resize.c
 Error (line 95): function hashmap_resize has 26 lines
-Error (line 105): bad indentation
-Error (line 105): line has 154 characters
-Error (line 121): bad indentation
-Error (line 121): line has 153 characters
+Error (line 105): line has 158 characters
+Error (line 121): line has 157 characters
 Norme: ./libft/hashmap/hashmap_set.c
 Norme: ./libft/includes/btree.h
-Error: global scope bad aligned
-Error (line 13): multiple empty lines
 Norme: ./libft/includes/darray.h
-Error: global scope bad aligned
 Norme: ./libft/includes/define_pf.h
-Error: has double inclusion protection but not with the good define name
 Error (line 104): define must be a constant value
 Error (line 105): define must be a constant value
 Error (line 106): define must be a constant value
@@ -212,10 +199,7 @@ Error (line 109): define must be a constant value
 Error (line 110): define must be a constant value
 Norme: ./libft/includes/ft_printf.h
 Norme: ./libft/includes/graph.h
-Error: global scope bad aligned
-Error (line 13): wrong number of spaces in preprocessor line
 Norme: ./libft/includes/hashmap.h
-Error (line 13): wrong number of spaces in preprocessor line
 Norme: ./libft/includes/libft.h
 Norme: ./libft/includes/vector.h
 Error (line 171): # include "libft.h" should be before line 45
@@ -443,14 +427,7 @@ Norme: ./libft/vector/vct_sub.c
 Norme: ./srcs/clean/clean.c
 Norme: ./srcs/init/error_management.c
 Norme: ./srcs/init/init.c
-Error (line 17): bad indentation
-Error (line 17): C++ comment
-Error (line 17): line has 87 characters
-Error (line 18): bad indentation
-Error (line 18): C++ comment
-Error (line 19): bad indentation
-Error (line 19): C++ comment
-Error (line 85): must begin only by tabulations
+Error (line 82): must begin only by tabulations
 Norme: ./srcs/init/init_adjacency_list.c
 Norme: ./srcs/init/init_file_for_visu.c
 Norme: ./srcs/init/init_solution.c
