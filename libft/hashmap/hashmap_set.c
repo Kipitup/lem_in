@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:35:14 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/21 21:51:40 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/23 19:26:07 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ static int8_t		push_node(t_hashmap *map, t_hashnode *node, uint32_t hash)
 		{
 			ret = darray_set(array, 0, (void*)node);
 			if (ret == SUCCESS)
-			{
 				map->bucket[index] = array;
-			}
 			else
 				darray_clear_destroy(&array, &del_hashmap_node);
 		}
