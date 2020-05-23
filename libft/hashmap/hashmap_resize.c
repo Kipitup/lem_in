@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 18:31:14 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/23 19:24:41 by fkante           ###   ########.fr       */
+/*   Updated: 2020/05/23 19:28:47 by fkante           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static int8_t	handle_collision(t_darray *array, void **content, size_t n_size,
 	return (ret);
 }
 
-static int8_t		collision_and_darray_destroy(void **content,
-		t_hashmap *map, t_darray *array, size_t new_size)
+static int8_t	collision_and_darray_destroy(void **content, t_hashmap *map,
+		t_darray *array, size_t new_size)
 {
 	int8_t	ret;
 
