@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:55:35 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/19 00:12:57 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/21 19:07:13 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void		delete_case_5(t_rb_tree *node, t_rb_tree *sibling)
 		if ((node == node->parent->left) && (s_child_r_color == BLACK)
 				&& (s_child_l_color == RED))
 		{
-			ft_printf("delete case 5 right\n");
 			sibling->color = RED;
 			if (sibling->left != NULL)
 				sibling->left->color = BLACK;
@@ -33,12 +32,10 @@ static void		delete_case_5(t_rb_tree *node, t_rb_tree *sibling)
 		else if ((node == node->parent->right) && (s_child_l_color == BLACK)
 				&& (s_child_r_color == RED))
 		{
-			ft_printf("delete case 5 left\n");
 			sibling->color = RED;
 			if (sibling->left != NULL)
 				sibling->left->color = BLACK;
 			left_rotate(sibling);
-			ft_printf("finish case 5\n");
 		}
 	}
 	delete_case_6(node);

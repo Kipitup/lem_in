@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   darray_push.c                                      :+:      :+:    :+:   */
+/*   darray_isempty.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/04 16:41:29 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/21 21:45:45 by francis          ###   ########.fr       */
+/*   Created: 2020/05/23 10:20:01 by francis           #+#    #+#             */
+/*   Updated: 2020/05/23 10:26:51 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "darray.h"
 #include "libft.h"
-#include "hashmap.h"
 
-int8_t	darray_push(t_darray *array, void *element)
+int8_t	darray_isempty(t_darray *array)
 {
+	size_t	i;
 	int8_t	ret;
 
+	i = 0;
 	ret = SUCCESS;
 	if (array != NULL)
 	{
-		if ((array->end + 1) >= array->max)
-			ret = darray_expand(array);
-		if (ret == SUCCESS)
+		while (i <= array->end)
 		{
-			if (array->contents[array->end] != NULL || array->end > 0)
-				array->end++;
-			array->contents[array->end] = element;
+			if (array->contents[i] != NULL)
+				ret = FAILURE;
+			i++;
 		}
 	}
-	else
-		ret = ft_perror_failure(ARRAY_IS_NULL, __FILE__, __LINE__);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 18:31:14 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/19 00:14:13 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/23 10:50:41 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int8_t	push_node(void **bucket, size_t map_size, size_t *nb_collision,
 }
 
 static int8_t	handle_collision(t_darray *array, void **content, size_t n_size,
-									size_t *nb_collision)
+		size_t *nb_collision)
 {
 	t_hashnode	*node;
 	size_t		i;
@@ -62,8 +62,22 @@ static int8_t	handle_collision(t_darray *array, void **content, size_t n_size,
 	return (ret);
 }
 
+static int8_t		collision_and_darray_destroy(void ** content,
+		t_hashmap *map, t_darray *array, size_t new_size)
+{
+	int8_t	ret;
+	
+	ret = SUCCESS;
+	if (array->end > 0)
+		ret = handle_collision(array, content, new_size,
+				&map->nb_collision);
+	if (darray_isempty(array) == SUCCESS)
+		darray_destroy(&array);
+	return (ret);
+}
+
 static int8_t	redispatch_node(t_hashmap *map, size_t i, void **content,
-									size_t new_size)
+		size_t new_size)
 {
 	t_hashnode	*node;
 	t_darray	*array;
@@ -81,12 +95,11 @@ static int8_t	redispatch_node(t_hashmap *map, size_t i, void **content,
 			if (content[index] == NULL)
 				content[index] = array;
 			else
-				ret = push_node(content, new_size, &map->nb_collision, node);
-			if (array->end > 0)
 			{
-				ret = handle_collision(array, content, new_size,
-										&map->nb_collision);
+				node = darray_remove(array, 0);
+				ret = push_node(content, new_size, &map->nb_collision, node);
 			}
+			ret = collision_and_darray_destroy(content, map, array, new_size);
 		}
 	}
 	return (ret);
@@ -102,7 +115,6 @@ int8_t			hashmap_resize(t_hashmap *map)
 	i = 0;
 	ret = SUCCESS;
 	new_size = (size_t)ft_find_next_prime(map->size * 3);
-	ft_dprintf(STD_ERR, "Before resize from %zu to %zu. nb of element: %zu nb of collision: %zu\n", map->size, new_size, map->nb_of_elem, map->nb_collision);
 	content = ft_memalloc(new_size * (sizeof(t_darray*)));
 	if (content != NULL)
 	{
@@ -118,6 +130,5 @@ int8_t			hashmap_resize(t_hashmap *map)
 	}
 	else
 		ret = ft_perror_failure(RESIZE_FAIL, __FILE__, __LINE__);
-	ft_dprintf(STD_ERR, "After resize from %zu to %zu. nb of element: %zu nb of collision: %zu\n", map->size, new_size, map->nb_of_elem, map->nb_collision);
 	return (ret);
 }

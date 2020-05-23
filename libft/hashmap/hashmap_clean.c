@@ -6,7 +6,7 @@
 /*   By: fkante <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:42:38 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/18 12:01:35 by francis          ###   ########.fr       */
+/*   Updated: 2020/05/21 22:24:10 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 void	del_map(t_hashmap **map_to_del)
 {
 	t_hashmap	*map;
+	t_hashnode	*node;
 	size_t		i;
 
 	i = 0;

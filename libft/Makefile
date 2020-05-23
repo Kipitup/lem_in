@@ -6,7 +6,7 @@
 #    By: fkante <fkante@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/19 17:11:38 by fkante            #+#    #+#              #
-#    Updated: 2020/05/18 23:00:32 by francis          ###   ########.fr        #
+#    Updated: 2020/05/23 10:21:36 by francis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -257,6 +257,7 @@ SRCS += darray_modify_size.c
 SRCS += darray_pop.c
 SRCS += darray_push.c
 SRCS += darray_utilities.c
+SRCS += darray_isempty.c
 SRCS += ft_realloc.c
 SRCS += del_function.c
 

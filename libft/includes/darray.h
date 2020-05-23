@@ -6,7 +6,7 @@
 /*   By: fkante <fkante@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:27:45 by fkante            #+#    #+#             */
-/*   Updated: 2020/05/19 09:44:54 by fkante           ###   ########.fr       */
+/*   Updated: 2020/05/23 10:48:16 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_darray
 }				t_darray;
 
 int8_t			darray_set(t_darray *array, size_t i, void *element);
+int8_t			darray_isempty(t_darray *array);
 void			*darray_get(t_darray *array, size_t i);
 void			*darray_remove(t_darray *array, size_t i);
 void			darray_remap_index(t_darray *array);
