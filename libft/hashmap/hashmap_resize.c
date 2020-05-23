@@ -6,7 +6,7 @@
 /*   By: amartino <a.martino@sutdent.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 18:31:14 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/23 19:28:47 by fkante           ###   ########.fr       */
+/*   Updated: 2020/05/23 10:50:41 by francis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int8_t	redispatch_node(t_hashmap *map, size_t i, void **content,
 			else
 			{
 				node = darray_remove(array, 0);
-				ret = push_node(content, new_size, &map->nb_collision, node);
+				push_node(content, new_size, &map->nb_collision, node);
 			}
 			ret = collision_and_darray_destroy(content, map, array, new_size);
 		}
