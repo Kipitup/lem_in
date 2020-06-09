@@ -6,7 +6,7 @@
 /*   By: amartino <amartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 11:16:29 by amartino          #+#    #+#             */
-/*   Updated: 2020/05/19 10:12:14 by francis          ###   ########.fr       */
+/*   Updated: 2020/06/08 15:56:41 by amartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 enum	e_states
 {
-	E_ERROR = FAILURE,
+	E_FAKE = -27,
+	E_ERROR = -1,
 	E_ANT = 0,
 	E_ROOM = 1,
 	E_LINK = 2,
