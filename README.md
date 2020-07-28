@@ -77,7 +77,7 @@ bash unit_test.sh
 
 ## Comment cloner le repo ?
 
-Ce repo inclus des submodule. Si vous voulez le cloner, il faut utiliser la commande suivante :
+Ce repo inclus des submodules. Si vous voulez le cloner, il faut utiliser la commande suivante :
 ```
 git clone --recurse-submodules <repository url>
 ```
