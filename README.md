@@ -4,6 +4,14 @@
 Le but du projet est de trouver l'ensemble de chemins le plus rapide pour déplacer n fourmis de la salle definie par '##start'
 à la salle définie par '##end'. Une seule fourmi peut être présente par salle et par tour.
 
+## Lancer lem-in
+```
+make && ./lem-in < PATH_TO_MAP
+```
+#### Output classique :
+
+![classic_output](https://user-images.githubusercontent.com/42733388/88646654-9549d500-d0c5-11ea-841e-454ed5f89f4d.png)
+
 ### Exemple de visualisation
 * 0 en vert correspond à la salle `##start`
 * 21 en rouge correspond à la salle `##end`
@@ -22,28 +30,28 @@ Chaque lien aura une variable booléenne `disponible`
 
 Nous parcourons la liste de manière naturelle, premier entré, premier sorti.
 
-Lorsque bfs atteint END:
+Lorsque bfs atteint END :
 si plusieurs chemins ont la même distance, nous ajoutons un seul chemin valide (uniquement des nœuds inutilisés et pas de doubles liens croisés) dans nos solutions.
 
 Chaque nouvelle exploration se fera sur une copie du graphe, (dup de la liste d'adjacence).
 
 Chaque solution BFS possible est stockée dans un darray. Chaque bucket contient une liste chaînée avec tous les chemins trouvés. Chaque chemin a sa propre liste chaînée avec tous la pièce qu'il traverse.
 
-## Phase d'exploration BFS:
-Chaque fois que l'on visite une salle:
+## Phase d'exploration BFS :
+Chaque fois que l'on visite une salle :
 * Mise à jour de l'état du lien et de la distance.
 * Une salle n'est considérée comme VISITE que lorsque tous ses liens ont été vérifiés.
 * On ne peut visiter une salle que si le lien vers celle-ci est disponible dans notre direction.
 * Si la distance d'une pièce a été définie, on ne modifie pas la distance.
-* Le BFS s'arrêtera si:
+* Le BFS s'arrêtera si :
   * Chaque pièce a été visitée
   * La salle END est atteinte
 
-BFS retourne et trouve le chemin:
+BFS retourne et trouve le chemin :
 * Comme dit précédemment, premier entré, premier sorti.
 * Chaque fois que l'on retourne dans une salle, nous l'ajoutons à la liste chaînée.
 
-Chemin BFS trouvé:
+Chemin BFS trouvé :
 * Si un lien (ou plus) est égal à 3 (les DEUX sens sont utilisés):
   * On enregistre uniquement des chemins valides à la structure `t_solution`.
   * Supprimer le lien utilisé. (tous)
@@ -57,7 +65,7 @@ En parallel ou après que tous les solutions de BFS aient été explorés:
 * On fait une simulation en fonction du nombre de fourmis a déplacer et les solutions possibles que l'on trouve.
 * On prent la solution la plus optimale pour déplacer les fourmis le plus rapidement possible.
 
-## Unit test
+# Unit test
 Vous pouvez tester le parsing de lem-in, la map de votre choix (/path_de_la_map) ou le generator.
 Le generator doit porter ce nom `generator`, dans notre dossier vous trouverez `generator_linux` et `generator_macos`, pensez à changer le nom et utiliser le generator correspondant à votre OS.
 
