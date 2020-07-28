@@ -56,3 +56,13 @@ Chemin BFS trouvé:
 En parallel ou après que tous les solutions de BFS aient été explorés:
 * On fait une simulation en fonction du nombre de fourmis a déplacer et les solutions possibles que l'on trouve.
 * On prent la solution la plus optimale pour déplacer les fourmis le plus rapidement possible.
+
+## Unit test
+Vous pouvez tester le parsing de lem-in, la map de votre choix (/path_de_la_map) ou le generator.
+Le generator doit porter ce nom `generator`, dans notre dossier vous trouverez `generator_linux` et `generator_macos`, pensez à changer le nom et utiliser le generator correspondant à votre OS.
+
+Comment lancer le tester :
+```
+bash unit_test.sh
+```
+![teste_lemin](https://user-images.githubusercontent.com/42733388/88645837-ddb4c300-d0c4-11ea-8036-a8b4d0be5901.png)
