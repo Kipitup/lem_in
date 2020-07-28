@@ -74,3 +74,15 @@ Comment lancer le tester :
 bash unit_test.sh
 ```
 ![teste_lemin](https://user-images.githubusercontent.com/42733388/88645837-ddb4c300-d0c4-11ea-8036-a8b4d0be5901.png)
+
+## Comment cloner le repo ?
+
+Ce repo inclus des submodule. Si vous voulez le cloner, il faut utiliser la commande suivante :
+```
+git clone --recurse-submodules <repository url>
+```
+Par exemple si vous clonez avec `git clone <repository url>` il vous manquera le dossier `libft`.
+
+## Auteurs :
+* [Alexandre Martino](https://github.com/Kipitup)
+* [Francis KANTE](https://github.com/fkante)
