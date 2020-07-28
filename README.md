@@ -13,7 +13,7 @@ Le but du projet est de trouver l'ensemble de chemins le plus rapide pour dépla
 
 Pour la résolution du problème, nous avons décidé d'utiliser le BFS comme base pour construire notre algorithme.
 
-# Voici comment nous avons construit notre algorithme de résolution :
+# Construction de notre algorithme :
 
 Chaque pièce a une `distance` variable
 distance = combien de pas il y a entre le départ et la pièce concernée
